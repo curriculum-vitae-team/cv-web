@@ -7,10 +7,10 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: './src/index.ts'
+    app: './src/index.tsx'
   },
   plugins: [
-    new EnvironmentPlugin([]),
+    new EnvironmentPlugin(['GRAPHQL_API_URL']),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
