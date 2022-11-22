@@ -6,6 +6,7 @@ The following .env example file is required for the correct work of the applicat
 
 ```
 PORT=3000
+GRAPHQL_API_URL=https://cv-gen-be.herokuapp.com/api/graphql
 ```
 
 ### Installation
@@ -36,6 +37,11 @@ To analyze the code and find problems according to the given rules, described in
 ├── src
 │   ├── @types
 │   ├── assets
+│   ├── components
+│   ├── constants
+│   ├── graphql
+│   ├── helpers
+│   ├── interfaces
 │   └── index.ts (entry point)
 ├── .eslintrc.js
 ├── .prettierrc
