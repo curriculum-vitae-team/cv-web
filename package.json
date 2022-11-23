@@ -6,9 +6,22 @@
     "start": "webpack serve --config webpack.dev",
     "build": "webpack --config webpack.prod"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@apollo/client": "^3.7.1",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.14",
+    "@mui/material": "^5.10.14",
+    "graphql": "^16.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.39.4",
+    "react-router-dom": "^6.4.3"
+  },
   "devDependencies": {
     "@types/node": "^17.0.18",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
     "compression-webpack-plugin": "^10.0.0",
