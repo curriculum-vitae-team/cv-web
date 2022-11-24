@@ -6,6 +6,7 @@ import { UserRole } from '../constants/user-role.constants'
 
 export interface IUser {
   id: string
+  created_at: string
   email: string
   is_verified: boolean
   profile: IProfile
