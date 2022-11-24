@@ -66,7 +66,7 @@ const UserMenu = () => {
           }
         }}
       >
-        <MenuItem component={NavLink} to={`/employees/${user?.id}`}>
+        <MenuItem component={NavLink} to={`/employees/${user?.id}/profile`}>
           <ListItemIcon>
             <AccountCircle />
           </ListItemIcon>

@@ -6,7 +6,3 @@ export const Profile = styled('div')({
   margin: '60px auto',
   width: 560
 })
-
-export const AccordionItem = styled('div')({
-  display: 'flex'
-})
