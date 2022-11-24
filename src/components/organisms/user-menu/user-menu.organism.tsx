@@ -1,10 +1,12 @@
-import { MouseEvent, useCallback, useState } from 'react'
+import { memo, MouseEvent, useCallback, useEffect, useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useReactiveVar } from '@apollo/client'
 import { Avatar, Divider, ListItemIcon, Menu, MenuItem, Typography } from '@mui/material'
 import { AccountCircle, Settings, Logout } from '@mui/icons-material'
 import { authService } from '../../../graphql/auth/auth.service'
 
-export const UserMenu = () => {
+const UserMenu = () => {
+  const location = useLocation()
   const user = useReactiveVar(authService.user$)
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
@@ -16,6 +18,10 @@ export const UserMenu = () => {
   const handleClose = useCallback(() => {
     setAnchorEl(null)
   }, [])
+
+  useEffect(() => {
+    handleClose()
+  }, [location, handleClose])
 
   const handleLogout = useCallback(() => {
     authService.clearStorage()
@@ -31,7 +37,7 @@ export const UserMenu = () => {
         sx={{ backgroundColor: '#c63031', cursor: 'pointer' }}
         onClick={handleClick}
       >
-        {user?.profile.first_name?.[0] || user?.email[0]}
+        {user?.profile.full_name?.[0] || user?.email[0]}
       </Avatar>
       <Menu
         anchorEl={anchorEl}
@@ -60,7 +66,7 @@ export const UserMenu = () => {
           }
         }}
       >
-        <MenuItem>
+        <MenuItem component={NavLink} to={`/employees/${user?.id}/profile`}>
           <ListItemIcon>
             <AccountCircle />
           </ListItemIcon>
@@ -83,3 +89,5 @@ export const UserMenu = () => {
     </>
   )
 }
+
+export default memo(UserMenu)

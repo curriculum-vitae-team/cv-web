@@ -18,3 +18,31 @@ export const USERS = gql`
     }
   }
 `
+
+export const USER = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      id
+      created_at
+      email
+      profile {
+        id
+        first_name
+        last_name
+        full_name
+        avatar
+        skills {
+          skill_name
+          mastery
+        }
+        languages {
+          language_name
+          proficiency
+        }
+      }
+      department_name
+      position_name
+      role
+    }
+  }
+`

@@ -4,5 +4,4 @@ export type SideMenuItemProps = {
   IconComponent?: FC
   name: string
   to: string
-  onClick: () => void
 }
