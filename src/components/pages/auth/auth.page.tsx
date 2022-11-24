@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { Tabs, Tab, AppBar } from '@mui/material'
+import { Tabs, Tab, AppBar, CircularProgress } from '@mui/material'
 import { Outlet, NavLink, useLocation } from 'react-router-dom'
 
 const Auth = () => {
@@ -8,12 +8,12 @@ const Auth = () => {
   return (
     <>
       <AppBar>
-        <Tabs value={location.pathname} centered sx={{ color: 'white' }}>
+        <Tabs value={location.pathname} centered>
           <Tab value="/auth/login" label="Login" component={NavLink} to="login" />
           <Tab value="/auth/signup" label="Signup" component={NavLink} to="signup" />
         </Tabs>
       </AppBar>
-      <Suspense fallback="loading">
+      <Suspense fallback={<CircularProgress />}>
         <Outlet />
       </Suspense>
     </>
