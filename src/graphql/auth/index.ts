@@ -8,9 +8,11 @@ export const LOGIN = gql`
         email
         profile {
           id
+          full_name
           avatar
         }
         role
+        is_verified
       }
       access_token
     }
@@ -25,9 +27,11 @@ export const SIGNUP = gql`
         email
         profile {
           id
+          full_name
           avatar
         }
         role
+        is_verified
       }
       access_token
     }
