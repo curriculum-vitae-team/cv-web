@@ -1,11 +1,13 @@
+import { memo, useCallback, useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Divider, Drawer, IconButton } from '@mui/material'
 import { Menu, Close } from '@mui/icons-material'
-import { useCallback, useState } from 'react'
 import { LIST_ITEMS } from './side-menu.constants'
 import * as Styled from './side-menu.styles'
 import { SideMenuItem } from '../../molecules/side-menu-item'
 
-export const SideMenu = () => {
+const SideMenu = () => {
+  const location = useLocation()
   const [open, setOpen] = useState(false)
 
   const handleOpen = useCallback(() => {
@@ -16,12 +18,16 @@ export const SideMenu = () => {
     setOpen(false)
   }, [])
 
+  useEffect(() => {
+    handleClose()
+  }, [location, handleClose])
+
   return (
     <>
       <IconButton color="primary" onClick={handleOpen}>
         <Menu />
       </IconButton>
-      <Drawer anchor="left" open={open} onClose={handleClose}>
+      <Drawer anchor="left" open={open} keepMounted onClose={handleClose}>
         <Styled.ToolBar>
           <IconButton sx={{ ml: 'auto' }} color="primary" onClick={handleClose}>
             <Close />
@@ -39,7 +45,6 @@ export const SideMenu = () => {
                 IconComponent={IconComponent}
                 name={name}
                 to={to}
-                onClick={handleClose}
               />
             )
           })}
@@ -48,3 +53,5 @@ export const SideMenu = () => {
     </>
   )
 }
+
+export default memo(SideMenu)

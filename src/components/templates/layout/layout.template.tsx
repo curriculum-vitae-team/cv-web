@@ -1,8 +1,9 @@
+import { memo } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Container } from '@mui/material'
 import { Header } from '../../organisms/header'
 
-export const Layout = () => {
+const Layout = () => {
   return (
     <>
       <Header />
@@ -12,3 +13,5 @@ export const Layout = () => {
     </>
   )
 }
+
+export default memo(Layout)

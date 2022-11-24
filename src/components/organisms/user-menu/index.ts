@@ -1,1 +1,1 @@
-export { UserMenu } from './user-menu.organism'
+export { default as UserMenu } from './user-menu.organism'

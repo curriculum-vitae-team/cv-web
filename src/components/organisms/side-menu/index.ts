@@ -1,1 +1,1 @@
-export { SideMenu } from './side-menu.organism'
+export { default as SideMenu } from './side-menu.organism'
