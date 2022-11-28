@@ -6,7 +6,7 @@ The following .env example file is required for the correct work of the applicat
 
 ```
 PORT=3000
-GRAPHQL_API_URL=https://cv-gen-be.herokuapp.com/api/graphql
+GRAPHQL_API_URL=https://cv-project-js.inno.ws/api/graphql
 ```
 
 ### Installation
