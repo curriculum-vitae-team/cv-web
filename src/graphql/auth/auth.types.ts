@@ -1,3 +1,4 @@
+import { ReactiveVar } from '@apollo/client'
 import { IUser } from '../../interfaces/user.interface'
 
 export type AuthResult = {
@@ -11,4 +12,11 @@ export type LoginResult = {
 
 export type SignupResult = {
   signup: AuthResult
+}
+
+export interface IAuthService {
+  user$: ReactiveVar<IUser | null>
+  access_token$: ReactiveVar<string>
+  writeToStorage: (user: IUser, access_token: string) => void
+  clearStorage: () => void
 }
