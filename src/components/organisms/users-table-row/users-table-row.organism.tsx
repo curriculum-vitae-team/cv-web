@@ -1,4 +1,5 @@
 import { memo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useMutation, useReactiveVar } from '@apollo/client'
 import { TableRow, TableCell, Avatar, MenuItem } from '@mui/material'
 import { IUser } from '../../../interfaces/user.interface'
@@ -9,6 +10,7 @@ import { UserRole } from '../../../constants/user-role.constants'
 import { authService } from '../../../graphql/auth/auth.service'
 
 const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
+  const navigate = useNavigate()
   const user = useReactiveVar(authService.user$)
   const [deleteUser] = useMutation(DELETE_USER, {
     update(cache) {
@@ -17,6 +19,10 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
       cache.gc()
     }
   })
+
+  const handleProfile = () => {
+    navigate(`/employees/${item.id}/profile`)
+  }
 
   const handleDelete = () => {
     deleteUser({ variables: { id: item.id } })
@@ -34,6 +40,7 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
       <TableCell>{item.position_name}</TableCell>
       <TableCell>
         <ActionsMenu>
+          <MenuItem onClick={handleProfile}>Profile</MenuItem>
           <MenuItem disabled={user?.role === UserRole.Employee} onClick={handleDelete}>
             Delete User
           </MenuItem>

@@ -10,6 +10,9 @@ import { Employees } from '../pages/employees'
 import { EmployeeDetails } from '../pages/employee-details'
 import { EmployeeProfile } from '../pages/employee-profile'
 import { EmployeeSkills } from '../pages/employee-skills'
+import { EmployeeCvs } from '../pages/employee-cvs'
+import { Projects } from '../pages/projects'
+import { CVsPage } from '../pages/cvs'
 
 export const Router = () => {
   return (
@@ -22,26 +25,27 @@ export const Router = () => {
           </Route>
           <Route element={<Layout />}>
             <Route path="/employees" element={<AuthGuard />}>
-              <Route path="" element={<Employees />} />
+              <Route index element={<Employees />} />
               <Route path=":id" element={<EmployeeDetails />}>
                 <Route path="profile" element={<EmployeeProfile />} />
                 <Route path="skills" element={<EmployeeSkills />} />
                 <Route path="languages" />
-                <Route path="cvs" />
+                <Route path="cvs" element={<EmployeeCvs />} />
+                <Route index path="*" element={<Navigate to="profile" />} />
               </Route>
             </Route>
-            <Route path="/cvs">
-              <Route path="" element={null} />
-              <Route path=":id" element={null} />
-            </Route>
             <Route path="/projects">
-              <Route path="" element={null} />
+              <Route index element={<Projects />} />
               <Route path=":id" element={null} />
             </Route>
-            <Route path="/departments" />
-            <Route path="/positions" />
-            <Route path="/skills" />
-            <Route path="/languages" />
+            <Route path="/cvs">
+              <Route index element={<CVsPage />} />
+              <Route path=":id" element={null} />
+            </Route>
+            <Route path="/departments" element={null} />
+            <Route path="/positions" element={null} />
+            <Route path="/skills" element={null} />
+            <Route path="/languages" element={null} />
           </Route>
           <Route path="*" element={<Navigate to="/auth/login" />} />
         </Routes>

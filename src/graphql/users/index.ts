@@ -47,6 +47,19 @@ export const USER = gql`
   }
 `
 
+export const USER_CVS = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      id
+      cvs {
+        id
+        created_at
+        name
+      }
+    }
+  }
+`
+
 export const DELETE_USER = gql`
   mutation DeleteUser($id: ID!) {
     deleteUser(id: $id) {
