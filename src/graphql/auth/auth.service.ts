@@ -33,6 +33,17 @@ class AuthService implements IAuthService {
     this.storageService.removeItem(StorageKeys.User)
     this.storageService.removeItem(StorageKeys.AccessToken)
   }
+
+  updateAvatar(url: string) {
+    const user = this.user$()!
+    this.user$({
+      ...user,
+      profile: {
+        ...user.profile,
+        avatar: url
+      }
+    })
+  }
 }
 
 export const authService = new AuthService(sessionStorage)
