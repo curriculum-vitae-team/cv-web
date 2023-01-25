@@ -6,11 +6,20 @@ import { ActionsMenu } from '../../atoms/actions-menu'
 export const CVsTableRow = ({ item }: TableRowProps<ICV>) => {
   return (
     <TableRow>
-      <TableCell>{item.name}</TableCell>
-      <TableCell>{item.description}</TableCell>
       <TableCell>
         <Checkbox checked={item.is_template} readOnly />
       </TableCell>
+      <TableCell
+        sx={{
+          maxWidth: 120,
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden'
+        }}
+      >
+        {item.name}
+      </TableCell>
+      <TableCell>{item.description}</TableCell>
       <TableCell>{item.user?.email}</TableCell>
       <TableCell>
         <ActionsMenu>
