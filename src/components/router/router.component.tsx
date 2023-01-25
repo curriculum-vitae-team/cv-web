@@ -22,26 +22,27 @@ export const Router = () => {
           </Route>
           <Route element={<Layout />}>
             <Route path="/employees" element={<AuthGuard />}>
-              <Route path="" element={<Employees />} />
+              <Route index element={<Employees />} />
               <Route path=":id" element={<EmployeeDetails />}>
                 <Route path="profile" element={<EmployeeProfile />} />
                 <Route path="skills" element={<EmployeeSkills />} />
                 <Route path="languages" />
                 <Route path="cvs" />
+                <Route index path="*" element={<Navigate to="profile" />} />
               </Route>
             </Route>
             <Route path="/cvs">
-              <Route path="" element={null} />
+              <Route index element={null} />
               <Route path=":id" element={null} />
             </Route>
             <Route path="/projects">
-              <Route path="" element={null} />
+              <Route index element={null} />
               <Route path=":id" element={null} />
             </Route>
-            <Route path="/departments" />
-            <Route path="/positions" />
-            <Route path="/skills" />
-            <Route path="/languages" />
+            <Route path="/departments" element={null} />
+            <Route path="/positions" element={null} />
+            <Route path="/skills" element={null} />
+            <Route path="/languages" element={null} />
           </Route>
           <Route path="*" element={<Navigate to="/auth/login" />} />
         </Routes>
