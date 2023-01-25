@@ -10,6 +10,8 @@ import { Employees } from '../pages/employees'
 import { EmployeeDetails } from '../pages/employee-details'
 import { EmployeeProfile } from '../pages/employee-profile'
 import { EmployeeSkills } from '../pages/employee-skills'
+import { EmployeeCvs } from '../pages/employee-cvs'
+import { Projects } from '../pages/projects'
 
 export const Router = () => {
   return (
@@ -27,7 +29,7 @@ export const Router = () => {
                 <Route path="profile" element={<EmployeeProfile />} />
                 <Route path="skills" element={<EmployeeSkills />} />
                 <Route path="languages" />
-                <Route path="cvs" />
+                <Route path="cvs" element={<EmployeeCvs />} />
                 <Route index path="*" element={<Navigate to="profile" />} />
               </Route>
             </Route>
@@ -36,7 +38,7 @@ export const Router = () => {
               <Route path=":id" element={null} />
             </Route>
             <Route path="/projects">
-              <Route index element={null} />
+              <Route index element={<Projects />} />
               <Route path=":id" element={null} />
             </Route>
             <Route path="/departments" element={null} />
