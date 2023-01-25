@@ -12,6 +12,7 @@ import { EmployeeProfile } from '../pages/employee-profile'
 import { EmployeeSkills } from '../pages/employee-skills'
 import { EmployeeCvs } from '../pages/employee-cvs'
 import { Projects } from '../pages/projects'
+import { CVsPage } from '../pages/cvs'
 
 export const Router = () => {
   return (
@@ -33,12 +34,12 @@ export const Router = () => {
                 <Route index path="*" element={<Navigate to="profile" />} />
               </Route>
             </Route>
-            <Route path="/cvs">
-              <Route index element={null} />
-              <Route path=":id" element={null} />
-            </Route>
             <Route path="/projects">
               <Route index element={<Projects />} />
+              <Route path=":id" element={null} />
+            </Route>
+            <Route path="/cvs">
+              <Route index element={<CVsPage />} />
               <Route path=":id" element={null} />
             </Route>
             <Route path="/departments" element={null} />
