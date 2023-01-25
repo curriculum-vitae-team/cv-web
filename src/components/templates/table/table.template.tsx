@@ -13,6 +13,7 @@ import { SortOrder } from '../../../constants/table-sort.constants'
 import { sortItems } from '../../../helpers/table-sort.helper'
 import { TableSearchContext, TableSortContext } from './table.context'
 import { searchItems } from '../../../helpers/table-search.helper'
+import { TableLoader } from '../../atoms/table-loader'
 
 const Table = <T extends Item>({
   items,
@@ -64,11 +65,7 @@ const Table = <T extends Item>({
         </TableSortContext.Provider>
       </TableHead>
       <TableBody>
-        {loading && (
-          <TableRow>
-            <TableCell colSpan={10}>loading</TableCell>
-          </TableRow>
-        )}
+        {loading && <TableLoader />}
         {sortedItems.map((item) => (
           <TableRowComponent key={item.id} item={item} />
         ))}
