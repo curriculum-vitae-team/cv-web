@@ -1,6 +1,5 @@
 import { makeVar } from '@apollo/client'
-import { INotification } from '../../interfaces/notification.interface'
-import { INotificationsService } from './notifications.types'
+import { INotificationsService, INotification } from './notifications.types'
 
 class NotificationsService implements INotificationsService {
   notifications$ = makeVar<INotification[]>([])
