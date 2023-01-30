@@ -25,14 +25,19 @@ export const theme = createTheme({
         '::-webkit-scrollbar-track': {
           backgroundColor: '#f5f5f7'
         },
+        html: {
+          height: '100%',
+          width: '100%'
+        },
         body: {
           margin: 0,
-          backgroundColor: '#f5f5f7'
+          backgroundColor: '#f5f5f7',
+          height: '100%',
+          width: '100%'
         },
         '#root': {
-          display: 'flex',
-          flexDirection: 'column',
-          height: '100vh',
+          height: '100%',
+          width: '100%',
           paddingTop: 64
         },
         form: {

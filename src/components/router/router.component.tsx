@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { CircularProgress } from '@mui/material'
+import { PageLoader } from '../atoms/page-loader'
 import { Auth } from '../pages/auth'
 import { Login } from '../pages/login'
 import { Signup } from '../pages/signup'
@@ -17,7 +17,7 @@ import { CVsPage } from '../pages/cvs'
 export const Router = () => {
   return (
     <BrowserRouter>
-      <Suspense fallback={<CircularProgress />}>
+      <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/auth" element={<Auth />}>
             <Route path="login" element={<Login />} />
@@ -34,11 +34,11 @@ export const Router = () => {
                 <Route index path="*" element={<Navigate to="profile" />} />
               </Route>
             </Route>
-            <Route path="/projects">
+            <Route path="/projects" element={<AuthGuard />}>
               <Route index element={<Projects />} />
               <Route path=":id" element={null} />
             </Route>
-            <Route path="/cvs">
+            <Route path="/cvs" element={<AuthGuard />}>
               <Route index element={<CVsPage />} />
               <Route path=":id" element={null} />
             </Route>
