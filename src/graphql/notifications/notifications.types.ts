@@ -1,5 +1,10 @@
 import { ReactiveVar } from '@apollo/client'
-import { INotification } from '../../interfaces/notification.interface'
+
+export interface INotification {
+  id: number
+  type: 'error' | 'info' | 'success'
+  message: string
+}
 
 export interface INotificationsService {
   notifications$: ReactiveVar<INotification[]>

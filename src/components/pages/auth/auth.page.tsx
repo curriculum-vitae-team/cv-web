@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
-import { Tabs, Tab, AppBar, CircularProgress } from '@mui/material'
+import { Tabs, Tab, AppBar } from '@mui/material'
 import { Outlet, NavLink, useLocation } from 'react-router-dom'
+import { PageLoader } from '../../atoms/page-loader'
 
 const Auth = () => {
   const location = useLocation()
@@ -13,7 +14,7 @@ const Auth = () => {
           <Tab value="/auth/signup" label="Signup" component={NavLink} to="signup" />
         </Tabs>
       </AppBar>
-      <Suspense fallback={<CircularProgress />}>
+      <Suspense fallback={<PageLoader />}>
         <Outlet />
       </Suspense>
     </>

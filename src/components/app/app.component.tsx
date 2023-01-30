@@ -4,14 +4,16 @@ import { client } from '../../graphql/client'
 import { theme } from './app.theme'
 import { Router } from '../router'
 import { Notifications } from '../features/notifications'
+import { Dialogs } from '../features/dialogs'
 
 export const App = () => {
   return (
     <ApolloProvider client={client}>
-      <Notifications />
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Router />
+        <Notifications />
+        <Dialogs />
       </ThemeProvider>
     </ApolloProvider>
   )
