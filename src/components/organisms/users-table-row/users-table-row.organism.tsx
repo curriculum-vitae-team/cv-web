@@ -1,13 +1,14 @@
 import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useMutation, useReactiveVar } from '@apollo/client'
-import { TableRow, TableCell, Avatar, MenuItem } from '@mui/material'
+import { TableRow, TableCell, Avatar, MenuItem, Typography } from '@mui/material'
 import { IUser } from '../../../interfaces/user.interface'
 import { TableRowProps } from '../../templates/table/table.types'
 import { ActionsMenu } from '../../atoms/actions-menu'
 import { DELETE_USER } from '../../../graphql/users'
 import { UserRole } from '../../../constants/user-role.constants'
 import { authService } from '../../../graphql/auth/auth.service'
+import { useConfirmDialog } from '../../dialogs/confirm'
 
 const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
   const navigate = useNavigate()
@@ -19,13 +20,22 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
       cache.gc()
     }
   })
+  const [openConfirmDialog] = useConfirmDialog()
 
   const handleProfile = () => {
     navigate(`/employees/${item.id}/profile`)
   }
 
   const handleDelete = () => {
-    deleteUser({ variables: { id: item.id } })
+    openConfirmDialog({
+      dialogTitle: 'Delete User',
+      dialogContent: (
+        <Typography>
+          Are you sure you want to delete user <b>{item.profile.full_name || item.email}</b>?
+        </Typography>
+      ),
+      confirmCallback: () => deleteUser({ variables: { id: item.id } })
+    })
   }
 
   return (

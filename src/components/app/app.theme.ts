@@ -4,6 +4,12 @@ export const theme = createTheme({
   palette: {
     primary: {
       main: '#c63031'
+    },
+    secondary: {
+      main: '#767676'
+    },
+    error: {
+      main: '#c63031'
     }
   },
   components: {
