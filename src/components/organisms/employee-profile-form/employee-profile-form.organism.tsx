@@ -33,15 +33,8 @@ export const EmployeeProfileForm = ({ user, departments, positions }: EmployeePr
         user: {
           profile: {
             first_name: values.first_name,
-            last_name: values.last_name,
-            // TODO: make fields optional
-            languages: user.profile.languages.map(({ language_name, proficiency }) => ({
-              language_name,
-              proficiency
-            })),
-            skills: user.profile.skills.map(({ skill_name, mastery }) => ({ skill_name, mastery }))
+            last_name: values.last_name
           },
-          cvsIds: user.cvs.map((cv) => cv.id),
           departmentId: values.department,
           positionId: values.position
         }
