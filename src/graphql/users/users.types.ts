@@ -7,3 +7,19 @@ export type UsersResult = {
 export type UserResult = {
   user: IUser
 }
+
+export type UpdateUserInput = {
+  id: string
+  user: {
+    profile: {
+      first_name: string
+      last_name: string
+    }
+    departmentId: string
+    positionId: string
+  }
+}
+
+export type UpdateUserResult = {
+  updateUser: IUser
+}

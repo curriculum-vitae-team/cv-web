@@ -3,12 +3,28 @@ import { Badge, IconButton, Typography } from '@mui/material'
 import { Close, FileUploadOutlined } from '@mui/icons-material'
 import { AvatarUploadProps } from './avatar-upload.types'
 import * as Styled from './avatar-upload.styles'
+import { fileToBase64 } from '../../../helpers/file-to-base64.helper'
+import { authService } from '../../../graphql/auth/auth.service'
+import { useAvatar } from '../../../hooks/use-avatar.hook'
 
-export const AvatarUpload = ({ user, onUpload, onDelete }: AvatarUploadProps) => {
+export const AvatarUpload = ({ user }: AvatarUploadProps) => {
+  const [uploadAvatar, deleteAvatar, loading] = useAvatar()
+  const profileId = user.profile.id
+
+  const handleUpload = (file: File) => {
+    fileToBase64(file)
+      .then((avatar) => uploadAvatar({ variables: { id: profileId, avatar } }))
+      .then(({ data }) => data && authService.updateAvatar(data.uploadAvatar))
+  }
+
+  const handleDelete = () => {
+    deleteAvatar({ variables: { id: profileId } }).then(() => authService.updateAvatar(''))
+  }
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target
     if (files) {
-      onUpload(files[0])
+      handleUpload(files[0])
     }
   }
 
@@ -18,7 +34,7 @@ export const AvatarUpload = ({ user, onUpload, onDelete }: AvatarUploadProps) =>
 
   const handleDrop = (event: DragEvent) => {
     event.preventDefault()
-    onUpload(event.dataTransfer.files[0])
+    handleUpload(event.dataTransfer.files[0])
   }
 
   return (
@@ -26,8 +42,8 @@ export const AvatarUpload = ({ user, onUpload, onDelete }: AvatarUploadProps) =>
       <Badge
         badgeContent={
           user.profile.avatar && (
-            <IconButton>
-              <Close onClick={onDelete} />
+            <IconButton disabled={loading} onClick={handleDelete}>
+              <Close />
             </IconButton>
           )
         }
@@ -50,6 +66,7 @@ export const AvatarUpload = ({ user, onUpload, onDelete }: AvatarUploadProps) =>
           type="file"
           accept=".png, .jpg, .jpeg, .gif"
           size={500}
+          disabled={loading}
           onChange={handleChange}
         />
       </Styled.Label>

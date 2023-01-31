@@ -4,6 +4,16 @@ export const Tabs = styled(MuiTabs)({
   '& .MuiTab-root': {
     color: '#2e2e2e'
   },
-  marginTop: 16,
-  marginBottom: 16
+  paddingTop: 16,
+  paddingBottom: 16,
+  position: 'sticky',
+  top: 64
+})
+
+export const Details = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  margin: '0 auto',
+  width: 720,
+  padding: '60px 0'
 })

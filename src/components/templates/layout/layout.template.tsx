@@ -1,18 +1,18 @@
 import { memo, Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Container } from '@mui/material'
 import { Header } from '../../organisms/header'
 import { PageLoader } from '../../atoms/page-loader'
+import * as Styled from './layout.styles'
 
 const Layout = () => {
   return (
     <>
       <Header />
-      <Container maxWidth="xl" sx={{ height: '100%' }}>
+      <Styled.Layout maxWidth="xl">
         <Suspense fallback={<PageLoader />}>
           <Outlet />
         </Suspense>
-      </Container>
+      </Styled.Layout>
     </>
   )
 }

@@ -1,6 +1,7 @@
 import { memo, Suspense } from 'react'
 import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom'
-import { CircularProgress, Tab } from '@mui/material'
+import { Tab } from '@mui/material'
+import { PageLoader } from '../../atoms/page-loader'
 import * as Styled from './employee-details.styles'
 
 const EmployeeDetails = () => {
@@ -16,9 +17,11 @@ const EmployeeDetails = () => {
         <Tab value={`${path}/languages`} label="Languages" component={NavLink} to="languages" />
         <Tab value={`${path}/cvs`} label="CVs" component={NavLink} to="cvs" />
       </Styled.Tabs>
-      <Suspense fallback={<CircularProgress />}>
-        <Outlet />
-      </Suspense>
+      <Styled.Details>
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
+      </Styled.Details>
     </>
   )
 }
