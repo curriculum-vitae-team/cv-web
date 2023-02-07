@@ -5,13 +5,16 @@ import { theme } from './app.theme'
 import { Router } from '../router'
 import { Notifications } from '../features/notifications'
 import { Dialogs } from '../features/dialogs'
+import { BreadcrumbsProvider } from '../features/breadcrumbs-context'
 
 export const App = () => {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Router />
+        <BreadcrumbsProvider>
+          <Router />
+        </BreadcrumbsProvider>
         <Notifications />
         <Dialogs />
       </ThemeProvider>

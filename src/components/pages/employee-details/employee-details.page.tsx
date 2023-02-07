@@ -1,13 +1,22 @@
 import { memo, Suspense } from 'react'
 import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom'
+import { useQuery } from '@apollo/client'
 import { Tab } from '@mui/material'
 import { PageLoader } from '../../atoms/page-loader'
 import * as Styled from './employee-details.styles'
+import { useBreadcrumbs } from '../../../hooks/use-breadcrumbs.hook'
+import { USER_FULL_NAME } from '../../../graphql/users'
+import { UserResult } from '../../../graphql/users/users.types'
 
 const EmployeeDetails = () => {
   const location = useLocation()
   const { id } = useParams()
   const path = `/employees/${id}`
+
+  const { data } = useQuery<UserResult>(USER_FULL_NAME, { variables: { id } })
+  useBreadcrumbs({
+    [`employees/${id}`]: data?.user.profile.full_name || data?.user.email
+  })
 
   return (
     <>
