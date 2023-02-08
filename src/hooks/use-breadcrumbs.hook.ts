@@ -5,11 +5,11 @@ import { BreadcrumbsConfig } from '../components/features/breadcrumbs-context/br
 export const useBreadcrumbs = (config: BreadcrumbsConfig) => {
   const context = useContext(BreadcrumbsContext)
 
-  const triggerUpdate = Object.values(config).every((value) => value)
+  const onceUpdate = Object.values(config).every((value) => value.text)
 
   useEffect(() => {
     context.updateConfig(config)
-  }, [triggerUpdate])
+  }, [onceUpdate])
 
   return null
 }

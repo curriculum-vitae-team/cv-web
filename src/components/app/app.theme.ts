@@ -38,7 +38,7 @@ export const theme = createTheme({
         '#root': {
           height: '100%',
           width: '100%',
-          paddingTop: 64
+          paddingTop: 128
         },
         form: {
           '& > .MuiTextField-root': {
@@ -107,7 +107,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           '& .MuiTableRow-root': {
-            top: 144
+            top: 64 * 3
           }
         }
       }

@@ -2,6 +2,7 @@ import { memo, Suspense } from 'react'
 import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { Tab } from '@mui/material'
+import { PersonOutline } from '@mui/icons-material'
 import { PageLoader } from '../../atoms/page-loader'
 import * as Styled from './employee-details.styles'
 import { useBreadcrumbs } from '../../../hooks/use-breadcrumbs.hook'
@@ -15,7 +16,15 @@ const EmployeeDetails = () => {
 
   const { data } = useQuery<UserResult>(USER_FULL_NAME, { variables: { id } })
   useBreadcrumbs({
-    [`employees/${id}`]: data?.user.profile.full_name || data?.user.email
+    [`employees/${id}`]: {
+      text: data?.user.profile.full_name || data?.user.email,
+      to: `employees/${id}/profile`,
+      color: 'primary',
+      Icon: PersonOutline
+    },
+    [`employees/${id}/cvs`]: {
+      text: 'CVs'
+    }
   })
 
   return (

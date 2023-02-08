@@ -4,10 +4,10 @@ export const Tabs = styled(MuiTabs)({
   '& .MuiTab-root': {
     color: '#2e2e2e'
   },
-  paddingTop: 16,
-  paddingBottom: 16,
+  height: 64,
+  paddingBottom: 20,
   position: 'sticky',
-  top: 64
+  top: 128
 })
 
 export const Details = styled('div')({

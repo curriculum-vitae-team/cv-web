@@ -1,7 +1,13 @@
 import { ReactNode } from 'react'
+import { SvgIconComponent } from '@mui/icons-material'
 
 export type BreadcrumbsConfig = {
-  [key: string]: string | undefined
+  [key: string]: {
+    text: string | undefined
+    to?: string
+    color?: MuiColor
+    Icon?: SvgIconComponent
+  }
 }
 
 type BreadcrumbsContextApi = {
