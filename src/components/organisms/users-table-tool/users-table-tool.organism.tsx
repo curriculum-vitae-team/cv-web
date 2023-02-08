@@ -17,7 +17,7 @@ export const UsersTableTool = () => {
   return (
     <>
       <SearchInput value={search} onChange={handleSearch} />
-      {user?.role !== UserRole.Admin && <Button variant="outlined">Create Employee</Button>}
+      {user?.role === UserRole.Admin && <Button variant="outlined">Create Employee</Button>}
     </>
   )
 }
