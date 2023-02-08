@@ -56,6 +56,19 @@ export const USER = gql`
   }
 `
 
+export const USER_FULL_NAME = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      id
+      email
+      profile {
+        id
+        full_name
+      }
+    }
+  }
+`
+
 export const USER_CVS = gql`
   query User($id: ID!) {
     user(id: $id) {

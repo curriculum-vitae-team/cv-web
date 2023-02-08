@@ -1,19 +1,12 @@
 import { FC, memo, useDeferredValue, useMemo, useState } from 'react'
-import {
-  Table as MuiTable,
-  TableHead,
-  TableBody,
-  TableFooter,
-  TableRow,
-  TableCell,
-  Box
-} from '@mui/material'
+import { Table as MuiTable, TableHead, TableBody, TableFooter, TableRow } from '@mui/material'
 import { Item, TableProps } from './table.types'
 import { SortOrder } from '../../../constants/table-sort.constants'
 import { sortItems } from '../../../helpers/table-sort.helper'
 import { TableSearchContext, TableSortContext } from './table.context'
 import { searchItems } from '../../../helpers/table-search.helper'
 import { TableLoader } from '../../atoms/table-loader'
+import * as Styled from './table.styles'
 
 const Table = <T extends Item>({
   items,
@@ -50,14 +43,11 @@ const Table = <T extends Item>({
       <TableHead>
         <TableSearchContext.Provider value={tableSearch as never}>
           <TableRow>
-            <TableCell
-              colSpan={10}
-              sx={{ top: 64, height: 80, backgroundColor: '#f5f5f7', borderBottom: 'none' }}
-            >
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Styled.ToolBar colSpan={10}>
+              <div>
                 <TableToolComponent />
-              </Box>
-            </TableCell>
+              </div>
+            </Styled.ToolBar>
           </TableRow>
         </TableSearchContext.Provider>
         <TableSortContext.Provider value={tableSort as never}>

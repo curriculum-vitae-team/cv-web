@@ -7,11 +7,18 @@ import { createTable } from '../../templates/table'
 import { CVsTableTool } from '../../organisms/cvs-table-tool'
 import { CVsTableHead } from '../../organisms/cvs-table-head'
 import { CVsTableRow } from '../../organisms/cvs-table-row'
+import { useBreadcrumbs } from '../../../hooks/use-breadcrumbs.hook'
 
 const Table = createTable<ICV>()
 
 const CVsPage = () => {
   const { data, loading } = useQuery<CVsResult>(CVS)
+
+  useBreadcrumbs({
+    cvs: {
+      text: 'CVs'
+    }
+  })
 
   return (
     <div>
