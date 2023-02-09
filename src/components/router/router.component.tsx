@@ -46,7 +46,9 @@ export const Router = () => {
             <Route path="/departments" element={null} />
             <Route path="/positions" element={null} />
             <Route path="/skills" element={null} />
-            <Route path="/languages" element={<Languages />} />
+            <Route path="/languages" element={<AuthGuard />}>
+              <Route index element={<Languages />} />
+            </Route>
           </Route>
           <Route path="*" element={<Navigate to="/auth/login" />} />
         </Routes>
