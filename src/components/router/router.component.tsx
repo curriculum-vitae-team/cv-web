@@ -13,6 +13,7 @@ import { EmployeeSkills } from '../pages/employee-skills'
 import { EmployeeCvs } from '../pages/employee-cvs'
 import { Projects } from '../pages/projects'
 import { CVsPage } from '../pages/cvs'
+import { Languages } from '../pages/languages'
 
 export const Router = () => {
   return (
@@ -45,7 +46,7 @@ export const Router = () => {
             <Route path="/departments" element={null} />
             <Route path="/positions" element={null} />
             <Route path="/skills" element={null} />
-            <Route path="/languages" element={null} />
+            <Route path="/languages" element={<Languages />} />
           </Route>
           <Route path="*" element={<Navigate to="/auth/login" />} />
         </Routes>
