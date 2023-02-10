@@ -2,13 +2,14 @@ import { ChangeEvent, DragEvent } from 'react'
 import { Badge, IconButton, Typography } from '@mui/material'
 import { Close, FileUploadOutlined } from '@mui/icons-material'
 import { authService } from '@graphql/auth/auth.service'
-import { useAvatar } from '@hooks/use-avatar.hook'
+import { useAvatarUpload, useAvatarDelete } from '@hooks/use-avatar.hook'
 import { fileToBase64 } from '../../../helpers/file-to-base64.helper'
 import { AvatarUploadProps } from './avatar-upload.types'
 import * as Styled from './avatar-upload.styles'
 
 export const AvatarUpload = ({ user }: AvatarUploadProps) => {
-  const [uploadAvatar, deleteAvatar, loading] = useAvatar()
+  const [uploadAvatar, isLoading] = useAvatarUpload()
+  const [deleteAvatar, isDeleting] = useAvatarDelete()
   const profileId = user.profile.id
 
   const handleUpload = (file: File) => {
@@ -42,7 +43,7 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
       <Badge
         badgeContent={
           user.profile.avatar && (
-            <IconButton disabled={loading} onClick={handleDelete}>
+            <IconButton disabled={isDeleting} onClick={handleDelete}>
               <Close />
             </IconButton>
           )
@@ -66,7 +67,7 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
           type="file"
           accept=".png, .jpg, .jpeg, .gif"
           size={500}
-          disabled={loading}
+          disabled={isLoading}
           onChange={handleChange}
         />
       </Styled.Label>
