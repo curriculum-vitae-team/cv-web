@@ -1,6 +1,6 @@
 import { makeVar } from '@apollo/client'
-import { IUser } from '../../interfaces/user.interface'
-import { StorageKeys } from '../../constants/storage.constants'
+import { IUser } from '@interfaces/user.interface'
+import { StorageKeys } from '@constants/storage.constants'
 import { IAuthService } from './auth.types'
 
 class AuthService implements IAuthService {
