@@ -23,10 +23,7 @@ const CreateLanguage = ({ closeDialog }: DialogProps) => {
   const onSubmit = (values: CreateLanguageFormValues) => {
     createLanguage({
       variables: {
-        language: {
-          name: values.name,
-          iso2: values.iso2
-        }
+        language: values
       }
     }).then(() => closeDialog())
   }
@@ -36,7 +33,7 @@ const CreateLanguage = ({ closeDialog }: DialogProps) => {
       <DialogTitle>Create Language</DialogTitle>
       <Styled.Column>
         <TextField {...register('name', { required: true })} label="Name" error={!!errors.name} />
-        <TextField {...register('native_name')} label="Native Name" disabled />
+        <TextField {...register('native_name')} label="Native Name" error={!!errors.native_name} />
         <TextField
           {...register('iso2', { required: true, minLength: 2, maxLength: 2 })}
           label="ISO2"
