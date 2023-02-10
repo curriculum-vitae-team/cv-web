@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
+import { DialogProps } from '@graphql/dialogs/dialogs.types'
+import { useLanguageCreate } from '@hooks/use-languages.hook'
 import { createDialogHook } from '../../../helpers/create-dialog-hook.helper'
-import { DialogProps } from '../../../graphql/dialogs/dialogs.types'
 import { CreateLanguageFormValues } from './create-language.types'
-import { useLanguageCreate } from '../../../hooks/use-languages.hook'
 import * as Styled from './create-language.styles'
 
 const CreateLanguage = ({ closeDialog }: DialogProps) => {

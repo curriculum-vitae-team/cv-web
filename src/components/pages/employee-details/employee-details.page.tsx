@@ -3,11 +3,11 @@ import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { Tab } from '@mui/material'
 import { PersonOutline } from '@mui/icons-material'
-import { PageLoader } from '../../atoms/page-loader'
+import { PageLoader } from '@atoms/page-loader'
+import { useBreadcrumbs } from '@hooks/use-breadcrumbs.hook'
+import { USER_FULL_NAME } from '@graphql/users'
+import { UserResult } from '@graphql/users/users.types'
 import * as Styled from './employee-details.styles'
-import { useBreadcrumbs } from '../../../hooks/use-breadcrumbs.hook'
-import { USER_FULL_NAME } from '../../../graphql/users'
-import { UserResult } from '../../../graphql/users/users.types'
 
 const EmployeeDetails = () => {
   const location = useLocation()

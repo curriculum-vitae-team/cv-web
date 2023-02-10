@@ -1,13 +1,13 @@
-import { useQuery } from '@apollo/client'
 import { memo } from 'react'
-import { CVS } from '../../../graphql/cvs'
-import { CVsResult } from '../../../graphql/cvs/cvs.types'
-import { ICV } from '../../../interfaces/cv.interface'
-import { createTable } from '../../templates/table'
-import { CVsTableTool } from '../../organisms/cvs-table-tool'
-import { CVsTableHead } from '../../organisms/cvs-table-head'
-import { CVsTableRow } from '../../organisms/cvs-table-row'
-import { useBreadcrumbs } from '../../../hooks/use-breadcrumbs.hook'
+import { useQuery } from '@apollo/client'
+import { CVS } from '@graphql/cvs'
+import { CVsResult } from '@graphql/cvs/cvs.types'
+import { ICV } from '@interfaces/cv.interface'
+import { createTable } from '@templates/table'
+import { CVsTableTool } from '@organisms/cvs-table-tool'
+import { CVsTableHead } from '@organisms/cvs-table-head'
+import { CVsTableRow } from '@organisms/cvs-table-row'
+import { useBreadcrumbs } from '@hooks/use-breadcrumbs.hook'
 
 const Table = createTable<ICV>()
 

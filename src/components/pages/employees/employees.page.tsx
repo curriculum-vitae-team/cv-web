@@ -1,11 +1,11 @@
 import { useQuery } from '@apollo/client'
-import { createTable } from '../../templates/table'
-import { IUser } from '../../../interfaces/user.interface'
-import { UsersResult } from '../../../graphql/users/users.types'
-import { USERS } from '../../../graphql/users'
-import { UsersTableTool } from '../../organisms/users-table-tool'
-import { UsersTableHead } from '../../organisms/users-table-head'
-import { UsersTableRow } from '../../organisms/users-table-row'
+import { createTable } from '@templates/table'
+import { IUser } from '@interfaces/user.interface'
+import { UsersResult } from '@graphql/users/users.types'
+import { USERS } from '@graphql/users'
+import { UsersTableTool } from '@organisms/users-table-tool'
+import { UsersTableHead } from '@organisms/users-table-head'
+import { UsersTableRow } from '@organisms/users-table-row'
 
 const Table = createTable<IUser>()
 

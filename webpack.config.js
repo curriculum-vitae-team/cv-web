@@ -2,6 +2,7 @@ const { resolve } = require('path')
 require('dotenv').config()
 const { EnvironmentPlugin } = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 
@@ -43,7 +44,8 @@ module.exports = {
   },
   resolve: {
     symlinks: false,
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+    plugins: [new TsconfigPathsPlugin()]
   },
   optimization: {
     splitChunks: {

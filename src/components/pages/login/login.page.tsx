@@ -2,12 +2,12 @@ import { useForm } from 'react-hook-form'
 import { useLazyQuery } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 import { Typography, Button, TextField } from '@mui/material'
+import { LoginResult } from '@graphql/auth/auth.types'
+import { LOGIN } from '@graphql/auth'
+import { authService } from '@graphql/auth/auth.service'
+import { PasswordInput } from '@molecules/password-input'
 import { LoginFormValues } from './login.types'
-import { LoginResult } from '../../../graphql/auth/auth.types'
-import { LOGIN } from '../../../graphql/auth'
-import { authService } from '../../../graphql/auth/auth.service'
 import * as Styled from './login.styles'
-import { PasswordInput } from '../../molecules/password-input'
 
 const Login = () => {
   const { register, handleSubmit } = useForm<LoginFormValues>({

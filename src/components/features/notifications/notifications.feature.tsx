@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react'
 import { useReactiveVar } from '@apollo/client'
 import { Alert } from '@mui/material'
-import { notificationsService } from '../../../graphql/notifications/notifications.service'
+import { notificationsService } from '@graphql/notifications/notifications.service'
 import * as Styled from './notifications.styles'
 
 const Notifications = () => {

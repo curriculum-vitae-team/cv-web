@@ -1,7 +1,7 @@
 import { MenuItem, TableCell, TableRow } from '@mui/material'
-import { TableRowProps } from '../../templates/table/table.types'
-import { IProject } from '../../../interfaces/project.interface'
-import { ActionsMenu } from '../../atoms/actions-menu'
+import { TableRowProps } from '@templates/table/table.types'
+import { IProject } from '@interfaces/project.interface'
+import { ActionsMenu } from '@atoms/actions-menu'
 
 export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
   return (

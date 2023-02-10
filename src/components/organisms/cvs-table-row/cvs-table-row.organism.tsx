@@ -1,7 +1,7 @@
 import { Checkbox, MenuItem, TableCell, TableRow } from '@mui/material'
-import { TableRowProps } from '../../templates/table/table.types'
-import { ICV } from '../../../interfaces/cv.interface'
-import { ActionsMenu } from '../../atoms/actions-menu'
+import { ICV } from '@interfaces/cv.interface'
+import { TableRowProps } from '@templates/table/table.types'
+import { ActionsMenu } from '@atoms/actions-menu'
 
 export const CVsTableRow = ({ item }: TableRowProps<ICV>) => {
   return (

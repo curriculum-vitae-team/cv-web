@@ -2,12 +2,12 @@ import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@apollo/client'
 import { TableRow, TableCell, Avatar, MenuItem, Typography } from '@mui/material'
-import { IUser } from '../../../interfaces/user.interface'
-import { TableRowProps } from '../../templates/table/table.types'
-import { ActionsMenu } from '../../atoms/actions-menu'
-import { DELETE_USER } from '../../../graphql/users'
-import { useConfirmDialog } from '../../dialogs/confirm'
-import { useAdminRole } from '../../../hooks/use-admin-role.hook'
+import { IUser } from '@interfaces/user.interface'
+import { TableRowProps } from '@templates/table/table.types'
+import { ActionsMenu } from '@atoms/actions-menu'
+import { DELETE_USER } from '@graphql/users'
+import { useConfirmDialog } from '@dialogs/confirm'
+import { useAdminRole } from '@hooks/use-admin-role.hook'
 
 const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
   const navigate = useNavigate()

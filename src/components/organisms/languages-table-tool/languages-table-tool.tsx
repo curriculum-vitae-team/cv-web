@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
-import { SearchInput } from '../../molecules/search-input'
-import { useAdminRole } from '../../../hooks/use-admin-role.hook'
-import { useCreateLanguageDialog } from '../../dialogs/create-language'
+import { SearchInput } from '@molecules/search-input'
+import { useAdminRole } from '@hooks/use-admin-role.hook'
+import { useCreateLanguageDialog } from '@dialogs/create-language'
 
 export const LanguagesTableTool = () => {
   const isAdmin = useAdminRole()

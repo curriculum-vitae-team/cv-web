@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from 'react'
-import { SortOrder } from '../../../constants/table-sort.constants'
+import { SortOrder } from '@constants/table-sort.constants'
 
 type TableSearchContextValue = {
   search: string

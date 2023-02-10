@@ -1,11 +1,11 @@
 import { ChangeEvent, DragEvent } from 'react'
 import { Badge, IconButton, Typography } from '@mui/material'
 import { Close, FileUploadOutlined } from '@mui/icons-material'
+import { authService } from '@graphql/auth/auth.service'
+import { useAvatar } from '@hooks/use-avatar.hook'
+import { fileToBase64 } from '../../../helpers/file-to-base64.helper'
 import { AvatarUploadProps } from './avatar-upload.types'
 import * as Styled from './avatar-upload.styles'
-import { fileToBase64 } from '../../../helpers/file-to-base64.helper'
-import { authService } from '../../../graphql/auth/auth.service'
-import { useAvatar } from '../../../hooks/use-avatar.hook'
 
 export const AvatarUpload = ({ user }: AvatarUploadProps) => {
   const [uploadAvatar, deleteAvatar, loading] = useAvatar()

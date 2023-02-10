@@ -1,10 +1,10 @@
 import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
-import { ActionsMenu } from '../../atoms/actions-menu'
-import { TableRowProps } from '../../templates/table/table.types'
-import { ILanguage } from '../../../interfaces/language.interface'
-import { useConfirmDialog } from '../../dialogs/confirm'
-import { useAdminRole } from '../../../hooks/use-admin-role.hook'
-import { useLanguageDelete } from '../../../hooks/use-languages.hook'
+import { ActionsMenu } from '@atoms/actions-menu'
+import { TableRowProps } from '@templates/table/table.types'
+import { ILanguage } from '@interfaces/language.interface'
+import { useConfirmDialog } from '@dialogs/confirm'
+import { useAdminRole } from '@hooks/use-admin-role.hook'
+import { useLanguageDelete } from '@hooks/use-languages.hook'
 
 export const LanguagesTableRow = ({ item }: TableRowProps<ILanguage>) => {
   const isAdmin = useAdminRole()
