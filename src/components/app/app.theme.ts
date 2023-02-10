@@ -108,6 +108,9 @@ export const theme = createTheme({
         root: {
           '& .MuiTableRow-root': {
             top: 64 * 3
+          },
+          '& .MuiTableCell-root:last-child': {
+            width: 20
           }
         }
       }

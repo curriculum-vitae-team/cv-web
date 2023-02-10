@@ -1,7 +1,7 @@
-import { TableCell, TableRow } from '@mui/material'
 import { memo } from 'react'
-import { IUser } from '../../../interfaces/user.interface'
-import { createSortLabel } from '../../atoms/sort-label'
+import { TableCell, TableRow } from '@mui/material'
+import { IUser } from '@interfaces/user.interface'
+import { createSortLabel } from '@atoms/sort-label'
 
 const UsersTableHead = () => {
   return (

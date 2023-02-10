@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { Tabs, Tab, AppBar } from '@mui/material'
 import { Outlet, NavLink, useLocation } from 'react-router-dom'
-import { PageLoader } from '../../atoms/page-loader'
+import { PageLoader } from '@atoms/page-loader'
 
 const Auth = () => {
   const location = useLocation()

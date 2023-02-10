@@ -1,6 +1,6 @@
 import { TableCell, TableRow } from '@mui/material'
-import { IProject } from '../../../interfaces/project.interface'
-import { createSortLabel } from '../../atoms/sort-label'
+import { IProject } from '@interfaces/project.interface'
+import { createSortLabel } from '@atoms/sort-label'
 
 export const ProjectsTableHead = () => {
   return (

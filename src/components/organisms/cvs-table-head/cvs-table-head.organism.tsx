@@ -1,6 +1,6 @@
 import { TableCell, TableRow } from '@mui/material'
-import { createSortLabel } from '../../atoms/sort-label'
-import { ICV } from '../../../interfaces/cv.interface'
+import { ICV } from '@interfaces/cv.interface'
+import { createSortLabel } from '@atoms/sort-label'
 
 export const CVsTableHead = () => {
   return (

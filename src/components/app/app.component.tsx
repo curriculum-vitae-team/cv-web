@@ -1,11 +1,11 @@
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider, CssBaseline } from '@mui/material'
-import { client } from '../../graphql/client'
+import { client } from '@graphql/client'
+import { Notifications } from '@features/notifications'
+import { Dialogs } from '@features/dialogs'
+import { BreadcrumbsProvider } from '@features/breadcrumbs-context'
 import { theme } from './app.theme'
 import { Router } from '../router'
-import { Notifications } from '../features/notifications'
-import { Dialogs } from '../features/dialogs'
-import { BreadcrumbsProvider } from '../features/breadcrumbs-context'
 
 export const App = () => {
   return (

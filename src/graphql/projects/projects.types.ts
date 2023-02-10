@@ -1,4 +1,4 @@
-import { IProject } from '../../interfaces/project.interface'
+import { IProject } from '@interfaces/project.interface'
 
 export type ProjectsResult = {
   projects: IProject[]

@@ -1,4 +1,4 @@
-import { AvatarInput } from '../graphql/profile/profile.types'
+import { AvatarInput } from '@graphql/profile/profile.types'
 
 export const fileToBase64 = (file: File): Promise<AvatarInput> => {
   const { type, size } = file

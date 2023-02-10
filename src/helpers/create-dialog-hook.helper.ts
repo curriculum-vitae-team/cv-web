@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, useRef } from 'react'
-import { dialogsService } from '../graphql/dialogs/dialogs.service'
-import { DialogOptions } from '../graphql/dialogs/dialogs.types'
+import { dialogsService } from '@graphql/dialogs/dialogs.service'
+import { DialogOptions } from '@graphql/dialogs/dialogs.types'
 
 export const createDialogHook = <T>(Component: (props: T) => FC, dialogProps: DialogOptions) => {
   return function useDialog() {
@@ -12,7 +12,7 @@ export const createDialogHook = <T>(Component: (props: T) => FC, dialogProps: Di
       }
     }, [])
 
-    const openDialog = useCallback((props: Omit<T, 'closeDialog'>) => {
+    const openDialog = useCallback((props?: Omit<T, 'closeDialog'>) => {
       idRef.current = dialogsService.addDialog(
         memo(Component({ ...props, closeDialog } as T)),
         dialogProps

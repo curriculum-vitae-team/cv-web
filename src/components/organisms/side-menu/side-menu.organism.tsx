@@ -2,9 +2,9 @@ import { memo, useCallback, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Divider, Drawer, IconButton } from '@mui/material'
 import { Menu, Close } from '@mui/icons-material'
+import { SideMenuItem } from '@molecules/side-menu-item'
 import { LIST_ITEMS } from './side-menu.constants'
 import * as Styled from './side-menu.styles'
-import { SideMenuItem } from '../../molecules/side-menu-item'
 
 const SideMenu = () => {
   const location = useLocation()
@@ -39,14 +39,7 @@ const SideMenu = () => {
             if (DividerComponent) {
               return <DividerComponent key="divider" />
             }
-            return (
-              <SideMenuItem
-                key={name}
-                IconComponent={IconComponent}
-                name={name}
-                to={to}
-              />
-            )
+            return <SideMenuItem key={name} IconComponent={IconComponent} name={name} to={to} />
           })}
         </Styled.List>
       </Drawer>

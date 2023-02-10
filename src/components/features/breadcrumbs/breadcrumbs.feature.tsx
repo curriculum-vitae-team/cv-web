@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 import { useLocation } from 'react-router-dom'
 import { HomeOutlined, NavigateNext } from '@mui/icons-material'
+import { Link } from '@atoms/link'
 import { BreadcrumbsContext } from '../breadcrumbs-context'
 import * as Styled from './breadcrumbs.styles'
-import { Link } from '../../atoms/link'
 
 export const Breadcrumbs = () => {
   const location = useLocation()

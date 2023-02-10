@@ -1,18 +1,17 @@
 import { useForm, FormProvider } from 'react-hook-form'
 import { useMutation } from '@apollo/client'
 import { Button, MenuItem, TextField } from '@mui/material'
+import { FormField } from '@molecules/form-field'
+import { UPDATE_USER } from '@graphql/users'
+import { UpdateUserInput, UpdateUserResult } from '@graphql/users/users.types'
+import { IUser } from '@interfaces/user.interface'
+import { useAdminRole } from '@hooks/use-admin-role.hook'
 import { EmployeeProfileFormProps, EmployeeProfileFormValues } from './employee-profile-form.types'
 import * as Styled from './employee-profile-form.styles'
-import { FormField } from '../../molecules/form-field'
-import { UPDATE_USER } from '../../../graphql/users'
-import { UpdateUserInput, UpdateUserResult } from '../../../graphql/users/users.types'
-import { authService } from '../../../graphql/auth/auth.service'
-import { UserRole } from '../../../constants/user-role.constants'
-import { IUser } from '../../../interfaces/user.interface'
 
 export const EmployeeProfileForm = ({ user, departments, positions }: EmployeeProfileFormProps) => {
   const [updateUser, { loading }] = useMutation<UpdateUserResult, UpdateUserInput>(UPDATE_USER)
-  // const canEdit = user.id === authService.user$()!.id || user.role === UserRole.Admin
+  const isAdmin = useAdminRole()
 
   const setDefaultValues = (user: IUser) => ({
     first_name: user.profile.first_name || '',
@@ -69,7 +68,8 @@ export const EmployeeProfileForm = ({ user, departments, positions }: EmployeePr
           disabled={!formState.isDirty}
           sx={{ gridColumn: 2 }}
         >
-          Beer go brrr
+          {/* TODO: disable update for non admin in other profiles */}
+          Update
         </Button>
       </Styled.Form>
     </FormProvider>
