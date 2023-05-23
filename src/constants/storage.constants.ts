@@ -1,4 +1,5 @@
 export enum StorageKeys {
   AccessToken = 'access_token',
-  User = 'user'
+  User = 'user',
+  Language = 'language'
 }

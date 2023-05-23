@@ -4,35 +4,35 @@ import { Divider } from '@mui/material'
 export const LIST_ITEMS = [
   {
     IconComponent: Group,
-    name: 'Employees',
+    name: 'employees',
     to: '/employees'
   },
   {
-    name: 'Projects',
+    name: 'projects',
     to: '/projects'
   },
   {
-    name: 'CVs',
+    name: 'cvs',
     to: '/cvs'
   },
   {
     DividerComponent: Divider
   },
   {
-    name: 'Departments',
+    name: 'departments',
     to: '/departments'
   },
   {
-    name: 'Positions',
+    name: 'positions',
     to: '/positions'
   },
   {
-    name: 'Skills',
+    name: 'skills',
     to: '/skills'
   },
   {
     IconComponent: Translate,
-    name: 'Languages',
+    name: 'languages',
     to: '/languages'
   }
 ]

@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
 import { DialogProps } from '@graphql/dialogs/dialogs.types'
 import { useLanguageCreate } from '@hooks/use-languages.hook'
@@ -18,6 +19,7 @@ const CreateLanguage = ({ closeDialog }: DialogProps) => {
       iso2: ''
     }
   })
+  const { t } = useTranslation()
   const [createLanguage, loading] = useLanguageCreate()
 
   const onSubmit = (values: CreateLanguageFormValues) => {
@@ -30,10 +32,18 @@ const CreateLanguage = ({ closeDialog }: DialogProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <DialogTitle>Create Language</DialogTitle>
+      <DialogTitle>{t('Create Language')}</DialogTitle>
       <Styled.Column>
-        <TextField {...register('name', { required: true })} label="Name" error={!!errors.name} />
-        <TextField {...register('native_name')} label="Native Name" error={!!errors.native_name} />
+        <TextField
+          {...register('name', { required: true })}
+          label={t('Name')}
+          error={!!errors.name}
+        />
+        <TextField
+          {...register('native_name')}
+          label={t('Native Name')}
+          error={!!errors.native_name}
+        />
         <TextField
           {...register('iso2', { required: true, minLength: 2, maxLength: 2 })}
           label="ISO2"
@@ -42,10 +52,10 @@ const CreateLanguage = ({ closeDialog }: DialogProps) => {
       </Styled.Column>
       <DialogActions>
         <Button variant="outlined" color="secondary" onClick={closeDialog}>
-          Cancel
+          {t('Cancel')}
         </Button>
         <Button variant="contained" color="primary" type="submit" disabled={loading || !isDirty}>
-          Create
+          {t('Create')}
         </Button>
       </DialogActions>
     </form>

@@ -7,3 +7,7 @@ export type LanguagesResult = {
 export type CreateLanguageResult = {
   createLanguage: ILanguage
 }
+
+export interface ILanguageService {
+  changeLanguage(language: string): void
+}
