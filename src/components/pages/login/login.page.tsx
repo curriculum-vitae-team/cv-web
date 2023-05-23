@@ -23,7 +23,7 @@ const Login = () => {
     const { data } = await login({ variables: values })
     if (data) {
       const { user, access_token } = data.login
-      authService.writeToStorage(user, access_token)
+      authService.login(user, access_token)
       navigate('/employees')
     }
   }

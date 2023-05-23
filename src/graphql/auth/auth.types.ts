@@ -17,6 +17,6 @@ export type SignupResult = {
 export interface IAuthService {
   user$: ReactiveVar<IUser | null>
   access_token$: ReactiveVar<string>
-  writeToStorage: (user: IUser, access_token: string) => void
-  clearStorage: () => void
+  login(user: IUser, access_token: string): void
+  logout(): void
 }

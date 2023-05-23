@@ -24,7 +24,7 @@ const Signup = () => {
     const { data } = await signup({ variables: values })
     if (data) {
       const { user, access_token } = data.signup
-      authService.writeToStorage(user, access_token)
+      authService.login(user, access_token)
       navigate('/employees')
     }
   }

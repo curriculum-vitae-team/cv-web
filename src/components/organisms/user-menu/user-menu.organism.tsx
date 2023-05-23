@@ -24,7 +24,7 @@ const UserMenu = () => {
   }, [location, handleClose])
 
   const handleLogout = useCallback(() => {
-    authService.clearStorage()
+    authService.logout()
   }, [])
 
   return (
