@@ -20,14 +20,14 @@ class AuthService implements IAuthService {
     }
   }
 
-  writeToStorage(user: IUser, access_token: string) {
+  login(user: IUser, access_token: string) {
     this.user$(user)
     this.access_token$(access_token)
     this.storageService.setItem(StorageKeys.User, JSON.stringify(user))
     this.storageService.setItem(StorageKeys.AccessToken, access_token)
   }
 
-  clearStorage() {
+  logout() {
     this.user$(null)
     this.access_token$('')
     this.storageService.removeItem(StorageKeys.User)

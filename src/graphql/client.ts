@@ -22,7 +22,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     graphQLErrors.forEach(({ message }) => {
       notificationsService.addNotification(message, 'error')
       if (message === 'Unauthorized') {
-        authService.clearStorage()
+        authService.logout()
       }
     })
   }

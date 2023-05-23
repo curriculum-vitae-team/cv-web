@@ -1,4 +1,5 @@
 import { memo, Suspense } from 'react'
+import { useTranslation } from 'react-i18next'
 import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { Tab } from '@mui/material'
@@ -13,6 +14,7 @@ const EmployeeDetails = () => {
   const location = useLocation()
   const { id } = useParams()
   const path = `/employees/${id}`
+  const { t } = useTranslation()
 
   const { data } = useQuery<UserResult>(USER_FULL_NAME, { variables: { id } })
   useBreadcrumbs({
@@ -21,19 +23,21 @@ const EmployeeDetails = () => {
       to: `employees/${id}/profile`,
       color: 'primary',
       Icon: PersonOutline
-    },
-    [`employees/${id}/cvs`]: {
-      text: 'CVs'
     }
   })
 
   return (
     <>
       <Styled.Tabs value={location.pathname}>
-        <Tab value={`${path}/profile`} label="Profile" component={NavLink} to="profile" />
-        <Tab value={`${path}/skills`} label="Skills" component={NavLink} to="skills" />
-        <Tab value={`${path}/languages`} label="Languages" component={NavLink} to="languages" />
-        <Tab value={`${path}/cvs`} label="CVs" component={NavLink} to="cvs" />
+        <Tab value={`${path}/profile`} label={t('Profile')} component={NavLink} to="profile" />
+        <Tab value={`${path}/skills`} label={t('skills')} component={NavLink} to="skills" />
+        <Tab
+          value={`${path}/languages`}
+          label={t('languages')}
+          component={NavLink}
+          to="languages"
+        />
+        <Tab value={`${path}/cvs`} label={t('cvs')} component={NavLink} to="cvs" />
       </Styled.Tabs>
       <Styled.Details>
         <Suspense fallback={<PageLoader />}>

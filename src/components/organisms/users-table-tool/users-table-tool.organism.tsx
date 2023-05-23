@@ -1,14 +1,16 @@
 import { Button } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { SearchInput } from '@molecules/search-input'
-import { useAdminRole } from '@hooks/use-admin-role.hook'
+import { useUser } from '@hooks/use-user.hook'
 
 export const UsersTableTool = () => {
-  const isAdmin = useAdminRole()
+  const { isAdmin } = useUser()
+  const { t } = useTranslation()
 
   return (
     <>
       <SearchInput />
-      {isAdmin && <Button variant="outlined">Create Employee</Button>}
+      {isAdmin && <Button variant="outlined">{t('Create User')}</Button>}
     </>
   )
 }

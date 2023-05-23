@@ -1,5 +1,6 @@
 import { memo, MouseEvent, useCallback, useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useReactiveVar } from '@apollo/client'
 import { Avatar, Divider, ListItemIcon, Menu, MenuItem, Typography } from '@mui/material'
 import { AccountCircle, Settings, Logout } from '@mui/icons-material'
@@ -7,6 +8,7 @@ import { authService } from '@graphql/auth/auth.service'
 
 const UserMenu = () => {
   const location = useLocation()
+  const { t } = useTranslation()
   const user = useReactiveVar(authService.user$)
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
@@ -24,7 +26,7 @@ const UserMenu = () => {
   }, [location, handleClose])
 
   const handleLogout = useCallback(() => {
-    authService.clearStorage()
+    authService.logout()
   }, [])
 
   return (
@@ -70,20 +72,20 @@ const UserMenu = () => {
           <ListItemIcon>
             <AccountCircle />
           </ListItemIcon>
-          Profile
+          {t('Profile')}
         </MenuItem>
-        <MenuItem>
+        <MenuItem disabled>
           <ListItemIcon>
             <Settings />
           </ListItemIcon>
-          Settings
+          {t('Settings')}
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout />
           </ListItemIcon>{' '}
-          Logout
+          {t('Logout')}
         </MenuItem>
       </Menu>
     </>

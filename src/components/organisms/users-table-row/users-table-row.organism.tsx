@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useMutation } from '@apollo/client'
 import { TableRow, TableCell, Avatar, MenuItem, Typography } from '@mui/material'
 import { IUser } from '@interfaces/user.interface'
@@ -7,11 +8,12 @@ import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { DELETE_USER } from '@graphql/users'
 import { useConfirmDialog } from '@dialogs/confirm'
-import { useAdminRole } from '@hooks/use-admin-role.hook'
+import { useUser } from '@hooks/use-user.hook'
 
 const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
   const navigate = useNavigate()
-  const isAdmin = useAdminRole()
+  const { isAdmin } = useUser()
+  const { t } = useTranslation()
   const [deleteUser] = useMutation(DELETE_USER, {
     update(cache) {
       const id = cache.identify({ id: item.id, __typename: 'User' })
@@ -30,7 +32,7 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
       dialogTitle: 'Delete User',
       dialogContent: (
         <Typography>
-          Are you sure you want to delete user <b>{item.profile.full_name || item.email}</b>?
+          {t('Are you sure you want to delete user')} <b>{item.profile.full_name || item.email}</b>?
         </Typography>
       ),
       confirmCallback: () => deleteUser({ variables: { id: item.id } })
@@ -49,9 +51,9 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
       <TableCell>{item.position_name}</TableCell>
       <TableCell>
         <ActionsMenu>
-          <MenuItem onClick={handleProfile}>Profile</MenuItem>
+          <MenuItem onClick={handleProfile}>{t('Profile')}</MenuItem>
           <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-            Delete User
+            {t('Delete User')}
           </MenuItem>
         </ActionsMenu>
       </TableCell>

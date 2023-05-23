@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useLazyQuery } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 import { Typography, Button, TextField } from '@mui/material'
@@ -18,12 +19,13 @@ const Login = () => {
   })
   const [login, { loading }] = useLazyQuery<LoginResult>(LOGIN)
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const onSubmit = async (values: LoginFormValues) => {
     const { data } = await login({ variables: values })
     if (data) {
       const { user, access_token } = data.login
-      authService.writeToStorage(user, access_token)
+      authService.login(user, access_token)
       navigate('/employees')
     }
   }
@@ -31,18 +33,18 @@ const Login = () => {
   return (
     <Styled.Form onSubmit={handleSubmit(onSubmit)}>
       <Typography variant="h4" textAlign="center" sx={{ mb: 3 }}>
-        Welcome Back
+        {t('Welcome Back')}
       </Typography>
       <Typography variant="body1" textAlign="center" sx={{ mb: 5 }}>
-        Hello again! Sign in to continue.
+        {t('Hello again! Sign in to continue.')}
       </Typography>
       <TextField {...register('email')} />
       <PasswordInput {...register('password')} />
       <Button variant="contained" type="submit" disabled={loading}>
-        Sign In
+        {t('Sign in')}
       </Button>
       <Button type="button" sx={{ mt: 2 }}>
-        Reset Password
+        {t('Reset password')}
       </Button>
     </Styled.Form>
   )

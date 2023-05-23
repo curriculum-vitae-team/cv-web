@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useMutation } from '@apollo/client'
 import { Button, TextField, Typography } from '@mui/material'
 import { SIGNUP } from '@graphql/auth'
@@ -19,12 +20,13 @@ const Signup = () => {
 
   const [signup, { loading }] = useMutation<SignupResult>(SIGNUP)
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const onSubmit = async (values: SignupFormValues) => {
     const { data } = await signup({ variables: values })
     if (data) {
       const { user, access_token } = data.signup
-      authService.writeToStorage(user, access_token)
+      authService.login(user, access_token)
       navigate('/employees')
     }
   }
@@ -32,18 +34,18 @@ const Signup = () => {
   return (
     <Styled.Form onSubmit={handleSubmit(onSubmit)}>
       <Typography variant="h4" textAlign="center" sx={{ mb: 3 }}>
-        Register Now
+        {t('Register Now')}
       </Typography>
       <Typography variant="body1" textAlign="center" sx={{ mb: 5 }}>
-        Welcome! Sign up to continue.
+        {t('Welcome! Sign up to continue.')}
       </Typography>
       <TextField {...register('email')} />
       <PasswordInput {...register('password')} />
       <Button variant="contained" type="submit" disabled={loading}>
-        Sign Up
+        {t('Sign up')}
       </Button>
       <Button type="button" sx={{ mt: 2 }} onClick={() => navigate('login')}>
-        I don't have an account
+        {t("I don't have an account")}
       </Button>
     </Styled.Form>
   )

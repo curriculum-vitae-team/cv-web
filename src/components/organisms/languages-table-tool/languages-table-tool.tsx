@@ -1,10 +1,12 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@mui/material'
 import { SearchInput } from '@molecules/search-input'
-import { useAdminRole } from '@hooks/use-admin-role.hook'
+import { useUser } from '@hooks/use-user.hook'
 import { useCreateLanguageDialog } from '@dialogs/create-language'
 
 export const LanguagesTableTool = () => {
-  const isAdmin = useAdminRole()
+  const { isAdmin } = useUser()
+  const { t } = useTranslation()
   const [openCreateLanguageDialog] = useCreateLanguageDialog()
 
   const handleClick = () => {
@@ -16,7 +18,7 @@ export const LanguagesTableTool = () => {
       <SearchInput />
       {isAdmin && (
         <Button variant="outlined" onClick={handleClick}>
-          Create Language
+          {t('Create Language')}
         </Button>
       )}
     </>

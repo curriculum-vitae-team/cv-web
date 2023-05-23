@@ -1,13 +1,15 @@
+import { useTranslation } from 'react-i18next'
 import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { TableRowProps } from '@templates/table/table.types'
 import { ILanguage } from '@interfaces/language.interface'
 import { useConfirmDialog } from '@dialogs/confirm'
-import { useAdminRole } from '@hooks/use-admin-role.hook'
+import { useUser } from '@hooks/use-user.hook'
 import { useLanguageDelete } from '@hooks/use-languages.hook'
 
 export const LanguagesTableRow = ({ item }: TableRowProps<ILanguage>) => {
-  const isAdmin = useAdminRole()
+  const { isAdmin } = useUser()
+  const { t } = useTranslation()
   const [openConfirmDialog] = useConfirmDialog()
   const [deleteLanguage] = useLanguageDelete(item)
 
@@ -30,9 +32,9 @@ export const LanguagesTableRow = ({ item }: TableRowProps<ILanguage>) => {
       <TableCell>{item.iso2}</TableCell>
       <TableCell>
         <ActionsMenu>
-          <MenuItem disabled>Update Language</MenuItem>
+          <MenuItem disabled>{t('Update Language')}</MenuItem>
           <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-            Delete Language
+            {t('Delete Language')}
           </MenuItem>
         </ActionsMenu>
       </TableCell>

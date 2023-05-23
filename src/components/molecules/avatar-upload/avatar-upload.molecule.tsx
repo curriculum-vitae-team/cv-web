@@ -1,4 +1,5 @@
 import { ChangeEvent, DragEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Badge, IconButton, Typography } from '@mui/material'
 import { Close, FileUploadOutlined } from '@mui/icons-material'
 import { authService } from '@graphql/auth/auth.service'
@@ -8,6 +9,7 @@ import { AvatarUploadProps } from './avatar-upload.types'
 import * as Styled from './avatar-upload.styles'
 
 export const AvatarUpload = ({ user }: AvatarUploadProps) => {
+  const { t } = useTranslation()
   const [uploadAvatar, isLoading] = useAvatarUpload()
   const [deleteAvatar, isDeleting] = useAvatarDelete()
   const profileId = user.profile.id
@@ -58,10 +60,10 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
       <Styled.Label onDragOver={handleDragOver} onDrop={handleDrop}>
         <Typography variant="h6">
           <FileUploadOutlined fontSize="large" sx={{ mr: 2 }} />
-          UPLOAD AVATAR IMAGE
+          {t('Upload avatar image')}
         </Typography>
         <Typography variant="subtitle1" color="GrayText">
-          png, jpg or gif no more than 0.5MB
+          {t('png, jpg or gif no more than 0.5MB')}
         </Typography>
         <Styled.Input
           type="file"
