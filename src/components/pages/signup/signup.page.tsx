@@ -9,9 +9,14 @@ import { authService } from '@graphql/auth/auth.service'
 import { PasswordInput } from '@molecules/password-input'
 import { SignupFormValues } from './signup.types'
 import * as Styled from '../login/login.styles'
+import { requiredValidation, passwordValidation } from '../../../helpers/validation.helper'
 
 const Signup = () => {
-  const { register, handleSubmit } = useForm<SignupFormValues>({
+  const {
+    formState: { errors },
+    register,
+    handleSubmit
+  } = useForm<SignupFormValues>({
     defaultValues: {
       email: '',
       password: ''
@@ -39,13 +44,23 @@ const Signup = () => {
       <Typography variant="body1" textAlign="center" sx={{ mb: 5 }}>
         {t('Welcome! Sign up to continue.')}
       </Typography>
-      <TextField {...register('email')} />
-      <PasswordInput {...register('password')} />
+      <TextField
+        {...register('email', { validate: requiredValidation })}
+        label={t('Email')}
+        error={!!errors.email}
+        helperText={t(errors.email?.message || '')}
+      />
+      <PasswordInput
+        {...register('password', { validate: passwordValidation })}
+        label={t('Password')}
+        error={!!errors.password}
+        helperText={t(errors.password?.message || '')}
+      />
       <Button variant="contained" type="submit" disabled={loading}>
         {t('Sign up')}
       </Button>
-      <Button type="button" sx={{ mt: 2 }} onClick={() => navigate('login')}>
-        {t("I don't have an account")}
+      <Button type="button" sx={{ mt: 2 }} onClick={() => navigate('/auth/login')}>
+        {t('I have an account')}
       </Button>
     </Styled.Form>
   )
