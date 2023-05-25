@@ -121,6 +121,13 @@ export const theme = createTheme({
           top: 'inherit'
         }
       }
+    },
+    MuiTableSortLabel: {
+      styleOverrides: {
+        root: {
+          whiteSpace: 'nowrap'
+        }
+      }
     }
   }
 })
