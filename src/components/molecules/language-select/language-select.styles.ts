@@ -1,7 +1,6 @@
 import { styled, TextField } from '@mui/material'
 
 export const Select = styled(TextField)({
-  marginRight: 48,
   '& .MuiSelect-select': {
     boxShadow: 'none !important',
     background: 'transparent',

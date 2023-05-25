@@ -4,8 +4,9 @@ import { MenuItem } from '@mui/material'
 import { Language } from '@mui/icons-material'
 import { languageService } from '@graphql/languages/languages.service'
 import * as Styled from './language-select.styles'
+import { LanguageSelectProps } from './language-select.types'
 
-export const LanguageSelect = () => {
+export const LanguageSelect = (props: LanguageSelectProps) => {
   const { i18n } = useTranslation()
   const [language, setLanguage] = useState(i18n.language)
 
@@ -16,6 +17,7 @@ export const LanguageSelect = () => {
 
   return (
     <Styled.Select
+      {...props}
       value={language}
       select
       InputProps={{ startAdornment: <Language color="secondary" /> }}

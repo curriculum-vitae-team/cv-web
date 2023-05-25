@@ -12,7 +12,7 @@ export const Header = () => {
           <SideMenu />
         </Styled.LeftPart>
         <Styled.RightPart>
-          <LanguageSelect />
+          <LanguageSelect sx={{ mr: 6 }} />
           <UserMenu />
         </Styled.RightPart>
       </Container>
