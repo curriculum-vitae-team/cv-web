@@ -53,7 +53,7 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
       >
         <Styled.Avatar src={user.profile.avatar}>
           {user.profile.full_name
-            ? user.profile.first_name?.[0] + user.profile.last_name?.[0]
+            ? user.profile.first_name?.[0] || '' + user.profile.last_name?.[0] || ''
             : user.email[0]}
         </Styled.Avatar>
       </Badge>
