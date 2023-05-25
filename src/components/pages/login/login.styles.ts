@@ -4,7 +4,8 @@ export const Form = styled('form')({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  width: 560,
+  maxWidth: 560,
+  width: '90%',
   height: '100%',
   margin: '0 auto'
 })
