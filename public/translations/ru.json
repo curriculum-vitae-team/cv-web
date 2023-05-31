@@ -38,10 +38,10 @@
   "Last Name": "Фамилия",
   "Department": "Отдел",
   "Position": "Должность",
-  "Create User": "Создать пользователя",
+  "Create user": "Создать пользователя",
   "Role": "Права доступа",
   "Admin": "Администратор",
-  "Delete User": "Удалить пользователя",
+  "Delete user": "Удалить пользователя",
   "Are you sure you want to delete user": "Вы уверены что хотите удалить пользователя",
 
   "Upload avatar image": "Загрузите изображение аватара",
@@ -58,7 +58,8 @@
   "Team Size": "Размер команды",
   "Till now": "По настоящее время",
   "Project": "Проект",
-  "Delete Project": "Удалить проект",
+  "Create project": "Создать проект",
+  "Delete project": "Удалить проект",
 
   "Template": "Шаблон",
   "Description": "Описание",
@@ -67,7 +68,7 @@
   "Delete CV": "Удалить резюме",
 
   "Native Name": "Родное имя",
-  "Create Language": "Создать язык",
-  "Update Language": "Обновить язык",
-  "Delete Language": "Удалить язык"
+  "Create language": "Создать язык",
+  "Update language": "Обновить язык",
+  "Delete language": "Удалить язык"
 }

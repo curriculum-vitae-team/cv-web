@@ -38,10 +38,10 @@
   "Last Name": "Last Name",
   "Department": "Department",
   "Position": "Position",
-  "Create User": "Create User",
+  "Create user": "Create user",
   "Role": "Role",
   "Admin": "Admin",
-  "Delete User": "Delete User",
+  "Delete user": "Delete user",
   "Are you sure you want to delete user": "Are you sure you want to delete user",
 
   "Upload avatar image": "Upload avatar image",
@@ -58,7 +58,8 @@
   "Team Size": "Team Size",
   "Till now": "Till now",
   "Project": "Project",
-  "Delete Project": "Delete Project",
+  "Create project": "Create project",
+  "Delete project": "Delete project",
 
   "Template": "Template",
   "Description": "Description",
@@ -67,7 +68,7 @@
   "Delete CV": "Delete CV",
 
   "Native Name": "Native Name",
-  "Create Language": "Create Language",
-  "Update Language": "Update Language",
-  "Delete Language": "Delete Language"
+  "Create language": "Create language",
+  "Update language": "Update language",
+  "Delete language": "Delete language"
 }

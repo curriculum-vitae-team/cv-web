@@ -49,7 +49,7 @@ const CreateUser = ({ closeDialog }: DialogProps) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <DialogTitle>{t('Create User')}</DialogTitle>
+        <DialogTitle>{t('Create user')}</DialogTitle>
         <Styled.Column>
           <TextField
             {...register('auth.email', { validate: requiredValidation })}

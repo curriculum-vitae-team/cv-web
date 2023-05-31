@@ -13,3 +13,9 @@ export const passwordValidation = (value: string) => {
     return 'At least 5 characters'
   }
 }
+
+export const teamSizeValidation = (value: number) => {
+  if (value < 1) {
+    return 'Must be positive'
+  }
+}

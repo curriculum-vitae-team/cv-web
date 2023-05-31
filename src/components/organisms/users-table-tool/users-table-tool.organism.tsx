@@ -14,7 +14,7 @@ export const UsersTableTool = () => {
       <SearchInput />
       {isAdmin && (
         <Button variant="outlined" onClick={openCreateUserDialog}>
-          {t('Create User')}
+          {t('Create user')}
         </Button>
       )}
     </>

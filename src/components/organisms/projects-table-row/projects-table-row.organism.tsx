@@ -18,7 +18,7 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
       <TableCell>
         <ActionsMenu>
           <MenuItem disabled>{t('Project')}</MenuItem>
-          <MenuItem disabled>{t('Delete Project')}</MenuItem>
+          <MenuItem disabled>{t('Delete project')}</MenuItem>
         </ActionsMenu>
       </TableCell>
     </TableRow>

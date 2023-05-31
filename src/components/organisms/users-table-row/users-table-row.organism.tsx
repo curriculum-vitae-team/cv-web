@@ -29,7 +29,7 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
 
   const handleDelete = () => {
     openConfirmDialog({
-      dialogTitle: 'Delete User',
+      dialogTitle: 'Delete user',
       dialogContent: (
         <Typography>
           {t('Are you sure you want to delete user')} <b>{item.profile.full_name || item.email}</b>?
@@ -53,7 +53,7 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
         <ActionsMenu>
           <MenuItem onClick={handleProfile}>{t('Profile')}</MenuItem>
           <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-            {t('Delete User')}
+            {t('Delete user')}
           </MenuItem>
         </ActionsMenu>
       </TableCell>

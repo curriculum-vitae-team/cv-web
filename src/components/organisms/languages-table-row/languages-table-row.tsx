@@ -32,9 +32,9 @@ export const LanguagesTableRow = ({ item }: TableRowProps<ILanguage>) => {
       <TableCell>{item.iso2}</TableCell>
       <TableCell>
         <ActionsMenu>
-          <MenuItem disabled>{t('Update Language')}</MenuItem>
+          <MenuItem disabled>{t('Update language')}</MenuItem>
           <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-            {t('Delete Language')}
+            {t('Delete language')}
           </MenuItem>
         </ActionsMenu>
       </TableCell>
