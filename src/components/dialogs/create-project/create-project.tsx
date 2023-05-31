@@ -16,8 +16,8 @@ const CreateProject = ({ closeDialog }: DialogProps) => {
       internal_name: '',
       description: '',
       domain: '',
-      start_date: '',
-      end_date: '',
+      start_date: null,
+      end_date: null,
       team_size: 1
     }
   })
