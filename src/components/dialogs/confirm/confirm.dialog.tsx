@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogContent, DialogTitle } from '@mui/material'
 import { ConfirmDialogProps } from './confirm.types'
@@ -13,10 +13,13 @@ const ConfirmDialog: FC<ConfirmDialogProps> = ({
   confirmCallback
 }) => {
   const { t } = useTranslation()
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleConfirm = () => {
-    closeDialog()
+    setIsLoading(true)
     confirmCallback()
+      .then(() => closeDialog())
+      .catch(() => setIsLoading(false))
   }
 
   return (
@@ -27,7 +30,7 @@ const ConfirmDialog: FC<ConfirmDialogProps> = ({
         <Button variant="outlined" color="secondary" onClick={closeDialog}>
           {t(cancelText)}
         </Button>
-        <Button variant="contained" color="primary" onClick={handleConfirm}>
+        <Button variant="contained" color="primary" disabled={isLoading} onClick={handleConfirm}>
           {t(confirmText)}
         </Button>
       </DialogActions>
