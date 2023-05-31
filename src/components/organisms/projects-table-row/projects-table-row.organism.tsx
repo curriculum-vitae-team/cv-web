@@ -13,7 +13,7 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
 
   const handleDelete = () => {
     openConfirmDialog({
-      dialogTitle: 'Delete user',
+      dialogTitle: 'Delete project',
       dialogContent: (
         <Typography>
           {t('Are you sure you want to delete project')} <b>{item.name}</b>?
