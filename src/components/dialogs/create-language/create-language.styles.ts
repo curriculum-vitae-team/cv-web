@@ -4,6 +4,6 @@ export const Column = styled(DialogContent)({
   display: 'flex',
   flexDirection: 'column',
   '& > .MuiTextField-root': {
-    marginTop: 16
+    marginTop: 32
   }
 })

@@ -39,6 +39,8 @@
   "Department": "Department",
   "Position": "Position",
   "Create User": "Create User",
+  "Role": "Role",
+  "Admin": "Admin",
   "Delete User": "Delete User",
   "Are you sure you want to delete user": "Are you sure you want to delete user",
 

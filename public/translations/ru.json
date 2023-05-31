@@ -39,6 +39,8 @@
   "Department": "Отдел",
   "Position": "Должность",
   "Create User": "Создать пользователя",
+  "Role": "Права доступа",
+  "Admin": "Администратор",
   "Delete User": "Удалить пользователя",
   "Are you sure you want to delete user": "Вы уверены что хотите удалить пользователя",
 

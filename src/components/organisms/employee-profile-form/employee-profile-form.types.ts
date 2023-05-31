@@ -1,11 +1,7 @@
-import { IUser } from '../../../interfaces/user.interface'
-import { IDepartment } from '../../../interfaces/department.interface'
-import { IPosition } from '../../../interfaces/position.interface'
+import { IUser } from '@interfaces/user.interface'
 
 export type EmployeeProfileFormProps = {
   user: IUser
-  departments: IDepartment[]
-  positions: IPosition[]
 }
 
 export type EmployeeProfileFormValues = {
