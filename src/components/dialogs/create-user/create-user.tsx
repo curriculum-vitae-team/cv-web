@@ -53,6 +53,7 @@ const CreateUser = ({ closeDialog }: DialogProps) => {
         <Styled.Column>
           <TextField
             {...register('auth.email', { validate: requiredValidation })}
+            autoFocus
             label={t('Email')}
             error={!!errors.auth?.email}
             helperText={errors.auth?.email?.message}

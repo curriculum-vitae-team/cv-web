@@ -36,6 +36,7 @@ const CreateLanguage = ({ closeDialog }: DialogProps) => {
       <Styled.Column>
         <TextField
           {...register('name', { required: true })}
+          autoFocus
           label={t('Name')}
           error={!!errors.name}
         />
