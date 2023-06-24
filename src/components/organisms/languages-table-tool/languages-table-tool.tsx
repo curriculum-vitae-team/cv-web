@@ -18,7 +18,7 @@ export const LanguagesTableTool = () => {
       <SearchInput />
       {isAdmin && (
         <Button variant="outlined" onClick={handleClick}>
-          {t('Create Language')}
+          {t('Create language')}
         </Button>
       )}
     </>

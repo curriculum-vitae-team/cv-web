@@ -1,3 +1,22 @@
+import { useTranslation } from 'react-i18next'
+import { Button } from '@mui/material'
+import { useUser } from '@hooks/use-user.hook'
+import { SearchInput } from '@molecules/search-input'
+import { useCreateProjectDialog } from '@dialogs/create-project'
+
 export const ProjectsTableTool = () => {
-  return <></>
+  const { isAdmin } = useUser()
+  const { t } = useTranslation()
+  const [openCreateProjectDialog] = useCreateProjectDialog()
+
+  return (
+    <>
+      <SearchInput />
+      {isAdmin && (
+        <Button variant="outlined" onClick={openCreateProjectDialog}>
+          {t('Create project')}
+        </Button>
+      )}
+    </>
+  )
 }

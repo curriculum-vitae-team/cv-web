@@ -5,5 +5,5 @@ export type ConfirmDialogProps = DialogProps & {
   dialogContent: JSX.Element
   cancelText?: string
   confirmText?: string
-  confirmCallback: () => void
+  confirmCallback(): Promise<unknown>
 }

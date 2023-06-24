@@ -128,6 +128,20 @@ export const theme = createTheme({
           whiteSpace: 'nowrap'
         }
       }
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#f5f5f7'
+        }
+      }
+    },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          paddingTop: '16px !important'
+        }
+      }
     }
   }
 })

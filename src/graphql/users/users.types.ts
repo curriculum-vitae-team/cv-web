@@ -8,6 +8,10 @@ export type UserResult = {
   user: IUser
 }
 
+export type CreateUserResult = {
+  createUser: IUser
+}
+
 export type UpdateUserInput = {
   id: string
   user: {
