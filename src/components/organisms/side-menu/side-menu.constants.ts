@@ -1,4 +1,12 @@
-import { FolderCopy, Group, Translate } from '@mui/icons-material'
+import {
+  ContactPageOutlined,
+  Domain,
+  FolderCopyOutlined,
+  Group,
+  Translate,
+  TrendingUp,
+  WorkOutline
+} from '@mui/icons-material'
 import { Divider } from '@mui/material'
 
 export const LIST_ITEMS = [
@@ -8,11 +16,12 @@ export const LIST_ITEMS = [
     to: '/employees'
   },
   {
-    IconComponent: FolderCopy,
+    IconComponent: FolderCopyOutlined,
     name: 'projects',
     to: '/projects'
   },
   {
+    IconComponent: ContactPageOutlined,
     name: 'cvs',
     to: '/cvs'
   },
@@ -20,14 +29,17 @@ export const LIST_ITEMS = [
     DividerComponent: Divider
   },
   {
+    IconComponent: Domain,
     name: 'departments',
     to: '/departments'
   },
   {
+    IconComponent: WorkOutline,
     name: 'positions',
     to: '/positions'
   },
   {
+    IconComponent: TrendingUp,
     name: 'skills',
     to: '/skills'
   },
