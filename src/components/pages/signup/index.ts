@@ -1,3 +1,3 @@
 import { lazy } from 'react'
 
-export const Signup = lazy(() => import('./signup.page'))
+export const Signup = lazy(() => import(/* webpackChunkName: "signup" */ './signup.page'))
