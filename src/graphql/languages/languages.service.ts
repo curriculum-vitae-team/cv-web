@@ -1,17 +1,12 @@
-import { StorageKeys } from 'constants/storage.constants'
 import i18n from 'i18n'
+import { StorageKeys } from 'constants/storage.constants'
 import { ILanguageService } from './languages.types'
 
 class LanguageService implements ILanguageService {
-  constructor(private readonly storageService: Storage) {
-    this.readFromStorage()
-  }
+  constructor(private readonly storageService: Storage) {}
 
-  private readFromStorage() {
-    const language = this.storageService.getItem(StorageKeys.Language)
-    if (language) {
-      i18n.changeLanguage(language)
-    }
+  getLanguage() {
+    return this.storageService.getItem(StorageKeys.Language)
   }
 
   changeLanguage(language: string) {

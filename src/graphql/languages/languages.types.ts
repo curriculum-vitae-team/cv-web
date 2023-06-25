@@ -13,5 +13,6 @@ export type UpdateLanguageResult = {
 }
 
 export interface ILanguageService {
+  getLanguage(): string | null
   changeLanguage(language: string): void
 }
