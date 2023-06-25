@@ -7,3 +7,7 @@ export type SkillsResult = {
 export type CreateSkillResult = {
   createSkill: ISkill
 }
+
+export type UpdateSkillResult = {
+  updateSkill: ISkill
+}
