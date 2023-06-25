@@ -1,3 +1,3 @@
 import { lazy } from 'react'
 
-export const Skills = lazy(() => import('./skills'))
+export const Skills = lazy(() => import(/* webpackChunkName: "skills" */ './skills'))
