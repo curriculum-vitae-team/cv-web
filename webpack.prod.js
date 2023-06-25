@@ -1,5 +1,6 @@
 const { resolve } = require('path')
 const { merge } = require('webpack-merge')
+const CopyPlugin = require('copy-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const { ESBuildMinifyPlugin } = require('esbuild-loader')
 const config = require('./webpack.config')
@@ -8,6 +9,9 @@ module.exports = merge(config, {
   mode: 'production',
   devtool: 'source-map',
   plugins: [
+    new CopyPlugin({
+      patterns: [{ from: 'public/translations', to: 'translations' }]
+    }),
     new CompressionPlugin({
       algorithm: 'gzip'
     })
@@ -16,7 +20,7 @@ module.exports = merge(config, {
     minimize: true,
     minimizer: [
       new ESBuildMinifyPlugin({
-        target: 'es2015',
+        target: 'es2015'
       })
     ]
   },
