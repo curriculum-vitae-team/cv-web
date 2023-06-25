@@ -1,11 +1,11 @@
 import { createTable } from '@templates/table'
-import { ISkill } from '@interfaces/skill.interface'
 import { PositionsTableRow } from '@organisms/positions-table-row'
 import { PositionsTableTool } from '@organisms/positions-table-tool'
 import { PositionsTableHead } from '@organisms/positions-table-head'
-import { usePositions } from '@hooks/use-positions.hook'
+import { usePositions } from 'hooks/use-positions.hook'
+import { IPosition } from 'interfaces/position.interface'
 
-const Table = createTable<ISkill>()
+const Table = createTable<IPosition>()
 
 const Positions = () => {
   const [positions, loading] = usePositions()

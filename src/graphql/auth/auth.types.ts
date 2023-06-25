@@ -1,5 +1,5 @@
 import { ReactiveVar } from '@apollo/client'
-import { IUser } from '@interfaces/user.interface'
+import { IUser } from 'interfaces/user.interface'
 
 export type AuthResult = {
   user: IUser

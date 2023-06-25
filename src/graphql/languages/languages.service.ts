@@ -1,6 +1,6 @@
-import { StorageKeys } from '@constants/storage.constants'
+import { StorageKeys } from 'constants/storage.constants'
+import i18n from 'i18n'
 import { ILanguageService } from './languages.types'
-import i18n from '../../i18n'
 
 class LanguageService implements ILanguageService {
   constructor(private readonly storageService: Storage) {

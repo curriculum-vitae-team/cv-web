@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@mui/material'
 import { SearchInput } from '@molecules/search-input'
-import { useUser } from '@hooks/use-user.hook'
 import { useLanguageDialog } from '@dialogs/language'
+import { useUser } from 'hooks/use-user.hook'
 
 export const LanguagesTableTool = () => {
   const { isAdmin } = useUser()

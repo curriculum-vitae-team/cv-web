@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Controller } from 'react-hook-form'
 import { MenuItem, TextField } from '@mui/material'
-import { usePositions } from '@hooks/use-positions.hook'
+import { usePositions } from 'hooks/use-positions.hook'
 import { PositionSelectProps } from './position-select.types'
 
 const PositionSelect = ({ name, ...props }: PositionSelectProps) => {

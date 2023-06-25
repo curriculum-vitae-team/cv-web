@@ -2,11 +2,11 @@ import { useTranslation } from 'react-i18next'
 import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { TableRowProps } from '@templates/table/table.types'
-import { ISkill } from '@interfaces/skill.interface'
 import { useSkillDialog } from '@dialogs/skill'
 import { useConfirmDialog } from '@dialogs/confirm'
-import { useUser } from '@hooks/use-user.hook'
-import { useSkillDelete } from '@hooks/use-skills.hook'
+import { ISkill } from 'interfaces/skill.interface'
+import { useUser } from 'hooks/use-user.hook'
+import { useSkillDelete } from 'hooks/use-skills.hook'
 
 export const SkillsTableRow = ({ item }: TableRowProps<ISkill>) => {
   const { isAdmin } = useUser()

@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
-import { usePositionCreate, usePositionUpdate } from '@hooks/use-positions.hook'
-import { createDialogHook } from '../../../helpers/create-dialog-hook.helper'
+import { usePositionCreate, usePositionUpdate } from 'hooks/use-positions.hook'
+import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { PositionFormValues, PositionProps } from './position.types'
 import * as Styled from './position.styles'
 

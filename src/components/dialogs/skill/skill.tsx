@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
-import { useSkillCreate, useSkillUpdate } from '@hooks/use-skills.hook'
-import { createDialogHook } from '../../../helpers/create-dialog-hook.helper'
+import { useSkillCreate, useSkillUpdate } from 'hooks/use-skills.hook'
+import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { SkillFormValues, SkillProps } from './skill.types'
 import * as Styled from './skill.styles'
 

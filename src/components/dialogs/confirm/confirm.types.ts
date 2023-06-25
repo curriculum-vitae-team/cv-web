@@ -1,4 +1,4 @@
-import { DialogProps } from '../../../graphql/dialogs/dialogs.types'
+import { DialogProps } from 'graphql/dialogs/dialogs.types'
 
 export type ConfirmDialogProps = DialogProps & {
   dialogTitle: string

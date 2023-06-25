@@ -1,11 +1,11 @@
 import { MutationFunction, useMutation, useQuery } from '@apollo/client'
-import { IPosition } from '@interfaces/position.interface'
-import { CREATE_POSITION, DELETE_POSITION, POSITIONS, UPDATE_POSITION } from '@graphql/positions'
+import { IPosition } from 'interfaces/position.interface'
+import { CREATE_POSITION, DELETE_POSITION, POSITIONS, UPDATE_POSITION } from 'graphql/positions'
 import {
   CreatePositionResult,
   PositionsResult,
   UpdatePositionResult
-} from '@graphql/positions/positions.types'
+} from 'graphql/positions/positions.types'
 
 export const usePositions = (): [IPosition[], boolean] => {
   const { data, loading } = useQuery<PositionsResult>(POSITIONS)

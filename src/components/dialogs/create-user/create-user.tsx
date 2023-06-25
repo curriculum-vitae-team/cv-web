@@ -1,15 +1,15 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
-import { DialogProps } from '@graphql/dialogs/dialogs.types'
-import { useUserCreate } from '@hooks/use-users.hook'
 import { DepartmentSelect } from '@molecules/department-select'
 import { PositionSelect } from '@molecules/position-select'
 import { RoleSelect } from '@molecules/role-select'
-import { createDialogHook } from '../../../helpers/create-dialog-hook.helper'
+import { DialogProps } from 'graphql/dialogs/dialogs.types'
+import { useUserCreate } from 'hooks/use-users.hook'
+import { createDialogHook } from 'helpers/create-dialog-hook.helper'
+import { passwordValidation, requiredValidation } from 'helpers/validation.helper'
 import { CreateUserFormValues } from './create-user.types'
 import * as Styled from './create-user.styles'
-import { passwordValidation, requiredValidation } from '../../../helpers/validation.helper'
 
 const CreateUser = ({ closeDialog }: DialogProps) => {
   const methods = useForm<CreateUserFormValues>({

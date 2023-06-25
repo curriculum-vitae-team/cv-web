@@ -1,8 +1,8 @@
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogContent, DialogTitle } from '@mui/material'
+import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { ConfirmDialogProps } from './confirm.types'
-import { createDialogHook } from '../../../helpers/create-dialog-hook.helper'
 
 const ConfirmDialog: FC<ConfirmDialogProps> = ({
   dialogTitle,

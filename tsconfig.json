@@ -19,19 +19,15 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "typeRoots": ["./src/@types", "./node_modules/@types"],
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@interfaces/*": ["src/interfaces/*"],
-      "@graphql/*": ["src/graphql/*"],
-      "@atoms/*": ["src/components/atoms/*"],
-      "@molecules/*": ["src/components/molecules/*"],
-      "@organisms/*": ["src/components/organisms/*"],
-      "@templates/*": ["src/components/templates/*"],
-      "@features/*": ["src/components/features/*"],
-      "@dialogs/*": ["src/components/dialogs/*"],
-      "@pages/*": ["src/components/pages/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@constants/*": ["src/constants/*"]
+      "@atoms/*": ["components/atoms/*"],
+      "@molecules/*": ["components/molecules/*"],
+      "@organisms/*": ["components/organisms/*"],
+      "@templates/*": ["components/templates/*"],
+      "@features/*": ["components/features/*"],
+      "@dialogs/*": ["components/dialogs/*"],
+      "@pages/*": ["components/pages/*"]
     }
   },
   "include": ["src"],

@@ -1,7 +1,7 @@
 import { MutationFunction, useMutation, useQuery } from '@apollo/client'
-import { CREATE_SKILL, DELETE_SKILL, SKILLS, UPDATE_SKILL } from '@graphql/skills'
-import { CreateSkillResult, SkillsResult, UpdateSkillResult } from '@graphql/skills/skills.types'
-import { ISkill } from '@interfaces/skill.interface'
+import { CREATE_SKILL, DELETE_SKILL, SKILLS, UPDATE_SKILL } from 'graphql/skills'
+import { CreateSkillResult, SkillsResult, UpdateSkillResult } from 'graphql/skills/skills.types'
+import { ISkill } from 'interfaces/skill.interface'
 
 export const useSkills = (): [ISkill[], boolean] => {
   const { data, loading } = useQuery<SkillsResult>(SKILLS)

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useReactiveVar } from '@apollo/client'
 import { Avatar, Divider, ListItemIcon, Menu, MenuItem, Typography } from '@mui/material'
 import { AccountCircle, Settings, Logout } from '@mui/icons-material'
-import { authService } from '@graphql/auth/auth.service'
+import { authService } from 'graphql/auth/auth.service'
 
 const UserMenu = () => {
   const location = useLocation()

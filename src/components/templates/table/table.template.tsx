@@ -1,11 +1,11 @@
 import { FC, memo, useDeferredValue, useMemo, useState } from 'react'
 import { Table as MuiTable, TableHead, TableBody, TableFooter, TableRow } from '@mui/material'
 import { TableLoader } from '@atoms/table-loader'
-import { SortOrder } from '@constants/table-sort.constants'
+import { SortOrder } from 'constants/table-sort.constants'
+import { sortItems } from 'helpers/table-sort.helper'
+import { searchItems } from 'helpers/table-search.helper'
 import { Item, TableProps } from './table.types'
 import { TableSearchContext, TableSortContext } from './table.context'
-import { sortItems } from '../../../helpers/table-sort.helper'
-import { searchItems } from '../../../helpers/table-search.helper'
 import * as Styled from './table.styles'
 
 const Table = <T extends Item>({

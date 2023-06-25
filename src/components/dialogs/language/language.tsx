@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
-import { useLanguageCreate, useLanguageUpdate } from '@hooks/use-languages.hook'
-import { createDialogHook } from '../../../helpers/create-dialog-hook.helper'
+import { useLanguageCreate, useLanguageUpdate } from 'hooks/use-languages.hook'
+import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { LanguageFormValues, LanguageProps } from './language.types'
 import * as Styled from './language.styles'
 
