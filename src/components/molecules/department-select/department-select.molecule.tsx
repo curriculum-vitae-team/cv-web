@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Controller } from 'react-hook-form'
 import { MenuItem, TextField } from '@mui/material'
-import { useDepartments } from '@hooks/use-departments.hook'
+import { useDepartments } from 'hooks/use-departments.hook'
 import { DepartmentSelectProps } from './department-select.types'
 
 const DepartmentSelect = ({ name, ...props }: DepartmentSelectProps) => {

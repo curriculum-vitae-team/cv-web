@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { TableCell, TableRow } from '@mui/material'
-import { IProject } from '@interfaces/project.interface'
 import { createSortLabel } from '@atoms/sort-label'
+import { IProject } from 'interfaces/project.interface'
 
 export const ProjectsTableHead = () => {
   const { t } = useTranslation()

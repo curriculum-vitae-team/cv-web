@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Checkbox, MenuItem, TableCell, TableRow } from '@mui/material'
-import { ICV } from '@interfaces/cv.interface'
 import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
+import { ICV } from 'interfaces/cv.interface'
 
 export const CVsTableRow = ({ item }: TableRowProps<ICV>) => {
   const { t } = useTranslation()

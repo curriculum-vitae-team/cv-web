@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MenuItem } from '@mui/material'
 import { Language } from '@mui/icons-material'
-import { languageService } from '@graphql/languages/languages.service'
+import { languageService } from 'graphql/languages/languages.service'
 import * as Styled from './language-select.styles'
 import { LanguageSelectProps } from './language-select.types'
 

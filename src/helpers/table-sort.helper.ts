@@ -1,6 +1,6 @@
 import { Path, get } from 'react-hook-form'
 import { Item } from '@templates/table/table.types'
-import { SortOrder } from '@constants/table-sort.constants'
+import { SortOrder } from 'constants/table-sort.constants'
 
 export const sortItems = <T extends Item>(sortBy: Path<T>, order: SortOrder) => (a: T, b: T) => {
   const fieldA = get(a, sortBy)

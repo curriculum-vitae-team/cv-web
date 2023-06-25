@@ -1,7 +1,7 @@
 import { MutationFunction, useMutation } from '@apollo/client'
-import { CREATE_USER, DELETE_USER, USERS } from '@graphql/users'
-import { CreateUserResult } from '@graphql/users/users.types'
-import { IUser } from '@interfaces/user.interface'
+import { CREATE_USER, DELETE_USER, USERS } from 'graphql/users'
+import { CreateUserResult } from 'graphql/users/users.types'
+import { IUser } from 'interfaces/user.interface'
 
 export const useUserCreate = (): [MutationFunction<CreateUserResult>, boolean] => {
   const [createUser, { loading }] = useMutation<CreateUserResult>(CREATE_USER, {

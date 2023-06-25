@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
 import { TableRowProps } from '@templates/table/table.types'
-import { IProject } from '@interfaces/project.interface'
 import { ActionsMenu } from '@atoms/actions-menu'
-import { useProjectDelete } from '@hooks/use-projects.hook'
 import { useConfirmDialog } from '@dialogs/confirm'
+import { IProject } from 'interfaces/project.interface'
+import { useProjectDelete } from 'hooks/use-projects.hook'
 
 export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
   const { t } = useTranslation()

@@ -1,7 +1,7 @@
 import { MutationFunction, useMutation } from '@apollo/client'
-import { CREATE_PROJECT, DELETE_PROJECT, PROJECTS } from '@graphql/projects'
-import { CreateProjectResult } from '@graphql/projects/projects.types'
-import { IProject } from '@interfaces/project.interface'
+import { CREATE_PROJECT, DELETE_PROJECT, PROJECTS } from 'graphql/projects'
+import { CreateProjectResult } from 'graphql/projects/projects.types'
+import { IProject } from 'interfaces/project.interface'
 
 export const useProjectCreate = (): [MutationFunction<CreateProjectResult>, boolean] => {
   const [createProject, { loading }] = useMutation<CreateProjectResult>(CREATE_PROJECT, {

@@ -1,8 +1,8 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { TableCell, TableRow } from '@mui/material'
-import { IUser } from '@interfaces/user.interface'
 import { createSortLabel } from '@atoms/sort-label'
+import { IUser } from 'interfaces/user.interface'
 
 const UsersTableHead = () => {
   const { t } = useTranslation()

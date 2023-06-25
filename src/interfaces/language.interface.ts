@@ -1,4 +1,4 @@
-import { LanguageProficiency } from '../constants/language-proficiency.constants'
+import { LanguageProficiency } from 'constants/language-proficiency.constants'
 
 export interface ILanguage {
   id: string

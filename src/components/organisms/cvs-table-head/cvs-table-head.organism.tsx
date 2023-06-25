@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { TableCell, TableRow } from '@mui/material'
-import { ICV } from '@interfaces/cv.interface'
 import { createSortLabel } from '@atoms/sort-label'
+import { ICV } from 'interfaces/cv.interface'
 
 export const CVsTableHead = () => {
   const { t } = useTranslation()

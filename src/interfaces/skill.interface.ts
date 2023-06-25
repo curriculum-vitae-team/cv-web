@@ -1,4 +1,4 @@
-import { SkillMastery } from '../constants/skill-mastery.constants'
+import { SkillMastery } from 'constants/skill-mastery.constants'
 
 export interface ISkill {
   id: string

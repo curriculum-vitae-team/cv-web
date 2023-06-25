@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useMutation } from '@apollo/client'
 import { Button, TextField, Typography } from '@mui/material'
-import { SIGNUP } from '@graphql/auth'
-import { SignupResult } from '@graphql/auth/auth.types'
-import { authService } from '@graphql/auth/auth.service'
+import { SIGNUP } from 'graphql/auth'
+import { SignupResult } from 'graphql/auth/auth.types'
+import { authService } from 'graphql/auth/auth.service'
 import { PasswordInput } from '@molecules/password-input'
+import { requiredValidation, passwordValidation } from 'helpers/validation.helper'
 import { SignupFormValues } from './signup.types'
 import * as Styled from '../login/login.styles'
-import { requiredValidation, passwordValidation } from '../../../helpers/validation.helper'
 
 const Signup = () => {
   const {

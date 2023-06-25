@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@mui/material'
-import { useUser } from '@hooks/use-user.hook'
 import { SearchInput } from '@molecules/search-input'
 import { useCreateProjectDialog } from '@dialogs/create-project'
+import { useUser } from 'hooks/use-user.hook'
 
 export const ProjectsTableTool = () => {
   const { isAdmin } = useUser()

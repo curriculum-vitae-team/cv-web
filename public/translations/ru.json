@@ -42,7 +42,7 @@
   "Role": "Права доступа",
   "Admin": "Администратор",
   "Delete user": "Удалить пользователя",
-  "Are you sure you want to delete user": "Вы уверены что хотите удалить пользователя",
+  "Are you sure you want to delete user": "Вы уверены, что хотите удалить пользователя",
 
   "Upload avatar image": "Загрузите изображение аватара",
   "png, jpg or gif no more than 0.5MB": "png, jpg or gif не больше 0.5МБ",
@@ -60,7 +60,7 @@
   "Project": "Проект",
   "Create project": "Создать проект",
   "Delete project": "Удалить проект",
-  "Are you sure you want to delete project": "Вы уверены что хотите удалить проект",
+  "Are you sure you want to delete project": "Вы уверены, что хотите удалить проект",
 
   "Template": "Шаблон",
   "Description": "Описание",
@@ -68,8 +68,19 @@
   "CV": "Резюме",
   "Delete CV": "Удалить резюме",
 
+  "Create position": "Создать должность",
+  "Update position": "Обновить должность",
+  "Delete position": "Удалить должность",
+  "Are you sure you want to delete position": "Вы уверены, что хотите удалить должность",
+
+  "Create skill": "Создать навык",
+  "Update skill": "Обновить навык",
+  "Delete skill": "Удалить навык",
+  "Are you sure you want to delete skill": "Вы уверены, что хотите удалить навык",
+
   "Native Name": "Родное имя",
   "Create language": "Создать язык",
   "Update language": "Обновить язык",
-  "Delete language": "Удалить язык"
+  "Delete language": "Удалить язык",
+  "Are you sure you want to delete language": "Вы уверены, что хотите удалить язык"
 }

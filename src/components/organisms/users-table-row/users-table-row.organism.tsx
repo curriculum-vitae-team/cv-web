@@ -2,12 +2,12 @@ import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { TableRow, TableCell, Avatar, MenuItem, Typography } from '@mui/material'
-import { IUser } from '@interfaces/user.interface'
 import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { useConfirmDialog } from '@dialogs/confirm'
-import { useUser } from '@hooks/use-user.hook'
-import { useUserDelete } from '@hooks/use-users.hook'
+import { IUser } from 'interfaces/user.interface'
+import { useUser } from 'hooks/use-user.hook'
+import { useUserDelete } from 'hooks/use-users.hook'
 
 const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
   const navigate = useNavigate()

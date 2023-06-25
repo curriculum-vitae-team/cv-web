@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { useLazyQuery } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 import { Typography, Button, TextField } from '@mui/material'
-import { LoginResult } from '@graphql/auth/auth.types'
-import { LOGIN } from '@graphql/auth'
-import { authService } from '@graphql/auth/auth.service'
+import { LoginResult } from 'graphql/auth/auth.types'
+import { LOGIN } from 'graphql/auth'
+import { authService } from 'graphql/auth/auth.service'
 import { PasswordInput } from '@molecules/password-input'
+import { requiredValidation } from 'helpers/validation.helper'
 import { LoginFormValues } from './login.types'
 import * as Styled from './login.styles'
-import { requiredValidation } from '../../../helpers/validation.helper'
 
 const Login = () => {
   const {

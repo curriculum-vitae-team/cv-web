@@ -1,22 +1,19 @@
-import i18n from 'i18next'
+import i18n, { use } from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import en from 'public/translations/en.json'
-import ru from 'public/translations/ru.json'
+import HttpApi from 'i18next-http-backend'
+import { languageService } from 'graphql/languages/languages.service'
 
-const resources = {
-  en: {
-    translation: en
-  },
-  ru: {
-    translation: ru
-  }
-}
-
-i18n.use(initReactI18next).init({
-  resources,
-  fallbackLng: 'en',
+use(initReactI18next).init({
+  lng: languageService.getLanguage() || 'en',
   interpolation: {
     escapeValue: false
+  }
+})
+
+use(HttpApi).init({
+  supportedLngs: ['en', 'ru'],
+  backend: {
+    loadPath: '/translations/{{lng}}.json'
   }
 })
 

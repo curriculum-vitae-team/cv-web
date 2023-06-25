@@ -1,7 +1,7 @@
 import { Dialog } from '@mui/material'
 import { Close } from '@mui/icons-material'
 import { useReactiveVar } from '@apollo/client'
-import { dialogsService } from '@graphql/dialogs/dialogs.service'
+import { dialogsService } from 'graphql/dialogs/dialogs.service'
 import * as Styled from './dialogs.styles'
 
 export const Dialogs = () => {
