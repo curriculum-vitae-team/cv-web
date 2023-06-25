@@ -1,38 +1,53 @@
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
-import { DialogProps } from '@graphql/dialogs/dialogs.types'
-import { useLanguageCreate } from '@hooks/use-languages.hook'
+import { useLanguageCreate, useLanguageUpdate } from '@hooks/use-languages.hook'
 import { createDialogHook } from '../../../helpers/create-dialog-hook.helper'
-import { CreateLanguageFormValues } from './create-language.types'
-import * as Styled from './create-language.styles'
+import { LanguageFormValues, LanguageProps } from './language.types'
+import * as Styled from './language.styles'
 
-const CreateLanguage = ({ closeDialog }: DialogProps) => {
+const defaultValues = {
+  name: '',
+  native_name: '',
+  iso2: ''
+}
+
+const Language = ({ item, closeDialog }: LanguageProps) => {
   const {
     formState: { errors, isDirty },
     register,
     handleSubmit
-  } = useForm<CreateLanguageFormValues>({
-    defaultValues: {
-      name: '',
-      native_name: '',
-      iso2: ''
-    }
+  } = useForm<LanguageFormValues>({
+    defaultValues: item || defaultValues
   })
   const { t } = useTranslation()
   const [createLanguage, loading] = useLanguageCreate()
+  const [updateLanguage, updating] = useLanguageUpdate()
 
-  const onSubmit = (values: CreateLanguageFormValues) => {
+  const onSubmit = (values: LanguageFormValues) => {
+    if (item) {
+      updateLanguage({
+        variables: {
+          id: item.id,
+          language: {
+            iso2: values.iso2,
+            name: values.name,
+            native_name: values.native_name
+          }
+        }
+      }).then(closeDialog)
+      return
+    }
     createLanguage({
       variables: {
         language: values
       }
-    }).then(() => closeDialog())
+    }).then(closeDialog)
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <DialogTitle>{t('Create Language')}</DialogTitle>
+      <DialogTitle>{item ? t('Update language') : t('Create language')}</DialogTitle>
       <Styled.Column>
         <TextField
           {...register('name', { required: true })}
@@ -55,15 +70,20 @@ const CreateLanguage = ({ closeDialog }: DialogProps) => {
         <Button variant="outlined" color="secondary" onClick={closeDialog}>
           {t('Cancel')}
         </Button>
-        <Button variant="contained" color="primary" type="submit" disabled={loading || !isDirty}>
-          {t('Create')}
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          disabled={loading || updating || !isDirty}
+        >
+          {item ? t('Update') : t('Create')}
         </Button>
       </DialogActions>
     </form>
   )
 }
 
-export const useCreateLanguageDialog = createDialogHook<DialogProps>(
-  (props) => () => <CreateLanguage {...props} />,
+export const useLanguageDialog = createDialogHook<LanguageProps>(
+  (props) => () => <Language {...props} />,
   { maxWidth: 'sm', fullWidth: true }
 )

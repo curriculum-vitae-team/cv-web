@@ -1,6 +1,10 @@
 import { MutationFunction, useMutation, useQuery } from '@apollo/client'
-import { CREATE_LANGUAGE, DELETE_LANGUAGE, LANGUAGES } from '@graphql/languages'
-import { CreateLanguageResult, LanguagesResult } from '@graphql/languages/languages.types'
+import { CREATE_LANGUAGE, DELETE_LANGUAGE, LANGUAGES, UPDATE_LANGUAGE } from '@graphql/languages'
+import {
+  CreateLanguageResult,
+  LanguagesResult,
+  UpdateLanguageResult
+} from '@graphql/languages/languages.types'
 import { ILanguage } from '@interfaces/language.interface'
 
 export const useLanguages = (): [ILanguage[], boolean] => {
@@ -13,6 +17,13 @@ export const useLanguageCreate = (): [MutationFunction<CreateLanguageResult>, bo
     refetchQueries: [LANGUAGES]
   })
   return [createLanguage, loading]
+}
+
+export const useLanguageUpdate = (): [MutationFunction<UpdateLanguageResult>, boolean] => {
+  const [updateLanguage, { loading }] = useMutation<UpdateLanguageResult>(UPDATE_LANGUAGE, {
+    refetchQueries: [LANGUAGES]
+  })
+  return [updateLanguage, loading]
 }
 
 export const useLanguageDelete = (item: ILanguage) => {
