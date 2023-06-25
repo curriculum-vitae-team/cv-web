@@ -68,8 +68,19 @@
   "CV": "CV",
   "Delete CV": "Delete CV",
 
+  "Create position": "Create position",
+  "Update position": "Update position",
+  "Delete position": "Delete position",
+  "Are you sure you want to delete position": "Are you sure you want to delete position",
+
+  "Create skill": "Create skill",
+  "Update skill": "Update skill",
+  "Delete skill": "Delete skill",
+  "Are you sure you want to delete skill": "Are you sure you want to delete skill",
+
   "Native Name": "Native Name",
   "Create language": "Create language",
   "Update language": "Update language",
-  "Delete language": "Delete language"
+  "Delete language": "Delete language",
+  "Are you sure you want to delete language": "Are you sure you want to delete language"
 }

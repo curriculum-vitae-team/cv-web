@@ -24,7 +24,7 @@ export const SkillsTableRow = ({ item }: TableRowProps<ISkill>) => {
       dialogTitle: 'Delete Skill',
       dialogContent: (
         <Typography>
-          Are you sure you want to delete skill <b>{item.name}</b>?
+          {t('Are you sure you want to delete skill')} <b>{item.name}</b>?
         </Typography>
       ),
       confirmCallback: () => deleteSkill()

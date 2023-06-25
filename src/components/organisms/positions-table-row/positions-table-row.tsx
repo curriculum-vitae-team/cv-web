@@ -24,7 +24,7 @@ export const PositionsTableRow = ({ item }: TableRowProps<IPosition>) => {
       dialogTitle: 'Delete position',
       dialogContent: (
         <Typography>
-          Are you sure you want to delete position <b>{item.name}</b>?
+          {t('Are you sure you want to delete position')} <b>{item.name}</b>?
         </Typography>
       ),
       confirmCallback: () => deletePosition()

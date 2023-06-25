@@ -24,7 +24,7 @@ export const LanguagesTableRow = ({ item }: TableRowProps<ILanguage>) => {
       dialogTitle: 'Delete Language',
       dialogContent: (
         <Typography>
-          Are you sure you want to delete language <b>{item.name}</b>?
+          {t('Are you sure you want to delete language')} <b>{item.name}</b>?
         </Typography>
       ),
       confirmCallback: () => deleteLanguage()
