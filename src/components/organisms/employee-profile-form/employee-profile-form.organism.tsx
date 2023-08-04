@@ -1,18 +1,16 @@
 import { useForm, FormProvider } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useMutation } from '@apollo/client'
 import { Button, TextField } from '@mui/material'
 import { DepartmentSelect } from '@molecules/department-select'
 import { PositionSelect } from '@molecules/position-select'
-import { UPDATE_USER } from 'graphql/users'
-import { UpdateUserInput, UpdateUserResult } from 'graphql/users/users.types'
+import { useUserUpdate } from 'hooks/use-users.hook'
 import { IUser } from 'interfaces/user.interface'
 import { useUser } from 'hooks/use-user.hook'
 import { EmployeeProfileFormProps, EmployeeProfileFormValues } from './employee-profile-form.types'
 import * as Styled from './employee-profile-form.styles'
 
 export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
-  const [updateUser, { loading }] = useMutation<UpdateUserResult, UpdateUserInput>(UPDATE_USER)
+  const [updateUser, loading] = useUserUpdate()
   const { user$, isAdmin } = useUser()
   const { t } = useTranslation()
 
@@ -38,7 +36,8 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
             last_name: values.last_name
           },
           departmentId: values.department,
-          positionId: values.position
+          positionId: values.position,
+          role: user.role
         }
       }
     }).then(({ data }) => data && reset(setDefaultValues(data.updateUser)))
