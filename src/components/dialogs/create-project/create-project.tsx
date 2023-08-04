@@ -47,6 +47,7 @@ const CreateProject = ({ closeDialog }: DialogProps) => {
         <Styled.Column>
           <TextField
             {...register('name', { validate: requiredValidation })}
+            autoFocus
             label={t('Name')}
             error={!!errors.name}
             helperText={errors.name?.message}
