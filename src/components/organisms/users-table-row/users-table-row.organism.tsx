@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { TableRow, TableCell, Avatar, MenuItem, Typography } from '@mui/material'
 import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
+import { useUserDialog } from '@dialogs/user'
 import { useConfirmDialog } from '@dialogs/confirm'
 import { IUser } from 'interfaces/user.interface'
 import { useUser } from 'hooks/use-user.hook'
@@ -11,13 +12,19 @@ import { useUserDelete } from 'hooks/use-users.hook'
 
 const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
   const navigate = useNavigate()
-  const { isAdmin } = useUser()
+  const { isAdmin, user$ } = useUser()
+  const isSelf = item.id === user$?.id
   const { t } = useTranslation()
+  const [openUserDialog] = useUserDialog()
   const [deleteUser] = useUserDelete(item)
   const [openConfirmDialog] = useConfirmDialog()
 
   const handleProfile = () => {
     navigate(`/employees/${item.id}/profile`)
+  }
+
+  const handleUpdate = () => {
+    openUserDialog({ item })
   }
 
   const handleDelete = () => {
@@ -45,6 +52,9 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
       <TableCell>
         <ActionsMenu>
           <MenuItem onClick={handleProfile}>{t('Profile')}</MenuItem>
+          <MenuItem disabled={!isAdmin && !isSelf} onClick={handleUpdate}>
+            {t('Update user')}
+          </MenuItem>
           <MenuItem disabled={!isAdmin} onClick={handleDelete}>
             {t('Delete user')}
           </MenuItem>

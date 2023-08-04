@@ -19,8 +19,10 @@ export type UpdateUserInput = {
       first_name: string
       last_name: string
     }
+    cvsIds?: string[]
     departmentId: string
     positionId: string
+    role?: string
   }
 }
 
