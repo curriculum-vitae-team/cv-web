@@ -30,7 +30,7 @@ const User = ({ item, closeDialog }: UserProps) => {
       ? {
           auth: {
             email: item.email,
-            password: ''
+            password: '**********'
           },
           profile: {
             first_name: item.profile.first_name,
