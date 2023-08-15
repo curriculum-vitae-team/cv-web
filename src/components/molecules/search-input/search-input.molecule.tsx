@@ -17,6 +17,7 @@ const SearchInput = (props: TextFieldProps) => {
       placeholder={t('Search') || 'Search'}
       InputProps={{ startAdornment: <Search color="action" /> }}
       inputProps={{ sx: { padding: '6.7px 14px', minWidth: 250 } }}
+      autoFocus
       {...props}
       value={search}
       onChange={handleSearch}

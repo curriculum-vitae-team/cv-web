@@ -46,7 +46,7 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
   return (
     <FormProvider {...methods}>
       <Styled.Form onSubmit={handleSubmit(onSubmit)}>
-        <TextField {...register('first_name')} label={t('First Name')} />
+        <TextField {...register('first_name')} autoFocus label={t('First Name')} />
         <TextField {...register('last_name')} label={t('Last Name')} />
         <DepartmentSelect name="department" />
         <PositionSelect name="position" />
