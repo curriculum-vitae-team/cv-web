@@ -18,8 +18,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "typeRoots": ["./src/@types", "./node_modules/@types"],
-    "baseUrl": "./src",
+    "typeRoots": ["src/@types", "node_modules/@types"],
+    "baseUrl": "src",
     "paths": {
       "@atoms/*": ["components/atoms/*"],
       "@molecules/*": ["components/molecules/*"],
