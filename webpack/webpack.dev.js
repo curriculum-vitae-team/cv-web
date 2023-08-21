@@ -1,4 +1,3 @@
-const { join } = require('path')
 const { merge } = require('webpack-merge')
 const config = require('./webpack.config')
 
@@ -10,7 +9,6 @@ module.exports = merge(config, {
   },
   devServer: {
     port: process.env.PORT,
-    static: join(__dirname, 'public'),
     hot: true,
     open: true,
     liveReload: true,
