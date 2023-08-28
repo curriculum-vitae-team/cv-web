@@ -1,25 +1,37 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { parseISO } from 'date-fns'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
-import { DialogProps } from 'graphql/dialogs/dialogs.types'
 import { DatePicker } from '@molecules/date-picker'
-import { useProjectCreate } from 'hooks/use-projects.hook'
+import { useProjectCreate, useProjectUpdate } from 'hooks/use-projects.hook'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { requiredValidation, teamSizeValidation } from 'helpers/validation.helper'
-import * as Styled from './create-project.styles'
-import { CreateProjectFormValues } from './create-project.types'
+import * as Styled from './project.styles'
+import { ProjectFormValues, ProjectDialogProps } from './project.types'
 
-const CreateProject = ({ closeDialog }: DialogProps) => {
-  const methods = useForm<CreateProjectFormValues>({
-    defaultValues: {
-      name: '',
-      internal_name: '',
-      description: '',
-      domain: '',
-      start_date: null,
-      end_date: null,
-      team_size: 1
-    }
+const defaultValues = {
+  name: '',
+  internal_name: '',
+  description: '',
+  domain: '',
+  start_date: null,
+  end_date: null,
+  team_size: 1
+}
+
+const Project = ({ item, closeDialog }: ProjectDialogProps) => {
+  const methods = useForm<ProjectFormValues>({
+    defaultValues: item
+      ? {
+          name: item.name,
+          internal_name: item.internal_name,
+          description: item.description,
+          domain: item.domain,
+          start_date: parseISO(item.start_date),
+          end_date: parseISO(item.end_date),
+          team_size: item.team_size
+        }
+      : defaultValues
   })
   const {
     formState: { errors, isDirty },
@@ -28,8 +40,21 @@ const CreateProject = ({ closeDialog }: DialogProps) => {
   } = methods
   const { t } = useTranslation()
   const [createProject, loading] = useProjectCreate()
+  const [updateProject, updating] = useProjectUpdate()
 
-  const onSubmit = (values: CreateProjectFormValues) => {
+  const onSubmit = (values: ProjectFormValues) => {
+    if (item) {
+      updateProject({
+        variables: {
+          id: item.id,
+          project: {
+            ...values,
+            skillsIds: []
+          }
+        }
+      }).then(closeDialog)
+      return
+    }
     createProject({
       variables: {
         project: {
@@ -37,7 +62,7 @@ const CreateProject = ({ closeDialog }: DialogProps) => {
           skillsIds: []
         }
       }
-    }).then(() => closeDialog())
+    }).then(closeDialog)
   }
 
   return (
@@ -53,7 +78,10 @@ const CreateProject = ({ closeDialog }: DialogProps) => {
             helperText={errors.name?.message}
           />
           <TextField {...register('internal_name')} label={t('Internal Name')} />
-          <TextField {...register('domain')} label={t('Domain')} />
+          <TextField
+            {...register('domain', { validate: requiredValidation })}
+            label={t('Domain')}
+          />
           <TextField
             {...register('team_size', { validate: teamSizeValidation })}
             label={t('Team Size')}
@@ -63,11 +91,11 @@ const CreateProject = ({ closeDialog }: DialogProps) => {
           />
           <DatePicker
             name="start_date"
+            rules={{ required: true }}
             label={t('Start Date')}
             error={!!errors.start_date}
             helperText={errors.start_date?.message}
           />
-
           <DatePicker
             name="end_date"
             label={t('End Date')}
@@ -75,7 +103,7 @@ const CreateProject = ({ closeDialog }: DialogProps) => {
             helperText={errors.end_date?.message}
           />
           <TextField
-            {...register('description')}
+            {...register('description', { validate: requiredValidation })}
             label={t('Description')}
             multiline
             rows={3}
@@ -86,8 +114,13 @@ const CreateProject = ({ closeDialog }: DialogProps) => {
           <Button variant="outlined" color="secondary" onClick={closeDialog}>
             {t('Cancel')}
           </Button>
-          <Button variant="contained" color="primary" type="submit" disabled={loading || !isDirty}>
-            {t('Create')}
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            disabled={loading || updating || !isDirty}
+          >
+            {item ? t('Update') : t('Create')}
           </Button>
         </DialogActions>
       </form>
@@ -95,7 +128,7 @@ const CreateProject = ({ closeDialog }: DialogProps) => {
   )
 }
 
-export const useCreateProjectDialog = createDialogHook<DialogProps>(
-  (props) => () => <CreateProject {...props} />,
+export const useProjectDialog = createDialogHook<ProjectDialogProps>(
+  (props) => () => <Project {...props} />,
   { maxWidth: 'md', fullWidth: true }
 )

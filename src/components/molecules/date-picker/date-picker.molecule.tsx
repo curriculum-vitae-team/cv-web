@@ -3,10 +3,11 @@ import { Controller } from 'react-hook-form'
 import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers'
 import { DatePickerProps } from './date-picker.types'
 
-const DatePicker = ({ name, label, error, helperText, ...props }: DatePickerProps) => {
+const DatePicker = ({ name, rules, label, error, helperText, ...props }: DatePickerProps) => {
   return (
     <Controller
       name={name}
+      rules={rules}
       render={({ field }) => (
         <MuiDatePicker
           {...props}

@@ -3,13 +3,21 @@ import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
 import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { useConfirmDialog } from '@dialogs/confirm'
+import { useProjectDialog } from '@dialogs/project'
 import { IProject } from 'interfaces/project.interface'
 import { useProjectDelete } from 'hooks/use-projects.hook'
+import { useUser } from 'hooks/use-user.hook'
 
 export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
   const { t } = useTranslation()
+  const { isAdmin } = useUser()
+  const [openProjectDialog] = useProjectDialog()
   const [deleteProject] = useProjectDelete(item)
   const [openConfirmDialog] = useConfirmDialog()
+
+  const handleUpdate = () => {
+    openProjectDialog({ item })
+  }
 
   const handleDelete = () => {
     openConfirmDialog({
@@ -34,7 +42,12 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
       <TableCell>
         <ActionsMenu>
           <MenuItem disabled>{t('Project')}</MenuItem>
-          <MenuItem onClick={handleDelete}>{t('Delete project')}</MenuItem>
+          <MenuItem disabled={!isAdmin} onClick={handleUpdate}>
+            {t('Update project')}
+          </MenuItem>
+          <MenuItem disabled={!isAdmin} onClick={handleDelete}>
+            {t('Delete project')}
+          </MenuItem>
         </ActionsMenu>
       </TableCell>
     </TableRow>

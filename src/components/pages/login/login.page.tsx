@@ -46,6 +46,7 @@ const Login = () => {
       <TextField
         {...register('email', { validate: requiredValidation })}
         label={t('Email')}
+        autoFocus
         error={!!errors.email}
         helperText={t(errors.email?.message || '')}
       />

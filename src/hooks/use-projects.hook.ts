@@ -1,6 +1,6 @@
 import { MutationFunction, useMutation } from '@apollo/client'
-import { CREATE_PROJECT, DELETE_PROJECT, PROJECTS } from 'graphql/projects'
-import { CreateProjectResult } from 'graphql/projects/projects.types'
+import { CREATE_PROJECT, DELETE_PROJECT, PROJECTS, UPDATE_PROJECT } from 'graphql/projects'
+import { CreateProjectResult, UpdateProjectResult } from 'graphql/projects/projects.types'
 import { IProject } from 'interfaces/project.interface'
 
 export const useProjectCreate = (): [MutationFunction<CreateProjectResult>, boolean] => {
@@ -8,6 +8,11 @@ export const useProjectCreate = (): [MutationFunction<CreateProjectResult>, bool
     refetchQueries: [PROJECTS]
   })
   return [createProject, loading]
+}
+
+export const useProjectUpdate = (): [MutationFunction<UpdateProjectResult>, boolean] => {
+  const [updateProject, { loading }] = useMutation<UpdateProjectResult>(UPDATE_PROJECT)
+  return [updateProject, loading]
 }
 
 export const useProjectDelete = (item: IProject): [MutationFunction, boolean] => {
