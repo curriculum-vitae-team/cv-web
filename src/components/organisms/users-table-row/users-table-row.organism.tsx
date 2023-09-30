@@ -10,6 +10,8 @@ import { IUser } from 'interfaces/user.interface'
 import { useUser } from 'hooks/use-user.hook'
 import { useUserDelete } from 'hooks/use-users.hook'
 
+import * as Styled from './users-table-row.styles'
+
 const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
   const navigate = useNavigate()
   const { isAdmin, user$ } = useUser()
@@ -45,9 +47,9 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
         <Avatar src={item.profile.avatar}>{item.profile.full_name?.[0] || item.email[0]}</Avatar>
       </TableCell>
       <TableCell>{item.profile.first_name}</TableCell>
-      <TableCell>{item.profile.last_name}</TableCell>
-      <TableCell>{item.email}</TableCell>
-      <TableCell>{item.department_name}</TableCell>
+      <Styled.LastName>{item.profile.last_name}</Styled.LastName>
+      <Styled.Email>{item.email}</Styled.Email>
+      <Styled.Department>{item.department_name}</Styled.Department>
       <TableCell>{item.position_name}</TableCell>
       <TableCell>
         <ActionsMenu>
