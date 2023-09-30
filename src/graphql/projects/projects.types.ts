@@ -7,3 +7,7 @@ export type ProjectsResult = {
 export type CreateProjectResult = {
   project: IProject
 }
+
+export type UpdateProjectResult = {
+  updateProject: IProject
+}

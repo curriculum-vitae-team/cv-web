@@ -38,7 +38,7 @@ export const theme = createTheme({
         '#root': {
           height: '100%',
           width: '100%',
-          paddingTop: 128
+          paddingTop: 104
         },
         form: {
           '& > .MuiTextField-root': {
@@ -80,6 +80,18 @@ export const theme = createTheme({
         }
       }
     },
+    MuiFab: {
+      styleOverrides: {
+        root: {
+          background: 'none',
+          border: '1px solid #c63031',
+          color: '#c63031',
+          '&:hover': {
+            background: 'none'
+          }
+        }
+      }
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
@@ -107,7 +119,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           '& .MuiTableRow-root': {
-            top: 64 * 3
+            top: 104 + 64
           },
           '& .MuiTableCell-root:last-child': {
             width: 20

@@ -20,18 +20,15 @@ module.exports = {
       emitError: true,
       emitWarning: true,
       failOnError: true,
-      extensions: ['.ts', '.tsx', '.js']
+      extensions: ['.ts', '.tsx']
     })
   ],
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)$/,
         loader: 'esbuild-loader',
-        include: [resolve(__dirname, 'src')],
-        exclude: /node_modules/,
         options: {
-          loader: 'tsx',
           target: 'es2015'
         }
       },

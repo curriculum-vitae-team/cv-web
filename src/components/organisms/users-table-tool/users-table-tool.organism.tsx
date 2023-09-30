@@ -1,8 +1,8 @@
-import { Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { SearchInput } from '@molecules/search-input'
 import { useUserDialog } from '@dialogs/user'
 import { useUser } from 'hooks/use-user.hook'
+import { AddButton } from '@atoms/add-button'
 
 export const UsersTableTool = () => {
   const { isAdmin } = useUser()
@@ -16,11 +16,7 @@ export const UsersTableTool = () => {
   return (
     <>
       <SearchInput />
-      {isAdmin && (
-        <Button variant="outlined" onClick={handleClick}>
-          {t('Create user')}
-        </Button>
-      )}
+      {isAdmin && <AddButton onClick={handleClick}>{t('Create user')}</AddButton>}
     </>
   )
 }

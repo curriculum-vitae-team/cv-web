@@ -2,7 +2,7 @@ const { resolve } = require('path')
 const { merge } = require('webpack-merge')
 const CopyPlugin = require('copy-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
-const { ESBuildMinifyPlugin } = require('esbuild-loader')
+const { EsbuildPlugin } = require('esbuild-loader')
 const config = require('./webpack.config')
 
 module.exports = merge(config, {
@@ -19,7 +19,7 @@ module.exports = merge(config, {
   optimization: {
     minimize: true,
     minimizer: [
-      new ESBuildMinifyPlugin({
+      new EsbuildPlugin({
         target: 'es2015'
       })
     ]
@@ -28,7 +28,7 @@ module.exports = merge(config, {
     filename: '[name].[contenthash:8].js',
     chunkFilename: '[name].[contenthash:8].js',
     assetModuleFilename: 'assets/[hash][ext]',
-    path: resolve(__dirname, './build'),
+    path: resolve(__dirname, '../build'),
     publicPath: '/',
     clean: true
   }

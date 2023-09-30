@@ -20,20 +20,23 @@ const Table = <T extends Item>({
 }: TableProps<T>) => {
   const [search, setSearch] = useState('')
   const _search = useDeferredValue(search)
-  const tableSearch = useMemo(() => {
-    return { search, setSearch }
-  }, [search])
-  const filteredItems = useMemo(() => {
-    return items.filter(searchItems(searchBy, _search))
-  }, [items, _search])
-
   const [sortBy, setSortBy] = useState(defaultSortBy)
   const _sortBy = useDeferredValue(sortBy)
   const [order, setOrder] = useState(SortOrder.Asc)
   const _order = useDeferredValue(order)
+
+  const tableSearch = useMemo(() => {
+    return { search, setSearch }
+  }, [search])
+
   const tableSort = useMemo(() => {
     return { sortBy, order, setSortBy, setOrder }
   }, [sortBy, order])
+
+  const filteredItems = useMemo(() => {
+    return items.filter(searchItems(searchBy, _search))
+  }, [items, _search])
+
   const sortedItems = useMemo(() => {
     return filteredItems.sort(sortItems<T>(_sortBy, _order))
   }, [filteredItems, _sortBy, _order])

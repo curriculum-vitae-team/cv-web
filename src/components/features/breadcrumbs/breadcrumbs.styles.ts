@@ -3,7 +3,7 @@ import { styled, Breadcrumbs as MuiBreadcrumbs } from '@mui/material'
 export const Breadcrumbs = styled(MuiBreadcrumbs)(({ theme }) => ({
   position: 'fixed',
   top: 64,
-  height: 64,
+  height: 44,
   zIndex: 3,
   padding: '20px 0 0 20px',
   backgroundColor: '#f5f5f7',
