@@ -1,6 +1,6 @@
 import { useForm, FormProvider } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Button, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 import { DepartmentSelect } from '@molecules/department-select'
 import { PositionSelect } from '@molecules/position-select'
 import { useUserUpdate } from 'hooks/use-users.hook'
@@ -51,14 +51,13 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
         <DepartmentSelect name="department" />
         <PositionSelect name="position" />
         {(isAdmin || user$?.id === user.id) && (
-          <Button
+          <Styled.SubmitButton
             type="submit"
             variant="contained"
             disabled={!formState.isDirty || loading}
-            sx={{ gridColumn: 2 }}
           >
             {t('Update')}
-          </Button>
+          </Styled.SubmitButton>
         )}
       </Styled.Form>
     </FormProvider>
