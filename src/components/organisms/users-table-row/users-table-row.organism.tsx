@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { TableRow, TableCell, Avatar, MenuItem, Typography } from '@mui/material'
+import { TableCell, Avatar, MenuItem, Typography } from '@mui/material'
 import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { useUserDialog } from '@dialogs/user'
@@ -42,14 +42,14 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
   }
 
   return (
-    <TableRow>
+    <Styled.Row>
       <TableCell>
         <Avatar src={item.profile.avatar}>{item.profile.full_name?.[0] || item.email[0]}</Avatar>
       </TableCell>
       <TableCell>{item.profile.first_name}</TableCell>
-      <Styled.LastName>{item.profile.last_name}</Styled.LastName>
-      <Styled.Email>{item.email}</Styled.Email>
-      <Styled.Department>{item.department_name}</Styled.Department>
+      <TableCell>{item.profile.last_name}</TableCell>
+      <TableCell>{item.email}</TableCell>
+      <TableCell>{item.department_name}</TableCell>
       <TableCell>{item.position_name}</TableCell>
       <TableCell>
         <ActionsMenu>
@@ -62,7 +62,7 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
           </MenuItem>
         </ActionsMenu>
       </TableCell>
-    </TableRow>
+    </Styled.Row>
   )
 }
 

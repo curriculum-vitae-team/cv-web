@@ -10,10 +10,13 @@ export const Tabs = styled(MuiTabs)({
   top: 128
 })
 
-export const Details = styled('div')({
+export const Details = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   margin: '0 auto',
   width: 720,
-  padding: '60px 0'
-})
+  padding: '60px 0',
+  [theme.breakpoints.down('md')]: {
+    width: '100%'
+  }
+}))

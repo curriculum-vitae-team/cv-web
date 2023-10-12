@@ -2,9 +2,10 @@ import { memo, MouseEvent, useCallback, useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useReactiveVar } from '@apollo/client'
-import { Avatar, Divider, ListItemIcon, Menu, MenuItem, Typography } from '@mui/material'
+import { Avatar, Divider, ListItemIcon, Menu, MenuItem } from '@mui/material'
 import { AccountCircle, Settings, Logout } from '@mui/icons-material'
 import { authService } from 'graphql/auth/auth.service'
+import * as Styled from './user-menu.styles'
 
 const UserMenu = () => {
   const location = useLocation()
@@ -31,9 +32,7 @@ const UserMenu = () => {
 
   return (
     <>
-      <Typography color="white" sx={{ mr: 2 }}>
-        {user?.profile.full_name || user?.email}
-      </Typography>
+      <Styled.Name color="white">{user?.profile.full_name || user?.email}</Styled.Name>
       <Avatar
         src={user?.profile.avatar}
         sx={{ backgroundColor: '#c63031', cursor: 'pointer' }}

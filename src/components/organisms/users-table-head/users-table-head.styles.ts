@@ -1,18 +1,19 @@
-import { TableCell, styled } from '@mui/material'
+import { TableRow, styled } from '@mui/material'
 
-export const LastName = styled(TableCell)(({ theme }) => ({
-  [theme.breakpoints.down('md')]: {
-    display: 'none'
-  }
-}))
-
-export const Email = styled(TableCell)(({ theme }) => ({
+export const Row = styled(TableRow)(({ theme }) => ({
   [theme.breakpoints.down('lg')]: {
-    display: 'none'
-  }
-}))
-export const Department = styled(TableCell)(({ theme }) => ({
+    '& > .MuiTableCell-root:nth-child(4)': {
+      display: 'none'
+    }
+  },
+  [theme.breakpoints.down('md')]: {
+    '& > .MuiTableCell-root:nth-child(3)': {
+      display: 'none'
+    }
+  },
   [theme.breakpoints.down('sm')]: {
-    display: 'none'
+    '& > .MuiTableCell-root:nth-child(6)': {
+      display: 'none'
+    }
   }
 }))

@@ -1,11 +1,14 @@
 import { styled, Avatar as MuiAvatar } from '@mui/material'
 
-export const AvatarUpload = styled('div')({
+export const AvatarUpload = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   marginBottom: 32,
-  position: 'relative'
-})
+  [theme.breakpoints.down('sm')]: {
+    flexDirection: 'column',
+    rowGap: 16
+  }
+}))
 
 export const Avatar = styled(MuiAvatar)({
   width: 120,

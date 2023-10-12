@@ -1,1 +1,1 @@
-export { LastName, Email, Department } from '../users-table-head/users-table-head.styles'
+export { Row } from '../users-table-head/users-table-head.styles'
