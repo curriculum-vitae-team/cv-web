@@ -18,8 +18,7 @@ const meta: Meta<typeof PasswordInput> = {
       description: 'If `true`, the component is displayed in disabled state.'
     },
     focused: {
-      control: { type: 'boolean' },
-      description: 'If `true`, the component is displayed in focused state.'
+      table: { disable: true }
     },
     error: {
       control: { type: 'boolean' }

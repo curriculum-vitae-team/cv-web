@@ -31,8 +31,7 @@ const meta: Meta<typeof SearchInput> = {
       description: 'If `true`, the component is displayed in disabled state.'
     },
     focused: {
-      control: { type: 'boolean' },
-      description: 'If `true`, the component is displayed in focused state.'
+      table: { disable: true }
     },
     hiddenLabel: {
       table: { disable: true }
@@ -41,6 +40,9 @@ const meta: Meta<typeof SearchInput> = {
       table: { disable: true }
     },
     ref: {
+      table: { disable: true }
+    },
+    component: {
       table: { disable: true }
     }
   }
