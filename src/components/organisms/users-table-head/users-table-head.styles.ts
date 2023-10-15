@@ -2,17 +2,17 @@ import { TableRow, styled } from '@mui/material'
 
 export const Row = styled(TableRow)(({ theme }) => ({
   [theme.breakpoints.down('lg')]: {
-    '& > .MuiTableCell-root:nth-child(4)': {
+    '& > .MuiTableCell-root:nth-of-type(4)': {
       display: 'none'
     }
   },
   [theme.breakpoints.down('md')]: {
-    '& > .MuiTableCell-root:nth-child(3)': {
+    '& > .MuiTableCell-root:nth-of-type(3)': {
       display: 'none'
     }
   },
   [theme.breakpoints.down('sm')]: {
-    '& > .MuiTableCell-root:nth-child(6)': {
+    '& > .MuiTableCell-root:nth-of-type(6)': {
       display: 'none'
     }
   }
