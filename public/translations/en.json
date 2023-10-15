@@ -39,6 +39,7 @@
   "Department": "Department",
   "Position": "Position",
   "Create user": "Create user",
+  "Update user": "Update user",
   "Role": "Role",
   "Admin": "Admin",
   "Delete user": "Delete user",
@@ -59,6 +60,7 @@
   "Till now": "Till now",
   "Project": "Project",
   "Create project": "Create project",
+  "Update project": "Update project",
   "Delete project": "Delete project",
   "Are you sure you want to delete project": "Are you sure you want to delete project",
 
