@@ -86,6 +86,7 @@ export const theme = createTheme({
           background: 'none',
           border: '1px solid #c63031',
           color: '#c63031',
+          boxShadow: 'none',
           '&:hover': {
             background: 'none'
           }
