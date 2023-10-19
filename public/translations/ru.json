@@ -39,6 +39,7 @@
   "Department": "Отдел",
   "Position": "Должность",
   "Create user": "Создать пользователя",
+  "Update user": "Обновить пользователя",
   "Role": "Права доступа",
   "Admin": "Администратор",
   "Delete user": "Удалить пользователя",
@@ -59,6 +60,7 @@
   "Till now": "По настоящее время",
   "Project": "Проект",
   "Create project": "Создать проект",
+  "Update project": "Обновить проект",
   "Delete project": "Удалить проект",
   "Are you sure you want to delete project": "Вы уверены, что хотите удалить проект",
 

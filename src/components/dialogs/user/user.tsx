@@ -7,40 +7,30 @@ import { RoleSelect } from '@molecules/role-select'
 import { useUserCreate, useUserUpdate } from 'hooks/use-users.hook'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { passwordValidation, requiredValidation } from 'helpers/validation.helper'
+import { IUser } from 'interfaces/user.interface'
+import { UserRole } from 'constants/user-role.constants'
 import { UserFormValues, UserProps } from './user.types'
 import * as Styled from './user.styles'
 
-const defaultValues = {
-  auth: {
-    email: '',
-    password: ''
-  },
-  profile: {
-    first_name: '',
-    last_name: ''
-  },
-  departmentId: '',
-  positionId: '',
-  role: 'employee'
+const defaultValues = (item?: IUser): UserFormValues => {
+  return {
+    auth: {
+      email: item?.email || '',
+      password: item ? '**********' : ''
+    },
+    profile: {
+      first_name: item?.profile.first_name || '',
+      last_name: item?.profile.last_name || ''
+    },
+    departmentId: item?.department?.id || '',
+    positionId: item?.position?.id || '',
+    role: item?.role || UserRole.Employee
+  }
 }
 
-const User = ({ item, closeDialog }: UserProps) => {
+const User = ({ title = 'Create user', saveText = 'Create', item, closeDialog }: UserProps) => {
   const methods = useForm<UserFormValues>({
-    defaultValues: item
-      ? {
-          auth: {
-            email: item.email,
-            password: '**********'
-          },
-          profile: {
-            first_name: item.profile.first_name,
-            last_name: item.profile.last_name
-          },
-          departmentId: item.department?.id || '',
-          positionId: item.position?.id || '',
-          role: item.role
-        }
-      : defaultValues
+    defaultValues: defaultValues(item)
   })
   const {
     formState: { errors, isDirty },
@@ -81,7 +71,7 @@ const User = ({ item, closeDialog }: UserProps) => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <DialogTitle>{item ? t('Update user') : t('Create user')}</DialogTitle>
+        <DialogTitle>{t(title)}</DialogTitle>
         <Styled.Column>
           <TextField
             {...register('auth.email', { validate: requiredValidation })}
@@ -114,7 +104,7 @@ const User = ({ item, closeDialog }: UserProps) => {
             type="submit"
             disabled={loading || updating || !isDirty}
           >
-            {item ? t('Update') : t('Create')}
+            {t(saveText)}
           </Button>
         </DialogActions>
       </form>

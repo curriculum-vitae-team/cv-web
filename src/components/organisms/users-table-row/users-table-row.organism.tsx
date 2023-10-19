@@ -26,7 +26,7 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
   }
 
   const handleUpdate = () => {
-    openUserDialog({ item })
+    openUserDialog({ item, title: 'Update user', saveText: 'Update' })
   }
 
   const handleDelete = () => {

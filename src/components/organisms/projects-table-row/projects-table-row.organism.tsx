@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
+import { MenuItem, TableCell, Typography } from '@mui/material'
 import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { useConfirmDialog } from '@dialogs/confirm'
@@ -7,6 +7,7 @@ import { useProjectDialog } from '@dialogs/project'
 import { IProject } from 'interfaces/project.interface'
 import { useProjectDelete } from 'hooks/use-projects.hook'
 import { useUser } from 'hooks/use-user.hook'
+import * as Styled from './projects-table-row.styles'
 
 export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
   const { t } = useTranslation()
@@ -32,7 +33,7 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
   }
 
   return (
-    <TableRow>
+    <Styled.Row>
       <TableCell>{item.name}</TableCell>
       <TableCell>{item.internal_name}</TableCell>
       <TableCell>{item.domain}</TableCell>
@@ -50,6 +51,6 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
           </MenuItem>
         </ActionsMenu>
       </TableCell>
-    </TableRow>
+    </Styled.Row>
   )
 }

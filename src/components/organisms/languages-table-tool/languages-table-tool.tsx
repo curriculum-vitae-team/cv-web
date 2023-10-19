@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Button } from '@mui/material'
+import { AddButton } from '@atoms/add-button'
 import { SearchInput } from '@molecules/search-input'
 import { useLanguageDialog } from '@dialogs/language'
 import { useUser } from 'hooks/use-user.hook'
@@ -16,11 +16,7 @@ export const LanguagesTableTool = () => {
   return (
     <>
       <SearchInput />
-      {isAdmin && (
-        <Button variant="outlined" onClick={handleClick}>
-          {t('Create language')}
-        </Button>
-      )}
+      {isAdmin && <AddButton onClick={handleClick}>{t('Create language')}</AddButton>}
     </>
   )
 }
