@@ -102,12 +102,11 @@ const Project = ({ item, closeDialog }: ProjectDialogProps) => {
             error={!!errors.end_date}
             helperText={errors.end_date?.message}
           />
-          <TextField
+          <Styled.Description
             {...register('description', { validate: requiredValidation })}
             label={t('Description')}
             multiline
             rows={3}
-            sx={{ gridColumn: 'span 2' }}
           />
         </Styled.Column>
         <DialogActions>

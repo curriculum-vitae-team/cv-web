@@ -16,5 +16,7 @@ export type UserFormValues = {
 }
 
 export type UserProps = DialogProps & {
+  title?: string
+  saveText?: string
   item?: IUser
 }
