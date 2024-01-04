@@ -1,8 +1,8 @@
+import { Skill } from 'cv-graphql'
 import { DialogProps } from 'graphql/dialogs/dialogs.types'
-import { ISkill } from 'interfaces/skill.interface'
 
-export type SkillFormValues = Omit<ISkill, 'id'>
+export type SkillFormValues = Omit<Skill, 'id'>
 
 export type SkillProps = DialogProps & {
-  item?: ISkill
+  item?: Skill
 }

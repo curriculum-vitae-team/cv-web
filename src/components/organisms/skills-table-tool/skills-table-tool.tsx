@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next'
 import { AddButton } from '@atoms/add-button'
 import { SearchInput } from '@molecules/search-input'
 import { useSkillDialog } from '@dialogs/skill'
-import { useUser } from 'hooks/use-user.hook'
+import { useAuth } from 'hooks/use-auth.hook'
 
 export const SkillsTableTool = () => {
-  const { isAdmin } = useUser()
+  const { isAdmin } = useAuth()
   const { t } = useTranslation()
   const [openSkillDialog] = useSkillDialog()
 

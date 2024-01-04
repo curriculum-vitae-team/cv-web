@@ -1,13 +1,13 @@
-import { ISkill } from 'interfaces/skill.interface'
+import { Skill } from 'cv-graphql'
 
 export type SkillsResult = {
-  skills: ISkill[]
+  skills: Skill[]
 }
 
 export type CreateSkillResult = {
-  createSkill: ISkill
+  createSkill: Skill
 }
 
 export type UpdateSkillResult = {
-  updateSkill: ISkill
+  updateSkill: Skill
 }

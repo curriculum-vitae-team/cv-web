@@ -1,12 +1,14 @@
-import { IUser } from 'interfaces/user.interface'
+import { User } from 'cv-graphql'
 
 export type EmployeeProfileFormProps = {
-  user: IUser
+  user: User
 }
 
-export type EmployeeProfileFormValues = {
-  first_name: string
-  last_name: string
+export type UserProfileFormValues = {
+  profile: {
+    first_name: string
+    last_name: string
+  }
   department: string
   position: string
 }

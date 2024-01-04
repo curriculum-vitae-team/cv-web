@@ -11,15 +11,15 @@ GRAPHQL_API_URL=https://cv-project-js.inno.ws/api/graphql
 
 ### Installation
 
-The installation process should be done with `yarn install`.
+The installation process should be done with `npm ci`.
 
 ### Running locally
 
-Application starts with `yarn start` on port 3000.
+Application starts with `npm start` on port 3000.
 
 ### Creating production build
 
-To create production build run `yarn build`.\
+To create production build run `npm run build`.\
 The build result is additionally gzipped to minimize the file size as much as possible.
 
 ### Recommendations

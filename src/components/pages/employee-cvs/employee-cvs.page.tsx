@@ -6,8 +6,8 @@ import { USER_CVS } from 'graphql/users'
 import { UserResult } from 'graphql/users/users.types'
 
 const EmployeeCvs = () => {
-  const { id } = useParams()
-  const { data, loading } = useQuery<UserResult>(USER_CVS, { variables: { id } })
+  const { userId } = useParams()
+  const { data, loading } = useQuery<UserResult>(USER_CVS, { variables: { userId } })
 
   if (!data || loading) {
     return <CircularProgress />
@@ -15,7 +15,7 @@ const EmployeeCvs = () => {
 
   return (
     <div>
-      {data.user.cvs.map((cv) => (
+      {data.user.cvs?.map((cv) => (
         <div>{cv.name}</div>
       ))}
     </div>

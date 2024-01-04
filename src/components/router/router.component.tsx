@@ -29,7 +29,7 @@ export const Router = () => {
           <Route element={<Layout />}>
             <Route path="/employees" element={<AuthGuard />}>
               <Route index element={<Employees />} />
-              <Route path=":id" element={<EmployeeDetails />}>
+              <Route path=":userId" element={<EmployeeDetails />}>
                 <Route path="profile" element={<EmployeeProfile />} />
                 <Route path="skills" element={<EmployeeSkills />} />
                 <Route path="languages" />
@@ -39,11 +39,11 @@ export const Router = () => {
             </Route>
             <Route path="/projects" element={<AuthGuard />}>
               <Route index element={<Projects />} />
-              <Route path=":id" element={null} />
+              <Route path=":projectId" element={null} />
             </Route>
             <Route path="/cvs" element={<AuthGuard />}>
               <Route index element={<CVsPage />} />
-              <Route path=":id" element={null} />
+              <Route path=":cvId" element={null} />
             </Route>
             <Route path="/departments" element={null} />
             <Route path="/positions" element={<AuthGuard />}>

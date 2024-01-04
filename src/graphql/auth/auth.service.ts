@@ -1,10 +1,10 @@
 import { makeVar } from '@apollo/client'
-import { IUser } from 'interfaces/user.interface'
+import { User } from 'cv-graphql'
 import { StorageKeys } from 'constants/storage.constants'
 import { IAuthService } from './auth.types'
 
 class AuthService implements IAuthService {
-  user$ = makeVar<IUser | null>(null)
+  user$ = makeVar<User | null>(null)
   access_token$ = makeVar('')
 
   constructor(private readonly storageService: Storage) {
@@ -20,7 +20,7 @@ class AuthService implements IAuthService {
     }
   }
 
-  login(user: IUser, access_token: string) {
+  login(user: User, access_token: string) {
     this.user$(user)
     this.access_token$(access_token)
     this.storageService.setItem(StorageKeys.User, JSON.stringify(user))
@@ -32,17 +32,6 @@ class AuthService implements IAuthService {
     this.access_token$('')
     this.storageService.removeItem(StorageKeys.User)
     this.storageService.removeItem(StorageKeys.AccessToken)
-  }
-
-  updateAvatar(url: string) {
-    const user = this.user$()!
-    this.user$({
-      ...user,
-      profile: {
-        ...user.profile,
-        avatar: url
-      }
-    })
   }
 }
 

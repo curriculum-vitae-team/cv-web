@@ -4,53 +4,61 @@ import { TextField } from '@mui/material'
 import { DepartmentSelect } from '@molecules/department-select'
 import { PositionSelect } from '@molecules/position-select'
 import { useUserUpdate } from 'hooks/use-users.hook'
-import { IUser } from 'interfaces/user.interface'
-import { useUser } from 'hooks/use-user.hook'
-import { EmployeeProfileFormProps, EmployeeProfileFormValues } from './employee-profile-form.types'
+import { useProfileUpdate } from 'hooks/use-profile.hook'
+import { useAuth } from 'hooks/use-auth.hook'
+import { EmployeeProfileFormProps, UserProfileFormValues } from './employee-profile-form.types'
 import * as Styled from './employee-profile-form.styles'
 
 export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
-  const [updateUser, loading] = useUserUpdate()
-  const { user$, isAdmin } = useUser()
+  const [updateUser, { loading }] = useUserUpdate()
+  const [updateProfile] = useProfileUpdate()
+  const { isAdmin, userId } = useAuth()
   const { t } = useTranslation()
 
-  const setDefaultValues = (user: IUser) => ({
-    first_name: user.profile.first_name || '',
-    last_name: user.profile.last_name || '',
-    department: user.department?.id || '',
-    position: user.position?.id || ''
-  })
-
-  const methods = useForm<EmployeeProfileFormValues>({
-    defaultValues: setDefaultValues(user)
+  const methods = useForm<UserProfileFormValues>({
+    defaultValues: {
+      profile: {
+        first_name: user.profile.first_name || '',
+        last_name: user.profile.last_name || ''
+      },
+      department: user.department?.id || '',
+      position: user.position?.id || ''
+    }
   })
   const { formState, register, handleSubmit, reset } = methods
 
-  const onSubmit = (values: EmployeeProfileFormValues) => {
-    updateUser({
-      variables: {
-        id: user.id,
-        user: {
+  const onSubmit = (values: UserProfileFormValues) => {
+    Promise.all([
+      updateProfile({
+        variables: {
           profile: {
-            first_name: values.first_name,
-            last_name: values.last_name
-          },
-          departmentId: values.department,
-          positionId: values.position,
-          role: user.role
+            profileId: user.profile.id,
+            first_name: values.profile.first_name,
+            last_name: values.profile.last_name
+          }
         }
-      }
-    }).then(({ data }) => data && reset(setDefaultValues(data.updateUser)))
+      }),
+      updateUser({
+        variables: {
+          user: {
+            userId: user.id,
+            departmentId: values.department,
+            positionId: values.position,
+            role: user.role
+          }
+        }
+      })
+    ]).then(() => reset(values))
   }
 
   return (
     <FormProvider {...methods}>
       <Styled.Form onSubmit={handleSubmit(onSubmit)}>
-        <TextField {...register('first_name')} autoFocus label={t('First Name')} />
-        <TextField {...register('last_name')} label={t('Last Name')} />
+        <TextField {...register('profile.first_name')} autoFocus label={t('First Name')} />
+        <TextField {...register('profile.last_name')} label={t('Last Name')} />
         <DepartmentSelect name="department" />
         <PositionSelect name="position" />
-        {(isAdmin || user$?.id === user.id) && (
+        {(isAdmin || userId === user.id) && (
           <Styled.SubmitButton
             type="submit"
             variant="contained"

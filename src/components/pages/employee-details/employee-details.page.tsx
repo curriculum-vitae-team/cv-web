@@ -1,4 +1,4 @@
-import { memo, Suspense } from 'react'
+import { memo, Suspense, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
@@ -12,19 +12,24 @@ import * as Styled from './employee-details.styles'
 
 const EmployeeDetails = () => {
   const location = useLocation()
-  const { id } = useParams()
-  const path = `/employees/${id}`
+  const { userId } = useParams()
+  const path = `/employees/${userId}`
   const { t } = useTranslation()
 
-  const { data } = useQuery<UserResult>(USER_FULL_NAME, { variables: { id } })
-  useBreadcrumbs({
-    [`employees/${id}`]: {
-      text: data?.user.profile.full_name || data?.user.email,
-      to: `employees/${id}/profile`,
-      color: 'primary',
-      Icon: PersonOutline
-    }
-  })
+  const { data } = useQuery<UserResult>(USER_FULL_NAME, { variables: { userId } })
+  useBreadcrumbs(
+    useMemo(
+      () => ({
+        [`employees/${userId}`]: {
+          text: data?.user.profile.full_name || data?.user.email,
+          to: `employees/${userId}/profile`,
+          color: 'primary',
+          Icon: PersonOutline
+        }
+      }),
+      [data]
+    )
+  )
 
   return (
     <>

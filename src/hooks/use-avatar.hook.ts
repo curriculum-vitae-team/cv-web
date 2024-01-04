@@ -5,20 +5,20 @@ import { UploadAvatarResult } from 'graphql/profile/profile.types'
 import { USER } from 'graphql/users'
 
 export const useAvatarUpload = (): [MutationFunction<UploadAvatarResult>, boolean] => {
-  const { id } = useParams()
+  const { userId } = useParams()
 
   const [uploadAvatar, { loading }] = useMutation<UploadAvatarResult>(UPLOAD_AVATAR, {
-    refetchQueries: [{ query: USER, variables: { id } }]
+    refetchQueries: [{ query: USER, variables: { userId } }]
   })
 
   return [uploadAvatar, loading]
 }
 
 export const useAvatarDelete = (): [MutationFunction, boolean] => {
-  const { id } = useParams()
+  const { userId } = useParams()
 
   const [deleteAvatar, { loading }] = useMutation(DELETE_AVATAR, {
-    refetchQueries: [{ query: USER, variables: { id } }]
+    refetchQueries: [{ query: USER, variables: { userId } }]
   })
 
   return [deleteAvatar, loading]

@@ -1,17 +1,17 @@
 import { useTranslation } from 'react-i18next'
 import { MenuItem, TableCell, Typography } from '@mui/material'
+import { Project } from 'cv-graphql'
 import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { useConfirmDialog } from '@dialogs/confirm'
 import { useProjectDialog } from '@dialogs/project'
-import { IProject } from 'interfaces/project.interface'
 import { useProjectDelete } from 'hooks/use-projects.hook'
-import { useUser } from 'hooks/use-user.hook'
+import { useAuth } from 'hooks/use-auth.hook'
 import * as Styled from './projects-table-row.styles'
 
-export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
+export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
   const { t } = useTranslation()
-  const { isAdmin } = useUser()
+  const { isAdmin } = useAuth()
   const [openProjectDialog] = useProjectDialog()
   const [deleteProject] = useProjectDelete(item)
   const [openConfirmDialog] = useConfirmDialog()

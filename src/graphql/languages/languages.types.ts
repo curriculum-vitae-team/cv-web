@@ -1,15 +1,15 @@
-import { ILanguage } from 'interfaces/language.interface'
+import { Language } from 'cv-graphql'
 
 export type LanguagesResult = {
-  languages: ILanguage[]
+  languages: Language[]
 }
 
 export type CreateLanguageResult = {
-  createLanguage: ILanguage
+  createLanguage: Language
 }
 
 export type UpdateLanguageResult = {
-  updateLanguage: ILanguage
+  updateLanguage: Language
 }
 
 export interface ILanguageService {

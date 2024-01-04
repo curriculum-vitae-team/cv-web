@@ -1,16 +1,18 @@
 import { memo, MouseEvent, useCallback, useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useReactiveVar } from '@apollo/client'
 import { Avatar, Divider, ListItemIcon, Menu, MenuItem } from '@mui/material'
 import { AccountCircle, Settings, Logout } from '@mui/icons-material'
 import { authService } from 'graphql/auth/auth.service'
+import { useAuth } from 'hooks/use-auth.hook'
+import { useProfile } from 'hooks/use-profile.hook'
 import * as Styled from './user-menu.styles'
 
 const UserMenu = () => {
   const location = useLocation()
   const { t } = useTranslation()
-  const user = useReactiveVar(authService.user$)
+  const { user$, userId, profileId } = useAuth()
+  const { data } = useProfile(profileId)
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
 
@@ -32,13 +34,13 @@ const UserMenu = () => {
 
   return (
     <>
-      <Styled.Name color="white">{user?.profile.full_name || user?.email}</Styled.Name>
+      <Styled.Name color="white">{data?.profile.full_name || user$?.email}</Styled.Name>
       <Avatar
-        src={user?.profile.avatar}
+        src={data?.profile.avatar || ''}
         sx={{ backgroundColor: '#c63031', cursor: 'pointer' }}
         onClick={handleClick}
       >
-        {user?.profile.full_name?.[0] || user?.email[0]}
+        {data?.profile.full_name?.[0] || user$?.email[0]}
       </Avatar>
       <Menu
         anchorEl={anchorEl}
@@ -67,7 +69,7 @@ const UserMenu = () => {
           }
         }}
       >
-        <MenuItem component={NavLink} to={`/employees/${user?.id}/profile`}>
+        <MenuItem component={NavLink} to={`/employees/${userId}/profile`}>
           <ListItemIcon>
             <AccountCircle />
           </ListItemIcon>

@@ -20,8 +20,8 @@ export const USERS = gql`
 `
 
 export const USER = gql`
-  query User($id: ID!) {
-    user(id: $id) {
+  query User($userId: ID!) {
+    user(userId: $userId) {
       id
       created_at
       email
@@ -31,17 +31,6 @@ export const USER = gql`
         last_name
         full_name
         avatar
-        skills {
-          skill_name
-          mastery
-        }
-        languages {
-          language_name
-          proficiency
-        }
-      }
-      cvs {
-        id
       }
       department {
         id
@@ -57,8 +46,8 @@ export const USER = gql`
 `
 
 export const USER_FULL_NAME = gql`
-  query User($id: ID!) {
-    user(id: $id) {
+  query UserFullName($userId: ID!) {
+    user(userId: $userId) {
       id
       email
       profile {
@@ -70,8 +59,8 @@ export const USER_FULL_NAME = gql`
 `
 
 export const USER_CVS = gql`
-  query User($id: ID!) {
-    user(id: $id) {
+  query UserCvs($userId: ID!) {
+    user(userId: $userId) {
       id
       cvs {
         id
@@ -105,23 +94,9 @@ export const CREATE_USER = gql`
 `
 
 export const UPDATE_USER = gql`
-  mutation UpdateUser($id: ID!, $user: UpdateUserInput!) {
-    updateUser(id: $id, user: $user) {
+  mutation UpdateUser($user: UpdateUserInput!) {
+    updateUser(user: $user) {
       id
-      profile {
-        id
-        first_name
-        last_name
-        full_name
-        skills {
-          skill_name
-          mastery
-        }
-        languages {
-          language_name
-          proficiency
-        }
-      }
       department {
         id
         name
@@ -135,8 +110,8 @@ export const UPDATE_USER = gql`
 `
 
 export const DELETE_USER = gql`
-  mutation DeleteUser($id: ID!) {
-    deleteUser(id: $id) {
+  mutation DeleteUser($userId: ID!) {
+    deleteUser(userId: $userId) {
       affected
     }
   }

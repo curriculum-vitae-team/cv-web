@@ -1,13 +1,13 @@
-import { IProject } from 'interfaces/project.interface'
+import { Project } from 'cv-graphql'
 
 export type ProjectsResult = {
-  projects: IProject[]
+  projects: Project[]
 }
 
 export type CreateProjectResult = {
-  project: IProject
+  project: Project
 }
 
 export type UpdateProjectResult = {
-  updateProject: IProject
+  updateProject: Project
 }

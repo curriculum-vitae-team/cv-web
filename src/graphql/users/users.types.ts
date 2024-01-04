@@ -1,31 +1,17 @@
-import { IUser } from 'interfaces/user.interface'
+import { User } from 'cv-graphql'
 
 export type UsersResult = {
-  users: IUser[]
+  users: User[]
 }
 
 export type UserResult = {
-  user: IUser
+  user: User
 }
 
 export type CreateUserResult = {
-  createUser: IUser
-}
-
-export type UpdateUserInput = {
-  id: string
-  user: {
-    profile: {
-      first_name: string
-      last_name: string
-    }
-    cvsIds?: string[]
-    departmentId: string
-    positionId: string
-    role?: string
-  }
+  createUser: User
 }
 
 export type UpdateUserResult = {
-  updateUser: IUser
+  updateUser: User
 }

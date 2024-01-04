@@ -1,5 +1,5 @@
-import { IUser } from 'interfaces/user.interface'
+import { User } from 'cv-graphql'
 
 export type AvatarUploadProps = {
-  user: IUser
+  user: User
 }

@@ -1,13 +1,13 @@
-import { IPosition } from 'interfaces/position.interface'
+import { Position } from 'cv-graphql'
 
 export type PositionsResult = {
-  positions: IPosition[]
+  positions: Position[]
 }
 
 export type CreatePositionResult = {
-  createPosition: IPosition
+  createPosition: Position
 }
 
 export type UpdatePositionResult = {
-  updatePosition: IPosition
+  updatePosition: Position
 }

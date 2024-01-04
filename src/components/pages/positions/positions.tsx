@@ -1,11 +1,11 @@
+import { Position } from 'cv-graphql'
 import { createTable } from '@templates/table'
 import { PositionsTableRow } from '@organisms/positions-table-row'
 import { PositionsTableTool } from '@organisms/positions-table-tool'
 import { PositionsTableHead } from '@organisms/positions-table-head'
 import { usePositions } from 'hooks/use-positions.hook'
-import { IPosition } from 'interfaces/position.interface'
 
-const Table = createTable<IPosition>()
+const Table = createTable<Position>()
 
 const Positions = () => {
   const [positions, loading] = usePositions()

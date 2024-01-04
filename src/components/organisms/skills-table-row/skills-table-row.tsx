@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next'
 import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
+import { Skill } from 'cv-graphql'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { TableRowProps } from '@templates/table/table.types'
 import { useSkillDialog } from '@dialogs/skill'
 import { useConfirmDialog } from '@dialogs/confirm'
-import { ISkill } from 'interfaces/skill.interface'
-import { useUser } from 'hooks/use-user.hook'
+import { useAuth } from 'hooks/use-auth.hook'
 import { useSkillDelete } from 'hooks/use-skills.hook'
 
-export const SkillsTableRow = ({ item }: TableRowProps<ISkill>) => {
-  const { isAdmin } = useUser()
+export const SkillsTableRow = ({ item }: TableRowProps<Skill>) => {
+  const { isAdmin } = useAuth()
   const { t } = useTranslation()
   const [openSkillDialog] = useSkillDialog()
   const [openConfirmDialog] = useConfirmDialog()
