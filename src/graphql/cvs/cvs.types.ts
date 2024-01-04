@@ -1,5 +1,5 @@
-import { ICV } from 'interfaces/cv.interface'
+import { Cv } from 'cv-graphql'
 
 export type CVsResult = {
-  cvs: ICV[]
+  cvs: Cv[]
 }

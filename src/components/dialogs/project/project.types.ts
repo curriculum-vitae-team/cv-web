@@ -1,9 +1,9 @@
+import { Project } from 'cv-graphql'
 import { DialogProps } from 'graphql/dialogs/dialogs.types'
-import { IProject } from 'interfaces/project.interface'
 
 export type ProjectFormValues = {
   name: string
-  internal_name: string
+  internal_name: null | string
   description: string
   domain: string
   start_date: null | Date
@@ -12,5 +12,5 @@ export type ProjectFormValues = {
 }
 
 export type ProjectDialogProps = DialogProps & {
-  item?: IProject
+  item?: Project
 }

@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next'
 import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
+import { Language } from 'cv-graphql'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { TableRowProps } from '@templates/table/table.types'
 import { useLanguageDialog } from '@dialogs/language'
 import { useConfirmDialog } from '@dialogs/confirm'
-import { ILanguage } from 'interfaces/language.interface'
-import { useUser } from 'hooks/use-user.hook'
+import { useAuth } from 'hooks/use-auth.hook'
 import { useLanguageDelete } from 'hooks/use-languages.hook'
 
-export const LanguagesTableRow = ({ item }: TableRowProps<ILanguage>) => {
-  const { isAdmin } = useUser()
+export const LanguagesTableRow = ({ item }: TableRowProps<Language>) => {
+  const { isAdmin } = useAuth()
   const { t } = useTranslation()
   const [openLanguageDialog] = useLanguageDialog()
   const [openConfirmDialog] = useConfirmDialog()

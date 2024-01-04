@@ -1,14 +1,18 @@
 import { MutationFunction, useMutation, useQuery } from '@apollo/client'
-import { CREATE_USER, DELETE_USER, UPDATE_USER, USERS } from 'graphql/users'
+import { UpdateUserInput, User } from 'cv-graphql'
+import { CREATE_USER, DELETE_USER, UPDATE_USER, USER, USERS } from 'graphql/users'
 import {
   CreateUserResult,
-  UpdateUserInput,
   UpdateUserResult,
+  UserResult,
   UsersResult
 } from 'graphql/users/users.types'
-import { IUser } from 'interfaces/user.interface'
 
-export const useUsers = (): [IUser[], boolean] => {
+export const useUser = (userId?: string) => {
+  return useQuery<UserResult>(USER, { variables: { userId } })
+}
+
+export const useUsers = (): [User[], boolean] => {
   const { data, loading } = useQuery<UsersResult>(USERS)
   return [data?.users || [], loading]
 }
@@ -20,12 +24,11 @@ export const useUserCreate = (): [MutationFunction<CreateUserResult>, boolean] =
   return [createUser, loading]
 }
 
-export const useUserUpdate = (): [MutationFunction<UpdateUserResult, UpdateUserInput>, boolean] => {
-  const [updateUser, { loading }] = useMutation<UpdateUserResult, UpdateUserInput>(UPDATE_USER)
-  return [updateUser, loading]
+export const useUserUpdate = () => {
+  return useMutation<UpdateUserResult, { user: UpdateUserInput }>(UPDATE_USER)
 }
 
-export const useUserDelete = (item: IUser): [MutationFunction, boolean] => {
+export const useUserDelete = (item: User): [MutationFunction, boolean] => {
   const [deleteUser, { loading }] = useMutation(DELETE_USER, {
     update(cache) {
       const id = cache.identify({ id: item.id, __typename: 'User' })

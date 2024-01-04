@@ -2,20 +2,20 @@ import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { TableCell, Avatar, MenuItem, Typography } from '@mui/material'
+import { User } from 'cv-graphql'
 import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { useUserDialog } from '@dialogs/user'
 import { useConfirmDialog } from '@dialogs/confirm'
-import { IUser } from 'interfaces/user.interface'
-import { useUser } from 'hooks/use-user.hook'
+import { useAuth } from 'hooks/use-auth.hook'
 import { useUserDelete } from 'hooks/use-users.hook'
 
 import * as Styled from './users-table-row.styles'
 
-const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
+const UsersTableRow = ({ item }: TableRowProps<User>) => {
   const navigate = useNavigate()
-  const { isAdmin, user$ } = useUser()
-  const isSelf = item.id === user$?.id
+  const { isAdmin, userId } = useAuth()
+  const isSelf = item.id === userId
   const { t } = useTranslation()
   const [openUserDialog] = useUserDialog()
   const [deleteUser] = useUserDelete(item)
@@ -37,14 +37,16 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
           {t('Are you sure you want to delete user')} <b>{item.profile.full_name || item.email}</b>?
         </Typography>
       ),
-      confirmCallback: () => deleteUser({ variables: { id: item.id } })
+      confirmCallback: () => deleteUser({ variables: { userId: item.id } })
     })
   }
 
   return (
     <Styled.Row>
       <TableCell>
-        <Avatar src={item.profile.avatar}>{item.profile.full_name?.[0] || item.email[0]}</Avatar>
+        <Avatar src={item.profile.avatar || undefined}>
+          {item.profile.full_name?.[0] || item.email[0]}
+        </Avatar>
       </TableCell>
       <TableCell>{item.profile.first_name}</TableCell>
       <TableCell>{item.profile.last_name}</TableCell>

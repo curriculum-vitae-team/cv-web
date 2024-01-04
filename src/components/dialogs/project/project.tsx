@@ -28,7 +28,7 @@ const Project = ({ item, closeDialog }: ProjectDialogProps) => {
           description: item.description,
           domain: item.domain,
           start_date: parseISO(item.start_date),
-          end_date: parseISO(item.end_date),
+          end_date: parseISO(item.end_date || ''),
           team_size: item.team_size
         }
       : defaultValues

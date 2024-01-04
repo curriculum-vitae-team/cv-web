@@ -1,18 +1,17 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
+import { User, UserRole } from 'cv-graphql'
 import { DepartmentSelect } from '@molecules/department-select'
 import { PositionSelect } from '@molecules/position-select'
 import { RoleSelect } from '@molecules/role-select'
 import { useUserCreate, useUserUpdate } from 'hooks/use-users.hook'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { passwordValidation, requiredValidation } from 'helpers/validation.helper'
-import { IUser } from 'interfaces/user.interface'
-import { UserRole } from 'constants/user-role.constants'
 import { UserFormValues, UserProps } from './user.types'
 import * as Styled from './user.styles'
 
-const defaultValues = (item?: IUser): UserFormValues => {
+const defaultValues = (item?: User): UserFormValues => {
   return {
     auth: {
       email: item?.email || '',
@@ -39,17 +38,14 @@ const User = ({ title = 'Create user', saveText = 'Create', item, closeDialog }:
   } = methods
   const { t } = useTranslation()
   const [createUser, loading] = useUserCreate()
-  const [updateUser, updating] = useUserUpdate()
+  const [updateUser, { loading: updating }] = useUserUpdate()
 
   const onSubmit = (values: UserFormValues) => {
     if (item) {
       updateUser({
         variables: {
-          id: item.id,
           user: {
-            profile: {
-              ...values.profile
-            },
+            userId: item.id,
             departmentId: values.departmentId,
             positionId: values.positionId,
             role: values.role

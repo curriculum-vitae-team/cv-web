@@ -1,5 +1,5 @@
-import { IDepartment } from 'interfaces/department.interface'
+import { Department } from 'cv-graphql'
 
 export type DepartmentsResult = {
-  departments: IDepartment[]
+  departments: Department[]
 }

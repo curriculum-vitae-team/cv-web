@@ -1,9 +1,9 @@
 import { MutationFunction, useMutation, useQuery } from '@apollo/client'
+import { Skill } from 'cv-graphql'
 import { CREATE_SKILL, DELETE_SKILL, SKILLS, UPDATE_SKILL } from 'graphql/skills'
 import { CreateSkillResult, SkillsResult, UpdateSkillResult } from 'graphql/skills/skills.types'
-import { ISkill } from 'interfaces/skill.interface'
 
-export const useSkills = (): [ISkill[], boolean] => {
+export const useSkills = (): [Skill[], boolean] => {
   const { data, loading } = useQuery<SkillsResult>(SKILLS)
   return [data?.skills || [], loading]
 }
@@ -22,7 +22,7 @@ export const useSkillUpdate = (): [MutationFunction<UpdateSkillResult>, boolean]
   return [updateSkill, loading]
 }
 
-export const useSkillDelete = (item: ISkill) => {
+export const useSkillDelete = (item: Skill) => {
   const [deleteSkill] = useMutation(DELETE_SKILL, {
     variables: {
       id: item.id

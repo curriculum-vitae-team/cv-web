@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next'
 import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
+import { Position } from 'cv-graphql'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { TableRowProps } from '@templates/table/table.types'
 import { useConfirmDialog } from '@dialogs/confirm'
 import { usePositionDialog } from '@dialogs/position'
-import { IPosition } from 'interfaces/position.interface'
-import { useUser } from 'hooks/use-user.hook'
+import { useAuth } from 'hooks/use-auth.hook'
 import { usePositionDelete } from 'hooks/use-positions.hook'
 
-export const PositionsTableRow = ({ item }: TableRowProps<IPosition>) => {
-  const { isAdmin } = useUser()
+export const PositionsTableRow = ({ item }: TableRowProps<Position>) => {
+  const { isAdmin } = useAuth()
   const { t } = useTranslation()
   const [openPositionDialog] = usePositionDialog()
   const [openConfirmDialog] = useConfirmDialog()

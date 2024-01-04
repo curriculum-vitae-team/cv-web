@@ -1,5 +1,5 @@
+import { User, UserRole } from 'cv-graphql'
 import { DialogProps } from 'graphql/dialogs/dialogs.types'
-import { IUser } from 'interfaces/user.interface'
 
 export type UserFormValues = {
   auth: {
@@ -12,11 +12,11 @@ export type UserFormValues = {
   }
   departmentId: string
   positionId: string
-  role: string
+  role: UserRole
 }
 
 export type UserProps = DialogProps & {
   title?: string
   saveText?: string
-  item?: IUser
+  item?: User
 }

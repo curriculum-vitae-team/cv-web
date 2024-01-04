@@ -1,8 +1,8 @@
+import { Position } from 'cv-graphql'
 import { DialogProps } from 'graphql/dialogs/dialogs.types'
-import { IPosition } from 'interfaces/position.interface'
 
-export type PositionFormValues = Omit<IPosition, 'id'>
+export type PositionFormValues = Omit<Position, 'id'>
 
 export type PositionProps = DialogProps & {
-  item?: IPosition
+  item?: Position
 }
