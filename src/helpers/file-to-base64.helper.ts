@@ -1,6 +1,10 @@
-import { AvatarInput } from 'graphql/profile/profile.types'
+type Result = {
+  base64: string | ArrayBuffer | null
+  type: string
+  size: number
+}
 
-export const fileToBase64 = (file: File): Promise<AvatarInput> => {
+export const fileToBase64 = (file: File): Promise<Result> => {
   const { type, size } = file
   return new Promise((resolve, reject) => {
     const reader = new FileReader()

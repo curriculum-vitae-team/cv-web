@@ -2,7 +2,6 @@ import { ChangeEvent, DragEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Badge, IconButton, Typography } from '@mui/material'
 import { Close, FileUploadOutlined } from '@mui/icons-material'
-import { authService } from 'graphql/auth/auth.service'
 import { useAvatarUpload, useAvatarDelete } from 'hooks/use-avatar.hook'
 import { fileToBase64 } from 'helpers/file-to-base64.helper'
 import { AvatarUploadProps } from './avatar-upload.types'
@@ -15,13 +14,13 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
   const profileId = user.profile.id
 
   const handleUpload = (file: File) => {
-    fileToBase64(file)
-      .then((avatar) => uploadAvatar({ variables: { id: profileId, avatar } }))
-      .then(({ data }) => data && authService.updateAvatar(data.uploadAvatar))
+    fileToBase64(file).then((avatar) =>
+      uploadAvatar({ variables: { avatar: { profileId, ...avatar } } })
+    )
   }
 
   const handleDelete = () => {
-    deleteAvatar({ variables: { id: profileId } }).then(() => authService.updateAvatar(''))
+    deleteAvatar({ variables: { avatar: { profileId } } })
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +50,7 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
           )
         }
       >
-        <Styled.Avatar src={user.profile.avatar}>
+        <Styled.Avatar src={user.profile.avatar || ''}>
           {user.profile.full_name
             ? user.profile.first_name?.[0] || '' + user.profile.last_name?.[0] || ''
             : user.email[0]}
