@@ -2,7 +2,7 @@ import { StorybookConfig } from '@storybook/react-webpack5'
 import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin'
 import { join, dirname } from 'path'
 
-const getAbsolutePath = (value: string) => {
+const getAbsolutePath = (value: string): any => {
   return dirname(require.resolve(join(value, 'package.json')))
 }
 
@@ -15,7 +15,6 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-interactions')
   ],
   framework: {
-    // @ts-ignore
     name: getAbsolutePath('@storybook/react-webpack5'),
     options: {}
   },

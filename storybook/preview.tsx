@@ -1,6 +1,8 @@
 import React from 'react'
 import { Preview } from '@storybook/react'
-import { ThemeProvider } from '@mui/material'
+import { ApolloProvider } from '@apollo/client'
+import { ThemeProvider, CssBaseline } from '@mui/material'
+import { client } from '../src/graphql/client'
 import { theme } from '../src/components/app/app.theme'
 
 const preview: Preview = {
@@ -8,16 +10,25 @@ const preview: Preview = {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {},
     backgrounds: {
-      default: 'default',
+      default: 'light',
       values: [
         {
-          name: 'default',
+          name: 'light',
           value: '#f5f5f7'
         }
       ]
     }
   },
-  decorators: [(story) => <ThemeProvider theme={theme}>{story()}</ThemeProvider>]
+  decorators: [
+    (story) => (
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {story()}
+        </ThemeProvider>
+      </ApolloProvider>
+    )
+  ]
 }
 
 export default preview
