@@ -1,5 +1,5 @@
-import { MutationFunction, useMutation, useQuery } from '@apollo/client'
-import { Position } from 'cv-graphql'
+import { useMutation, useQuery } from '@apollo/client'
+import { Position, CreatePositionInput, UpdatePositionInput, DeletePositionInput } from 'cv-graphql'
 import { CREATE_POSITION, DELETE_POSITION, POSITIONS, UPDATE_POSITION } from 'graphql/positions'
 import {
   CreatePositionResult,
@@ -13,25 +13,23 @@ export const usePositions = (): [Position[], boolean] => {
   return [data?.positions || [], loading]
 }
 
-export const usePositionCreate = (): [MutationFunction<CreatePositionResult>, boolean] => {
-  const [createPosition, { loading }] = useMutation<CreatePositionResult>(CREATE_POSITION, {
+export const usePositionCreate = () => {
+  return useMutation<CreatePositionResult, { position: CreatePositionInput }>(CREATE_POSITION, {
     refetchQueries: [POSITIONS]
   })
-  return [createPosition, loading]
 }
 
-export const usePositionUpdate = (): [MutationFunction<UpdatePositionResult>, boolean] => {
-  const [updatePosition, { loading }] = useMutation<UpdatePositionResult>(UPDATE_POSITION)
-  return [updatePosition, loading]
+export const usePositionUpdate = () => {
+  return useMutation<UpdatePositionResult, { position: UpdatePositionInput }>(UPDATE_POSITION)
 }
 
-export const usePositionDelete = (item: Position) => {
-  const [deletePosition] = useMutation(DELETE_POSITION, {
+export const usePositionDelete = (positionId: string) => {
+  const [deletePosition] = useMutation<null, { position: DeletePositionInput }>(DELETE_POSITION, {
     variables: {
-      id: item.id
+      position: { positionId }
     },
     update(cache) {
-      const id = cache.identify({ id: item.id, __typename: 'Position' })
+      const id = cache.identify({ id: positionId, __typename: 'Position' })
       cache.evict({ id })
       cache.gc()
     }

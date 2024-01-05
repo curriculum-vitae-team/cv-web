@@ -1,49 +1,34 @@
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
-import { usePositionCreate, usePositionUpdate } from 'hooks/use-positions.hook'
+import { useState } from 'react'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { PositionFormValues, PositionProps } from './position.types'
 import * as Styled from './position.styles'
 
-const defaultValues = {
-  name: ''
-}
-
-const Position = ({ item, closeDialog }: PositionProps) => {
+const Position = ({ title, confirmText, position, onConfirm, closeDialog }: PositionProps) => {
   const {
     formState: { errors, isDirty },
     register,
     handleSubmit
   } = useForm<PositionFormValues>({
-    defaultValues: item || defaultValues
+    defaultValues: {
+      name: position?.name || ''
+    }
   })
   const { t } = useTranslation()
-  const [createPosition, loading] = usePositionCreate()
-  const [updatePosition, updating] = usePositionUpdate()
+  const [isLoading, setIsLoading] = useState(false)
 
   const onSubmit = (values: PositionFormValues) => {
-    if (item) {
-      updatePosition({
-        variables: {
-          id: item.id,
-          position: {
-            name: values.name
-          }
-        }
-      }).then(() => closeDialog())
-      return
-    }
-    createPosition({
-      variables: {
-        position: values
-      }
-    }).then(() => closeDialog())
+    setIsLoading(true)
+    onConfirm(values)
+      .then(closeDialog)
+      .catch(() => setIsLoading(false))
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <DialogTitle>{item ? t('Update position') : t('Create position')}</DialogTitle>
+      <DialogTitle>{t(title)}</DialogTitle>
       <Styled.Column>
         <TextField
           {...register('name', { required: true })}
@@ -56,13 +41,8 @@ const Position = ({ item, closeDialog }: PositionProps) => {
         <Button variant="outlined" color="secondary" onClick={closeDialog}>
           {t('Cancel')}
         </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          disabled={loading || updating || !isDirty}
-        >
-          {item ? t('Update') : t('Create')}
+        <Button variant="contained" color="primary" type="submit" disabled={isLoading || !isDirty}>
+          {t(confirmText)}
         </Button>
       </DialogActions>
     </form>

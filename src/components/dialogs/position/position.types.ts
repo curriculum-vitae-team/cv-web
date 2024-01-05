@@ -4,5 +4,8 @@ import { DialogProps } from 'graphql/dialogs/dialogs.types'
 export type PositionFormValues = Omit<Position, 'id'>
 
 export type PositionProps = DialogProps & {
-  item?: Position
+  title: string
+  confirmText: string
+  position?: Position
+  onConfirm(values: PositionFormValues): Promise<unknown>
 }

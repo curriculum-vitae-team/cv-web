@@ -6,17 +6,32 @@ import { TableRowProps } from '@templates/table/table.types'
 import { useConfirmDialog } from '@dialogs/confirm'
 import { usePositionDialog } from '@dialogs/position'
 import { useAuth } from 'hooks/use-auth.hook'
-import { usePositionDelete } from 'hooks/use-positions.hook'
+import { usePositionDelete, usePositionUpdate } from 'hooks/use-positions.hook'
 
 export const PositionsTableRow = ({ item }: TableRowProps<Position>) => {
   const { isAdmin } = useAuth()
   const { t } = useTranslation()
   const [openPositionDialog] = usePositionDialog()
   const [openConfirmDialog] = useConfirmDialog()
-  const [deletePosition] = usePositionDelete(item)
+  const [updatePosition] = usePositionUpdate()
+  const [deletePosition] = usePositionDelete(item.id)
 
   const handleUpdate = () => {
-    openPositionDialog({ item })
+    openPositionDialog({
+      title: 'Update position',
+      confirmText: 'Update',
+      position: item,
+      onConfirm({ name }) {
+        return updatePosition({
+          variables: {
+            position: {
+              positionId: item.id,
+              name
+            }
+          }
+        })
+      }
+    })
   }
 
   const handleDelete = () => {
