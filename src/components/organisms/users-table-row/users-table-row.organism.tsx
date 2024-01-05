@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { generatePath, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { TableCell, Avatar, MenuItem, Typography } from '@mui/material'
 import { User } from 'cv-graphql'
@@ -10,6 +10,7 @@ import { useConfirmDialog } from '@dialogs/confirm'
 import { useAuth } from 'hooks/use-auth.hook'
 import { useUserDelete } from 'hooks/use-users.hook'
 
+import { routes } from 'constants/routes'
 import * as Styled from './users-table-row.styles'
 
 const UsersTableRow = ({ item }: TableRowProps<User>) => {
@@ -22,7 +23,7 @@ const UsersTableRow = ({ item }: TableRowProps<User>) => {
   const [openConfirmDialog] = useConfirmDialog()
 
   const handleProfile = () => {
-    navigate(`/employees/${item.id}/profile`)
+    navigate(generatePath(routes.users.profile, { userId: item.id }))
   }
 
   const handleUpdate = () => {

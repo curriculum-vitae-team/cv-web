@@ -1,11 +1,12 @@
 import { memo, MouseEvent, useCallback, useEffect, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { generatePath, NavLink, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Avatar, Divider, ListItemIcon, Menu, MenuItem } from '@mui/material'
 import { AccountCircle, Settings, Logout } from '@mui/icons-material'
 import { authService } from 'graphql/auth/auth.service'
 import { useAuth } from 'hooks/use-auth.hook'
 import { useProfile } from 'hooks/use-profile.hook'
+import { routes } from 'constants/routes'
 import * as Styled from './user-menu.styles'
 
 const UserMenu = () => {
@@ -69,13 +70,13 @@ const UserMenu = () => {
           }
         }}
       >
-        <MenuItem component={NavLink} to={`/employees/${userId}/profile`}>
+        <MenuItem component={NavLink} to={generatePath(routes.users.profile, { userId })}>
           <ListItemIcon>
             <AccountCircle />
           </ListItemIcon>
           {t('Profile')}
         </MenuItem>
-        <MenuItem disabled>
+        <MenuItem component={NavLink} to={routes.settings}>
           <ListItemIcon>
             <Settings />
           </ListItemIcon>
@@ -85,7 +86,7 @@ const UserMenu = () => {
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout />
-          </ListItemIcon>{' '}
+          </ListItemIcon>
           {t('Logout')}
         </MenuItem>
       </Menu>
