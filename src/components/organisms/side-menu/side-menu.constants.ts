@@ -1,4 +1,5 @@
 import {
+  Home,
   ContactPageOutlined,
   Domain,
   FolderCopyOutlined,
@@ -8,44 +9,55 @@ import {
   WorkOutline
 } from '@mui/icons-material'
 import { Divider } from '@mui/material'
+import { routes } from 'constants/routes'
 
 export const LIST_ITEMS = [
   {
+    IconComponent: Home,
+    name: 'home',
+    to: routes.root
+  },
+  {
+    DividerComponent: Divider,
+    name: 'primary-entities'
+  },
+  {
     IconComponent: Group,
-    name: 'employees',
-    to: '/employees'
+    name: 'users',
+    to: routes.users.root
   },
   {
     IconComponent: FolderCopyOutlined,
     name: 'projects',
-    to: '/projects'
+    to: routes.projects.root
   },
   {
     IconComponent: ContactPageOutlined,
     name: 'cvs',
-    to: '/cvs'
+    to: routes.cvs.root
   },
   {
-    DividerComponent: Divider
+    DividerComponent: Divider,
+    name: 'secondary-entities'
   },
   {
     IconComponent: Domain,
     name: 'departments',
-    to: '/departments'
+    to: routes.departments
   },
   {
     IconComponent: WorkOutline,
     name: 'positions',
-    to: '/positions'
+    to: routes.positions
   },
   {
     IconComponent: TrendingUp,
     name: 'skills',
-    to: '/skills'
+    to: routes.skills
   },
   {
     IconComponent: Translate,
     name: 'languages',
-    to: '/languages'
+    to: routes.languages
   }
 ]

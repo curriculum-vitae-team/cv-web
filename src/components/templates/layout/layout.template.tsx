@@ -1,8 +1,8 @@
 import { memo, Suspense } from 'react'
-import { Outlet } from 'react-router-dom'
 import { Header } from '@organisms/header'
 import { PageLoader } from '@atoms/page-loader'
 import { Breadcrumbs } from '@features/breadcrumbs'
+import { AuthGuard } from '@features/auth-guard'
 import * as Styled from './layout.styles'
 
 const Layout = () => {
@@ -12,7 +12,7 @@ const Layout = () => {
       <Styled.Layout maxWidth="xl">
         <Breadcrumbs />
         <Suspense fallback={<PageLoader />}>
-          <Outlet />
+          <AuthGuard />
         </Suspense>
       </Styled.Layout>
     </>

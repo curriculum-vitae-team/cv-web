@@ -7,7 +7,7 @@ import { PositionSelectProps } from './position-select.types'
 
 const PositionSelect = ({ name, ...props }: PositionSelectProps) => {
   const { t } = useTranslation()
-  const [positions, loading] = usePositions()
+  const { data, loading } = usePositions()
 
   return (
     <Controller
@@ -15,7 +15,7 @@ const PositionSelect = ({ name, ...props }: PositionSelectProps) => {
       render={({ field }) => (
         <TextField {...props} {...field} select disabled={loading} label={t('Position')}>
           <MenuItem value="">{t('No Position')}</MenuItem>
-          {positions.map(({ id, name }) => (
+          {data?.positions.map(({ id, name }) => (
             <MenuItem key={id} value={id}>
               {name}
             </MenuItem>

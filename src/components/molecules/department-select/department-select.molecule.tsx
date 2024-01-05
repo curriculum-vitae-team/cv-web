@@ -7,7 +7,7 @@ import { DepartmentSelectProps } from './department-select.types'
 
 const DepartmentSelect = ({ name, ...props }: DepartmentSelectProps) => {
   const { t } = useTranslation()
-  const [departments, loading] = useDepartments()
+  const { data, loading } = useDepartments()
 
   return (
     <Controller
@@ -15,7 +15,7 @@ const DepartmentSelect = ({ name, ...props }: DepartmentSelectProps) => {
       render={({ field }) => (
         <TextField {...props} {...field} select disabled={loading} label={t('Department')}>
           <MenuItem value="">{t('No Department')}</MenuItem>
-          {departments.map(({ id, name }) => (
+          {data?.departments.map(({ id, name }) => (
             <MenuItem key={id} value={id}>
               {name}
             </MenuItem>

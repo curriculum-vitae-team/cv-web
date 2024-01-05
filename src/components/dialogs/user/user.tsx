@@ -8,28 +8,27 @@ import { RoleSelect } from '@molecules/role-select'
 import { useUserCreate, useUserUpdate } from 'hooks/use-users.hook'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { passwordValidation, requiredValidation } from 'helpers/validation.helper'
+import { useProfileUpdate } from 'hooks/use-profile.hook'
+import { useAuth } from 'hooks/use-auth.hook'
 import { UserFormValues, UserProps } from './user.types'
 import * as Styled from './user.styles'
 
-const defaultValues = (item?: User): UserFormValues => {
-  return {
-    auth: {
-      email: item?.email || '',
-      password: item ? '**********' : ''
-    },
-    profile: {
-      first_name: item?.profile.first_name || '',
-      last_name: item?.profile.last_name || ''
-    },
-    departmentId: item?.department?.id || '',
-    positionId: item?.position?.id || '',
-    role: item?.role || UserRole.Employee
-  }
-}
-
 const User = ({ title = 'Create user', saveText = 'Create', item, closeDialog }: UserProps) => {
+  const { isAdmin } = useAuth()
   const methods = useForm<UserFormValues>({
-    defaultValues: defaultValues(item)
+    defaultValues: {
+      auth: {
+        email: item?.email || '',
+        password: item ? '**********' : ''
+      },
+      profile: {
+        first_name: item?.profile.first_name || '',
+        last_name: item?.profile.last_name || ''
+      },
+      departmentId: item?.department?.id || '',
+      positionId: item?.position?.id || '',
+      role: item?.role || UserRole.Employee
+    }
   })
   const {
     formState: { errors, isDirty },
@@ -39,26 +38,42 @@ const User = ({ title = 'Create user', saveText = 'Create', item, closeDialog }:
   const { t } = useTranslation()
   const [createUser, loading] = useUserCreate()
   const [updateUser, { loading: updating }] = useUserUpdate()
+  const [updateProfile] = useProfileUpdate()
 
-  const onSubmit = (values: UserFormValues) => {
+  const onSubmit = ({ auth, profile, departmentId, positionId, role }: UserFormValues) => {
     if (item) {
-      updateUser({
-        variables: {
-          user: {
-            userId: item.id,
-            departmentId: values.departmentId,
-            positionId: values.positionId,
-            role: values.role
+      Promise.all([
+        updateProfile({
+          variables: {
+            profile: {
+              profileId: item.profile.id,
+              first_name: profile.first_name,
+              last_name: profile.last_name
+            }
           }
-        }
-      }).then(closeDialog)
+        }),
+        updateUser({
+          variables: {
+            user: {
+              userId: item.id,
+              departmentId,
+              positionId,
+              role
+            }
+          }
+        })
+      ]).then(closeDialog)
       return
     }
     createUser({
       variables: {
         user: {
-          ...values,
-          cvsIds: []
+          auth,
+          profile,
+          cvsIds: [],
+          departmentId,
+          positionId,
+          role
         }
       }
     }).then(closeDialog)
@@ -88,7 +103,7 @@ const User = ({ title = 'Create user', saveText = 'Create', item, closeDialog }:
           <TextField {...register('profile.last_name')} label={t('Last Name')} />
           <DepartmentSelect name="departmentId" />
           <PositionSelect name="positionId" />
-          <RoleSelect name="role" />
+          <RoleSelect name="role" disabled={!isAdmin} />
         </Styled.Column>
         <DialogActions>
           <Button variant="outlined" color="secondary" onClick={closeDialog}>

@@ -37,7 +37,7 @@ const SideMenu = () => {
         <Styled.List>
           {LIST_ITEMS.map(({ IconComponent, DividerComponent, name, to }) => {
             if (DividerComponent) {
-              return <DividerComponent key="divider" />
+              return <DividerComponent key={name} />
             }
             return <SideMenuItem key={name} IconComponent={IconComponent} name={name} to={to} />
           })}

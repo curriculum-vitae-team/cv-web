@@ -8,6 +8,7 @@ import { LOGIN } from 'graphql/auth'
 import { authService } from 'graphql/auth/auth.service'
 import { PasswordInput } from '@molecules/password-input'
 import { requiredValidation } from 'helpers/validation.helper'
+import { routes } from 'constants/routes'
 import { LoginFormValues } from './login.types'
 import * as Styled from './login.styles'
 
@@ -31,7 +32,7 @@ const Login = () => {
     if (data) {
       const { user, access_token } = data.login
       authService.login(user, access_token)
-      navigate('/employees')
+      navigate(routes.root)
     }
   }
 
@@ -59,7 +60,7 @@ const Login = () => {
       <Button variant="contained" type="submit" disabled={loading}>
         {t('Sign in')}
       </Button>
-      <Button type="button" sx={{ mt: 2 }} onClick={() => navigate('/auth/signup')}>
+      <Button type="button" sx={{ mt: 2 }} onClick={() => navigate(routes.auth.signup)}>
         {t("I don't have an account")}
       </Button>
     </Styled.Form>

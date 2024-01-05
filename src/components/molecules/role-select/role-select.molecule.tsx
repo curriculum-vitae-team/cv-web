@@ -12,7 +12,7 @@ const RoleSelect = ({ name, ...props }: RoleSelectProps) => {
     <Controller
       name={name}
       render={({ field }) => (
-        <TextField {...props} {...field} select label={t('Role')}>
+        <TextField {...field} {...props} select label={t('Role')}>
           <MenuItem value={UserRole.Employee}>{t('Employee')}</MenuItem>
           <MenuItem value={UserRole.Admin}>{t('Admin')}</MenuItem>
         </TextField>
