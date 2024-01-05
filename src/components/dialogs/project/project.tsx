@@ -6,6 +6,7 @@ import { DatePicker } from '@molecules/date-picker'
 import { useProjectCreate, useProjectUpdate } from 'hooks/use-projects.hook'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { requiredValidation, teamSizeValidation } from 'helpers/validation.helper'
+import { DayMonthYear } from 'constants/format.constant'
 import * as Styled from './project.styles'
 import { ProjectFormValues, ProjectDialogProps } from './project.types'
 
@@ -49,6 +50,7 @@ const Project = ({ item, closeDialog }: ProjectDialogProps) => {
           id: item.id,
           project: {
             ...values,
+            team_size: Number(values.team_size),
             skillsIds: []
           }
         }
@@ -59,6 +61,7 @@ const Project = ({ item, closeDialog }: ProjectDialogProps) => {
       variables: {
         project: {
           ...values,
+          team_size: Number(values.team_size),
           skillsIds: []
         }
       }
@@ -95,15 +98,17 @@ const Project = ({ item, closeDialog }: ProjectDialogProps) => {
             label={t('Start Date')}
             error={!!errors.start_date}
             helperText={errors.start_date?.message}
+            format={DayMonthYear}
           />
           <DatePicker
             name="end_date"
             label={t('End Date')}
             error={!!errors.end_date}
             helperText={errors.end_date?.message}
+            format={DayMonthYear}
           />
           <Styled.Description
-            {...register('description', { validate: requiredValidation })}
+            {...register('description')}
             label={t('Description')}
             multiline
             rows={3}
