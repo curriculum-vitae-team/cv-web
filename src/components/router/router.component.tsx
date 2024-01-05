@@ -16,6 +16,7 @@ import { CVsPage } from '@pages/cvs'
 import { Positions } from '@pages/positions'
 import { Skills } from '@pages/skills'
 import { Languages } from '@pages/languages'
+import { Departments } from '@pages/departments'
 
 export const Router = () => {
   return (
@@ -45,7 +46,9 @@ export const Router = () => {
               <Route index element={<CVsPage />} />
               <Route path=":cvId" element={null} />
             </Route>
-            <Route path="/departments" element={null} />
+            <Route path="/departments" element={<AuthGuard />}>
+              <Route index element={<Departments />} />
+            </Route>
             <Route path="/positions" element={<AuthGuard />}>
               <Route index element={<Positions />} />
             </Route>
