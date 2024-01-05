@@ -1,31 +1,31 @@
 import { useTranslation } from 'react-i18next'
 import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
-import { Position } from 'cv-graphql'
+import { Department } from 'cv-graphql'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { TableRowProps } from '@templates/table/table.types'
-import { useConfirmDialog } from '@dialogs/confirm'
-import { usePositionDialog } from '@dialogs/position'
 import { useAuth } from 'hooks/use-auth.hook'
-import { usePositionDelete, usePositionUpdate } from 'hooks/use-positions.hook'
+import { useDepartmentDialog } from '@dialogs/department'
+import { useDepartmentDelete, useDepartmentUpdate } from 'hooks/use-departments.hook'
+import { useConfirmDialog } from '@dialogs/confirm'
 
-export const PositionsTableRow = ({ item }: TableRowProps<Position>) => {
+export const DepartmentsTableRow = ({ item }: TableRowProps<Department>) => {
   const { isAdmin } = useAuth()
   const { t } = useTranslation()
-  const [openPositionDialog] = usePositionDialog()
+  const [openDepartmentDialog] = useDepartmentDialog()
   const [openConfirmDialog] = useConfirmDialog()
-  const [updatePosition] = usePositionUpdate()
-  const [deletePosition] = usePositionDelete(item.id)
+  const [updateDepartment] = useDepartmentUpdate()
+  const [deleteDepartment] = useDepartmentDelete(item.id)
 
   const handleUpdate = () => {
-    openPositionDialog({
-      title: 'Update position',
+    openDepartmentDialog({
+      title: 'Update department',
       confirmText: 'Update',
-      position: item,
+      department: item,
       onConfirm({ name }) {
-        return updatePosition({
+        return updateDepartment({
           variables: {
-            position: {
-              positionId: item.id,
+            department: {
+              departmentId: item.id,
               name
             }
           }
@@ -36,13 +36,13 @@ export const PositionsTableRow = ({ item }: TableRowProps<Position>) => {
 
   const handleDelete = () => {
     openConfirmDialog({
-      dialogTitle: 'Delete position',
+      dialogTitle: 'Delete department',
       dialogContent: (
         <Typography>
-          {t('Are you sure you want to delete position')} <b>{item.name}</b>?
+          {t('Are you sure you want to delete department')} <b>{item.name}</b>?
         </Typography>
       ),
-      confirmCallback: () => deletePosition()
+      confirmCallback: () => deleteDepartment()
     })
   }
 
@@ -52,10 +52,10 @@ export const PositionsTableRow = ({ item }: TableRowProps<Position>) => {
       <TableCell>
         <ActionsMenu>
           <MenuItem disabled={!isAdmin} onClick={handleUpdate}>
-            {t('Update position')}
+            {t('Update department')}
           </MenuItem>
           <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-            {t('Delete position')}
+            {t('Delete department')}
           </MenuItem>
         </ActionsMenu>
       </TableCell>

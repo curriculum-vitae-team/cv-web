@@ -10,7 +10,7 @@ export const POSITIONS = gql`
 `
 
 export const CREATE_POSITION = gql`
-  mutation CreatePosition($position: PositionInput!) {
+  mutation CreatePosition($position: CreatePositionInput!) {
     createPosition(position: $position) {
       id
       name
@@ -19,8 +19,8 @@ export const CREATE_POSITION = gql`
 `
 
 export const UPDATE_POSITION = gql`
-  mutation UpdatePosition($id: ID!, $position: PositionInput!) {
-    updatePosition(id: $id, position: $position) {
+  mutation UpdatePosition($position: UpdatePositionInput!) {
+    updatePosition(position: $position) {
       id
       name
     }
@@ -28,8 +28,8 @@ export const UPDATE_POSITION = gql`
 `
 
 export const DELETE_POSITION = gql`
-  mutation DeletePosition($id: ID!) {
-    deletePosition(id: $id) {
+  mutation DeletePosition($position: DeletePositionInput!) {
+    deletePosition(position: $position) {
       affected
     }
   }

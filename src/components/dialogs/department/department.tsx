@@ -3,23 +3,29 @@ import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
 import { useState } from 'react'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
-import { PositionFormValues, PositionProps } from './position.types'
-import * as Styled from './position.styles'
+import { DepartmentFormValues, DepartmentProps } from './department.types'
+import * as Styled from './department.styles'
 
-const Position = ({ title, confirmText, position, onConfirm, closeDialog }: PositionProps) => {
+const Department = ({
+  title,
+  confirmText,
+  department,
+  onConfirm,
+  closeDialog
+}: DepartmentProps) => {
   const {
     formState: { errors, isDirty },
     register,
     handleSubmit
-  } = useForm<PositionFormValues>({
+  } = useForm<DepartmentFormValues>({
     defaultValues: {
-      name: position?.name || ''
+      name: department?.name || ''
     }
   })
   const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
 
-  const onSubmit = (values: PositionFormValues) => {
+  const onSubmit = (values: DepartmentFormValues) => {
     setIsLoading(true)
     onConfirm(values)
       .then(closeDialog)
@@ -49,7 +55,7 @@ const Position = ({ title, confirmText, position, onConfirm, closeDialog }: Posi
   )
 }
 
-export const usePositionDialog = createDialogHook<PositionProps>(
-  (props) => () => <Position {...props} />,
+export const useDepartmentDialog = createDialogHook<DepartmentProps>(
+  (props) => () => <Department {...props} />,
   { maxWidth: 'sm', fullWidth: true }
 )
