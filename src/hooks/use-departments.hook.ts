@@ -1,10 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client'
-import {
-  CreateDepartmentInput,
-  DeleteDepartmentInput,
-  Department,
-  UpdateDepartmentInput
-} from 'cv-graphql'
+import { CreateDepartmentInput, DeleteDepartmentInput, UpdateDepartmentInput } from 'cv-graphql'
 import {
   CREATE_DEPARTMENT,
   DELETE_DEPARTMENT,
@@ -17,10 +12,8 @@ import {
   UpdateDepartmentResult
 } from 'graphql/departments/departments.types'
 
-export const useDepartments = (): [Department[], boolean] => {
-  const { data, loading } = useQuery<DepartmentsResult>(DEPARTMENTS)
-
-  return [data?.departments || [], loading]
+export const useDepartments = () => {
+  return useQuery<DepartmentsResult>(DEPARTMENTS)
 }
 
 export const useDepartmentCreate = () => {

@@ -1,6 +1,6 @@
 import { MutationFunction, useMutation, useQuery } from '@apollo/client'
 import { UpdateUserInput, User } from 'cv-graphql'
-import { CREATE_USER, DELETE_USER, UPDATE_USER, USER, USERS } from 'graphql/users'
+import { CREATE_USER, DELETE_USER, UPDATE_USER, USER, USERS, USER_CVS } from 'graphql/users'
 import {
   CreateUserResult,
   UpdateUserResult,
@@ -12,9 +12,12 @@ export const useUser = (userId?: string) => {
   return useQuery<UserResult>(USER, { variables: { userId } })
 }
 
-export const useUsers = (): [User[], boolean] => {
-  const { data, loading } = useQuery<UsersResult>(USERS)
-  return [data?.users || [], loading]
+export const useUserCvs = (userId: string) => {
+  return useQuery<UserResult>(USER_CVS, { variables: { userId } })
+}
+
+export const useUsers = () => {
+  return useQuery<UsersResult>(USERS)
 }
 
 export const useUserCreate = (): [MutationFunction<CreateUserResult>, boolean] => {

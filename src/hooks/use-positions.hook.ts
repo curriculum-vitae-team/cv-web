@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@apollo/client'
-import { Position, CreatePositionInput, UpdatePositionInput, DeletePositionInput } from 'cv-graphql'
+import { CreatePositionInput, UpdatePositionInput, DeletePositionInput } from 'cv-graphql'
 import { CREATE_POSITION, DELETE_POSITION, POSITIONS, UPDATE_POSITION } from 'graphql/positions'
 import {
   CreatePositionResult,
@@ -7,10 +7,8 @@ import {
   UpdatePositionResult
 } from 'graphql/positions/positions.types'
 
-export const usePositions = (): [Position[], boolean] => {
-  const { data, loading } = useQuery<PositionsResult>(POSITIONS)
-
-  return [data?.positions || [], loading]
+export const usePositions = () => {
+  return useQuery<PositionsResult>(POSITIONS)
 }
 
 export const usePositionCreate = () => {

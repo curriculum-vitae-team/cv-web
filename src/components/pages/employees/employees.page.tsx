@@ -8,18 +8,18 @@ import { useUsers } from 'hooks/use-users.hook'
 const Table = createTable<User>()
 
 const Employees = () => {
-  const [users, loading] = useUsers()
+  const { data, loading } = useUsers()
 
   return (
     <div>
       <Table
-        items={users}
+        items={data?.users || []}
         loading={loading}
         TableToolComponent={UsersTableTool}
         TableHeadComponent={UsersTableHead}
         TableRowComponent={UsersTableRow}
         searchBy={['email', 'profile.first_name', 'profile.last_name']}
-        defaultSortBy="department_name"
+        defaultSortBy="department.name"
       />
     </div>
   )

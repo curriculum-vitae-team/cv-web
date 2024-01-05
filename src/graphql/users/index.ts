@@ -12,8 +12,14 @@ export const USERS = gql`
         full_name
         avatar
       }
-      department_name
-      position_name
+      department {
+        id
+        name
+      }
+      position {
+        id
+        name
+      }
       role
     }
   }

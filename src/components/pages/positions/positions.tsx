@@ -8,12 +8,12 @@ import { usePositions } from 'hooks/use-positions.hook'
 const Table = createTable<Position>()
 
 const Positions = () => {
-  const [positions, loading] = usePositions()
+  const { data, loading } = usePositions()
 
   return (
     <div>
       <Table
-        items={positions}
+        items={data?.positions || []}
         loading={loading}
         TableToolComponent={PositionsTableTool}
         TableHeadComponent={PositionsTableHead}

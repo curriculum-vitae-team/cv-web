@@ -1,13 +1,11 @@
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
-import { useQuery } from '@apollo/client'
 import { CircularProgress } from '@mui/material'
-import { USER_CVS } from 'graphql/users'
-import { UserResult } from 'graphql/users/users.types'
+import { useUserCvs } from 'hooks/use-users.hook'
 
 const EmployeeCvs = () => {
-  const { userId } = useParams()
-  const { data, loading } = useQuery<UserResult>(USER_CVS, { variables: { userId } })
+  const { userId = '' } = useParams()
+  const { data, loading } = useUserCvs(userId)
 
   if (!data || loading) {
     return <CircularProgress />

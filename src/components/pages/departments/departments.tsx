@@ -8,12 +8,12 @@ import { DepartmentsTableTool } from '@organisms/departments-table-tool'
 const Table = createTable<Department>()
 
 const Departments = () => {
-  const [departments, loading] = useDepartments()
+  const { data, loading } = useDepartments()
 
   return (
     <div>
       <Table
-        items={departments}
+        items={data?.departments || []}
         loading={loading}
         TableToolComponent={DepartmentsTableTool}
         TableHeadComponent={DepartmentsTableHead}

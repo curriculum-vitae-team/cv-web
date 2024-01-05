@@ -6,12 +6,12 @@ import { Auth } from '@pages/auth'
 import { Login } from '@pages/login'
 import { Signup } from '@pages/signup'
 import { Layout } from '@templates/layout'
-import { Settings } from '@pages/settings'
 import { Employees } from '@pages/employees'
 import { EmployeeDetails } from '@pages/employee-details'
 import { EmployeeProfile } from '@pages/employee-profile'
 import { EmployeeSkills } from '@pages/employee-skills'
 import { EmployeeCvs } from '@pages/employee-cvs'
+import { Settings } from '@pages/settings'
 import { Projects } from '@pages/projects'
 import { CVsPage } from '@pages/cvs'
 import { Departments } from '@pages/departments'
@@ -29,7 +29,7 @@ export const Router = () => {
             <Route path={routes.auth.signup} element={<Signup />} />
           </Route>
           <Route element={<Layout />}>
-            <Route path={routes.root} element={null} />
+            {/* <Route path={routes.root} element={<Home />} /> */}
             <Route path={routes.users.root}>
               <Route index element={<Employees />} />
               <Route path={routes.users.user} element={<EmployeeDetails />}>
@@ -54,7 +54,7 @@ export const Router = () => {
             <Route path={routes.skills} element={<Skills />} />
             <Route path={routes.languages} element={<Languages />} />
           </Route>
-          <Route path="*" element={<Navigate to={routes.root} />} />
+          <Route path="*" element={<Navigate to={routes.users.root} />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
