@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
-import { useSkillCreate, useSkillUpdate } from 'hooks/use-skills.hook'
+import { useSkillCreate, useSkillUpdate } from 'hooks/use-skills'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { SkillFormValues, SkillProps } from './skill.types'
 import * as Styled from './skill.styles'
@@ -19,8 +19,8 @@ const Skill = ({ item, closeDialog }: SkillProps) => {
     defaultValues: item || defaultValues
   })
   const { t } = useTranslation()
-  const [createSkill, loading] = useSkillCreate()
-  const [updateSkill, updating] = useSkillUpdate()
+  const [createSkill, { loading }] = useSkillCreate()
+  const [updateSkill, { loading: updating }] = useSkillUpdate()
 
   const onSubmit = (values: SkillFormValues) => {
     if (item) {

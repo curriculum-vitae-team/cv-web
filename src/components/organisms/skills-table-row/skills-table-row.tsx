@@ -6,14 +6,14 @@ import { TableRowProps } from '@templates/table/table.types'
 import { useSkillDialog } from '@dialogs/skill'
 import { useConfirmDialog } from '@dialogs/confirm'
 import { useAuth } from 'hooks/use-auth.hook'
-import { useSkillDelete } from 'hooks/use-skills.hook'
+import { useSkillDelete } from 'hooks/use-skills'
 
 export const SkillsTableRow = ({ item }: TableRowProps<Skill>) => {
   const { isAdmin } = useAuth()
   const { t } = useTranslation()
   const [openSkillDialog] = useSkillDialog()
   const [openConfirmDialog] = useConfirmDialog()
-  const [deleteSkill] = useSkillDelete(item)
+  const [deleteSkill] = useSkillDelete(item.id)
 
   const handleUpdate = () => {
     openSkillDialog({ item })
