@@ -8,7 +8,7 @@ import { ActionsMenu } from '@atoms/actions-menu'
 import { useUserDialog } from '@dialogs/user'
 import { useConfirmDialog } from '@dialogs/confirm'
 import { useAuth } from 'hooks/use-auth.hook'
-import { useUserDelete } from 'hooks/use-users.hook'
+import { useUserDelete } from 'hooks/use-users'
 
 import { routes } from 'constants/routes'
 import * as Styled from './users-table-row.styles'
@@ -19,7 +19,7 @@ const UsersTableRow = ({ item }: TableRowProps<User>) => {
   const isSelf = item.id === userId
   const { t } = useTranslation()
   const [openUserDialog] = useUserDialog()
-  const [deleteUser] = useUserDelete(item)
+  const [deleteUser] = useUserDelete(item.id)
   const [openConfirmDialog] = useConfirmDialog()
 
   const handleProfile = () => {
@@ -38,7 +38,7 @@ const UsersTableRow = ({ item }: TableRowProps<User>) => {
           {t('Are you sure you want to delete user')} <b>{item.profile.full_name || item.email}</b>?
         </Typography>
       ),
-      confirmCallback: () => deleteUser({ variables: { userId: item.id } })
+      confirmCallback: () => deleteUser()
     })
   }
 
