@@ -6,8 +6,8 @@ import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { useConfirmDialog } from '@dialogs/confirm'
 import { useProjectDialog } from '@dialogs/project'
-import { useProjectDelete } from 'hooks/use-projects.hook'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useProjectDelete } from 'hooks/use-projects'
+import { useAuth } from 'hooks/use-auth'
 import { DayMonthYear } from 'constants/format.constant'
 import * as Styled from './projects-table-row.styles'
 
@@ -15,7 +15,7 @@ export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
   const { t } = useTranslation()
   const { isAdmin } = useAuth()
   const [openProjectDialog] = useProjectDialog()
-  const [deleteProject] = useProjectDelete(item)
+  const [deleteProject] = useProjectDelete(item.id)
   const [openConfirmDialog] = useConfirmDialog()
 
   const handleUpdate = () => {
@@ -30,7 +30,7 @@ export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
           {t('Are you sure you want to delete project')} <b>{item.name}</b>?
         </Typography>
       ),
-      confirmCallback: () => deleteProject({ variables: { id: item.id } })
+      confirmCallback: () => deleteProject()
     })
   }
 

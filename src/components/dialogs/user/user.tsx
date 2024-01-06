@@ -5,11 +5,11 @@ import { User, UserRole } from 'cv-graphql'
 import { DepartmentSelect } from '@molecules/department-select'
 import { PositionSelect } from '@molecules/position-select'
 import { RoleSelect } from '@molecules/role-select'
-import { useUserCreate, useUserUpdate } from 'hooks/use-users.hook'
+import { useUserCreate, useUserUpdate } from 'hooks/use-users'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { passwordValidation, requiredValidation } from 'helpers/validation.helper'
-import { useProfileUpdate } from 'hooks/use-profile.hook'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useProfileUpdate } from 'hooks/use-profile'
+import { useAuth } from 'hooks/use-auth'
 import { UserFormValues, UserProps } from './user.types'
 import * as Styled from './user.styles'
 
@@ -36,7 +36,7 @@ const User = ({ title = 'Create user', saveText = 'Create', item, closeDialog }:
     handleSubmit
   } = methods
   const { t } = useTranslation()
-  const [createUser, loading] = useUserCreate()
+  const [createUser, { loading }] = useUserCreate()
   const [updateUser, { loading: updating }] = useUserUpdate()
   const [updateProfile] = useProfileUpdate()
 

@@ -1,19 +1,19 @@
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { CircularProgress } from '@mui/material'
-import { useUserCvs } from 'hooks/use-users.hook'
+import { useUserCvs } from 'hooks/use-users'
 
 const EmployeeCvs = () => {
   const { userId = '' } = useParams()
-  const { data, loading } = useUserCvs(userId)
+  const { cvs, loading } = useUserCvs(userId)
 
-  if (!data || loading) {
+  if (loading) {
     return <CircularProgress />
   }
 
   return (
     <div>
-      {data.user.cvs?.map((cv) => (
+      {cvs.map((cv) => (
         <div>{cv.name}</div>
       ))}
     </div>

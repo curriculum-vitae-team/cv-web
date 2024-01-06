@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { SearchInput } from '@molecules/search-input'
 import { useUserDialog } from '@dialogs/user'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 import { AddButton } from '@atoms/add-button'
 
 export const UsersTableTool = () => {

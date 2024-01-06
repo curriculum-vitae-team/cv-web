@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { parseISO } from 'date-fns'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
 import { DatePicker } from '@molecules/date-picker'
-import { useProjectCreate, useProjectUpdate } from 'hooks/use-projects.hook'
+import { useProjectCreate, useProjectUpdate } from 'hooks/use-projects'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { requiredValidation, teamSizeValidation } from 'helpers/validation.helper'
 import { DayMonthYear } from 'constants/format.constant'
@@ -40,8 +40,8 @@ const Project = ({ item, closeDialog }: ProjectDialogProps) => {
     handleSubmit
   } = methods
   const { t } = useTranslation()
-  const [createProject, loading] = useProjectCreate()
-  const [updateProject, updating] = useProjectUpdate()
+  const [createProject, { loading }] = useProjectCreate()
+  const [updateProject, { loading: updating }] = useProjectUpdate()
 
   const onSubmit = (values: ProjectFormValues) => {
     if (item) {

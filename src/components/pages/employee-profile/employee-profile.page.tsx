@@ -4,30 +4,29 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from '@mui/material'
 import { AvatarUpload } from '@molecules/avatar-upload'
 import { EmployeeProfileForm } from '@organisms/employee-profile-form'
-import { useUser } from 'hooks/use-users.hook'
+import { useUser } from 'hooks/use-users'
 import * as Styled from './employee-profile.styles'
 
 const EmployeeProfile = () => {
   const { userId } = useParams()
   const { t } = useTranslation()
-  const { data, loading } = useUser(userId)
+  const { user, loading } = useUser(userId)
 
-  if (loading || !data) {
-    // TODO: add loader
+  if (loading || !user) {
     return null
   }
 
   return (
     <>
-      <AvatarUpload user={data.user} />
+      <AvatarUpload user={user} />
       <Styled.Profile>
-        <Typography variant="h5">{data.user.profile.full_name}</Typography>
-        <Typography>{data.user.email}</Typography>
+        <Typography variant="h5">{user.profile.full_name}</Typography>
+        <Typography>{user.email}</Typography>
         <Typography>
-          {t('A member since')} {new Date(+data.user.created_at).toDateString()}
+          {t('A member since')} {new Date(+user.created_at).toDateString()}
         </Typography>
       </Styled.Profile>
-      <EmployeeProfileForm user={data.user} />
+      <EmployeeProfileForm user={user} />
     </>
   )
 }

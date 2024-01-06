@@ -1,16 +1,24 @@
 import { useTranslation } from 'react-i18next'
 import { AddButton } from '@atoms/add-button'
 import { SearchInput } from '@molecules/search-input'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
+import { useCvDialog } from '@dialogs/cv'
 
 export const CVsTableTool = () => {
-  const { isAdmin } = useAuth()
+  const { userId, isAdmin } = useAuth()
   const { t } = useTranslation()
+  const [openCvDialog] = useCvDialog()
+
+  const handleCreate = () => {
+    openCvDialog({
+      userId
+    })
+  }
 
   return (
     <>
       <SearchInput />
-      {isAdmin && <AddButton>{t('Create CV')}</AddButton>}
+      {isAdmin && <AddButton onClick={handleCreate}>{t('Create CV')}</AddButton>}
     </>
   )
 }

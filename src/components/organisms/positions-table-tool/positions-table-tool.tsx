@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { AddButton } from '@atoms/add-button'
 import { SearchInput } from '@molecules/search-input'
 import { usePositionDialog } from '@dialogs/position'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 import { usePositionCreate } from 'hooks/use-positions.hook'
 
 export const PositionsTableTool = () => {

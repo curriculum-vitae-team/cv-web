@@ -5,7 +5,7 @@ import { ActionsMenu } from '@atoms/actions-menu'
 import { TableRowProps } from '@templates/table/table.types'
 import { useConfirmDialog } from '@dialogs/confirm'
 import { usePositionDialog } from '@dialogs/position'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 import { usePositionDelete, usePositionUpdate } from 'hooks/use-positions.hook'
 
 export const PositionsTableRow = ({ item }: TableRowProps<Position>) => {

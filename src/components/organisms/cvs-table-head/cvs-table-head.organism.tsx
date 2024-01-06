@@ -8,7 +8,6 @@ export const CVsTableHead = () => {
 
   return (
     <TableRow>
-      <TableCell>{t('Template')}</TableCell>
       <TableCell>{createSortLabel<Cv>('name', t('Name'))}</TableCell>
       <TableCell>{t('Description')}</TableCell>
       <TableCell>{createSortLabel<Cv>('user.email', t('Employee'))}</TableCell>
