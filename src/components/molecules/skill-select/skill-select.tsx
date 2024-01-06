@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useController } from 'react-hook-form'
 import { MenuItem, TextField } from '@mui/material'
 import { useSkills } from 'hooks/use-skills'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 import { useProfileSkills } from 'hooks/use-profile'
 import { SkillSelectProps } from './skill-select.types'
 

@@ -5,7 +5,7 @@ import { ActionsMenu } from '@atoms/actions-menu'
 import { TableRowProps } from '@templates/table/table.types'
 import { useSkillDialog } from '@dialogs/skill'
 import { useConfirmDialog } from '@dialogs/confirm'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 import { useSkillDelete } from 'hooks/use-skills'
 
 export const SkillsTableRow = ({ item }: TableRowProps<Skill>) => {

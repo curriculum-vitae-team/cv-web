@@ -3,7 +3,7 @@ import { LinearProgress, Typography } from '@mui/material'
 import { SkillMastery } from 'constants/skill-mastery.constants'
 import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
 import { useProfileSkillUpdate } from 'hooks/use-profile'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 import { SkillProps } from './skill.types'
 import * as Styled from './skill.styles'
 

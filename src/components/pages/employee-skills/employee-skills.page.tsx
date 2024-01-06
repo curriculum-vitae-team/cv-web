@@ -3,7 +3,7 @@ import { CircularProgress } from '@mui/material'
 import { Skill } from '@items/skill'
 import { NewSkill } from '@items/new-skill'
 import { useProfileSkills } from 'hooks/use-profile'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 import * as Styled from './employee-skills.styles'
 
 const EmployeeSkills = () => {

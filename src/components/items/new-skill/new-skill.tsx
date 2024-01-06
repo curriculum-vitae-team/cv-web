@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Typography } from '@mui/material'
 import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
 import { useProfileSkillAdd } from 'hooks/use-profile'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 import * as Styled from './new-skill.styles'
 
 const NewSkill = () => {

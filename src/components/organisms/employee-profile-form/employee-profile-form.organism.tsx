@@ -5,7 +5,7 @@ import { DepartmentSelect } from '@molecules/department-select'
 import { PositionSelect } from '@molecules/position-select'
 import { useUserUpdate } from 'hooks/use-users'
 import { useProfileUpdate } from 'hooks/use-profile'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 import { EmployeeProfileFormProps, UserProfileFormValues } from './employee-profile-form.types'
 import * as Styled from './employee-profile-form.styles'
 

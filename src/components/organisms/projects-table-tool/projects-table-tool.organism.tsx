@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { AddButton } from '@atoms/add-button'
 import { SearchInput } from '@molecules/search-input'
 import { useProjectDialog } from '@dialogs/project'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 
 export const ProjectsTableTool = () => {
   const { isAdmin } = useAuth()

@@ -7,7 +7,7 @@ import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { useUserDialog } from '@dialogs/user'
 import { useConfirmDialog } from '@dialogs/confirm'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 import { useUserDelete } from 'hooks/use-users'
 
 import { routes } from 'constants/routes'

@@ -2,15 +2,15 @@ import { ChangeEvent, DragEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Badge, IconButton, Typography } from '@mui/material'
 import { Close, FileUploadOutlined } from '@mui/icons-material'
-import { useAvatarUpload, useAvatarDelete } from 'hooks/use-avatar.hook'
+import { useAvatarUpload, useAvatarDelete } from 'hooks/use-avatar'
 import { fileToBase64 } from 'helpers/file-to-base64.helper'
 import { AvatarUploadProps } from './avatar-upload.types'
 import * as Styled from './avatar-upload.styles'
 
 export const AvatarUpload = ({ user }: AvatarUploadProps) => {
   const { t } = useTranslation()
-  const [uploadAvatar, isLoading] = useAvatarUpload()
-  const [deleteAvatar, isDeleting] = useAvatarDelete()
+  const [uploadAvatar, { loading: isLoading }] = useAvatarUpload()
+  const [deleteAvatar, { loading: isDeleting }] = useAvatarDelete()
   const profileId = user.profile.id
 
   const handleUpload = (file: File) => {

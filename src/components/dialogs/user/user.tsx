@@ -9,7 +9,7 @@ import { useUserCreate, useUserUpdate } from 'hooks/use-users'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { passwordValidation, requiredValidation } from 'helpers/validation.helper'
 import { useProfileUpdate } from 'hooks/use-profile'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 import { UserFormValues, UserProps } from './user.types'
 import * as Styled from './user.styles'
 

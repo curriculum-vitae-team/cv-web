@@ -7,7 +7,7 @@ import { ActionsMenu } from '@atoms/actions-menu'
 import { useConfirmDialog } from '@dialogs/confirm'
 import { useProjectDialog } from '@dialogs/project'
 import { useProjectDelete } from 'hooks/use-projects'
-import { useAuth } from 'hooks/use-auth.hook'
+import { useAuth } from 'hooks/use-auth'
 import { DayMonthYear } from 'constants/format.constant'
 import * as Styled from './projects-table-row.styles'
 
