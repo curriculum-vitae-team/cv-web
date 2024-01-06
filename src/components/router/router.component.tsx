@@ -13,7 +13,10 @@ import { EmployeeSkills } from '@pages/employee-skills'
 import { EmployeeCvs } from '@pages/employee-cvs'
 import { Settings } from '@pages/settings'
 import { Projects } from '@pages/projects'
-import { CVsPage } from '@pages/cvs'
+import { Cvs } from '@pages/cvs'
+import { Cv } from '@pages/cv'
+import { CvDetails } from '@pages/cv-details'
+import { CvPreview } from '@pages/cv-preview'
 import { Departments } from '@pages/departments'
 import { Positions } from '@pages/positions'
 import { Skills } from '@pages/skills'
@@ -46,8 +49,12 @@ export const Router = () => {
               <Route path={routes.projects.project} element={null} />
             </Route>
             <Route path={routes.cvs.root}>
-              <Route index element={<CVsPage />} />
-              <Route path={routes.cvs.cv} element={null} />
+              <Route index element={<Cvs />} />
+              <Route path={routes.cvs.cv} element={<Cv />}>
+                <Route path={routes.cvs.details} element={<CvDetails />} />
+                <Route path={routes.cvs.preview} element={<CvPreview />} />
+                <Route index path="*" element={<Navigate to="details" />} />
+              </Route>
             </Route>
             <Route path={routes.departments} element={<Departments />} />
             <Route path={routes.positions} element={<Positions />} />

@@ -20,7 +20,9 @@ const projectRoutes = {
 
 const cvRoutes = {
   root: '/cvs',
-  cv: '/cvs/:cvId'
+  cv: '/cvs/:cvId',
+  details: '/cvs/:cvId/details',
+  preview: '/cvs/:cvId/preview'
 } as const
 
 export const routes = {

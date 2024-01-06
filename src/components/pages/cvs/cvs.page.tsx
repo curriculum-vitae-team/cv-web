@@ -8,7 +8,7 @@ import { useCvs } from 'hooks/use-cvs'
 
 const Table = createTable<Cv>()
 
-const CVsPage = () => {
+const Cvs = () => {
   const { cvs, loading } = useCvs()
 
   return (
@@ -26,4 +26,4 @@ const CVsPage = () => {
   )
 }
 
-export default memo(CVsPage)
+export default memo(Cvs)

@@ -1,5 +1,4 @@
 import { memo } from 'react'
-import { CircularProgress } from '@mui/material'
 import { Skill } from '@items/skill'
 import { NewSkill } from '@items/new-skill'
 import { useProfileSkills } from 'hooks/use-profile'
@@ -11,7 +10,7 @@ const EmployeeSkills = () => {
   const { skills, loading } = useProfileSkills(profileId)
 
   if (loading) {
-    return <CircularProgress />
+    return null
   }
 
   return (

@@ -13,7 +13,6 @@ const EmployeeProfile = () => {
   const { user, loading } = useUser(userId)
 
   if (loading || !user) {
-    // TODO: add loader
     return null
   }
 
