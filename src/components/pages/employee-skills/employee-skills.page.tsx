@@ -1,17 +1,16 @@
 import { memo } from 'react'
-import { useParams } from 'react-router-dom'
 import { CircularProgress } from '@mui/material'
 import { Skill } from '@items/skill'
 import { NewSkill } from '@items/new-skill'
-import { useProfileSkills } from 'hooks/use-profile.hook'
+import { useProfileSkills } from 'hooks/use-profile'
+import { useAuth } from 'hooks/use-auth.hook'
 import * as Styled from './employee-skills.styles'
 
 const EmployeeSkills = () => {
-  const { userId } = useParams()
-  const { data, loading } = useProfileSkills(userId || '')
-  const skills = data?.profile.skills || []
+  const { profileId } = useAuth()
+  const { skills, loading } = useProfileSkills(profileId)
 
-  if (loading || !data) {
+  if (loading) {
     return <CircularProgress />
   }
 

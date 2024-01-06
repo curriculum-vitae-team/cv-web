@@ -4,7 +4,7 @@ import { useController } from 'react-hook-form'
 import { MenuItem, TextField } from '@mui/material'
 import { useSkills } from 'hooks/use-skills'
 import { useAuth } from 'hooks/use-auth.hook'
-import { useProfileSkills } from 'hooks/use-profile.hook'
+import { useProfileSkills } from 'hooks/use-profile'
 import { SkillSelectProps } from './skill-select.types'
 
 const SkillSelect = ({ disabled }: SkillSelectProps) => {
@@ -12,8 +12,8 @@ const SkillSelect = ({ disabled }: SkillSelectProps) => {
   const { profileId } = useAuth()
   const { skills: allSkills, loading } = useSkills()
   const { field } = useController({ name: 'skill_name' })
-  const { data } = useProfileSkills(profileId)
-  const ownSkills = data?.profile.skills.map((skill) => skill.skill_name) || []
+  const { skills } = useProfileSkills(profileId)
+  const ownSkills = skills.map((skill) => skill.skill_name) || []
   const sortedSkills = [...allSkills].sort((a) => {
     if (ownSkills.includes(a.name)) {
       return 1

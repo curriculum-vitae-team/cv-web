@@ -5,7 +5,7 @@ import { Avatar, Divider, ListItemIcon, Menu, MenuItem } from '@mui/material'
 import { AccountCircle, Settings, Logout } from '@mui/icons-material'
 import { authService } from 'graphql/auth/auth.service'
 import { useAuth } from 'hooks/use-auth.hook'
-import { useProfile } from 'hooks/use-profile.hook'
+import { useProfile } from 'hooks/use-profile'
 import { routes } from 'constants/routes'
 import * as Styled from './user-menu.styles'
 
@@ -13,7 +13,7 @@ const UserMenu = () => {
   const location = useLocation()
   const { t } = useTranslation()
   const { user$, userId, profileId } = useAuth()
-  const { data } = useProfile(profileId)
+  const { profile } = useProfile(profileId)
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
 
@@ -35,13 +35,13 @@ const UserMenu = () => {
 
   return (
     <>
-      <Styled.Name color="white">{data?.profile.full_name || user$?.email}</Styled.Name>
+      <Styled.Name color="white">{profile?.full_name || user$?.email}</Styled.Name>
       <Avatar
-        src={data?.profile.avatar || ''}
+        src={profile?.avatar || ''}
         sx={{ backgroundColor: '#c63031', cursor: 'pointer' }}
         onClick={handleClick}
       >
-        {data?.profile.full_name?.[0] || user$?.email[0]}
+        {profile?.full_name?.[0] || user$?.email[0]}
       </Avatar>
       <Menu
         anchorEl={anchorEl}
