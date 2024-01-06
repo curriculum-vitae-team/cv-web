@@ -1,22 +1,20 @@
 import { memo } from 'react'
-import { useQuery } from '@apollo/client'
 import { Cv } from 'cv-graphql'
 import { createTable } from '@templates/table'
 import { CVsTableTool } from '@organisms/cvs-table-tool'
 import { CVsTableHead } from '@organisms/cvs-table-head'
 import { CVsTableRow } from '@organisms/cvs-table-row'
-import { CVS } from 'graphql/cvs'
-import { CVsResult } from 'graphql/cvs/cvs.types'
+import { useCvs } from 'hooks/use-cvs'
 
 const Table = createTable<Cv>()
 
 const CVsPage = () => {
-  const { data, loading } = useQuery<CVsResult>(CVS)
+  const { cvs, loading } = useCvs()
 
   return (
     <div>
       <Table
-        items={data?.cvs || []}
+        items={cvs}
         loading={loading}
         TableToolComponent={CVsTableTool}
         TableHeadComponent={CVsTableHead}
