@@ -4,7 +4,9 @@ type ItemProps = {
   isActive?: boolean
 }
 
-export const Item = styled(ListItem)<ItemProps>(({ theme, isActive }) => ({
+const shouldForwardProp = (prop: string) => prop !== 'isActive'
+
+export const Item = styled(ListItem, { shouldForwardProp })<ItemProps>(({ theme, isActive }) => ({
   color: isActive ? theme.palette.primary.main : undefined,
   '& .MuiListItemIcon-root': {
     color: isActive ? theme.palette.primary.light : undefined
