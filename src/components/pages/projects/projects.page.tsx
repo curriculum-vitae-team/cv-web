@@ -1,22 +1,20 @@
 import { memo } from 'react'
-import { useQuery } from '@apollo/client'
 import { Project } from 'cv-graphql'
 import { createTable } from '@templates/table'
 import { ProjectsTableTool } from '@organisms/projects-table-tool'
 import { ProjectsTableHead } from '@organisms/projects-table-head'
 import { ProjectsTableRow } from '@organisms/projects-table-row'
-import { PROJECTS } from 'graphql/projects'
-import { ProjectsResult } from 'graphql/projects/projects.types'
+import { useProjects } from 'hooks/use-projects'
 
 const Table = createTable<Project>()
 
 const Projects = () => {
-  const { data, loading } = useQuery<ProjectsResult>(PROJECTS)
+  const { projects, loading } = useProjects()
 
   return (
     <div>
       <Table
-        items={data?.projects || []}
+        items={projects}
         loading={loading}
         TableToolComponent={ProjectsTableTool}
         TableHeadComponent={ProjectsTableHead}
