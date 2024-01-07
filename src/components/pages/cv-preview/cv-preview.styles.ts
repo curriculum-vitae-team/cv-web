@@ -1,18 +1,33 @@
-import { Typography, styled } from '@mui/material'
+import { Button, Typography, styled } from '@mui/material'
 
-export const Page = styled('div')({
+export const Document = styled('div')({
   display: 'grid',
   gridTemplateColumns: '200px 1fr',
   color: '#353535'
 })
 
+export const PageBreak = styled('div')({
+  pageBreakAfter: 'always'
+})
+
 export const Head = styled('section')({
+  display: 'grid',
+  gridTemplateColumns: '1fr auto',
   gridColumn: 'span 2',
   marginBottom: 32
 })
 
 export const Position = styled(Typography)({
-  textTransform: 'uppercase'
+  textTransform: 'uppercase',
+  gridColumn: 1
+})
+
+export const Export = styled(Button)({
+  gridColumn: 2,
+  gridRow: 1,
+  '@media print': {
+    display: 'none'
+  }
 })
 
 export const Left = styled('section')({

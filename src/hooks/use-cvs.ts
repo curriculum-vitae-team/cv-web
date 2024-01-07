@@ -1,7 +1,13 @@
 import { useMutation, useQuery } from '@apollo/client'
-import { CvInput } from 'cv-graphql'
-import { CREATE_CV, CV, CVS, DELETE_CV, UPDATE_CV } from 'graphql/cvs'
-import { CVsResult, CreateCvResult, CvResult, UpdateCvResult } from 'graphql/cvs/cvs.types'
+import { CvInput, ExportPdfInput } from 'cv-graphql'
+import { CREATE_CV, CV, CVS, DELETE_CV, EXPORT_PDF, UPDATE_CV } from 'graphql/cvs'
+import {
+  CVsResult,
+  CreateCvResult,
+  CvResult,
+  ExportPdfResult,
+  UpdateCvResult
+} from 'graphql/cvs/cvs.types'
 
 export const useCvs = () => {
   const query = useQuery<CVsResult>(CVS)
@@ -34,4 +40,8 @@ export const useCvDelete = (cvId: string) => {
       cache.gc()
     }
   })
+}
+
+export const usePdfExport = () => {
+  return useMutation<ExportPdfResult, { pdf: ExportPdfInput }>(EXPORT_PDF)
 }

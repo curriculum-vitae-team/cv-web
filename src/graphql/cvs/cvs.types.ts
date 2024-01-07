@@ -15,3 +15,7 @@ export type CreateCvResult = {
 export type UpdateCvResult = {
   updateCv: Cv
 }
+
+export type ExportPdfResult = {
+  exportPdf: string
+}
