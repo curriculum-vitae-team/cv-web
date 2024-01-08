@@ -7,6 +7,7 @@ const prepareStyles = () => {
     }
     return acc
   }, [])
+  console.log(links)
   style.append(...links)
 
   return style
