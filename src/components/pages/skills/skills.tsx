@@ -18,8 +18,8 @@ const Skills = () => {
         TableToolComponent={SkillsTableTool}
         TableHeadComponent={SkillsTableHead}
         TableRowComponent={SkillsTableRow}
-        searchBy={['name']}
-        defaultSortBy="name"
+        searchBy={['name', 'category']}
+        defaultSortBy="category"
       />
     </div>
   )
