@@ -1,1 +1,1 @@
-export { CVsTableRow } from './cvs-table-row.organism'
+export { CVsTableRow } from './cvs-table-row'

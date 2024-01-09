@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
+import { MenuItem, TableCell, Typography } from '@mui/material'
 import { Cv } from 'cv-graphql'
 import { generatePath, useNavigate } from 'react-router-dom'
 import { TableRowProps } from '@templates/table/table.types'
@@ -7,6 +7,7 @@ import { ActionsMenu } from '@atoms/actions-menu'
 import { useConfirmDialog } from '@dialogs/confirm'
 import { useCvDelete } from 'hooks/use-cvs'
 import { routes } from 'constants/routes'
+import * as Styled from './cvs-table-row.styles'
 
 export const CVsTableRow = ({ item }: TableRowProps<Cv>) => {
   const navigate = useNavigate()
@@ -31,7 +32,7 @@ export const CVsTableRow = ({ item }: TableRowProps<Cv>) => {
   }
 
   return (
-    <TableRow>
+    <Styled.Row>
       <TableCell
         sx={{
           maxWidth: 120,
@@ -59,6 +60,6 @@ export const CVsTableRow = ({ item }: TableRowProps<Cv>) => {
           <MenuItem onClick={handleDelete}>{t('Delete CV')}</MenuItem>
         </ActionsMenu>
       </TableCell>
-    </TableRow>
+    </Styled.Row>
   )
 }
