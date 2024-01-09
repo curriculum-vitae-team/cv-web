@@ -1,14 +1,12 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useMutation } from '@apollo/client'
 import { Button, TextField, Typography } from '@mui/material'
-import { SIGNUP } from 'graphql/auth'
-import { SignupResult } from 'graphql/auth/auth.types'
 import { authService } from 'graphql/auth/auth.service'
 import { PasswordInput } from '@molecules/password-input'
 import { requiredValidation, passwordValidation } from 'helpers/validation.helper'
 import { routes } from 'constants/routes'
+import { useSignup } from 'hooks/use-auth'
 import { SignupFormValues } from './signup.types'
 import * as Styled from '../login/login.styles'
 
@@ -24,12 +22,19 @@ const Signup = () => {
     }
   })
 
-  const [signup, { loading }] = useMutation<SignupResult>(SIGNUP)
+  const [signup, { loading }] = useSignup()
   const navigate = useNavigate()
   const { t } = useTranslation()
 
-  const onSubmit = async (values: SignupFormValues) => {
-    const { data } = await signup({ variables: values })
+  const onSubmit = async ({ email, password }: SignupFormValues) => {
+    const { data } = await signup({
+      variables: {
+        auth: {
+          email,
+          password
+        }
+      }
+    })
     if (data) {
       const { user, access_token } = data.signup
       authService.login(user, access_token)
