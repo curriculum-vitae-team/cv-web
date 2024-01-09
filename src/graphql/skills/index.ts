@@ -5,31 +5,34 @@ export const SKILLS = gql`
     skills {
       id
       name
+      category
     }
   }
 `
 
 export const CREATE_SKILL = gql`
-  mutation CreateSkill($skill: SkillInput!) {
+  mutation CreateSkill($skill: CreateSkillInput!) {
     createSkill(skill: $skill) {
       id
       name
+      category
     }
   }
 `
 
 export const UPDATE_SKILL = gql`
-  mutation UpdateSkill($id: ID!, $skill: SkillInput!) {
-    updateSkill(id: $id, skill: $skill) {
+  mutation UpdateSkill($skill: UpdateSkillInput!) {
+    updateSkill(skill: $skill) {
       id
       name
+      category
     }
   }
 `
 
 export const DELETE_SKILL = gql`
-  mutation DeleteSkill($id: ID!) {
-    deleteSkill(id: $id) {
+  mutation DeleteSkill($skill: DeleteSkillInput!) {
+    deleteSkill(skill: $skill) {
       affected
     }
   }

@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useController, useFormContext } from 'react-hook-form'
 import { MenuItem, TextField } from '@mui/material'
-import { SkillMastery } from 'constants/skill-mastery.constants'
+import { Mastery } from 'cv-graphql'
 
 const SkillMasterySelect = () => {
   const { t } = useTranslation()
@@ -18,7 +18,7 @@ const SkillMasterySelect = () => {
       disabled={!skillName}
       label={t('Skill mastery')}
     >
-      {Object.values(SkillMastery).map((mastery) => (
+      {Object.keys(Mastery).map((mastery) => (
         <MenuItem key={mastery} value={mastery}>
           {t(mastery)}
         </MenuItem>

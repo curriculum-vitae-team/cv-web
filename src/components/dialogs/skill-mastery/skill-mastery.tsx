@@ -2,6 +2,7 @@ import { Button, DialogActions, DialogContent, DialogTitle } from '@mui/material
 import { FormProvider, useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Mastery } from 'cv-graphql'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { SkillSelect } from '@molecules/skill-select'
 import { SkillMasterySelect } from '@molecules/skill-mastery-select'
@@ -19,7 +20,7 @@ const SkillMastery = ({
   const methods = useForm<SkillMasteryFormValues>({
     defaultValues: {
       skill_name: skillMastery?.skill_name || '',
-      mastery: skillMastery?.mastery || ''
+      mastery: skillMastery?.mastery || Mastery.Novice
     }
   })
   const { handleSubmit } = methods

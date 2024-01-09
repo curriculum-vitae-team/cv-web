@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { LinearProgress, Typography } from '@mui/material'
-import { SkillMastery } from 'constants/skill-mastery.constants'
+import { Mastery } from 'cv-graphql'
 import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
 import { useProfileSkillUpdate } from 'hooks/use-profile'
 import { useAuth } from 'hooks/use-auth'
@@ -9,7 +9,7 @@ import * as Styled from './skill.styles'
 
 const Skill = ({ skill }: SkillProps) => {
   const { profileId } = useAuth()
-  const index = Object.values(SkillMastery).indexOf(skill.mastery as SkillMastery)
+  const index = Object.keys(Mastery).indexOf(skill.mastery)
   const value = (index + 1) * 20
   const [updateProfileSkill] = useProfileSkillUpdate()
   const [openSkillMasteryDialog] = useSkillMasteryDialog()
