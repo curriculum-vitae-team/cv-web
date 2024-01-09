@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { useController, useFormContext } from 'react-hook-form'
 import { MenuItem, TextField } from '@mui/material'
 import { Mastery } from 'cv-graphql'
+import { SkillMasteryFormValues } from '@dialogs/skill-mastery/skill-mastery.types'
 
 const SkillMasterySelect = () => {
   const { t } = useTranslation()
-  const { watch } = useFormContext()
-  const { field } = useController({ name: 'mastery' })
-  const skillName = watch('skill_name')
+  const { watch } = useFormContext<SkillMasteryFormValues>()
+  const { field } = useController<SkillMasteryFormValues>({ name: 'mastery' })
+  const skillName = watch('name')
 
   return (
     <TextField

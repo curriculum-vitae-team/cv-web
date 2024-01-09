@@ -10,6 +10,12 @@ export const SKILLS = gql`
   }
 `
 
+export const SKILL_CATEGORIES = gql`
+  query SkillCategories {
+    skillCategories
+  }
+`
+
 export const CREATE_SKILL = gql`
   mutation CreateSkill($skill: CreateSkillInput!) {
     createSkill(skill: $skill) {

@@ -16,7 +16,7 @@ const EmployeeSkills = () => {
   return (
     <Styled.Page>
       {skills.map((skill) => (
-        <Skill key={skill.skill_name} skill={skill} />
+        <Skill key={skill.name} skill={skill} />
       ))}
       <NewSkill />
     </Styled.Page>

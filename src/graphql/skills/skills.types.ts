@@ -4,6 +4,10 @@ export type SkillsResult = {
   skills: Skill[]
 }
 
+export type SkillCategoriesResult = {
+  skillCategories: string[]
+}
+
 export type CreateSkillResult = {
   createSkill: Skill
 }

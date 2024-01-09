@@ -16,12 +16,13 @@ const NewSkill = () => {
   const handleClick = () => {
     openSkillMasteryDialog({
       title: 'Add Skill',
-      onConfirm({ skill_name, mastery }) {
+      onConfirm({ name, category, mastery }) {
         return addProfileSkill({
           variables: {
             skill: {
               profileId,
-              skill_name,
+              name,
+              category,
               mastery
             }
           }

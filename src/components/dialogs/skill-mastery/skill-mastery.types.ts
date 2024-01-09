@@ -2,7 +2,8 @@ import { Mastery, SkillMastery } from 'cv-graphql'
 import { DialogProps } from 'graphql/dialogs/dialogs.types'
 
 export type SkillMasteryFormValues = {
-  skill_name: string
+  name: string
+  category: string
   mastery: Mastery
 }
 

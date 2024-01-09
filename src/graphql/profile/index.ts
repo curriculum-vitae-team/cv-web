@@ -17,7 +17,8 @@ export const PROFILE_SKILLS = gql`
     profile(profileId: $profileId) {
       id
       skills {
-        skill_name
+        name
+        category
         mastery
       }
     }
@@ -51,7 +52,8 @@ export const ADD_PROFILE_SKILL = gql`
     addProfileSkill(skill: $skill) {
       id
       skills {
-        skill_name
+        name
+        category
         mastery
       }
     }
@@ -63,7 +65,8 @@ export const UPDATE_PROFILE_SKILL = gql`
     updateProfileSkill(skill: $skill) {
       id
       skills {
-        skill_name
+        name
+        category
         mastery
       }
     }
@@ -75,7 +78,8 @@ export const DELETE_PROFILE_SKILL = gql`
     deleteProfileSkill(skill: $skill) {
       id
       skills {
-        skill_name
+        name
+        category
         mastery
       }
     }

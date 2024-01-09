@@ -19,12 +19,12 @@ const Skill = ({ skill }: SkillProps) => {
       title: 'Update Skill',
       skillMastery: skill,
       disableSkillSelect: true,
-      onConfirm({ skill_name, mastery }) {
+      onConfirm({ name, mastery }) {
         return updateProfileSkill({
           variables: {
             skill: {
               profileId,
-              skill_name,
+              name,
               mastery
             }
           }
@@ -36,7 +36,7 @@ const Skill = ({ skill }: SkillProps) => {
   return (
     <Styled.Card color="secondary" onClick={handleClick}>
       <LinearProgress variant="determinate" value={value} />
-      <Typography textAlign="left">{skill.skill_name}</Typography>
+      <Typography textAlign="left">{skill.name}</Typography>
     </Styled.Card>
   )
 }
