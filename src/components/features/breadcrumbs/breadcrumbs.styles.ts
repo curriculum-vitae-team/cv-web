@@ -5,7 +5,7 @@ export const Breadcrumbs = styled(MuiBreadcrumbs)(({ theme }) => ({
   top: 64,
   height: 44,
   zIndex: 3,
-  padding: '20px 0 0 20px',
+  paddingTop: 20,
   backgroundColor: '#f5f5f7',
   width: '100%',
   maxWidth: theme.breakpoints.values.xl,
