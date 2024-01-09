@@ -1,7 +1,7 @@
 const prepareStyles = () => {
   const style = document.createElement('style')
   const styleSheets = [...document.styleSheets]
-  const links = styleSheets.reduce<Node[]>((acc, { ownerNode, cssRules }) => {
+  const links = styleSheets.reduce<Node[]>((acc, { ownerNode, ...styleSheet }) => {
     if (ownerNode instanceof Element) {
       if (ownerNode.tagName === 'LINK') {
         acc.push(ownerNode.cloneNode(true))
@@ -9,7 +9,7 @@ const prepareStyles = () => {
       }
       if (ownerNode.tagName === 'STYLE') {
         const style = document.createElement('style')
-        style.innerHTML = [...cssRules].map((cssRule) => cssRule.cssText).join('\n')
+        style.innerHTML = [...styleSheet.cssRules].map((cssRule) => cssRule.cssText).join('\n')
         acc.push(style)
         return acc
       }
