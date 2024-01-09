@@ -5,6 +5,7 @@ export const Tabs = styled(MuiTabs)({
     color: '#2e2e2e'
   },
   position: 'sticky',
+  zIndex: 1,
   top: 108,
   paddingTop: 10,
   background: 'linear-gradient(180deg, rgba(245,245,247,1) 50%, rgba(255,255,255,0) 100%)',
