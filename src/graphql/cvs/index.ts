@@ -33,7 +33,7 @@ export const CV = gql`
         name
       }
       skills {
-        skill_name
+        name
         mastery
       }
       languages {
