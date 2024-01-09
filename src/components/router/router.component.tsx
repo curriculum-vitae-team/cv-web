@@ -9,7 +9,7 @@ import { Layout } from '@templates/layout'
 import { Employees } from '@pages/employees'
 import { EmployeeDetails } from '@pages/employee-details'
 import { EmployeeProfile } from '@pages/employee-profile'
-import { EmployeeSkills } from '@pages/employee-skills'
+import { UserSkills } from '@pages/user-skills'
 import { EmployeeCvs } from '@pages/employee-cvs'
 import { Settings } from '@pages/settings'
 import { Projects } from '@pages/projects'
@@ -37,7 +37,7 @@ export const Router = () => {
               <Route index element={<Employees />} />
               <Route path={routes.users.user} element={<EmployeeDetails />}>
                 <Route path={routes.users.profile} element={<EmployeeProfile />} />
-                <Route path={routes.users.skills} element={<EmployeeSkills />} />
+                <Route path={routes.users.skills} element={<UserSkills />} />
                 <Route path={routes.users.languages} />
                 <Route path={routes.users.cvs} element={<EmployeeCvs />} />
                 <Route index path="*" element={<Navigate to="profile" />} />

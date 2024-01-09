@@ -1,5 +1,11 @@
 import { useMutation, useQuery } from '@apollo/client'
-import { AddProfileSkillInput, UpdateProfileInput, UpdateProfileSkillInput } from 'cv-graphql'
+import {
+  AddProfileSkillInput,
+  SkillMastery,
+  UpdateProfileInput,
+  UpdateProfileSkillInput
+} from 'cv-graphql'
+import { useMemo } from 'react'
 import {
   UPDATE_PROFILE,
   ADD_PROFILE_SKILL,
@@ -22,7 +28,20 @@ export const useProfile = (profileId: string) => {
 
 export const useProfileSkills = (profileId: string) => {
   const query = useQuery<ProfileResult>(PROFILE_SKILLS, { variables: { profileId } })
-  return { skills: query.data?.profile.skills || [], ...query }
+  const skills = query.data?.profile.skills || []
+
+  const groups = useMemo(() => {
+    return skills.reduce<Record<string, SkillMastery[]>>((acc, cur) => {
+      const category = cur.category || 'Other'
+      if (!acc[category]) {
+        acc[category] = []
+      }
+      acc[category].push(cur)
+      return acc
+    }, {})
+  }, [skills])
+
+  return { skills, groups, ...query }
 }
 
 export const useProfileUpdate = () => {
