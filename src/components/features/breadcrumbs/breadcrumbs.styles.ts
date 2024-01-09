@@ -9,6 +9,9 @@ export const Breadcrumbs = styled(MuiBreadcrumbs)(({ theme }) => ({
   backgroundColor: '#f5f5f7',
   width: '100%',
   maxWidth: theme.breakpoints.values.xl,
+  '.MuiBreadcrumbs-ol': {
+    flexWrap: 'nowrap'
+  },
   '.MuiBreadcrumbs-li': {
     whiteSpace: 'nowrap'
   },
