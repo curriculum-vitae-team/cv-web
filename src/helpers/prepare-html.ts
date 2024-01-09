@@ -1,7 +1,9 @@
 const prepareStyles = () => {
   const style = document.createElement('style')
   const styleSheets = [...document.styleSheets]
-  const links = styleSheets.reduce<Node[]>((acc, { ownerNode, ...styleSheet }) => {
+  const links = styleSheets.reduce<Node[]>((acc, styleSheet) => {
+    const { ownerNode } = styleSheet
+
     if (ownerNode instanceof Element) {
       if (ownerNode.tagName === 'LINK') {
         acc.push(ownerNode.cloneNode(true))
