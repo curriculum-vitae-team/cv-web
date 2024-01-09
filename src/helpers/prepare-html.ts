@@ -1,13 +1,21 @@
 const prepareStyles = () => {
   const style = document.createElement('style')
   const styleSheets = [...document.styleSheets]
-  const links = styleSheets.reduce<Node[]>((acc, { ownerNode }) => {
+  const links = styleSheets.reduce<Node[]>((acc, { ownerNode, cssRules }) => {
     if (ownerNode instanceof Element) {
-      acc.push(ownerNode.cloneNode(true))
+      if (ownerNode.tagName === 'LINK') {
+        acc.push(ownerNode.cloneNode(true))
+        return acc
+      }
+      if (ownerNode.tagName === 'STYLE') {
+        const style = document.createElement('style')
+        style.innerHTML = [...cssRules].map((cssRule) => cssRule.cssText).join('\n')
+        acc.push(style)
+        return acc
+      }
     }
     return acc
   }, [])
-  console.log(links)
   style.append(...links)
 
   return style
