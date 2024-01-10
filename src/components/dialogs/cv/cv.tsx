@@ -43,7 +43,7 @@ const Cv = ({ userId, closeDialog }: CvProps) => {
           label={t('Name')}
           error={!!errors.name}
         />
-        <TextField {...register('description')} label={t('Description')} multiline rows={3} />
+        <TextField {...register('description')} label={t('Description')} multiline rows={7} />
       </Styled.Column>
       <DialogActions>
         <Button variant="outlined" color="secondary" onClick={closeDialog}>
