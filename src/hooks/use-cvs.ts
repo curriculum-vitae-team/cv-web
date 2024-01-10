@@ -29,6 +29,7 @@ import {
   UpdateCvResult,
   UpdateCvSkillResult
 } from 'graphql/cvs/cvs.types'
+import { USER_CVS } from 'graphql/users'
 
 export const useCvs = () => {
   const query = useQuery<CVsResult>(CVS)
@@ -60,7 +61,7 @@ export const useCvSkills = (cvId: string) => {
 
 export const useCvCreate = () => {
   return useMutation<CreateCvResult, { cv: CreateCvInput }>(CREATE_CV, {
-    refetchQueries: [CVS]
+    refetchQueries: [CVS, USER_CVS]
   })
 }
 
