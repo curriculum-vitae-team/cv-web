@@ -5,9 +5,9 @@ import { Typography } from '@mui/material'
 import { AvatarUpload } from '@molecules/avatar-upload'
 import { EmployeeProfileForm } from '@organisms/employee-profile-form'
 import { useUser } from 'hooks/use-users'
-import * as Styled from './employee-profile.styles'
+import * as Styled from './user-profile.styles'
 
-const EmployeeProfile = () => {
+const UserProfile = () => {
   const { userId } = useParams()
   const { t } = useTranslation()
   const { user, loading } = useUser(userId)
@@ -31,4 +31,4 @@ const EmployeeProfile = () => {
   )
 }
 
-export default memo(EmployeeProfile)
+export default memo(UserProfile)

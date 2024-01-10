@@ -7,7 +7,7 @@ import { useUsers } from 'hooks/use-users'
 
 const Table = createTable<User>()
 
-const Employees = () => {
+const Users = () => {
   const { users, loading } = useUsers()
 
   return (
@@ -25,4 +25,4 @@ const Employees = () => {
   )
 }
 
-export default Employees
+export default Users
