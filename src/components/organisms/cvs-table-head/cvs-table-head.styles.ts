@@ -1,14 +1,17 @@
-import { TableRow, styled } from '@mui/material'
+import { TableCell, styled } from '@mui/material'
 
-export const Row = styled(TableRow)(({ theme }) => ({
+export const Description = styled(TableCell)(({ theme }) => ({
+  maxWidth: 200,
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
   [theme.breakpoints.down('md')]: {
-    '& > .MuiTableCell-root:nth-of-type(2)': {
-      display: 'none'
-    }
-  },
+    display: 'none'
+  }
+}))
+
+export const User = styled(TableCell)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
-    '& > .MuiTableCell-root:nth-of-type(3)': {
-      display: 'none'
-    }
+    display: 'none'
   }
 }))

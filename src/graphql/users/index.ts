@@ -72,6 +72,7 @@ export const USER_CVS = gql`
         id
         created_at
         name
+        description
       }
     }
   }

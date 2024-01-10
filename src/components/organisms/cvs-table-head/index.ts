@@ -1,1 +1,1 @@
-export { CVsTableHead } from './cvs-table-head'
+export { CvsTableHead, ProfileCvsTableHead } from './cvs-table-head'

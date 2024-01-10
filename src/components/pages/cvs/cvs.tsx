@@ -1,9 +1,9 @@
 import { memo } from 'react'
 import { Cv } from 'cv-graphql'
 import { createTable } from '@templates/table'
-import { CVsTableTool } from '@organisms/cvs-table-tool'
-import { CVsTableHead } from '@organisms/cvs-table-head'
-import { CVsTableRow } from '@organisms/cvs-table-row'
+import { CvsTableTool } from '@organisms/cvs-table-tool'
+import { CvsTableHead } from '@organisms/cvs-table-head'
+import { CvsTableRow } from '@organisms/cvs-table-row'
 import { useCvs } from 'hooks/use-cvs'
 
 const Table = createTable<Cv>()
@@ -16,9 +16,9 @@ const Cvs = () => {
       <Table
         items={cvs}
         loading={loading}
-        TableToolComponent={CVsTableTool}
-        TableHeadComponent={CVsTableHead}
-        TableRowComponent={CVsTableRow}
+        TableToolComponent={CvsTableTool}
+        TableHeadComponent={CvsTableHead}
+        TableRowComponent={CvsTableRow}
         searchBy={['name']}
         defaultSortBy="name"
       />

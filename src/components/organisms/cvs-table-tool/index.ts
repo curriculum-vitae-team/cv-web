@@ -1,1 +1,1 @@
-export { CVsTableTool } from './cvs-table-tool.organism'
+export { CvsTableTool } from './cvs-table-tool.organism'

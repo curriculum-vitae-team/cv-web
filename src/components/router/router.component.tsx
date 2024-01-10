@@ -10,6 +10,7 @@ import { Users } from '@pages/users'
 import { User } from '@pages/user'
 import { UserProfile } from '@pages/user-profile'
 import { UserSkills } from '@pages/user-skills'
+import { UserCvs } from '@pages/user-cvs'
 import { Settings } from '@pages/settings'
 import { Projects } from '@pages/projects'
 import { Cvs } from '@pages/cvs'
@@ -39,7 +40,7 @@ export const Router = () => {
                 <Route path={routes.users.profile} element={<UserProfile />} />
                 <Route path={routes.users.skills} element={<UserSkills />} />
                 <Route path={routes.users.languages} element={null} />
-                <Route path={routes.users.cvs} element={null} />
+                <Route path={routes.users.cvs} element={<UserCvs />} />
                 <Route index path="*" element={<Navigate to="profile" />} />
               </Route>
             </Route>
@@ -53,7 +54,6 @@ export const Router = () => {
               <Route path={routes.cvs.cv} element={<Cv />}>
                 <Route path={routes.cvs.details} element={<CvDetails />} />
                 <Route path={routes.cvs.skills} element={<CvSkills />} />
-                <Route path={routes.cvs.languages} element={null} />
                 <Route path={routes.cvs.preview} element={<CvPreview />} />
                 <Route index path="*" element={<Navigate to="details" />} />
               </Route>

@@ -1,18 +1,30 @@
 import { useTranslation } from 'react-i18next'
-import { TableCell } from '@mui/material'
+import { TableCell, TableRow } from '@mui/material'
 import { Cv } from 'cv-graphql'
 import { createSortLabel } from '@atoms/sort-label'
 import * as Styled from './cvs-table-head.styles'
 
-export const CVsTableHead = () => {
+export const CvsTableHead = () => {
   const { t } = useTranslation()
 
   return (
-    <Styled.Row>
+    <TableRow>
       <TableCell>{createSortLabel<Cv>('name', t('Name'))}</TableCell>
-      <TableCell>{t('Description')}</TableCell>
-      <TableCell>{createSortLabel<Cv>('user.email', t('Employee'))}</TableCell>
+      <Styled.Description>{t('Description')}</Styled.Description>
+      <Styled.User>{createSortLabel<Cv>('user.email', t('Employee'))}</Styled.User>
       <TableCell />
-    </Styled.Row>
+    </TableRow>
+  )
+}
+
+export const ProfileCvsTableHead = () => {
+  const { t } = useTranslation()
+
+  return (
+    <TableRow>
+      <TableCell>{createSortLabel<Cv>('name', t('Name'))}</TableCell>
+      <Styled.Description>{t('Description')}</Styled.Description>
+      <TableCell />
+    </TableRow>
   )
 }

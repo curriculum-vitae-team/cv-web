@@ -4,7 +4,7 @@ import { SearchInput } from '@molecules/search-input'
 import { useAuth } from 'hooks/use-auth'
 import { useCvDialog } from '@dialogs/cv'
 
-export const CVsTableTool = () => {
+export const CvsTableTool = () => {
   const { userId, isAdmin } = useAuth()
   const { t } = useTranslation()
   const [openCvDialog] = useCvDialog()

@@ -44,17 +44,15 @@ const Table = <T extends Item>({
   return (
     <MuiTable stickyHeader>
       <TableHead>
-        {TableToolComponent && (
-          <TableSearchContext.Provider value={tableSearch}>
-            <TableRow>
-              <Styled.ToolBar colSpan={10}>
-                <div>
-                  <TableToolComponent />
-                </div>
-              </Styled.ToolBar>
-            </TableRow>
-          </TableSearchContext.Provider>
-        )}
+        <TableSearchContext.Provider value={tableSearch}>
+          <TableRow>
+            <Styled.ToolBar colSpan={10}>
+              <div>
+                <TableToolComponent />
+              </div>
+            </Styled.ToolBar>
+          </TableRow>
+        </TableSearchContext.Provider>
         <TableSortContext.Provider value={tableSort}>
           <TableHeadComponent />
         </TableSortContext.Provider>
