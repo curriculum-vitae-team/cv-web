@@ -14,9 +14,7 @@ const CvSkills = () => {
 
   return (
     <Styled.Page>
-      <Styled.Skills sx={{ mt: 0 }}>
-        <NewCvSkill />
-      </Styled.Skills>
+      <NewCvSkill />
       {Object.entries(groups).map(([category, skills]) => (
         <CvSkillsGroup key={category} category={category} skills={skills} />
       ))}

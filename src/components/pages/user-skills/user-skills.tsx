@@ -15,9 +15,7 @@ const UserSkills = () => {
 
   return (
     <Styled.Page>
-      <Styled.Skills sx={{ mt: 0 }}>
-        <NewProfileSkill />
-      </Styled.Skills>
+      <NewProfileSkill />
       {Object.entries(groups).map(([category, skills]) => (
         <ProfileSkillsGroup key={category} category={category} skills={skills} />
       ))}

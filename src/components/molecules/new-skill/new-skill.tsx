@@ -15,7 +15,7 @@ const NewSkillCard = ({ onClick }: NewSkillCardProps) => {
 
   return (
     <Styled.Card color="secondary" onClick={onClick}>
-      <Add sx={{ m: '0 auto' }} /> <Typography textAlign="left">{t('Add skill')}</Typography>
+      <Add /> <Typography>{t('Add skill')}</Typography>
     </Styled.Card>
   )
 }
