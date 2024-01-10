@@ -3,6 +3,7 @@ import { styled, Avatar as MuiAvatar } from '@mui/material'
 export const AvatarUpload = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
+  marginTop: 32,
   marginBottom: 32,
   [theme.breakpoints.down('sm')]: {
     flexDirection: 'column',
