@@ -7,6 +7,9 @@ export const Card = styled(Button)({
   alignItems: 'center',
   gap: 16,
   textTransform: 'none',
+  '& > .MuiLinearProgress-root': {
+    opacity: 0.9
+  },
   '& > .MuiTypography-root': {
     textAlign: 'left'
   }
