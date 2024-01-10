@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
-import { NewCvSkill } from '@molecules/new-cv-skill'
+import { NewCvSkill } from '@molecules/new-skill'
 import { useCvSkills } from 'hooks/use-cvs'
-import { CvSkillsGroup } from '@molecules/cv-skills-group'
+import { CvSkillsGroup } from '@molecules/skills-group'
 import * as Styled from './cv-skills.styles'
 
 const CvSkills = () => {

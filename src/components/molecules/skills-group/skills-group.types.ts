@@ -1,6 +1,6 @@
 import { SkillMastery } from 'cv-graphql'
 
-export type ProfileSkillsGroupProps = {
+export type SkillsGroupProps = {
   category: string
   skills: SkillMastery[]
 }
