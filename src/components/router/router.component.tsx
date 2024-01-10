@@ -21,6 +21,7 @@ import { Departments } from '@pages/departments'
 import { Positions } from '@pages/positions'
 import { Skills } from '@pages/skills'
 import { Languages } from '@pages/languages'
+import { CvSkills } from '@pages/cv-skills'
 
 export const Router = () => {
   return (
@@ -52,6 +53,7 @@ export const Router = () => {
               <Route index element={<Cvs />} />
               <Route path={routes.cvs.cv} element={<Cv />}>
                 <Route path={routes.cvs.details} element={<CvDetails />} />
+                <Route path={routes.cvs.skills} element={<CvSkills />} />
                 <Route path={routes.cvs.preview} element={<CvPreview />} />
                 <Route index path="*" element={<Navigate to="details" />} />
               </Route>

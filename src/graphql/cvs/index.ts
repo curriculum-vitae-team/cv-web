@@ -10,14 +10,13 @@ export const CVS = gql`
         id
         email
       }
-      is_template
     }
   }
 `
 
 export const CV = gql`
   query CV($cvId: ID!) {
-    cv(id: $cvId) {
+    cv(cvId: $cvId) {
       id
       name
       description
@@ -28,14 +27,6 @@ export const CV = gql`
         }
         position_name
       }
-      projects {
-        id
-        name
-      }
-      skills {
-        name
-        mastery
-      }
       languages {
         language_name
         proficiency
@@ -45,7 +36,7 @@ export const CV = gql`
 `
 
 export const CREATE_CV = gql`
-  mutation CreateCV($cv: CvInput!) {
+  mutation CreateCV($cv: CreateCvInput!) {
     createCv(cv: $cv) {
       id
       name
@@ -54,14 +45,13 @@ export const CREATE_CV = gql`
         id
         email
       }
-      is_template
     }
   }
 `
 
 export const UPDATE_CV = gql`
-  mutation UpdateCv($id: ID!, $cv: CvInput!) {
-    updateCv(id: $id, cv: $cv) {
+  mutation UpdateCv($cv: UpdateCvInput!) {
+    updateCv(cv: $cv) {
       id
       name
       description
@@ -69,15 +59,66 @@ export const UPDATE_CV = gql`
         id
         email
       }
-      is_template
     }
   }
 `
 
 export const DELETE_CV = gql`
-  mutation DeleteCv($cvId: ID!) {
-    deleteCv(id: $cvId) {
+  mutation DeleteCv($cv: DeleteCvInput!) {
+    deleteCv(cv: $cv) {
       affected
+    }
+  }
+`
+
+export const CV_SKILLS = gql`
+  query CvSkills($cvId: ID!) {
+    cv(cvId: $cvId) {
+      id
+      skills {
+        name
+        category
+        mastery
+      }
+    }
+  }
+`
+
+export const ADD_CV_SKILL = gql`
+  mutation AddCvSkill($skill: AddCvSkillInput!) {
+    addCvSkill(skill: $skill) {
+      id
+      skills {
+        name
+        category
+        mastery
+      }
+    }
+  }
+`
+
+export const UPDATE_CV_SKILL = gql`
+  mutation UpdateCvSkill($skill: UpdateCvSkillInput!) {
+    updateCvSkill(skill: $skill) {
+      id
+      skills {
+        name
+        category
+        mastery
+      }
+    }
+  }
+`
+
+export const DELETE_Cv_SKILL = gql`
+  mutation DeleteCvSkill($skill: DeleteCvSkillInput!) {
+    deleteCvSkill(skill: $skill) {
+      id
+      skills {
+        name
+        category
+        mastery
+      }
     }
   }
 `

@@ -4,10 +4,10 @@ import { Mastery } from 'cv-graphql'
 import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
 import { useProfileSkillUpdate } from 'hooks/use-profile'
 import { useAuth } from 'hooks/use-auth'
-import { SkillProps } from './skill.types'
-import * as Styled from './skill.styles'
+import { ProfileSkillProps } from './profile-skill.types'
+import * as Styled from './profile-skill.styles'
 
-const Skill = ({ skill }: SkillProps) => {
+const ProfileSkill = ({ skill }: ProfileSkillProps) => {
   const { profileId } = useAuth()
   const index = Object.keys(Mastery).indexOf(skill.mastery)
   const value = (index + 1) * 20
@@ -41,4 +41,4 @@ const Skill = ({ skill }: SkillProps) => {
   )
 }
 
-export default memo(Skill)
+export default memo(ProfileSkill)

@@ -22,6 +22,7 @@ const cvRoutes = {
   root: '/cvs',
   cv: '/cvs/:cvId',
   details: '/cvs/:cvId/details',
+  skills: '/cvs/:cvId/skills',
   preview: '/cvs/:cvId/preview'
 } as const
 

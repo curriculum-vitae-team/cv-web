@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom'
 import { Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { useRef } from 'react'
-import { useCv, usePdfExport } from 'hooks/use-cvs'
+import { Fragment, useRef } from 'react'
+import { useCv, useCvSkills, usePdfExport } from 'hooks/use-cvs'
 import { PageLoader } from '@atoms/page-loader'
 import { prepareHtml } from 'helpers/prepare-html'
 import { downloadPdf } from 'helpers/download-pdf'
@@ -13,7 +13,8 @@ const CvPreview = () => {
   const { t } = useTranslation()
   const { cvId = '' } = useParams()
   const { cv, loading } = useCv(cvId)
-  const [exportPdf, { loading: exporting }] = usePdfExport()
+  const { groups, loading: loadingSkills } = useCvSkills(cvId)
+  const [exportPdf, { loading: loadingPdf }] = usePdfExport()
 
   const handleExport = () => {
     if (!ref.current) {
@@ -37,7 +38,7 @@ const CvPreview = () => {
     })
   }
 
-  if (loading || !cv) {
+  if (loading || !cv || loadingSkills) {
     return <PageLoader />
   }
 
@@ -46,7 +47,7 @@ const CvPreview = () => {
       <Styled.Head>
         <Typography variant="h4">{cv.user?.profile.full_name}</Typography>
         <Styled.Position>{cv.user?.position_name}</Styled.Position>
-        <Styled.Export variant="outlined" disabled={exporting} onClick={handleExport}>
+        <Styled.Export variant="outlined" disabled={loadingPdf} onClick={handleExport}>
           {t('Export PDF')}
         </Styled.Export>
       </Styled.Head>
@@ -61,12 +62,12 @@ const CvPreview = () => {
       <Styled.Main>
         <Styled.Title>{cv.name}</Styled.Title>
         <Typography>{cv.description}</Typography>
-        <Styled.Title>{t('Programming languages')}</Styled.Title>
-        <Styled.Title>{t('Programming technologies')}</Styled.Title>
-        <Styled.Title>{t('Integrated development environment')}</Styled.Title>
-        <Styled.Title>{t('Source control systems')}</Styled.Title>
-        <Styled.Title>{t('Other')}</Styled.Title>
-        <Styled.Title>{t('Database management system')}</Styled.Title>
+        {Object.entries(groups).map(([category, skills]) => (
+          <Fragment key={category}>
+            <Styled.Title>{t(category)}</Styled.Title>
+            <Typography>{skills.map((skill) => skill.name).join(', ')}</Typography>
+          </Fragment>
+        ))}
       </Styled.Main>
       <Styled.PageBreak />
       <Styled.Head>

@@ -1,8 +1,8 @@
 import { memo } from 'react'
-import { NewSkill } from '@items/new-skill'
+import { NewProfileSkill } from '@molecules/new-profile-skill'
 import { useProfileSkills } from 'hooks/use-profile'
 import { useAuth } from 'hooks/use-auth'
-import UserSkillsGroup from '@organisms/user-skills-group/user-skills-group'
+import { ProfileSkillsGroup } from '@molecules/profile-skills-group'
 import * as Styled from './user-skills.styles'
 
 const UserSkills = () => {
@@ -16,10 +16,10 @@ const UserSkills = () => {
   return (
     <Styled.Page>
       <Styled.Skills sx={{ mt: 0 }}>
-        <NewSkill />
+        <NewProfileSkill />
       </Styled.Skills>
       {Object.entries(groups).map(([category, skills]) => (
-        <UserSkillsGroup key={category} category={category} skills={skills} />
+        <ProfileSkillsGroup key={category} category={category} skills={skills} />
       ))}
     </Styled.Page>
   )

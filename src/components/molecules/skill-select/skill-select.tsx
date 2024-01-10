@@ -37,7 +37,7 @@ const SkillSelect = ({ disabled }: SkillSelectProps) => {
           key={id}
           value={name}
           disabled={ownSkills.includes(name)}
-          onClick={() => category && setValue('category', category)}
+          onClick={() => setValue('category', category || '')}
         >
           {name}
         </MenuItem>

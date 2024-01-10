@@ -27,15 +27,11 @@ const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
   const onSubmit = ({ name, description }: CvFormValues) => {
     updateCv({
       variables: {
-        id: cv.id,
         cv: {
+          cvId: cv.id,
           name,
           description,
-          projectsIds: cv.projects?.map((project) => project.id) || [],
-          skills: cv.skills,
-          languages: cv.languages,
-          userId: cv.user?.id,
-          is_template: cv.is_template || false
+          projectsIds: cv.projects?.map((project) => project.id) || []
         }
       }
     })

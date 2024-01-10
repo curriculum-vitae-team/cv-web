@@ -1,12 +1,33 @@
 import { useMutation, useQuery } from '@apollo/client'
-import { CvInput, ExportPdfInput } from 'cv-graphql'
-import { CREATE_CV, CV, CVS, DELETE_CV, EXPORT_PDF, UPDATE_CV } from 'graphql/cvs'
 import {
+  CreateCvInput,
+  UpdateCvInput,
+  ExportPdfInput,
+  SkillMastery,
+  AddCvSkillInput,
+  UpdateCvSkillInput,
+  DeleteCvInput
+} from 'cv-graphql'
+import { useMemo } from 'react'
+import {
+  ADD_CV_SKILL,
+  CREATE_CV,
+  CV,
+  CVS,
+  CV_SKILLS,
+  DELETE_CV,
+  EXPORT_PDF,
+  UPDATE_CV,
+  UPDATE_CV_SKILL
+} from 'graphql/cvs'
+import {
+  AddCvSkillResult,
   CVsResult,
   CreateCvResult,
   CvResult,
   ExportPdfResult,
-  UpdateCvResult
+  UpdateCvResult,
+  UpdateCvSkillResult
 } from 'graphql/cvs/cvs.types'
 
 export const useCvs = () => {
@@ -19,20 +40,40 @@ export const useCv = (cvId: string) => {
   return { cv: query.data?.cv, ...query }
 }
 
+export const useCvSkills = (cvId: string) => {
+  const query = useQuery<CvResult>(CV_SKILLS, { variables: { cvId } })
+  const skills = query.data?.cv.skills || []
+
+  const groups = useMemo(() => {
+    return skills.reduce<Record<string, SkillMastery[]>>((acc, cur) => {
+      const category = cur.category || 'Other'
+      if (!acc[category]) {
+        acc[category] = []
+      }
+      acc[category].push(cur)
+      return acc
+    }, {})
+  }, [skills])
+
+  return { skills, groups, ...query }
+}
+
 export const useCvCreate = () => {
-  return useMutation<CreateCvResult, { cv: CvInput }>(CREATE_CV, {
+  return useMutation<CreateCvResult, { cv: CreateCvInput }>(CREATE_CV, {
     refetchQueries: [CVS]
   })
 }
 
 export const useCvUpdate = () => {
-  return useMutation<UpdateCvResult, { id: string; cv: CvInput }>(UPDATE_CV)
+  return useMutation<UpdateCvResult, { cv: UpdateCvInput }>(UPDATE_CV)
 }
 
 export const useCvDelete = (cvId: string) => {
-  return useMutation<null, { cvId: string }>(DELETE_CV, {
+  return useMutation<null, { cv: DeleteCvInput }>(DELETE_CV, {
     variables: {
-      cvId
+      cv: {
+        cvId
+      }
     },
     update(cache) {
       const id = cache.identify({ id: cvId, __typename: 'Cv' })
@@ -40,6 +81,14 @@ export const useCvDelete = (cvId: string) => {
       cache.gc()
     }
   })
+}
+
+export const useCvSkillAdd = () => {
+  return useMutation<AddCvSkillResult, { skill: AddCvSkillInput }>(ADD_CV_SKILL)
+}
+
+export const useCvSkillUpdate = () => {
+  return useMutation<UpdateCvSkillResult, { skill: UpdateCvSkillInput }>(UPDATE_CV_SKILL)
 }
 
 export const usePdfExport = () => {

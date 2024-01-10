@@ -13,6 +13,7 @@ const Cv = () => {
   const location = useLocation()
   const { t } = useTranslation()
   const detailsPath = generatePath(routes.cvs.details, { cvId })
+  const skillsPath = generatePath(routes.cvs.skills, { cvId })
   const previewPath = generatePath(routes.cvs.preview, { cvId })
   const { cv } = useCv(cvId)
 
@@ -33,6 +34,7 @@ const Cv = () => {
     <>
       <Styled.Tabs value={location.pathname}>
         <Tab value={detailsPath} label={t('Details')} component={NavLink} to={detailsPath} />
+        <Tab value={skillsPath} label={t('Skills')} component={NavLink} to={skillsPath} />
         <Tab value={previewPath} label={t('Preview')} component={NavLink} to={previewPath} />
       </Styled.Tabs>
       <Styled.Content>

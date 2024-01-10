@@ -24,7 +24,6 @@
       "@atoms/*": ["components/atoms/*"],
       "@molecules/*": ["components/molecules/*"],
       "@organisms/*": ["components/organisms/*"],
-      "@items/*": ["components/items/*"],
       "@templates/*": ["components/templates/*"],
       "@features/*": ["components/features/*"],
       "@dialogs/*": ["components/dialogs/*"],

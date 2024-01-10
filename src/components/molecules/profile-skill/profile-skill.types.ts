@@ -1,5 +1,5 @@
 import { SkillMastery } from 'cv-graphql'
 
-export type SkillProps = {
+export type ProfileSkillProps = {
   skill: SkillMastery
 }

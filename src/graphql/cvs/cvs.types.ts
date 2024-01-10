@@ -16,6 +16,18 @@ export type UpdateCvResult = {
   updateCv: Cv
 }
 
+export type AddCvSkillResult = {
+  addCvSkill: Cv
+}
+
+export type UpdateCvSkillResult = {
+  updateCvSkill: Cv
+}
+
+export type DeleteCvSkillResult = {
+  deleteCvSkill: Cv
+}
+
 export type ExportPdfResult = {
   exportPdf: string
 }

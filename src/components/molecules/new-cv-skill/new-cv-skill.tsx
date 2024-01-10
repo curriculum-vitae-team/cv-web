@@ -2,25 +2,25 @@ import { Add } from '@mui/icons-material'
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Typography } from '@mui/material'
+import { useParams } from 'react-router-dom'
 import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
-import { useProfileSkillAdd } from 'hooks/use-profile'
-import { useAuth } from 'hooks/use-auth'
-import * as Styled from './new-skill.styles'
+import { useCvSkillAdd } from 'hooks/use-cvs'
+import * as Styled from './new-cv-skill.styles'
 
-const NewSkill = () => {
-  const { profileId } = useAuth()
+const NewCvSkill = () => {
+  const { cvId = '' } = useParams()
   const { t } = useTranslation()
-  const [addProfileSkill] = useProfileSkillAdd()
+  const [addCvSkill] = useCvSkillAdd()
   const [openSkillMasteryDialog] = useSkillMasteryDialog()
 
   const handleClick = () => {
     openSkillMasteryDialog({
       title: 'Add Skill',
       onConfirm({ name, category, mastery }) {
-        return addProfileSkill({
+        return addCvSkill({
           variables: {
             skill: {
-              profileId,
+              cvId,
               name,
               category,
               mastery
@@ -38,4 +38,4 @@ const NewSkill = () => {
   )
 }
 
-export default memo(NewSkill)
+export default memo(NewCvSkill)
