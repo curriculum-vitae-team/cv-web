@@ -44,9 +44,9 @@ const SkillMastery = ({
           <SkillMasterySelect />
         </DialogContent>
         <DialogActions>
-          <Button onClick={closeDialog}>Cancel</Button>
+          <Button onClick={closeDialog}>{t('Cancel')}</Button>
           <Button variant="contained" type="submit" disabled={isLoading}>
-            Confirm
+            {t('Confirm')}
           </Button>
         </DialogActions>
       </form>

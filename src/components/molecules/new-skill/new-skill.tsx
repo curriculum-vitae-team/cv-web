@@ -15,7 +15,7 @@ const NewSkillCard = ({ onClick }: NewSkillCardProps) => {
 
   return (
     <Styled.Card color="secondary" onClick={onClick}>
-      <Add sx={{ m: '0 auto' }} /> <Typography textAlign="left">{t('Add Skill')}</Typography>
+      <Add sx={{ m: '0 auto' }} /> <Typography textAlign="left">{t('Add skill')}</Typography>
     </Styled.Card>
   )
 }
@@ -27,7 +27,7 @@ const NewProfileSkillComponent = () => {
 
   const handleClick = () => {
     openSkillMasteryDialog({
-      title: 'Add Skill',
+      title: 'Add skill',
       onConfirm({ name, category, mastery }) {
         return addProfileSkill({
           variables: {
@@ -55,7 +55,7 @@ const NewCvSkillComponent = () => {
 
   const handleClick = () => {
     openSkillMasteryDialog({
-      title: 'Add Skill',
+      title: 'Add skill',
       onConfirm({ name, category, mastery }) {
         return addCvSkill({
           variables: {

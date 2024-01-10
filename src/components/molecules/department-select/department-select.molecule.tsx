@@ -14,7 +14,7 @@ const DepartmentSelect = ({ name, ...props }: DepartmentSelectProps) => {
       name={name}
       render={({ field }) => (
         <TextField {...props} {...field} select disabled={loading} label={t('Department')}>
-          <MenuItem value="">{t('No Department')}</MenuItem>
+          <MenuItem value="">{t('No department')}</MenuItem>
           {data?.departments.map(({ id, name }) => (
             <MenuItem key={id} value={id}>
               {name}

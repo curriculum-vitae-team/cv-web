@@ -19,7 +19,7 @@ const SkillCategorySelect = ({ disabled }: SkillCategorySelectProps) => {
       select
       label={t('Category')}
     >
-      <MenuItem value="">{t('No Category')}</MenuItem>
+      <MenuItem value="">{t('No category')}</MenuItem>
       {categories.map((category) => (
         <MenuItem key={category} value={category}>
           {t(category)}

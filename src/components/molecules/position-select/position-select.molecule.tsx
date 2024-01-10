@@ -14,7 +14,7 @@ const PositionSelect = ({ name, ...props }: PositionSelectProps) => {
       name={name}
       render={({ field }) => (
         <TextField {...props} {...field} select disabled={loading} label={t('Position')}>
-          <MenuItem value="">{t('No Position')}</MenuItem>
+          <MenuItem value="">{t('No position')}</MenuItem>
           {data?.positions.map(({ id, name }) => (
             <MenuItem key={id} value={id}>
               {name}

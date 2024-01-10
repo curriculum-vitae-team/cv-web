@@ -25,6 +25,7 @@ export const LanguageSelect = (props: LanguageSelectProps) => {
       onChange={handleChange}
     >
       <MenuItem value="en">English</MenuItem>
+      <MenuItem value="de">Deutsch</MenuItem>
       <MenuItem value="ru">Русский</MenuItem>
     </Styled.Select>
   )

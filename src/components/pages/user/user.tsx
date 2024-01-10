@@ -39,8 +39,8 @@ const User = () => {
     <>
       <Styled.Tabs value={location.pathname} variant="scrollable" allowScrollButtonsMobile>
         <Tab value={profilePath} label={t('Profile')} component={NavLink} to={profilePath} />
-        <Tab value={skillsPath} label={t('skills')} component={NavLink} to={skillsPath} />
-        <Tab value={languagesPath} label={t('languages')} component={NavLink} to={languagesPath} />
+        <Tab value={skillsPath} label={t('Skills')} component={NavLink} to={skillsPath} />
+        <Tab value={languagesPath} label={t('Languages')} component={NavLink} to={languagesPath} />
         <Tab value={cvsPath} label={t('cvs')} component={NavLink} to={cvsPath} />
       </Styled.Tabs>
       <Styled.Content>
