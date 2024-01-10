@@ -11,7 +11,7 @@ use(initReactI18next).init({
 })
 
 use(HttpApi).init({
-  supportedLngs: ['en', 'ru'],
+  supportedLngs: ['en', 'de', 'ru'],
   backend: {
     loadPath: '/translations/{{lng}}.json'
   }
