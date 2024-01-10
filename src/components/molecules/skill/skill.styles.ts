@@ -6,5 +6,8 @@ export const Card = styled(Button)({
   gridTemplateColumns: '0.5fr 1fr',
   alignItems: 'center',
   gap: 16,
-  textTransform: 'none'
+  textTransform: 'none',
+  '& > .MuiTypography-root': {
+    textAlign: 'left'
+  }
 })

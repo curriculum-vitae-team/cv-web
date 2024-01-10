@@ -6,17 +6,19 @@ import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
 import { useProfileSkillUpdate } from 'hooks/use-profile'
 import { useAuth } from 'hooks/use-auth'
 import { useCvSkillUpdate } from 'hooks/use-cvs'
+import { getSkillColor } from 'helpers/get-skill-color'
 import { SkillCardProps, SkillProps } from './skill.types'
 import * as Styled from './skill.styles'
 
 const SkillCard = ({ skill, onClick }: SkillCardProps) => {
   const index = Object.keys(Mastery).indexOf(skill.mastery)
   const value = (index + 1) * 20
+  const color = getSkillColor(index)
 
   return (
     <Styled.Card color="secondary" onClick={onClick}>
-      <LinearProgress variant="determinate" value={value} />
-      <Typography textAlign="left">{skill.name}</Typography>
+      <LinearProgress variant="determinate" color={color} value={value} />
+      <Typography>{skill.name}</Typography>
     </Styled.Card>
   )
 }
