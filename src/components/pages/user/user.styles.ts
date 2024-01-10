@@ -12,7 +12,7 @@ export const Tabs = styled(MuiTabs)({
   backdropFilter: 'blur(0.5px)'
 })
 
-export const Details = styled('div')(({ theme }) => ({
+export const Content = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   margin: '0 auto',

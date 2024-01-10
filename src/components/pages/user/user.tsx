@@ -9,9 +9,9 @@ import { useBreadcrumbs } from 'hooks/use-breadcrumbs'
 import { USER_FULL_NAME } from 'graphql/users'
 import { UserResult } from 'graphql/users/users.types'
 import { routes } from 'constants/routes'
-import * as Styled from './employee-details.styles'
+import * as Styled from './user.styles'
 
-const EmployeeDetails = () => {
+const User = () => {
   const location = useLocation()
   const { userId = '' } = useParams()
   const { t } = useTranslation()
@@ -37,19 +37,19 @@ const EmployeeDetails = () => {
 
   return (
     <>
-      <Styled.Tabs value={location.pathname}>
+      <Styled.Tabs value={location.pathname} variant="scrollable" allowScrollButtonsMobile>
         <Tab value={profilePath} label={t('Profile')} component={NavLink} to={profilePath} />
         <Tab value={skillsPath} label={t('skills')} component={NavLink} to={skillsPath} />
         <Tab value={languagesPath} label={t('languages')} component={NavLink} to={languagesPath} />
         <Tab value={cvsPath} label={t('cvs')} component={NavLink} to={cvsPath} />
       </Styled.Tabs>
-      <Styled.Details>
+      <Styled.Content>
         <Suspense fallback={<PageLoader />}>
           <Outlet />
         </Suspense>
-      </Styled.Details>
+      </Styled.Content>
     </>
   )
 }
 
-export default memo(EmployeeDetails)
+export default memo(User)

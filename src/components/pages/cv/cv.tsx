@@ -32,7 +32,7 @@ const Cv = () => {
 
   return (
     <>
-      <Styled.Tabs value={location.pathname}>
+      <Styled.Tabs value={location.pathname} variant="scrollable" allowScrollButtonsMobile>
         <Tab value={detailsPath} label={t('Details')} component={NavLink} to={detailsPath} />
         <Tab value={skillsPath} label={t('Skills')} component={NavLink} to={skillsPath} />
         <Tab value={previewPath} label={t('Preview')} component={NavLink} to={previewPath} />

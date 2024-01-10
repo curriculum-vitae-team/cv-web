@@ -7,10 +7,9 @@ import { Login } from '@pages/login'
 import { Signup } from '@pages/signup'
 import { Layout } from '@templates/layout'
 import { Employees } from '@pages/employees'
-import { EmployeeDetails } from '@pages/employee-details'
+import { User } from '@pages/user'
 import { EmployeeProfile } from '@pages/employee-profile'
 import { UserSkills } from '@pages/user-skills'
-import { EmployeeCvs } from '@pages/employee-cvs'
 import { Settings } from '@pages/settings'
 import { Projects } from '@pages/projects'
 import { Cvs } from '@pages/cvs'
@@ -36,11 +35,11 @@ export const Router = () => {
             {/* <Route path={routes.root} element={<Home />} /> */}
             <Route path={routes.users.root}>
               <Route index element={<Employees />} />
-              <Route path={routes.users.user} element={<EmployeeDetails />}>
+              <Route path={routes.users.user} element={<User />}>
                 <Route path={routes.users.profile} element={<EmployeeProfile />} />
                 <Route path={routes.users.skills} element={<UserSkills />} />
-                <Route path={routes.users.languages} />
-                <Route path={routes.users.cvs} element={<EmployeeCvs />} />
+                <Route path={routes.users.languages} element={null} />
+                <Route path={routes.users.cvs} element={null} />
                 <Route index path="*" element={<Navigate to="profile" />} />
               </Route>
             </Route>
@@ -54,6 +53,7 @@ export const Router = () => {
               <Route path={routes.cvs.cv} element={<Cv />}>
                 <Route path={routes.cvs.details} element={<CvDetails />} />
                 <Route path={routes.cvs.skills} element={<CvSkills />} />
+                <Route path={routes.cvs.languages} element={null} />
                 <Route path={routes.cvs.preview} element={<CvPreview />} />
                 <Route index path="*" element={<Navigate to="details" />} />
               </Route>
