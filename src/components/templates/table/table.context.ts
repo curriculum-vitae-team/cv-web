@@ -6,7 +6,10 @@ type TableSearchContextValue = {
   setSearch: Dispatch<SetStateAction<string>>
 }
 
-export const TableSearchContext = createContext<TableSearchContextValue>(null as never)
+export const TableSearchContext = createContext<TableSearchContextValue>({
+  search: '',
+  setSearch() {}
+})
 
 type TableSortContextValue = {
   sortBy: string
@@ -15,4 +18,9 @@ type TableSortContextValue = {
   setOrder: Dispatch<SetStateAction<SortOrder>>
 }
 
-export const TableSortContext = createContext<TableSortContextValue>(null as never)
+export const TableSortContext = createContext<TableSortContextValue>({
+  sortBy: '',
+  order: SortOrder.Asc,
+  setSortBy() {},
+  setOrder() {}
+})

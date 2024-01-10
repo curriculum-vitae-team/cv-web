@@ -20,7 +20,7 @@ const Table = <T extends Item>({
 }: TableProps<T>) => {
   const [search, setSearch] = useState('')
   const _search = useDeferredValue(search)
-  const [sortBy, setSortBy] = useState(defaultSortBy)
+  const [sortBy, setSortBy] = useState(defaultSortBy as string)
   const _sortBy = useDeferredValue(sortBy)
   const [order, setOrder] = useState(SortOrder.Asc)
   const _order = useDeferredValue(order)
@@ -38,22 +38,24 @@ const Table = <T extends Item>({
   }, [items, _search])
 
   const sortedItems = useMemo(() => {
-    return filteredItems.sort(sortItems<T>(_sortBy, _order))
+    return filteredItems.sort(sortItems(_sortBy, _order))
   }, [filteredItems, _sortBy, _order])
 
   return (
     <MuiTable stickyHeader>
       <TableHead>
-        <TableSearchContext.Provider value={tableSearch as never}>
-          <TableRow>
-            <Styled.ToolBar colSpan={10}>
-              <div>
-                <TableToolComponent />
-              </div>
-            </Styled.ToolBar>
-          </TableRow>
-        </TableSearchContext.Provider>
-        <TableSortContext.Provider value={tableSort as never}>
+        {TableToolComponent && (
+          <TableSearchContext.Provider value={tableSearch}>
+            <TableRow>
+              <Styled.ToolBar colSpan={10}>
+                <div>
+                  <TableToolComponent />
+                </div>
+              </Styled.ToolBar>
+            </TableRow>
+          </TableSearchContext.Provider>
+        )}
+        <TableSortContext.Provider value={tableSort}>
           <TableHeadComponent />
         </TableSortContext.Provider>
       </TableHead>
@@ -72,6 +74,6 @@ const Table = <T extends Item>({
   )
 }
 
-const TableComponent = memo(Table) as never
+const TableComponent = memo(Table)
 
-export const createTable = <T extends Item>(): FC<TableProps<T>> => TableComponent
+export const createTable = <T extends Item>() => (TableComponent as unknown) as FC<TableProps<T>>
