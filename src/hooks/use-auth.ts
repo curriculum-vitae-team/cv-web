@@ -3,13 +3,14 @@ import { AuthInput, UserRole } from 'cv-graphql'
 import { LOGIN, SIGNUP } from 'graphql/auth'
 import { authService } from 'graphql/auth/auth.service'
 import { LoginResult, SignupResult } from 'graphql/auth/auth.types'
+import { USERS } from 'graphql/users'
 
 export const useLogin = () => {
   return useLazyQuery<LoginResult, { auth: AuthInput }>(LOGIN)
 }
 
 export const useSignup = () => {
-  return useMutation<SignupResult, { auth: AuthInput }>(SIGNUP)
+  return useMutation<SignupResult, { auth: AuthInput }>(SIGNUP, { refetchQueries: [USERS] })
 }
 
 export const useAuth = () => {
