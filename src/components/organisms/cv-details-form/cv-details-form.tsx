@@ -13,6 +13,7 @@ const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
   const {
     formState: { errors, isDirty },
     control,
+    reset,
     register,
     handleSubmit
   } = useForm<CvFormValues>({
@@ -34,7 +35,7 @@ const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
           projectsIds: cv.projects?.map((project) => project.id) || []
         }
       }
-    })
+    }).then(() => reset({ name, description }))
   }
 
   return (

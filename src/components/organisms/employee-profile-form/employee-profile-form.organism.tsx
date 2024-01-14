@@ -27,14 +27,14 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
   })
   const { formState, register, handleSubmit, reset } = methods
 
-  const onSubmit = (values: UserProfileFormValues) => {
+  const onSubmit = ({ profile, position, department }: UserProfileFormValues) => {
     Promise.all([
       updateProfile({
         variables: {
           profile: {
             profileId: user.profile.id,
-            first_name: values.profile.first_name,
-            last_name: values.profile.last_name
+            first_name: profile.first_name,
+            last_name: profile.last_name
           }
         }
       }),
@@ -42,13 +42,13 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
         variables: {
           user: {
             userId: user.id,
-            departmentId: values.department,
-            positionId: values.position,
+            departmentId: department,
+            positionId: position,
             role: user.role
           }
         }
       })
-    ]).then(() => reset(values))
+    ]).then(() => reset({ profile, position, department }))
   }
 
   return (
