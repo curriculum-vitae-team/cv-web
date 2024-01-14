@@ -6,7 +6,7 @@ export const Breadcrumbs = styled(MuiBreadcrumbs)(({ theme }) => ({
   height: 44,
   zIndex: 3,
   paddingTop: 20,
-  backgroundColor: '#f5f5f7',
+  backgroundColor: theme.palette.background.default,
   width: '100%',
   maxWidth: theme.breakpoints.values.xl,
   '.MuiBreadcrumbs-ol': {
@@ -16,7 +16,7 @@ export const Breadcrumbs = styled(MuiBreadcrumbs)(({ theme }) => ({
     whiteSpace: 'nowrap'
   },
   '& .MuiBreadcrumbs-li:last-child': {
-    color: '#2e2e2e',
-    pointerEvents: 'none'
+    pointerEvents: 'none',
+    opacity: 0.6
   }
 }))

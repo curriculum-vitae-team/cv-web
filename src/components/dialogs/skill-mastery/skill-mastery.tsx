@@ -25,7 +25,7 @@ const SkillMastery = ({
       mastery: skillMastery?.mastery || Mastery.Novice
     }
   })
-  const { handleSubmit } = methods
+  const { formState, handleSubmit } = methods
 
   const onSubmit = (values: SkillMasteryFormValues) => {
     setIsLoading(true)
@@ -44,8 +44,10 @@ const SkillMastery = ({
           <SkillMasterySelect />
         </DialogContent>
         <DialogActions>
-          <Button onClick={closeDialog}>{t('Cancel')}</Button>
-          <Button variant="contained" type="submit" disabled={isLoading}>
+          <Button variant="outlined" color="secondary" onClick={closeDialog}>
+            {t('Cancel')}
+          </Button>
+          <Button variant="contained" type="submit" disabled={isLoading || !formState.isDirty}>
             {t('Confirm')}
           </Button>
         </DialogActions>

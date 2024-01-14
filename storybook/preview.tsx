@@ -1,7 +1,7 @@
 import React from 'react'
 import { Preview } from '@storybook/react'
 import { ThemeProvider } from '@mui/material'
-import { theme } from '../src/components/app/app.theme'
+import { getTheme } from '../src/components/features/theme-provider/mui-theme'
 
 const preview: Preview = {
   parameters: {
@@ -17,7 +17,7 @@ const preview: Preview = {
       ]
     }
   },
-  decorators: [(story) => <ThemeProvider theme={theme}>{story()}</ThemeProvider>]
+  decorators: [(story) => <ThemeProvider theme={getTheme('light')}>{story()}</ThemeProvider>]
 }
 
 export default preview

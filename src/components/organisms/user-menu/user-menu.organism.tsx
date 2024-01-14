@@ -1,7 +1,7 @@
 import { memo, MouseEvent, useCallback, useEffect, useState } from 'react'
 import { generatePath, NavLink, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Avatar, Divider, ListItemIcon, Menu, MenuItem } from '@mui/material'
+import { Avatar, Divider, ListItemIcon, MenuItem } from '@mui/material'
 import { AccountCircle, Settings, Logout } from '@mui/icons-material'
 import { authService } from 'graphql/auth/auth.service'
 import { useAuth } from 'hooks/use-auth'
@@ -43,32 +43,13 @@ const UserMenu = () => {
       >
         {profile?.full_name?.[0] || user$?.email[0]}
       </Avatar>
-      <Menu
+      <Styled.Menu
         anchorEl={anchorEl}
         open={open}
         disableScrollLock
         onClose={handleClose}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        PaperProps={{
-          sx: {
-            minWidth: 200,
-            overflow: 'visible',
-            mt: 1.5,
-            '&:before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0
-            }
-          }
-        }}
       >
         <MenuItem component={NavLink} to={generatePath(routes.users.profile, { userId })}>
           <ListItemIcon>
@@ -89,7 +70,7 @@ const UserMenu = () => {
           </ListItemIcon>
           {t('Logout')}
         </MenuItem>
-      </Menu>
+      </Styled.Menu>
     </>
   )
 }

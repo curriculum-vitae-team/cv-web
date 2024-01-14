@@ -1,10 +1,11 @@
 import { Button, Typography, styled } from '@mui/material'
+import { palette } from '@features/theme-provider/mui-palette'
 
-export const Document = styled('div')({
+export const Document = styled('div')(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '200px 1fr',
-  color: '#353535'
-})
+  color: palette[theme.palette.mode === 'dark' ? 'light' : 'dark'].background?.default
+}))
 
 export const PageBreak = styled('div')({
   pageBreakAfter: 'always'

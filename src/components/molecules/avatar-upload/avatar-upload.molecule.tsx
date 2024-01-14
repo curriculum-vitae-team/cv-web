@@ -61,9 +61,7 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
           <FileUploadOutlined fontSize="large" sx={{ mr: 2 }} />
           {t('Upload avatar image')}
         </Typography>
-        <Typography variant="subtitle1" color="GrayText">
-          {t('png, jpg or gif no more than 0.5MB')}
-        </Typography>
+        <Typography variant="subtitle1">{t('png, jpg or gif no more than 0.5MB')}</Typography>
         <Styled.Input
           type="file"
           accept=".png, .jpg, .jpeg, .gif"

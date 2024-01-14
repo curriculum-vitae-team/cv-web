@@ -26,6 +26,9 @@ export const Label = styled('label')({
   '& > .MuiTypography-root': {
     display: 'flex',
     alignItems: 'center'
+  },
+  '& > .MuiTypography-subtitle1': {
+    opacity: 0.6
   }
 })
 
