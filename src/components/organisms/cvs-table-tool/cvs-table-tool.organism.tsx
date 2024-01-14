@@ -5,7 +5,7 @@ import { useAuth } from 'hooks/use-auth'
 import { useCvDialog } from '@dialogs/cv'
 
 export const CvsTableTool = () => {
-  const { userId, isAdmin } = useAuth()
+  const { userId } = useAuth()
   const { t } = useTranslation()
   const [openCvDialog] = useCvDialog()
 
@@ -18,7 +18,7 @@ export const CvsTableTool = () => {
   return (
     <>
       <SearchInput />
-      {isAdmin && <AddButton onClick={handleCreate}>{t('Create CV')}</AddButton>}
+      <AddButton onClick={handleCreate}>{t('Create CV')}</AddButton>
     </>
   )
 }
