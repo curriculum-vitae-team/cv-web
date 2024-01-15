@@ -3,18 +3,12 @@ import { StorageKeys } from 'constants/storage.constants'
 import { IThemeService } from './theme.types'
 
 class ThemeService implements IThemeService {
-  theme$ = makeVar('device')
+  theme$ = makeVar(this.getTheme())
 
-  constructor(private readonly storageService: Storage) {
-    this.readFromStorage()
-  }
+  constructor(private readonly storageService: Storage) {}
 
-  private readFromStorage() {
-    const theme = this.storageService.getItem(StorageKeys.Theme)
-
-    if (theme) {
-      this.theme$(theme)
-    }
+  private getTheme() {
+    return this.storageService.getItem(StorageKeys.Theme) || 'device'
   }
 
   setTheme(theme: string) {

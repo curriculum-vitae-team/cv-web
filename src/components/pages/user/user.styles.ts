@@ -9,13 +9,11 @@ export const Tabs = styled(MuiTabs)(({ theme }) => ({
   backdropFilter: 'blur(0.5px)'
 }))
 
-export const Content = styled('div')(({ theme }) => ({
+export const Content = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   margin: '0 auto',
-  width: 720,
-  padding: '32px 0',
-  [theme.breakpoints.down('md')]: {
-    width: '100%'
-  }
-}))
+  width: '100%',
+  maxWidth: 720,
+  padding: '32px 0'
+})

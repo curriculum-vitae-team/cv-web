@@ -1,3 +1,4 @@
+import { ReactiveVar } from '@apollo/client'
 import { Language } from 'cv-graphql'
 
 export type LanguagesResult = {
@@ -13,6 +14,7 @@ export type UpdateLanguageResult = {
 }
 
 export interface ILanguageService {
+  language$: ReactiveVar<string>
   getLanguage(): string | null
   changeLanguage(language: string): void
 }
