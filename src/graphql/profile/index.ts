@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
 export const PROFILE = gql`
-  query Profile($profileId: ID!) {
-    profile(profileId: $profileId) {
+  query Profile($userId: ID!) {
+    profile(userId: $userId) {
       id
       first_name
       last_name
@@ -13,8 +13,8 @@ export const PROFILE = gql`
 `
 
 export const PROFILE_SKILLS = gql`
-  query ProfileSkills($profileId: ID!) {
-    profile(profileId: $profileId) {
+  query ProfileSkills($userId: ID!) {
+    profile(userId: $userId) {
       id
       skills {
         name
@@ -26,8 +26,8 @@ export const PROFILE_SKILLS = gql`
 `
 
 export const PROFILE_LANGUAGES = gql`
-  query ProfileLanguages($profileId: ID!) {
-    profile(profileId: $profileId) {
+  query ProfileLanguages($userId: ID!) {
+    profile(userId: $userId) {
       id
       languages {
         language_name

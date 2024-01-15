@@ -32,7 +32,7 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
       updateProfile({
         variables: {
           profile: {
-            profileId: user.profile.id,
+            userId: user.id,
             first_name: profile.first_name,
             last_name: profile.last_name
           }

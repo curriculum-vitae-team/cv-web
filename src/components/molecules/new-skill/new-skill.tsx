@@ -5,7 +5,6 @@ import { Typography } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
 import { useProfileSkillAdd } from 'hooks/use-profile'
-import { useAuth } from 'hooks/use-auth'
 import { useCvSkillAdd } from 'hooks/use-cvs'
 import * as Styled from './new-skill.styles'
 import { NewSkillCardProps } from './new-skill.types'
@@ -21,7 +20,7 @@ const NewSkillCard = ({ onClick }: NewSkillCardProps) => {
 }
 
 const NewProfileSkillComponent = () => {
-  const { profileId } = useAuth()
+  const { userId = '' } = useParams()
   const [addProfileSkill] = useProfileSkillAdd()
   const [openSkillMasteryDialog] = useSkillMasteryDialog()
 
@@ -32,7 +31,7 @@ const NewProfileSkillComponent = () => {
         return addProfileSkill({
           variables: {
             skill: {
-              profileId,
+              userId,
               name,
               category,
               mastery

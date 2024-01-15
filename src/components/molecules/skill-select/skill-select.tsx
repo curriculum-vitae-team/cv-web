@@ -2,19 +2,19 @@ import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useController, useFormContext } from 'react-hook-form'
 import { MenuItem, TextField } from '@mui/material'
+import { useParams } from 'react-router-dom'
 import { useSkills } from 'hooks/use-skills'
-import { useAuth } from 'hooks/use-auth'
 import { useProfileSkills } from 'hooks/use-profile'
 import { SkillMasteryFormValues } from '@dialogs/skill-mastery/skill-mastery.types'
 import { SkillSelectProps } from './skill-select.types'
 
 const SkillSelect = ({ disabled }: SkillSelectProps) => {
+  const { userId = '' } = useParams()
   const { t } = useTranslation()
-  const { profileId } = useAuth()
   const { skills: allSkills, loading } = useSkills()
   const { setValue } = useFormContext<SkillMasteryFormValues>()
   const { field } = useController<SkillMasteryFormValues>({ name: 'name' })
-  const { skills } = useProfileSkills(profileId)
+  const { skills } = useProfileSkills(userId)
 
   const ownSkills = skills.map((skill) => skill.name) || []
   const sortedSkills = [...allSkills].sort((a) => {

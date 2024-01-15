@@ -15,9 +15,8 @@ export const useSignup = () => {
 
 export const useAuth = () => {
   const user$ = useReactiveVar(authService.user$)
-  const isAdmin = user$?.role === UserRole.Admin
   const userId = user$?.id || ''
-  const profileId = user$?.profile.id || ''
+  const isAdmin = user$?.role === UserRole.Admin
 
-  return { user$, isAdmin, userId, profileId }
+  return { user$, userId, isAdmin }
 }

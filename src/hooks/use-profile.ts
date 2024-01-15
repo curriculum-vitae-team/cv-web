@@ -21,13 +21,13 @@ import {
 } from 'graphql/profile/profile.types'
 import { USER, USER_FULL_NAME } from 'graphql/users'
 
-export const useProfile = (profileId: string) => {
-  const query = useQuery<ProfileResult>(PROFILE, { variables: { profileId } })
+export const useProfile = (userId: string) => {
+  const query = useQuery<ProfileResult>(PROFILE, { variables: { userId } })
   return { profile: query.data?.profile, ...query }
 }
 
-export const useProfileSkills = (profileId: string) => {
-  const query = useQuery<ProfileResult>(PROFILE_SKILLS, { variables: { profileId } })
+export const useProfileSkills = (userId: string) => {
+  const query = useQuery<ProfileResult>(PROFILE_SKILLS, { variables: { userId } })
   const skills = query.data?.profile.skills || []
 
   const groups = useMemo(() => {

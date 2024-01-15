@@ -12,8 +12,8 @@ import * as Styled from './user-menu.styles'
 const UserMenu = () => {
   const location = useLocation()
   const { t } = useTranslation()
-  const { user$, userId, profileId } = useAuth()
-  const { profile } = useProfile(profileId)
+  const { user$, userId } = useAuth()
+  const { profile } = useProfile(userId)
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
 

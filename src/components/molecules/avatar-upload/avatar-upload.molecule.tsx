@@ -11,16 +11,15 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
   const { t } = useTranslation()
   const [uploadAvatar, { loading: isLoading }] = useAvatarUpload()
   const [deleteAvatar, { loading: isDeleting }] = useAvatarDelete()
-  const profileId = user.profile.id
 
   const handleUpload = (file: File) => {
     fileToBase64(file).then((avatar) =>
-      uploadAvatar({ variables: { avatar: { profileId, ...avatar } } })
+      uploadAvatar({ variables: { avatar: { userId: user.id, ...avatar } } })
     )
   }
 
   const handleDelete = () => {
-    deleteAvatar({ variables: { avatar: { profileId } } })
+    deleteAvatar({ variables: { avatar: { userId: user.id } } })
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

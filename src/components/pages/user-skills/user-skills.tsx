@@ -1,13 +1,13 @@
 import { memo } from 'react'
+import { useParams } from 'react-router-dom'
 import { NewProfileSkill } from '@molecules/new-skill'
 import { useProfileSkills } from 'hooks/use-profile'
-import { useAuth } from 'hooks/use-auth'
 import { ProfileSkillsGroup } from '@molecules/skills-group'
 import * as Styled from './user-skills.styles'
 
 const UserSkills = () => {
-  const { profileId } = useAuth()
-  const { groups, loading } = useProfileSkills(profileId)
+  const { userId = '' } = useParams()
+  const { groups, loading } = useProfileSkills(userId)
 
   if (loading) {
     return null

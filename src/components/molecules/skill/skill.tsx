@@ -4,7 +4,6 @@ import { Mastery } from 'cv-graphql'
 import { useParams } from 'react-router-dom'
 import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
 import { useProfileSkillUpdate } from 'hooks/use-profile'
-import { useAuth } from 'hooks/use-auth'
 import { useCvSkillUpdate } from 'hooks/use-cvs'
 import { getSkillColor } from 'helpers/get-skill-color'
 import { SkillCardProps, SkillProps } from './skill.types'
@@ -24,7 +23,7 @@ const SkillCard = ({ skill, onClick }: SkillCardProps) => {
 }
 
 const ProfileSkillComponent = ({ skill }: SkillProps) => {
-  const { profileId } = useAuth()
+  const { userId = '' } = useParams()
   const [updateProfileSkill] = useProfileSkillUpdate()
   const [openSkillMasteryDialog] = useSkillMasteryDialog()
 
@@ -37,7 +36,7 @@ const ProfileSkillComponent = ({ skill }: SkillProps) => {
         return updateProfileSkill({
           variables: {
             skill: {
-              profileId,
+              userId,
               name,
               mastery
             }

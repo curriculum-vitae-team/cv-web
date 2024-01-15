@@ -46,7 +46,7 @@ const User = ({ title = 'Create user', saveText = 'Create', item, closeDialog }:
         updateProfile({
           variables: {
             profile: {
-              profileId: item.profile.id,
+              userId: item.id,
               first_name: profile.first_name,
               last_name: profile.last_name
             }
