@@ -19,3 +19,13 @@ export const teamSizeValidation = (value: number) => {
     return 'Must be positive'
   }
 }
+
+export const otpValidation = (value: string) => {
+  if (!value) {
+    return 'Required field'
+  }
+
+  if (value.length !== 6) {
+    return 'Exactly 6 characters'
+  }
+}

@@ -1,7 +1,8 @@
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Typography } from '@mui/material'
+import { Tooltip, Typography } from '@mui/material'
+import { Verified } from '@mui/icons-material'
 import { AvatarUpload } from '@molecules/avatar-upload'
 import { EmployeeProfileForm } from '@organisms/employee-profile-form'
 import { useUser } from 'hooks/use-users'
@@ -21,7 +22,14 @@ const UserProfile = () => {
       <AvatarUpload user={user} />
       <Styled.Profile>
         <Typography variant="h5">{user.profile.full_name}</Typography>
-        <Typography>{user.email}</Typography>
+        <Styled.Email>
+          {user.email}
+          {user.is_verified && (
+            <Tooltip arrow placement="top" title={t('Verified')}>
+              <Verified />
+            </Tooltip>
+          )}
+        </Styled.Email>
         <Typography>
           {t('A member since')} {new Date(+user.created_at).toDateString()}
         </Typography>

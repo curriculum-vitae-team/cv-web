@@ -29,6 +29,7 @@ const cvRoutes = {
 export const routes = {
   root: '/',
   auth: authRoutes,
+  verify: '/verify',
   users: userRoutes,
   settings: '/settings',
   projects: projectRoutes,

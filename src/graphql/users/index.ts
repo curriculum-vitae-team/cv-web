@@ -46,6 +46,7 @@ export const USER = gql`
         id
         name
       }
+      is_verified
       role
     }
   }
