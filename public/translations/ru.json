@@ -65,6 +65,11 @@
   "Proficient": "Опытный",
   "Expert": "Эксперт",
 
+  "Appearance": "Внешний вид",
+  "Light": "Светлый",
+  "Dark": "Темный",
+  "Device settings": "Настройки устройства",
+
   "Name": "Имя",
   "Internal Name": "Внутреннее имя",
   "Domain": "Домен",

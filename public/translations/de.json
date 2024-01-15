@@ -65,6 +65,11 @@
   "Proficient": "Erfahren",
   "Expert": "Experte",
 
+  "Appearance": "Aussehen",
+  "Light": "Licht",
+  "Dark": "Dunkel",
+  "Device settings": "Geräteeinstellungen",
+
   "Name": "Name",
   "Internal Name": "Interner Name",
   "Domain": "Domain",

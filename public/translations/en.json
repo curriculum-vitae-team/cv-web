@@ -65,6 +65,11 @@
   "Proficient": "Proficient",
   "Expert": "Expert",
 
+  "Appearance": "Appearance",
+  "Light": "Light",
+  "Dark": "Dark",
+  "Device settings": "Device settings",
+
   "Name": "Name",
   "Internal Name": "Internal Name",
   "Domain": "Domain",
