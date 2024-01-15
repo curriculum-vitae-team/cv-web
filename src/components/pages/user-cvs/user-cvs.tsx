@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
-import { Box, CircularProgress } from '@mui/material'
+import { Container } from '@mui/material'
 import { Cv } from 'cv-graphql'
 import { useUserCvs } from 'hooks/use-users'
 import { createTable } from '@templates/table'
@@ -14,12 +14,8 @@ const UserCvs = () => {
   const { userId = '' } = useParams()
   const { cvs, loading } = useUserCvs(userId)
 
-  if (loading) {
-    return <CircularProgress />
-  }
-
   return (
-    <Box sx={{ width: 'calc(100vw - 48px)', alignSelf: 'center' }}>
+    <Container maxWidth="xl">
       <Table
         items={cvs}
         loading={loading}
@@ -29,7 +25,7 @@ const UserCvs = () => {
         searchBy={['name']}
         defaultSortBy="name"
       />
-    </Box>
+    </Container>
   )
 }
 

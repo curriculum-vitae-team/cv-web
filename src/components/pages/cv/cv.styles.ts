@@ -12,8 +12,7 @@ export const Tabs = styled(MuiTabs)(({ theme }) => ({
 export const Content = styled('div')({
   display: 'flex',
   flexDirection: 'column',
-  margin: '0 auto',
   width: '100%',
-  maxWidth: 720,
+  height: '90%',
   padding: '32px 0'
 })

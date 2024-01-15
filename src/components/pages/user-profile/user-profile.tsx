@@ -1,11 +1,12 @@
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Tooltip, Typography } from '@mui/material'
+import { Container, Tooltip, Typography } from '@mui/material'
 import { Verified } from '@mui/icons-material'
 import { AvatarUpload } from '@molecules/avatar-upload'
 import { EmployeeProfileForm } from '@organisms/employee-profile-form'
 import { useUser } from 'hooks/use-users'
+import { PageLoader } from '@atoms/page-loader'
 import * as Styled from './user-profile.styles'
 
 const UserProfile = () => {
@@ -14,11 +15,11 @@ const UserProfile = () => {
   const { user, loading } = useUser(userId)
 
   if (loading || !user) {
-    return null
+    return <PageLoader />
   }
 
   return (
-    <>
+    <Container maxWidth="md">
       <AvatarUpload user={user} />
       <Styled.Profile>
         <Typography variant="h5">{user.profile.full_name}</Typography>
@@ -35,7 +36,7 @@ const UserProfile = () => {
         </Typography>
       </Styled.Profile>
       <EmployeeProfileForm user={user} />
-    </>
+    </Container>
   )
 }
 

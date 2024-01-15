@@ -43,7 +43,7 @@ const CvPreview = () => {
   }
 
   return (
-    <Styled.Document ref={ref}>
+    <Styled.Document ref={ref} maxWidth="md">
       <Styled.Head>
         <Typography variant="h4">{cv.user?.profile.full_name}</Typography>
         <Styled.Position>{cv.user?.position_name}</Styled.Position>

@@ -1,11 +1,13 @@
-import { Button, Typography, styled } from '@mui/material'
+import { Button, Container, Typography, styled } from '@mui/material'
 import { palette } from '@features/theme-provider/mui-palette'
 
-export const Document = styled('div')(({ theme }) => ({
+export const Document = styled(Container)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '200px 1fr',
   color: palette[theme.palette.mode === 'dark' ? 'light' : 'dark'].background?.default,
   '@media print': {
+    margin: 0,
+    padding: 0,
     background: palette.light.background?.paper,
     color: palette.light.text?.primary,
     '-webkit-print-color-adjust': 'exact'
