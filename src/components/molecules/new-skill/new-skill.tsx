@@ -27,6 +27,7 @@ const NewProfileSkillComponent = () => {
   const handleClick = () => {
     openSkillMasteryDialog({
       title: 'Add skill',
+      userId,
       onConfirm({ name, category, mastery }) {
         return addProfileSkill({
           variables: {
@@ -55,6 +56,7 @@ const NewCvSkillComponent = () => {
   const handleClick = () => {
     openSkillMasteryDialog({
       title: 'Add skill',
+      cvId,
       onConfirm({ name, category, mastery }) {
         return addCvSkill({
           variables: {

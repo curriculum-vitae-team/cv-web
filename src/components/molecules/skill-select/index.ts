@@ -1,1 +1,1 @@
-export { default as SkillSelect } from './skill-select'
+export { ProfileSkillSelect, CvSkillSelect } from './skill-select'

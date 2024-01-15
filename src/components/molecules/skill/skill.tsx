@@ -30,6 +30,7 @@ const ProfileSkillComponent = ({ skill }: SkillProps) => {
   const handleClick = () => {
     openSkillMasteryDialog({
       title: 'Update skill',
+      userId,
       skillMastery: skill,
       disableSkillSelect: true,
       onConfirm({ name, mastery }) {
@@ -59,6 +60,7 @@ const CvSkillComponent = ({ skill }: SkillProps) => {
   const handleClick = () => {
     openSkillMasteryDialog({
       title: 'Update skill',
+      cvId,
       skillMastery: skill,
       disableSkillSelect: true,
       onConfirm({ name, mastery }) {

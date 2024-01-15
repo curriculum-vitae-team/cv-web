@@ -4,13 +4,15 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Mastery } from 'cv-graphql'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
-import { SkillSelect } from '@molecules/skill-select'
+import { ProfileSkillSelect, CvSkillSelect } from '@molecules/skill-select'
 import { SkillMasterySelect } from '@molecules/skill-mastery-select'
 import { SkillCategorySelect } from '@molecules/skill-category-select'
 import { SkillMasteryFormValues, SkillMasteryProps } from './skill-mastery.types'
 
 const SkillMastery = ({
   title,
+  userId,
+  cvId,
   skillMastery,
   disableSkillSelect,
   onConfirm,
@@ -39,7 +41,8 @@ const SkillMastery = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogTitle>{t(title)}</DialogTitle>
         <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-          <SkillSelect disabled={disableSkillSelect} />
+          {userId && <ProfileSkillSelect userId={userId} disabled={disableSkillSelect} />}
+          {cvId && <CvSkillSelect cvId={cvId} disabled={disableSkillSelect} />}
           <SkillCategorySelect disabled />
           <SkillMasterySelect />
         </DialogContent>

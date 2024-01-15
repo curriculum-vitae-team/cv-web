@@ -9,6 +9,8 @@ export type SkillMasteryFormValues = {
 
 export type SkillMasteryProps = DialogProps & {
   title: string
+  userId?: string
+  cvId?: string
   skillMastery?: SkillMastery
   disableSkillSelect?: boolean
   onConfirm(values: SkillMasteryFormValues): Promise<unknown>
