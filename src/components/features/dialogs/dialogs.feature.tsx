@@ -5,11 +5,11 @@ import { dialogsService } from 'graphql/dialogs/dialogs.service'
 import * as Styled from './dialogs.styles'
 
 export const Dialogs = () => {
-  const dialogs = useReactiveVar(dialogsService.dialogs$)
+  const dialogs$ = useReactiveVar(dialogsService.dialogs$)
 
   return (
     <>
-      {dialogs.map(({ id, Component, options }) => {
+      {dialogs$.map(({ id, Component, options }) => {
         const closeModal = () => dialogsService.removeDialog(id)
         return (
           <Dialog key={id} open {...options} onClose={closeModal}>

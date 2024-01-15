@@ -5,7 +5,7 @@ import { notificationsService } from 'graphql/notifications/notifications.servic
 import * as Styled from './notifications.styles'
 
 const Notifications = () => {
-  const notifications = useReactiveVar(notificationsService.notifications$)
+  const notifications$ = useReactiveVar(notificationsService.notifications$)
 
   const handleClose = useCallback((id: number) => {
     return () => notificationsService.closeNotification(id)
@@ -13,7 +13,7 @@ const Notifications = () => {
 
   return (
     <Styled.Notifications>
-      {notifications.map(({ id, type, message }) => (
+      {notifications$.map(({ id, type, message }) => (
         <Alert key={id} severity={type} onClose={handleClose(id)}>
           {message}
         </Alert>

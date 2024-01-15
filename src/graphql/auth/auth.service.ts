@@ -8,12 +8,13 @@ class AuthService implements IAuthService {
   access_token$ = makeVar('')
 
   constructor(private readonly storageService: Storage) {
-    this.readFromStorage()
+    this.getUser()
   }
 
-  private readFromStorage() {
+  private getUser() {
     const user = this.storageService.getItem(StorageKeys.User)
     const access_token = this.storageService.getItem(StorageKeys.AccessToken)
+
     if (user && access_token) {
       this.user$(JSON.parse(user))
       this.access_token$(access_token)

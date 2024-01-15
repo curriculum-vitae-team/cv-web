@@ -3,9 +3,9 @@ import { Navigate, Outlet } from 'react-router-dom'
 import { authService } from 'graphql/auth/auth.service'
 
 export const AuthGuard = () => {
-  const access_token = useReactiveVar(authService.access_token$)
+  const access_token$ = useReactiveVar(authService.access_token$)
 
-  if (access_token) {
+  if (access_token$) {
     return <Outlet />
   }
 
