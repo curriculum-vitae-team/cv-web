@@ -6,7 +6,8 @@ import {
   SkillMastery,
   AddCvSkillInput,
   UpdateCvSkillInput,
-  DeleteCvInput
+  DeleteCvInput,
+  DeleteCvSkillInput
 } from 'cv-graphql'
 import { useMemo } from 'react'
 import {
@@ -16,6 +17,7 @@ import {
   CVS,
   CV_SKILLS,
   DELETE_CV,
+  DELETE_CV_SKILL,
   EXPORT_PDF,
   UPDATE_CV,
   UPDATE_CV_SKILL
@@ -25,6 +27,7 @@ import {
   CVsResult,
   CreateCvResult,
   CvResult,
+  DeleteCvSkillResult,
   ExportPdfResult,
   UpdateCvResult,
   UpdateCvSkillResult
@@ -90,6 +93,10 @@ export const useCvSkillAdd = () => {
 
 export const useCvSkillUpdate = () => {
   return useMutation<UpdateCvSkillResult, { skill: UpdateCvSkillInput }>(UPDATE_CV_SKILL)
+}
+
+export const useCvSkillDelete = () => {
+  return useMutation<DeleteCvSkillResult, { skill: DeleteCvSkillInput }>(DELETE_CV_SKILL)
 }
 
 export const usePdfExport = () => {
