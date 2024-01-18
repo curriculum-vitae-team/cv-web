@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from '@apollo/client'
 import {
   AddProfileSkillInput,
+  DeleteProfileSkillInput,
   SkillMastery,
   UpdateProfileInput,
   UpdateProfileSkillInput
@@ -11,13 +12,15 @@ import {
   ADD_PROFILE_SKILL,
   UPDATE_PROFILE_SKILL,
   PROFILE,
-  PROFILE_SKILLS
+  PROFILE_SKILLS,
+  DELETE_PROFILE_SKILL
 } from 'graphql/profile'
 import {
   UpdateProfileResult,
   AddProfileSkillResult,
   UpdateProfileSkillResult,
-  ProfileResult
+  ProfileResult,
+  DeleteProfileSkillResult
 } from 'graphql/profile/profile.types'
 import { USER, USER_FULL_NAME } from 'graphql/users'
 
@@ -57,5 +60,11 @@ export const useProfileSkillAdd = () => {
 export const useProfileSkillUpdate = () => {
   return useMutation<UpdateProfileSkillResult, { skill: UpdateProfileSkillInput }>(
     UPDATE_PROFILE_SKILL
+  )
+}
+
+export const useProfileSkillDelete = () => {
+  return useMutation<DeleteProfileSkillResult, { skill: DeleteProfileSkillInput }>(
+    DELETE_PROFILE_SKILL
   )
 }

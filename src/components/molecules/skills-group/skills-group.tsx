@@ -9,14 +9,14 @@ const ProfileSkillsGroupComponent = ({ category, skills }: SkillsGroupProps) => 
   const { t } = useTranslation()
 
   return (
-    <div>
+    <Styled.Group>
       <Typography>{t(category)}</Typography>
       <Styled.Skills>
         {skills.map((skill) => (
           <ProfileSkill key={skill.name} skill={skill} />
         ))}
       </Styled.Skills>
-    </div>
+    </Styled.Group>
   )
 }
 
@@ -26,14 +26,14 @@ const CvSkillsGroupComponent = ({ category, skills }: SkillsGroupProps) => {
   const { t } = useTranslation()
 
   return (
-    <div>
+    <Styled.Group>
       <Typography>{t(category)}</Typography>
       <Styled.Skills>
         {skills.map((skill) => (
           <CvSkill key={skill.name} skill={skill} />
         ))}
       </Styled.Skills>
-    </div>
+    </Styled.Group>
   )
 }
 

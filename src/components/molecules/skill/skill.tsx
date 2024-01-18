@@ -1,11 +1,13 @@
-import { memo } from 'react'
+import { MouseEvent, memo } from 'react'
 import { LinearProgress, Typography } from '@mui/material'
 import { Mastery } from 'cv-graphql'
 import { useParams } from 'react-router-dom'
+import { useReactiveVar } from '@apollo/client'
 import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
 import { useProfileSkillUpdate } from 'hooks/use-profile'
 import { useCvSkillUpdate } from 'hooks/use-cvs'
 import { getSkillColor } from 'helpers/get-skill-color'
+import { bulkDeletionService } from '@features/bulk-deletion'
 import { SkillCardProps, SkillProps } from './skill.types'
 import * as Styled from './skill.styles'
 
@@ -13,10 +15,34 @@ const SkillCard = ({ skill, onClick }: SkillCardProps) => {
   const index = Object.keys(Mastery).indexOf(skill.mastery)
   const value = (index + 1) * 20
   const color = getSkillColor(index)
+  const entityIds$ = useReactiveVar(bulkDeletionService.entityIds$)
+  const isSelected = entityIds$.includes(skill.name)
+
+  const handleClick = () => {
+    if (entityIds$.length) {
+      bulkDeletionService.setEntityId(skill.name)
+      return
+    }
+    onClick && onClick()
+  }
+
+  const handleContextMenu = (event: MouseEvent) => {
+    event.preventDefault()
+    bulkDeletionService.setEntityId(skill.name)
+  }
 
   return (
-    <Styled.Card color="secondary" onClick={onClick}>
-      <LinearProgress variant="determinate" color={color} value={value} />
+    <Styled.Card
+      color="secondary"
+      isSelected={isSelected}
+      onClick={handleClick}
+      onContextMenu={handleContextMenu}
+    >
+      <LinearProgress
+        variant="determinate"
+        color={isSelected ? 'secondary' : color}
+        value={isSelected ? 0 : value}
+      />
       <Typography>{skill.name}</Typography>
     </Styled.Card>
   )
