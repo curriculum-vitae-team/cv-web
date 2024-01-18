@@ -23,7 +23,7 @@ const SkillSelect = ({ ownSkills, disabled }: SkillSelectProps) => {
       label={t('Skill')}
     >
       {skills
-        .filter(({ name }) => !ownSkills.includes(name))
+        .filter(({ name }) => disabled || !ownSkills.includes(name))
         .map(({ id, name, category }) => (
           <MenuItem key={id} value={name} onClick={() => setValue('category', category || '')}>
             {name}
