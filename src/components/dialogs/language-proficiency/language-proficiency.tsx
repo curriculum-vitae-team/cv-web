@@ -14,7 +14,7 @@ import {
 const LanguageProficiency = ({
   title,
   ownLanguages,
-  languageProficiency,
+  language,
   disableLanguageSelect,
   onConfirm,
   closeDialog
@@ -23,8 +23,8 @@ const LanguageProficiency = ({
   const [isLoading, setIsLoading] = useState(false)
   const methods = useForm<LanguageProficiencyFormValues>({
     defaultValues: {
-      name: languageProficiency?.name || '',
-      proficiency: languageProficiency?.proficiency || Proficiency.A1
+      name: language?.name || '',
+      proficiency: language?.proficiency || Proficiency.A1
     }
   })
   const { formState, handleSubmit } = methods

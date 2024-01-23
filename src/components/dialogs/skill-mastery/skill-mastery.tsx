@@ -4,16 +4,15 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Mastery } from 'cv-graphql'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
-import { ProfileSkillSelect, CvSkillSelect } from '@molecules/skill-select'
+import { SkillSelect } from '@molecules/skill-select'
 import { SkillMasterySelect } from '@molecules/skill-mastery-select'
 import { SkillCategorySelect } from '@molecules/skill-category-select'
 import { SkillMasteryFormValues, SkillMasteryProps } from './skill-mastery.types'
 
 const SkillMastery = ({
   title,
-  userId,
-  cvId,
-  skillMastery,
+  ownSkills,
+  skill,
   disableSkillSelect,
   onConfirm,
   closeDialog
@@ -22,9 +21,9 @@ const SkillMastery = ({
   const [isLoading, setIsLoading] = useState(false)
   const methods = useForm<SkillMasteryFormValues>({
     defaultValues: {
-      name: skillMastery?.name || '',
-      category: skillMastery?.category || '',
-      mastery: skillMastery?.mastery || Mastery.Novice
+      name: skill?.name || '',
+      category: skill?.category || '',
+      mastery: skill?.mastery || Mastery.Novice
     }
   })
   const { formState, handleSubmit } = methods
@@ -41,8 +40,7 @@ const SkillMastery = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <DialogTitle>{t(title)}</DialogTitle>
         <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-          {userId && <ProfileSkillSelect userId={userId} disabled={disableSkillSelect} />}
-          {cvId && <CvSkillSelect cvId={cvId} disabled={disableSkillSelect} />}
+          <SkillSelect ownSkills={ownSkills} disabled={disableSkillSelect} />
           <SkillCategorySelect disabled />
           <SkillMasterySelect />
         </DialogContent>

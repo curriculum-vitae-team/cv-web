@@ -40,11 +40,11 @@ const UserLanguages = () => {
     })
   }
 
-  const handleUpdate = (languageProficiency: LanguageProficiency) => {
+  const handleUpdate = (language: LanguageProficiency) => {
     openLanguageProficiencyDialog({
       title: 'Update language',
       ownLanguages,
-      languageProficiency,
+      language,
       disableLanguageSelect: true,
       onConfirm({ name, proficiency }) {
         return updateProfileLanguage({
@@ -60,12 +60,12 @@ const UserLanguages = () => {
     })
   }
 
-  const handleDelete = (name: string[]) => {
+  const handleDelete = (entityIds: string[]) => {
     return deleteProfileLanguage({
       variables: {
         language: {
           userId,
-          name
+          name: entityIds
         }
       }
     })

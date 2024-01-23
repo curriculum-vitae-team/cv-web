@@ -3,10 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { useController, useFormContext } from 'react-hook-form'
 import { MenuItem, TextField } from '@mui/material'
 import { useSkills } from 'hooks/use-skills'
-import { useProfileSkills } from 'hooks/use-profile-skills'
 import { SkillMasteryFormValues } from '@dialogs/skill-mastery/skill-mastery.types'
-import { useCvSkills } from 'hooks/use-cvs'
-import { CvSkillSelectProps, ProfileSkillSelectProps, SkillSelectProps } from './skill-select.types'
+import { SkillSelectProps } from './skill-select.types'
 
 const SkillSelect = ({ ownSkills, disabled }: SkillSelectProps) => {
   const { t } = useTranslation()
@@ -33,20 +31,4 @@ const SkillSelect = ({ ownSkills, disabled }: SkillSelectProps) => {
   )
 }
 
-const ProfileSkillSelectComponent = ({ userId, ...props }: ProfileSkillSelectProps) => {
-  const { skills } = useProfileSkills(userId)
-  const ownSkills = skills.map((skill) => skill.name) || []
-
-  return <SkillSelect {...props} ownSkills={ownSkills} />
-}
-
-export const ProfileSkillSelect = memo(ProfileSkillSelectComponent)
-
-const CvSkillSelectComponent = ({ cvId, ...props }: CvSkillSelectProps) => {
-  const { skills } = useCvSkills(cvId)
-  const ownSkills = skills.map((skill) => skill.name) || []
-
-  return <SkillSelect {...props} ownSkills={ownSkills} />
-}
-
-export const CvSkillSelect = memo(CvSkillSelectComponent)
+export default memo(SkillSelect)

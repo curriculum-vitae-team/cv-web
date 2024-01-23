@@ -1,1 +1,1 @@
-export { ProfileSkillsGroup, CvSkillsGroup } from './skills-group'
+export { default as SkillsGroup } from './skills-group'

@@ -9,7 +9,7 @@ export type LanguageProficiencyFormValues = {
 export type LanguageProficiencyProps = DialogProps & {
   title: string
   ownLanguages: string[]
-  languageProficiency?: LanguageProficiency
+  language?: LanguageProficiency
   disableLanguageSelect?: boolean
   onConfirm(values: LanguageProficiencyFormValues): Promise<unknown>
 }
