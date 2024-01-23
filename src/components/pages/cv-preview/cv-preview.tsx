@@ -52,12 +52,16 @@ const CvPreview = () => {
         </Styled.Export>
       </Styled.Head>
       <Styled.Left>
+        <Styled.Title>{t('Education')}</Styled.Title>
+        <Typography>{cv.education || t('No education')}</Typography>
         <Styled.Title>{t('Language proficiency')}</Styled.Title>
         {cv.languages.map(({ name, proficiency }) => (
           <Typography key={name}>
             {name} — {proficiency}
           </Typography>
         ))}
+        {/* <Styled.Title>{t('Domains')}</Styled.Title>
+        <Typography>TODO: derive domains from projects</Typography> */}
       </Styled.Left>
       <Styled.Main>
         <Styled.Title>{cv.name}</Styled.Title>

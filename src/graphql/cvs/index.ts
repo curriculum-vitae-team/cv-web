@@ -19,6 +19,7 @@ export const CV = gql`
     cv(cvId: $cvId) {
       id
       name
+      education
       description
       user {
         id
@@ -40,6 +41,7 @@ export const CREATE_CV = gql`
     createCv(cv: $cv) {
       id
       name
+      education
       description
       user {
         id
@@ -54,6 +56,7 @@ export const UPDATE_CV = gql`
     updateCv(cv: $cv) {
       id
       name
+      education
       description
       user {
         id

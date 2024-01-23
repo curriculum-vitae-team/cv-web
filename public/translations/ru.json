@@ -66,6 +66,8 @@
   "Proficient": "Опытный",
   "Expert": "Эксперт",
 
+  "Add language": "Добавить язык",
+
   "Appearance": "Внешний вид",
   "Light": "Светлый",
   "Dark": "Темный",
@@ -90,6 +92,7 @@
   "CV": "Резюме",
   "Details": "Подробности",
   "details": "Подробности",
+  "Education": "Образование",
   "Create CV": "Создать резюме",
   "Delete CV": "Удалить резюме",
 
@@ -97,6 +100,7 @@
   "preview": "Просмотр",
   "Export PDF": "Экспорт PDF",
   "Language proficiency": "Владение языком",
+  "Domains": "Домены",
 
   "Create department": "Создать отдел",
   "Update department": "Обновить отдел",

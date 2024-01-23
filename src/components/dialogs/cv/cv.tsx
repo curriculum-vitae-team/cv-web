@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { useCvCreate } from 'hooks/use-cvs'
+import { requiredValidation } from 'helpers/validation.helper'
 import { CvFormValues, CvProps } from './cv.types'
 import * as Styled from './cv.styles'
 
@@ -14,17 +15,19 @@ const Cv = ({ userId, closeDialog }: CvProps) => {
   } = useForm<CvFormValues>({
     defaultValues: {
       name: '',
+      education: '',
       description: ''
     }
   })
   const { t } = useTranslation()
   const [createCv, { loading }] = useCvCreate()
 
-  const onSubmit = ({ name, description }: CvFormValues) => {
+  const onSubmit = ({ name, education, description }: CvFormValues) => {
     createCv({
       variables: {
         cv: {
           name,
+          education,
           description,
           userId,
           projectsIds: []
@@ -38,11 +41,13 @@ const Cv = ({ userId, closeDialog }: CvProps) => {
       <DialogTitle>{t('Create CV')}</DialogTitle>
       <Styled.Column>
         <TextField
-          {...register('name', { required: true })}
+          {...register('name', { validate: requiredValidation })}
           autoFocus
           label={t('Name')}
           error={!!errors.name}
+          helperText={errors.name?.message || ''}
         />
+        <TextField {...register('education')} label={t('Education')} />
         <TextField {...register('description')} label={t('Description')} multiline rows={7} />
       </Styled.Column>
       <DialogActions>

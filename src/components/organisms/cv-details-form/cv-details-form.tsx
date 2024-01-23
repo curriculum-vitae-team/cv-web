@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { memo } from 'react'
 import { useCvUpdate } from 'hooks/use-cvs'
 import { useAuth } from 'hooks/use-auth'
+import { requiredValidation } from 'helpers/validation.helper'
 import * as Styled from './cv-details-form.styles'
 import { CvDetailsFormProps, CvFormValues } from './cv-details-form.types'
 
@@ -19,33 +20,37 @@ const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
   } = useForm<CvFormValues>({
     defaultValues: {
       name: cv.name,
+      education: cv.education || '',
       description: cv.description
     }
   })
 
   const [updateCv, { loading }] = useCvUpdate()
 
-  const onSubmit = ({ name, description }: CvFormValues) => {
+  const onSubmit = ({ name, education, description }: CvFormValues) => {
     updateCv({
       variables: {
         cv: {
           cvId: cv.id,
           name,
+          education,
           description,
           projectsIds: cv.projects?.map((project) => project.id) || []
         }
       }
-    }).then(() => reset({ name, description }))
+    }).then(() => reset({ name, education, description }))
   }
 
   return (
     <Styled.Form onSubmit={handleSubmit(onSubmit)}>
       <TextField
-        {...register('name', { required: true })}
+        {...register('name', { validate: requiredValidation })}
         autoFocus
         label={t('Name')}
         error={!!errors.name}
+        helperText={errors.name?.message || ''}
       />
+      <TextField {...register('education')} label={t('Education')} />
       <Controller
         name="description"
         control={control}

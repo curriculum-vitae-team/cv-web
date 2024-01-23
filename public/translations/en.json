@@ -66,6 +66,8 @@
   "Proficient": "Proficient",
   "Expert": "Expert",
 
+  "Add language": "Add language",
+
   "Appearance": "Appearance",
   "Light": "Light",
   "Dark": "Dark",
@@ -90,6 +92,7 @@
   "CV": "CV",
   "details": "Details",
   "Details": "Details",
+  "Education": "Education",
   "Create CV": "Create CV",
   "Delete CV": "Delete CV",
 
@@ -97,6 +100,7 @@
   "preview": "Preview",
   "Export PDF": "Export PDF",
   "Language proficiency": "Language proficiency",
+  "Domains": "Domains",
 
   "Create department": "Create department",
   "Update department": "Update department",

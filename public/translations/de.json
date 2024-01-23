@@ -66,6 +66,8 @@
   "Proficient": "Erfahren",
   "Expert": "Experte",
 
+  "Add language": "Sprache hinzufügen",
+
   "Appearance": "Aussehen",
   "Light": "Licht",
   "Dark": "Dunkel",
@@ -90,6 +92,7 @@
   "CV": "Lebenslauf",
   "details": "Einzelheiten",
   "Details": "Einzelheiten",
+  "Education": "Ausbildung",
   "Create CV": "Lebenslauf erstellen",
   "Delete CV": "Lebenslauf löschen",
 
@@ -97,6 +100,7 @@
   "preview": "Vorschau",
   "Export PDF": "PDF exportieren",
   "Language proficiency": "Sprachkompetenz",
+  "Domains": "Domänen",
 
   "Create department": "Abteilung erstellen",
   "Update department": "Update-Abteilung",
