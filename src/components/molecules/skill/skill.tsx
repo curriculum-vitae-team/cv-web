@@ -4,9 +4,9 @@ import { Mastery } from 'cv-graphql'
 import { useParams } from 'react-router-dom'
 import { useReactiveVar } from '@apollo/client'
 import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
-import { useProfileSkillUpdate } from 'hooks/use-profile'
+import { useProfileSkillUpdate } from 'hooks/use-profile-skills'
 import { useCvSkillUpdate } from 'hooks/use-cvs'
-import { getSkillColor } from 'helpers/get-skill-color'
+import { getMasteryColor } from 'helpers/get-mastery-color'
 import { bulkDeletionService } from '@features/bulk-deletion'
 import { SkillCardProps, SkillProps } from './skill.types'
 import * as Styled from './skill.styles'
@@ -14,7 +14,7 @@ import * as Styled from './skill.styles'
 const SkillCard = ({ skill, onClick }: SkillCardProps) => {
   const index = Object.keys(Mastery).indexOf(skill.mastery)
   const value = (index + 1) * 20
-  const color = getSkillColor(index)
+  const color = getMasteryColor(skill.mastery)
   const entityIds$ = useReactiveVar(bulkDeletionService.entityIds$)
   const isSelected = entityIds$.includes(skill.name)
 

@@ -1,5 +1,5 @@
-import { MutationFunction, useMutation, useQuery } from '@apollo/client'
-import { Language } from 'cv-graphql'
+import { useMutation, useQuery } from '@apollo/client'
+import { CreateLanguageInput, DeleteLanguageInput, UpdateLanguageInput } from 'cv-graphql'
 import { CREATE_LANGUAGE, DELETE_LANGUAGE, LANGUAGES, UPDATE_LANGUAGE } from 'graphql/languages'
 import {
   CreateLanguageResult,
@@ -7,32 +7,28 @@ import {
   UpdateLanguageResult
 } from 'graphql/languages/languages.types'
 
-export const useLanguages = (): [Language[], boolean] => {
-  const { data, loading } = useQuery<LanguagesResult>(LANGUAGES)
-  return [data?.languages || [], loading]
+export const useLanguages = () => {
+  const query = useQuery<LanguagesResult>(LANGUAGES)
+  return { languages: query.data?.languages || [], ...query }
 }
 
-export const useLanguageCreate = (): [MutationFunction<CreateLanguageResult>, boolean] => {
-  const [createLanguage, { loading }] = useMutation<CreateLanguageResult>(CREATE_LANGUAGE, {
+export const useLanguageCreate = () => {
+  return useMutation<CreateLanguageResult, { language: CreateLanguageInput }>(CREATE_LANGUAGE, {
     refetchQueries: [LANGUAGES]
   })
-  return [createLanguage, loading]
 }
 
-export const useLanguageUpdate = (): [MutationFunction<UpdateLanguageResult>, boolean] => {
-  const [updateLanguage, { loading }] = useMutation<UpdateLanguageResult>(UPDATE_LANGUAGE, {
-    refetchQueries: [LANGUAGES]
-  })
-  return [updateLanguage, loading]
+export const useLanguageUpdate = () => {
+  return useMutation<UpdateLanguageResult, { language: UpdateLanguageInput }>(UPDATE_LANGUAGE)
 }
 
-export const useLanguageDelete = (item: Language) => {
-  const [deleteLanguage] = useMutation(DELETE_LANGUAGE, {
+export const useLanguageDelete = (languageId: string) => {
+  const [deleteLanguage] = useMutation<null, { language: DeleteLanguageInput }>(DELETE_LANGUAGE, {
     variables: {
-      id: item.id
+      language: { languageId }
     },
     update(cache) {
-      const id = cache.identify({ id: item.id, __typename: 'Language' })
+      const id = cache.identify({ id: languageId, __typename: 'Language' })
       cache.evict({ id })
       cache.gc()
     }

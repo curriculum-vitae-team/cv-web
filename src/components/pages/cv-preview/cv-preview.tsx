@@ -53,9 +53,9 @@ const CvPreview = () => {
       </Styled.Head>
       <Styled.Left>
         <Styled.Title>{t('Language proficiency')}</Styled.Title>
-        {cv.languages.map(({ language_name, proficiency }) => (
-          <Typography key={language_name}>
-            {language_name} — {proficiency}
+        {cv.languages.map(({ name, proficiency }) => (
+          <Typography key={name}>
+            {name} — {proficiency}
           </Typography>
         ))}
       </Styled.Left>

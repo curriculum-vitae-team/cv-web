@@ -1,5 +1,5 @@
 import { Container } from '@mui/material'
-import { LanguageSelect } from '@molecules/language-select'
+import { TranslationSelect } from '@molecules/translation-select'
 import { SideMenu } from '../side-menu'
 import { UserMenu } from '../user-menu'
 import * as Styled from './header.styles'
@@ -12,7 +12,7 @@ export const Header = () => {
           <SideMenu />
         </Styled.LeftPart>
         <Styled.RightPart>
-          <LanguageSelect sx={{ mr: 6 }} />
+          <TranslationSelect sx={{ mr: 6 }} />
           <UserMenu />
         </Styled.RightPart>
       </Container>

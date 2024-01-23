@@ -10,6 +10,7 @@ import { Users } from '@pages/users'
 import { User } from '@pages/user'
 import { UserProfile } from '@pages/user-profile'
 import { UserSkills } from '@pages/user-skills'
+import { UserLanguages } from '@pages/user-languages'
 import { UserCvs } from '@pages/user-cvs'
 import { Settings } from '@pages/settings'
 import { Projects } from '@pages/projects'
@@ -39,7 +40,7 @@ export const Router = () => {
               <Route path={routes.users.user} element={<User />}>
                 <Route path={routes.users.profile} element={<UserProfile />} />
                 <Route path={routes.users.skills} element={<UserSkills />} />
-                <Route path={routes.users.languages} element={null} />
+                <Route path={routes.users.languages} element={<UserLanguages />} />
                 <Route path={routes.users.cvs} element={<UserCvs />} />
                 <Route index path="*" element={<Navigate to="profile" />} />
               </Route>

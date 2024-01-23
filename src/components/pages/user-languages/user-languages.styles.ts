@@ -1,9 +1,12 @@
-import { styled } from '@mui/material'
+import { Container, styled } from '@mui/material'
 
-export const Group = styled('div')({})
+export const Page = styled(Container)({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 32
+})
 
-export const Skills = styled('div')(({ theme }) => ({
-  marginTop: 16,
+export const Languages = styled('div')(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr 1fr',
   [theme.breakpoints.down('md')]: {

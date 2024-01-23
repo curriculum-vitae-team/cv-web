@@ -8,7 +8,7 @@ import { useLanguages } from 'hooks/use-languages.hook'
 const Table = createTable<Language>()
 
 const Languages = () => {
-  const [languages, loading] = useLanguages()
+  const { languages, loading } = useLanguages()
 
   return (
     <div>

@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { NewProfileSkill } from '@molecules/new-skill'
-import { useProfileSkillDelete, useProfileSkills } from 'hooks/use-profile'
+import { useProfileSkillDelete, useProfileSkills } from 'hooks/use-profile-skills'
 import { ProfileSkillsGroup } from '@molecules/skills-group'
 import { PageLoader } from '@atoms/page-loader'
 import { BulkDeletion } from '@features/bulk-deletion'

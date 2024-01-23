@@ -13,7 +13,7 @@ export const LanguagesTableRow = ({ item }: TableRowProps<Language>) => {
   const { t } = useTranslation()
   const [openLanguageDialog] = useLanguageDialog()
   const [openConfirmDialog] = useConfirmDialog()
-  const [deleteLanguage] = useLanguageDelete(item)
+  const [deleteLanguage] = useLanguageDelete(item.id)
 
   const handleUpdate = () => {
     openLanguageDialog({ item })

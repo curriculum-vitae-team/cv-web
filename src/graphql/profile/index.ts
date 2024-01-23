@@ -30,7 +30,7 @@ export const PROFILE_LANGUAGES = gql`
     profile(userId: $userId) {
       id
       languages {
-        language_name
+        name
         proficiency
       }
     }
@@ -88,10 +88,10 @@ export const DELETE_PROFILE_SKILL = gql`
 
 export const ADD_PROFILE_LANGUAGE = gql`
   mutation AddProfileLanguage($language: AddProfileLanguageInput!) {
-    addProfileLanguage(profile: $language) {
+    addProfileLanguage(language: $language) {
       id
       languages {
-        language_name
+        name
         proficiency
       }
     }
@@ -100,10 +100,10 @@ export const ADD_PROFILE_LANGUAGE = gql`
 
 export const UPDATE_PROFILE_LANGUAGE = gql`
   mutation UpdateProfileLanguage($language: UpdateProfileLanguageInput!) {
-    updateProfileLanguage(profile: $language) {
+    updateProfileLanguage(language: $language) {
       id
       languages {
-        language_name
+        name
         proficiency
       }
     }
@@ -112,10 +112,10 @@ export const UPDATE_PROFILE_LANGUAGE = gql`
 
 export const DELETE_PROFILE_LANGUAGE = gql`
   mutation DeleteProfileLanguage($language: DeleteProfileLanguageInput!) {
-    deleteProfileLanguage(profile: $language) {
+    deleteProfileLanguage(language: $language) {
       id
       languages {
-        language_name
+        name
         proficiency
       }
     }

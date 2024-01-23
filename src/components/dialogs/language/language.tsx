@@ -21,15 +21,15 @@ const Language = ({ item, closeDialog }: LanguageProps) => {
     defaultValues: item || defaultValues
   })
   const { t } = useTranslation()
-  const [createLanguage, loading] = useLanguageCreate()
-  const [updateLanguage, updating] = useLanguageUpdate()
+  const [createLanguage, { loading }] = useLanguageCreate()
+  const [updateLanguage, { loading: updating }] = useLanguageUpdate()
 
   const onSubmit = (values: LanguageFormValues) => {
     if (item) {
       updateLanguage({
         variables: {
-          id: item.id,
           language: {
+            languageId: item.id,
             iso2: values.iso2,
             name: values.name,
             native_name: values.native_name

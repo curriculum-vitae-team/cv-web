@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const CVS = gql`
-  query CVs {
+  query Cvs {
     cvs {
       id
       name
@@ -15,7 +15,7 @@ export const CVS = gql`
 `
 
 export const CV = gql`
-  query CV($cvId: ID!) {
+  query Cv($cvId: ID!) {
     cv(cvId: $cvId) {
       id
       name
@@ -28,7 +28,7 @@ export const CV = gql`
         position_name
       }
       languages {
-        language_name
+        name
         proficiency
       }
     }
@@ -36,7 +36,7 @@ export const CV = gql`
 `
 
 export const CREATE_CV = gql`
-  mutation CreateCV($cv: CreateCvInput!) {
+  mutation CreateCv($cv: CreateCvInput!) {
     createCv(cv: $cv) {
       id
       name

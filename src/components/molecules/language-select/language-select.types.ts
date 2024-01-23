@@ -1,3 +1,4 @@
-import { TextFieldProps } from '@mui/material'
-
-export type LanguageSelectProps = TextFieldProps & {}
+export type LanguageSelectProps = {
+  ownLanguages: string[]
+  disabled?: boolean
+}
