@@ -2,37 +2,25 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { parseISO } from 'date-fns'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
+import { useState } from 'react'
 import { DatePicker } from '@molecules/date-picker'
-import { useProjectCreate, useProjectUpdate } from 'hooks/use-projects'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { requiredValidation, teamSizeValidation } from 'helpers/validation.helper'
 import { DayMonthYear } from 'constants/format.constant'
 import * as Styled from './project.styles'
 import { ProjectFormValues, ProjectDialogProps } from './project.types'
 
-const defaultValues = {
-  name: '',
-  internal_name: '',
-  description: '',
-  domain: '',
-  start_date: null,
-  end_date: null,
-  team_size: 1
-}
-
-const Project = ({ item, closeDialog }: ProjectDialogProps) => {
+const Project = ({ title, confirmText, item, onConfirm, closeDialog }: ProjectDialogProps) => {
   const methods = useForm<ProjectFormValues>({
-    defaultValues: item
-      ? {
-          name: item.name,
-          internal_name: item.internal_name,
-          description: item.description,
-          domain: item.domain,
-          start_date: parseISO(item.start_date),
-          end_date: parseISO(item.end_date || ''),
-          team_size: item.team_size
-        }
-      : defaultValues
+    defaultValues: {
+      name: item?.name || '',
+      internal_name: item?.internal_name || '',
+      description: item?.description || '',
+      domain: item?.domain || '',
+      start_date: item?.start_date ? parseISO(item.start_date) : null,
+      end_date: item?.end_date ? parseISO(item.end_date) : null,
+      team_size: String(item?.team_size || 1)
+    }
   })
   const {
     formState: { errors, isDirty },
@@ -40,38 +28,19 @@ const Project = ({ item, closeDialog }: ProjectDialogProps) => {
     handleSubmit
   } = methods
   const { t } = useTranslation()
-  const [createProject, { loading }] = useProjectCreate()
-  const [updateProject, { loading: updating }] = useProjectUpdate()
+  const [isLoading, setIsLoading] = useState(false)
 
   const onSubmit = (values: ProjectFormValues) => {
-    if (item) {
-      updateProject({
-        variables: {
-          id: item.id,
-          project: {
-            ...values,
-            team_size: Number(values.team_size),
-            skillsIds: []
-          }
-        }
-      }).then(closeDialog)
-      return
-    }
-    createProject({
-      variables: {
-        project: {
-          ...values,
-          team_size: Number(values.team_size),
-          skillsIds: []
-        }
-      }
-    }).then(closeDialog)
+    setIsLoading(true)
+    onConfirm(values)
+      .then(closeDialog)
+      .catch(() => setIsLoading(false))
   }
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <DialogTitle>{t('Create project')}</DialogTitle>
+        <DialogTitle>{t(title)}</DialogTitle>
         <Styled.Column>
           <TextField
             {...register('name', { validate: requiredValidation })}
@@ -81,10 +50,7 @@ const Project = ({ item, closeDialog }: ProjectDialogProps) => {
             helperText={errors.name?.message}
           />
           <TextField {...register('internal_name')} label={t('Internal Name')} />
-          <TextField
-            {...register('domain', { validate: requiredValidation })}
-            label={t('Domain')}
-          />
+          <TextField {...register('domain')} label={t('Domain')} />
           <TextField
             {...register('team_size', { validate: teamSizeValidation })}
             label={t('Team Size')}
@@ -122,9 +88,9 @@ const Project = ({ item, closeDialog }: ProjectDialogProps) => {
             variant="contained"
             color="primary"
             type="submit"
-            disabled={loading || updating || !isDirty}
+            disabled={isLoading || !isDirty}
           >
-            {item ? t('Update') : t('Create')}
+            {t(confirmText)}
           </Button>
         </DialogActions>
       </form>

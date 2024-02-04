@@ -5,8 +5,8 @@
 The following .env example file is required for the correct work of the application.
 
 ```
-PORT=3000
-GRAPHQL_API_URL=https://cv-project-js.inno.ws/api/graphql
+PORT="3000"
+GRAPHQL_API_URL="https://cv-project-js.inno.ws/api/graphql"
 ```
 
 ### Installation

@@ -15,7 +15,7 @@ export const PROJECTS = gql`
 `
 
 export const CREATE_PROJECT = gql`
-  mutation CreateProject($project: ProjectInput!) {
+  mutation CreateProject($project: CreateProjectInput!) {
     createProject(project: $project) {
       id
       name
@@ -30,8 +30,8 @@ export const CREATE_PROJECT = gql`
 `
 
 export const UPDATE_PROJECT = gql`
-  mutation UpdateProject($id: ID!, $project: ProjectInput!) {
-    updateProject(id: $id, project: $project) {
+  mutation UpdateProject($project: UpdateProjectInput!) {
+    updateProject(project: $project) {
       id
       name
       internal_name
@@ -45,8 +45,8 @@ export const UPDATE_PROJECT = gql`
 `
 
 export const DELETE_PROJECT = gql`
-  mutation DeleteProject($id: ID!) {
-    deleteProject(id: $id) {
+  mutation DeleteProject($project: DeleteProjectInput!) {
+    deleteProject(project: $project) {
       affected
     }
   }

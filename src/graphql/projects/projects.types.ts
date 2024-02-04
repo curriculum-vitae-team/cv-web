@@ -5,7 +5,7 @@ export type ProjectsResult = {
 }
 
 export type CreateProjectResult = {
-  project: Project
+  createProject: Project
 }
 
 export type UpdateProjectResult = {

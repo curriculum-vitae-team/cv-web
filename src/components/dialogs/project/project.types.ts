@@ -3,14 +3,17 @@ import { DialogProps } from 'graphql/dialogs/dialogs.types'
 
 export type ProjectFormValues = {
   name: string
-  internal_name: null | string
+  internal_name: string
   description: string
   domain: string
-  start_date: null | Date
-  end_date: null | Date
-  team_size: number
+  start_date: Date | null
+  end_date: Date | null
+  team_size: string
 }
 
 export type ProjectDialogProps = DialogProps & {
+  title: string
+  confirmText: string
   item?: Project
+  onConfirm(values: ProjectFormValues): Promise<unknown>
 }
