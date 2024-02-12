@@ -5,7 +5,7 @@ import { createTable } from '@templates/table'
 import { useCvProjects } from 'hooks/use-cvs'
 import { CvProjectsTableTool } from '@organisms/projects-table-tool'
 import { ProjectsTableHead } from '@organisms/projects-table-head'
-import { ProjectsTableRow } from '@organisms/projects-table-row'
+import { CvProjectsTableRow } from '@organisms/projects-table-row'
 
 const Table = createTable<Project>()
 
@@ -20,7 +20,7 @@ const CvProjects = () => {
         loading={loading}
         TableToolComponent={CvProjectsTableTool}
         TableHeadComponent={ProjectsTableHead}
-        TableRowComponent={ProjectsTableRow}
+        TableRowComponent={CvProjectsTableRow}
         searchBy={['name']}
         defaultSortBy="name"
       />

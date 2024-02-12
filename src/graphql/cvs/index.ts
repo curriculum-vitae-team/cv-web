@@ -36,24 +36,6 @@ export const CV = gql`
   }
 `
 
-export const CV_PROJECTS = gql`
-  query CvProjects($cvId: ID!) {
-    cv(cvId: $cvId) {
-      id
-      projects {
-        id
-        name
-        internal_name
-        domain
-        description
-        start_date
-        end_date
-        team_size
-      }
-    }
-  }
-`
-
 export const CREATE_CV = gql`
   mutation CreateCv($cv: CreateCvInput!) {
     createCv(cv: $cv) {
@@ -144,6 +126,24 @@ export const DELETE_CV_SKILL = gql`
   }
 `
 
+export const CV_PROJECTS = gql`
+  query CvProjects($cvId: ID!) {
+    cv(cvId: $cvId) {
+      id
+      projects {
+        id
+        name
+        internal_name
+        domain
+        description
+        start_date
+        end_date
+        team_size
+      }
+    }
+  }
+`
+
 export const ADD_CV_PROJECT = gql`
   mutation AddCvProject($project: AddCvProjectInput!) {
     addCvProject(project: $project) {
@@ -151,6 +151,30 @@ export const ADD_CV_PROJECT = gql`
       projects {
         id
         name
+        internal_name
+        domain
+        description
+        start_date
+        end_date
+        team_size
+      }
+    }
+  }
+`
+
+export const REMOVE_CV_PROJECT = gql`
+  mutation RemoveCvProject($project: RemoveCvProjectInput!) {
+    removeCvProject(project: $project) {
+      id
+      projects {
+        id
+        name
+        internal_name
+        domain
+        description
+        start_date
+        end_date
+        team_size
       }
     }
   }
