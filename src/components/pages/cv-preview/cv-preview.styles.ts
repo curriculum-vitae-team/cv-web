@@ -2,8 +2,6 @@ import { Button, Container, Typography, styled } from '@mui/material'
 import { palette } from '@features/theme-provider/mui-palette'
 
 export const Document = styled(Container)(({ theme }) => ({
-  display: 'grid',
-  gridTemplateColumns: '200px 1fr',
   color: palette[theme.palette.mode === 'dark' ? 'light' : 'dark'].background?.default,
   '@media print': {
     margin: 0,
@@ -14,6 +12,12 @@ export const Document = styled(Container)(({ theme }) => ({
   }
 }))
 
+export const Summary = styled('div')({
+  display: 'grid',
+  gridTemplateColumns: '200px 1fr',
+  marginBottom: 32
+})
+
 export const PageBreak = styled('div')({
   pageBreakAfter: 'always'
 })
@@ -21,7 +25,6 @@ export const PageBreak = styled('div')({
 export const Head = styled('section')({
   display: 'grid',
   gridTemplateColumns: '1fr auto',
-  gridColumn: 'span 2',
   marginBottom: 32
 })
 
@@ -45,8 +48,7 @@ export const Left = styled('section')({
 export const Main = styled('section')({
   paddingLeft: 32,
   paddingBottom: 16,
-  borderLeft: '1px #c63030 solid',
-  marginBottom: 32
+  borderLeft: '1px #c63030 solid'
 })
 
 export const Title = styled(Typography)({
@@ -54,3 +56,17 @@ export const Title = styled(Typography)({
   marginTop: 16,
   marginBottom: 8
 })
+
+export const Project = styled('div')({
+  display: 'grid',
+  gridTemplateColumns: '300px 1fr',
+  marginBottom: 32
+})
+
+export const ProjectName = styled(Typography)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  fontWeight: 'bold',
+  textTransform: 'uppercase',
+  marginTop: 16,
+  marginBottom: 8
+}))
