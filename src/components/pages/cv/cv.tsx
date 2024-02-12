@@ -14,6 +14,7 @@ const Cv = () => {
   const { t } = useTranslation()
   const detailsPath = generatePath(routes.cvs.details, { cvId })
   const skillsPath = generatePath(routes.cvs.skills, { cvId })
+  const projectsPath = generatePath(routes.cvs.projects, { cvId })
   const previewPath = generatePath(routes.cvs.preview, { cvId })
   const { cv } = useCv(cvId)
 
@@ -35,6 +36,7 @@ const Cv = () => {
       <Styled.Tabs value={location.pathname} variant="scrollable" allowScrollButtonsMobile>
         <Tab value={detailsPath} label={t('Details')} component={NavLink} to={detailsPath} />
         <Tab value={skillsPath} label={t('Skills')} component={NavLink} to={skillsPath} />
+        <Tab value={projectsPath} label={t('Projects')} component={NavLink} to={projectsPath} />
         <Tab value={previewPath} label={t('Preview')} component={NavLink} to={previewPath} />
       </Styled.Tabs>
       <Styled.Content>

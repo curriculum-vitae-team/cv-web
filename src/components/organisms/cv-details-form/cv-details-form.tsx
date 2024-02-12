@@ -34,8 +34,7 @@ const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
           cvId: cv.id,
           name,
           education,
-          description,
-          projectsIds: cv.projects?.map((project) => project.id) || []
+          description
         }
       }
     }).then(() => reset({ name, education, description }))

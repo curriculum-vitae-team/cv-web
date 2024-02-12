@@ -28,6 +28,10 @@ export type DeleteCvSkillResult = {
   deleteCvSkill: Cv
 }
 
+export type AddCvProjectResult = {
+  addCvProject: Cv
+}
+
 export type ExportPdfResult = {
   exportPdf: string
 }

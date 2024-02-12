@@ -29,8 +29,7 @@ const Cv = ({ userId, closeDialog }: CvProps) => {
           name,
           education,
           description,
-          userId,
-          projectsIds: []
+          userId
         }
       }
     }).then(closeDialog)

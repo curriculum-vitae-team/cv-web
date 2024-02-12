@@ -17,12 +17,13 @@ import { Projects } from '@pages/projects'
 import { Cvs } from '@pages/cvs'
 import { Cv } from '@pages/cv'
 import { CvDetails } from '@pages/cv-details'
+import { CvSkills } from '@pages/cv-skills'
+import { CvProjects } from '@pages/cv-projects'
 import { CvPreview } from '@pages/cv-preview'
 import { Departments } from '@pages/departments'
 import { Positions } from '@pages/positions'
 import { Skills } from '@pages/skills'
 import { Languages } from '@pages/languages'
-import { CvSkills } from '@pages/cv-skills'
 
 export const Router = () => {
   return (
@@ -55,6 +56,7 @@ export const Router = () => {
               <Route path={routes.cvs.cv} element={<Cv />}>
                 <Route path={routes.cvs.details} element={<CvDetails />} />
                 <Route path={routes.cvs.skills} element={<CvSkills />} />
+                <Route path={routes.cvs.projects} element={<CvProjects />} />
                 <Route path={routes.cvs.preview} element={<CvPreview />} />
                 <Route index path="*" element={<Navigate to="details" />} />
               </Route>
