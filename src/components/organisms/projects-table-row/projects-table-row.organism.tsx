@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { MenuItem, TableCell, Typography } from '@mui/material'
-import { Project } from 'cv-graphql'
+import { CvProject, Project } from 'cv-graphql'
 import { format } from 'date-fns'
 import { useParams } from 'react-router-dom'
 import { TableRowProps } from '@templates/table/table.types'
@@ -10,7 +10,8 @@ import { useProjectDialog } from '@dialogs/project'
 import { useProjectDelete, useProjectUpdate } from 'hooks/use-projects'
 import { useAuth } from 'hooks/use-auth'
 import { DayMonthYear } from 'constants/format.constant'
-import { useCvProjectRemove } from 'hooks/use-cvs'
+import { useCvProjectRemove, useCvProjectUpdate } from 'hooks/use-cvs'
+import { useCvProjectDialog } from '@dialogs/cv-project'
 import * as Styled from './projects-table-row.styles'
 
 export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
@@ -79,29 +80,30 @@ export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
   )
 }
 
-export const CvProjectsTableRow = ({ item }: TableRowProps<Project>) => {
+export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
   const { t } = useTranslation()
   const { isAdmin } = useAuth()
   const { cvId = '' } = useParams()
-  const [openProjectDialog] = useProjectDialog()
+  const [openCvProjectDialog] = useCvProjectDialog()
   const [removeProject] = useCvProjectRemove()
   const [openConfirmDialog] = useConfirmDialog()
-  const [updateProject] = useProjectUpdate()
+  const [updateCvProject] = useCvProjectUpdate()
 
   const handleUpdate = () => {
-    openProjectDialog({
+    openCvProjectDialog({
       title: 'Update project',
       confirmText: 'Update',
       item,
-      onConfirm(values) {
-        return updateProject({
+      onConfirm({ projectId, start_date, end_date, roles, responsibilities }) {
+        return updateCvProject({
           variables: {
             project: {
-              projectId: item.id,
-              ...values,
-              start_date: values.start_date?.toISOString() || '',
-              end_date: values.end_date?.toISOString(),
-              team_size: Number(values.team_size)
+              cvId,
+              projectId,
+              start_date: start_date?.toISOString() || '',
+              end_date: end_date?.toISOString(),
+              roles,
+              responsibilities
             }
           }
         })
@@ -122,7 +124,7 @@ export const CvProjectsTableRow = ({ item }: TableRowProps<Project>) => {
           variables: {
             project: {
               cvId,
-              projectId: item.id
+              projectId: item.project.id
             }
           }
         })

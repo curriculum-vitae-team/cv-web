@@ -32,6 +32,10 @@ export type AddCvProjectResult = {
   addCvProject: Cv
 }
 
+export type UpdateCvProjectResult = {
+  updateCvProject: Cv
+}
+
 export type RemoveCvProjectResult = {
   removeCvProject: Cv
 }

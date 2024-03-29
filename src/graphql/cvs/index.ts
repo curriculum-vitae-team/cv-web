@@ -126,19 +126,28 @@ export const DELETE_CV_SKILL = gql`
   }
 `
 
+const CvProject = `
+  id
+  project {
+    id
+  }
+  name
+  internal_name
+  domain
+  description
+  start_date
+  end_date
+  team_size
+  roles
+  responsibilities
+`
+
 export const CV_PROJECTS = gql`
   query CvProjects($cvId: ID!) {
     cv(cvId: $cvId) {
       id
       projects {
-        id
-        name
-        internal_name
-        domain
-        description
-        start_date
-        end_date
-        team_size
+        ${CvProject}
       }
     }
   }
@@ -149,14 +158,18 @@ export const ADD_CV_PROJECT = gql`
     addCvProject(project: $project) {
       id
       projects {
-        id
-        name
-        internal_name
-        domain
-        description
-        start_date
-        end_date
-        team_size
+        ${CvProject}
+      }
+    }
+  }
+`
+
+export const UPDATE_CV_PROJECT = gql`
+  mutation UpdateCvProject($project: UpdateCvProjectInput!) {
+    updateCvProject(project: $project) {
+      id
+      projects {
+        ${CvProject}
       }
     }
   }
@@ -167,14 +180,7 @@ export const REMOVE_CV_PROJECT = gql`
     removeCvProject(project: $project) {
       id
       projects {
-        id
-        name
-        internal_name
-        domain
-        description
-        start_date
-        end_date
-        team_size
+        ${CvProject}
       }
     }
   }

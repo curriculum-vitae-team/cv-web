@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { Path } from 'react-hook-form'
+import { SortOrder } from 'constants/table-sort.constants'
 
 export type Item = {
   id: string
@@ -18,4 +19,5 @@ export type TableProps<T> = {
   TableFooterComponent?: FC
   searchBy: Path<T>[]
   defaultSortBy: Path<T>
+  defaultOrder?: SortOrder
 }

@@ -9,7 +9,8 @@ import {
   DeleteCvInput,
   DeleteCvSkillInput,
   AddCvProjectInput,
-  RemoveCvProjectInput
+  RemoveCvProjectInput,
+  UpdateCvProjectInput
 } from 'cv-graphql'
 import { useMemo } from 'react'
 import {
@@ -25,6 +26,7 @@ import {
   EXPORT_PDF,
   REMOVE_CV_PROJECT,
   UPDATE_CV,
+  UPDATE_CV_PROJECT,
   UPDATE_CV_SKILL
 } from 'graphql/cvs'
 import {
@@ -36,6 +38,7 @@ import {
   DeleteCvSkillResult,
   ExportPdfResult,
   RemoveCvProjectResult,
+  UpdateCvProjectResult,
   UpdateCvResult,
   UpdateCvSkillResult
 } from 'graphql/cvs/cvs.types'
@@ -108,11 +111,17 @@ export const useCvSkillDelete = () => {
 
 export const useCvProjects = (cvId: string) => {
   const query = useQuery<CvResult>(CV_PROJECTS, { variables: { cvId } })
-  return { projects: query.data?.cv.projects || [], ...query }
+  const projects = query.data?.cv.projects || []
+
+  return { projects, ...query }
 }
 
 export const useCvProjectAdd = () => {
   return useMutation<AddCvProjectResult, { project: AddCvProjectInput }>(ADD_CV_PROJECT)
+}
+
+export const useCvProjectUpdate = () => {
+  return useMutation<UpdateCvProjectResult, { project: UpdateCvProjectInput }>(UPDATE_CV_PROJECT)
 }
 
 export const useCvProjectRemove = () => {

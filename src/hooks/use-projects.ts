@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client'
 import { CreateProjectInput, UpdateProjectInput } from 'cv-graphql'
+import { CV_PROJECTS } from 'graphql/cvs'
 import { CREATE_PROJECT, DELETE_PROJECT, PROJECTS, UPDATE_PROJECT } from 'graphql/projects'
 import {
   CreateProjectResult,
@@ -19,7 +20,9 @@ export const useProjectCreate = () => {
 }
 
 export const useProjectUpdate = () => {
-  return useMutation<UpdateProjectResult, { project: UpdateProjectInput }>(UPDATE_PROJECT)
+  return useMutation<UpdateProjectResult, { project: UpdateProjectInput }>(UPDATE_PROJECT, {
+    refetchQueries: [CV_PROJECTS]
+  })
 }
 
 export const useProjectDelete = (projectId: string) => {

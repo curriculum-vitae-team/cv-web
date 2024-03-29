@@ -8,7 +8,7 @@ export const Document = styled(Container)(({ theme }) => ({
     padding: 0,
     background: palette.light.background?.paper,
     color: palette.light.text?.primary,
-    '-webkit-print-color-adjust': 'exact'
+    printColorAdjust: 'exact'
   }
 }))
 
