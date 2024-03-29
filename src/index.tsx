@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './i18n'
 import { App } from './components/app'
 
-const element = document.getElementById('root')!
+const element = document.getElementById('root') as HTMLElement
 const root = createRoot(element)
 
 root.render(

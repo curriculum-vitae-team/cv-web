@@ -9,6 +9,6 @@ export type UserProfileFormValues = {
     first_name: string
     last_name: string
   }
-  department: string
-  position: string
+  departmentId: string
+  positionId: string
 }

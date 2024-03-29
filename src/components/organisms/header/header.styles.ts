@@ -5,16 +5,6 @@ export const Header = styled(AppBar)({
   '& > .MuiContainer-root': {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'end'
   }
-})
-
-export const LeftPart = styled('div')({
-  display: 'flex',
-  alignItems: 'center'
-})
-
-export const RightPart = styled('div')({
-  display: 'flex',
-  alignItems: 'center'
 })

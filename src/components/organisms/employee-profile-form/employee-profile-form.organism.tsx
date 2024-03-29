@@ -21,13 +21,13 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
         first_name: user.profile.first_name || '',
         last_name: user.profile.last_name || ''
       },
-      department: user.department?.id || '',
-      position: user.position?.id || ''
+      departmentId: user.department?.id || '',
+      positionId: user.position?.id || ''
     }
   })
   const { formState, register, handleSubmit, reset } = methods
 
-  const onSubmit = ({ profile, position, department }: UserProfileFormValues) => {
+  const onSubmit = ({ profile, departmentId, positionId }: UserProfileFormValues) => {
     Promise.all([
       updateProfile({
         variables: {
@@ -42,13 +42,13 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
         variables: {
           user: {
             userId: user.id,
-            departmentId: department,
-            positionId: position,
+            departmentId,
+            positionId,
             role: user.role
           }
         }
       })
-    ]).then(() => reset({ profile, position, department }))
+    ]).then(() => reset({ profile, departmentId, positionId }))
   }
 
   return (
@@ -56,8 +56,8 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
       <Styled.Form onSubmit={handleSubmit(onSubmit)}>
         <TextField {...register('profile.first_name')} autoFocus label={t('First Name')} />
         <TextField {...register('profile.last_name')} label={t('Last Name')} />
-        <DepartmentSelect name="department" />
-        <PositionSelect name="position" />
+        <DepartmentSelect name="departmentId" />
+        <PositionSelect name="positionId" />
         {(isAdmin || userId === user.id) && (
           <Styled.SubmitButton
             type="submit"

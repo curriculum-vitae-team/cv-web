@@ -24,7 +24,7 @@ const SideMenu = () => {
 
   return (
     <>
-      <IconButton color="primary" onClick={handleOpen}>
+      <IconButton sx={{ mr: 'auto' }} color="primary" onClick={handleOpen}>
         <Menu />
       </IconButton>
       <Drawer anchor="left" open={open} keepMounted onClose={handleClose}>

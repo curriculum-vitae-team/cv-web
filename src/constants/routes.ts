@@ -6,8 +6,7 @@ const authRoutes = {
 
 const userRoutes = {
   root: '/users',
-  user: '/users/:userId',
-  profile: '/users/:userId/profile',
+  profile: '/users/:userId',
   skills: '/users/:userId/skills',
   languages: '/users/:userId/languages',
   cvs: '/users/:userId/cvs'
@@ -20,8 +19,7 @@ const projectRoutes = {
 
 const cvRoutes = {
   root: '/cvs',
-  cv: '/cvs/:cvId',
-  details: '/cvs/:cvId/details',
+  details: '/cvs/:cvId',
   skills: '/cvs/:cvId/skills',
   projects: '/cvs/:cvId/projects',
   preview: '/cvs/:cvId/preview'

@@ -24,7 +24,7 @@ const User = () => {
   useBreadcrumbs(
     useMemo(
       () => ({
-        [generatePath(routes.users.user, { userId })]: {
+        [generatePath(routes.users.profile, { userId })]: {
           text: data?.user.profile.full_name || data?.user.email,
           to: profilePath,
           color: 'primary',

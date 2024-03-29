@@ -13,7 +13,9 @@ import {
 } from 'graphql/departments/departments.types'
 
 export const useDepartments = () => {
-  return useQuery<DepartmentsResult>(DEPARTMENTS)
+  const query = useQuery<DepartmentsResult>(DEPARTMENTS)
+
+  return { departments: query.data?.departments || [], ...query }
 }
 
 export const useDepartmentCreate = () => {

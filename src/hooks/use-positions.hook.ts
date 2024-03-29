@@ -8,7 +8,9 @@ import {
 } from 'graphql/positions/positions.types'
 
 export const usePositions = () => {
-  return useQuery<PositionsResult>(POSITIONS)
+  const query = useQuery<PositionsResult>(POSITIONS)
+
+  return { positions: query.data?.positions || [], ...query }
 }
 
 export const usePositionCreate = () => {

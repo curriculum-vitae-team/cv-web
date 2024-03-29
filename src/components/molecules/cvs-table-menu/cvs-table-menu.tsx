@@ -14,7 +14,7 @@ export const CvsTableMenu = ({ cv }: CvsTableMenuProps) => {
   const [openConfirmDialog] = useConfirmDialog()
 
   const handleDetails = () => {
-    navigate(generatePath(routes.cvs.cv, { cvId: cv.id }))
+    navigate(generatePath(routes.cvs.details, { cvId: cv.id }))
   }
 
   const handleDelete = () => {

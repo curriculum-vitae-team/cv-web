@@ -38,12 +38,12 @@ export const Router = () => {
             {/* <Route path={routes.root} element={<Home />} /> */}
             <Route path={routes.users.root}>
               <Route index element={<Users />} />
-              <Route path={routes.users.user} element={<User />}>
-                <Route path={routes.users.profile} element={<UserProfile />} />
+              <Route path={routes.users.profile} element={<User />}>
+                <Route index element={<UserProfile />} />
                 <Route path={routes.users.skills} element={<UserSkills />} />
                 <Route path={routes.users.languages} element={<UserLanguages />} />
                 <Route path={routes.users.cvs} element={<UserCvs />} />
-                <Route index path="*" element={<Navigate to="profile" />} />
+                <Route index path="*" element={<Navigate to="" />} />
               </Route>
             </Route>
             <Route path={routes.settings} element={<Settings />} />
@@ -53,12 +53,12 @@ export const Router = () => {
             </Route>
             <Route path={routes.cvs.root}>
               <Route index element={<Cvs />} />
-              <Route path={routes.cvs.cv} element={<Cv />}>
-                <Route path={routes.cvs.details} element={<CvDetails />} />
+              <Route path={routes.cvs.details} element={<Cv />}>
+                <Route index element={<CvDetails />} />
                 <Route path={routes.cvs.skills} element={<CvSkills />} />
                 <Route path={routes.cvs.projects} element={<CvProjects />} />
                 <Route path={routes.cvs.preview} element={<CvPreview />} />
-                <Route index path="*" element={<Navigate to="details" />} />
+                <Route index path="*" element={<Navigate to="" />} />
               </Route>
             </Route>
             <Route path={routes.departments} element={<Departments />} />

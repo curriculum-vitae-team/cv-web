@@ -21,7 +21,7 @@ const Cv = () => {
   useBreadcrumbs(
     useMemo(
       () => ({
-        [generatePath(routes.cvs.cv, { cvId })]: {
+        [generatePath(routes.cvs.details, { cvId })]: {
           text: cv?.name,
           to: detailsPath,
           color: 'primary'

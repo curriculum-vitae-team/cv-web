@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-named-as-default
 import i18n, { use } from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import HttpApi from 'i18next-http-backend'
