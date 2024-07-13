@@ -11,17 +11,15 @@ const Users = () => {
   const { users, loading } = useUsers()
 
   return (
-    <div>
-      <Table
-        items={users}
-        loading={loading}
-        TableToolComponent={UsersTableTool}
-        TableHeadComponent={UsersTableHead}
-        TableRowComponent={UsersTableRow}
-        searchBy={['email', 'profile.first_name', 'profile.last_name']}
-        defaultSortBy="department.name"
-      />
-    </div>
+    <Table
+      items={users}
+      loading={loading}
+      TableToolComponent={UsersTableTool}
+      TableHeadComponent={UsersTableHead}
+      TableRowComponent={UsersTableRow}
+      searchBy={['email', 'profile.first_name', 'profile.last_name']}
+      defaultSortBy="department.name"
+    />
   )
 }
 

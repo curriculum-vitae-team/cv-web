@@ -1,39 +1,24 @@
-import { memo, useCallback, useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { Divider, Drawer, IconButton } from '@mui/material'
-import { Menu, Close } from '@mui/icons-material'
+import { memo, useState } from 'react'
+import { KeyboardArrowLeft } from '@mui/icons-material'
 import { SideMenuItem } from '@molecules/side-menu-item'
+import { StorageKeys } from 'constants/storage.constants'
 import { LIST_ITEMS } from './side-menu.constants'
 import * as Styled from './side-menu.styles'
 
 const SideMenu = () => {
-  const location = useLocation()
-  const [open, setOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState<boolean>(!!localStorage.getItem(StorageKeys.Navigation))
 
-  const handleOpen = useCallback(() => {
-    setOpen(true)
-  }, [])
+  const toggleNavigation = () => {
+    setIsOpen((prevState) => {
+      localStorage.setItem(StorageKeys.Navigation, prevState ? '' : 'true')
 
-  const handleClose = useCallback(() => {
-    setOpen(false)
-  }, [])
-
-  useEffect(() => {
-    handleClose()
-  }, [location, handleClose])
+      return !prevState
+    })
+  }
 
   return (
     <>
-      <IconButton sx={{ mr: 'auto' }} color="primary" onClick={handleOpen}>
-        <Menu />
-      </IconButton>
-      <Drawer anchor="left" open={open} keepMounted onClose={handleClose}>
-        <Styled.ToolBar>
-          <IconButton sx={{ ml: 'auto' }} color="primary" onClick={handleClose}>
-            <Close />
-          </IconButton>
-        </Styled.ToolBar>
-        <Divider />
+      <Styled.Drawer anchor="left" open={isOpen} variant="permanent">
         <Styled.List>
           {LIST_ITEMS.map(({ IconComponent, DividerComponent, name, to }) => {
             if (DividerComponent) {
@@ -42,7 +27,10 @@ const SideMenu = () => {
             return <SideMenuItem key={name} IconComponent={IconComponent} name={name} to={to} />
           })}
         </Styled.List>
-      </Drawer>
+      </Styled.Drawer>
+      <Styled.Icon onClick={toggleNavigation}>
+        <KeyboardArrowLeft sx={{ transform: `rotate(${isOpen ? 0 : -180}deg)` }} />
+      </Styled.Icon>
     </>
   )
 }

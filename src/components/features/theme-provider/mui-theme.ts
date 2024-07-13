@@ -7,29 +7,32 @@ export const getTheme = (mode: PaletteMode) => {
     components: {
       MuiCssBaseline: {
         styleOverrides: {
+          ':root': {
+            colorScheme: 'light dark',
+            fontSynthesis: 'none',
+            textRendering: 'optimizeLegibility',
+            WebkitFontSmoothing: 'antialiased',
+            MozOsxFontSmoothing: 'grayscale'
+          },
           '::-webkit-scrollbar': {
-            width: 10,
-            height: 10
+            width: 2,
+            height: 2
           },
           '::-webkit-scrollbar-thumb': {
             backgroundColor: '#bdbdbd'
           },
           '::-webkit-scrollbar-track': {
-            backgroundColor: '#f5f5f7'
+            backgroundColor: 'transparent'
           },
           html: {
-            height: '100%',
-            width: '100%'
+            height: '100%'
           },
           body: {
-            margin: 0,
             height: '100%',
-            width: '100%'
+            margin: 0
           },
           '#root': {
-            height: '100%',
-            width: '100%',
-            paddingTop: 104
+            height: '100%'
           },
           form: {
             '& > .MuiTextField-root': {
@@ -41,6 +44,7 @@ export const getTheme = (mode: PaletteMode) => {
       MuiAppBar: {
         styleOverrides: {
           root: {
+            position: 'sticky',
             backgroundColor: mode === 'light' ? '#2e2e2e' : '#121212',
             height: 64
           }
@@ -67,36 +71,42 @@ export const getTheme = (mode: PaletteMode) => {
       MuiButton: {
         styleOverrides: {
           root: {
-            borderRadius: 0
-          }
-        }
-      },
-      MuiFab: {
-        styleOverrides: {
-          root: {
-            background: 'none',
-            border: '1px solid #c63031',
-            color: '#c63031',
-            boxShadow: 'none',
-            '&:hover': {
-              background: 'none'
-            }
+            borderRadius: 40,
+            height: 48,
+            minWidth: 220
           }
         }
       },
       MuiOutlinedInput: {
         styleOverrides: {
           root: {
+            height: 48,
+            padding: '12px',
             borderRadius: 0,
+
             '&:hover > fieldset': {
               borderColor: '#2e2e2e'
             }
           },
           input: {
-            boxShadow: `0 0 0 30px ${palette[mode].background?.default} inset !important`
+            padding: 0,
+            boxSizing: 'border-box',
+            boxShadow: `0 0 0 30px ${palette[mode].background?.default} inset !important`,
+            borderRadius: '0px !important'
           },
           notchedOutline: {
-            borderWidth: '1px !important'
+            borderWidth: '1px !important',
+            transition: 'border 200ms'
+          }
+        }
+      },
+      MuiInputLabel: {
+        styleOverrides: {
+          root: {
+            transform: 'translate(12px, 12px) scale(1)'
+          },
+          shrink: {
+            transform: 'translate(12px, -9px) scale(0.75)'
           }
         }
       },
@@ -111,10 +121,23 @@ export const getTheme = (mode: PaletteMode) => {
         styleOverrides: {
           root: {
             '& .MuiTableRow-root': {
-              top: 104 + 64
+              top: 108 + 64
             },
             '& .MuiTableCell-root:last-child': {
               width: 20
+            },
+            '& > tr:last-child > .MuiTableCell-root': {
+              background: `linear-gradient(180deg, ${palette[mode].background?.default} 50%, transparent 100%)`,
+              backdropFilter: 'blur(1px)'
+            }
+          }
+        }
+      },
+      MuiTableBody: {
+        styleOverrides: {
+          root: {
+            '& > tr:last-child > .MuiTableCell-root': {
+              borderBottom: 'none'
             }
           }
         }

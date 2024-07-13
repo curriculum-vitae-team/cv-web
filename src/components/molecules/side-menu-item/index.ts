@@ -1,1 +1,1 @@
-export { SideMenuItem } from './side-menu-item.molecule'
+export { SideMenuItem } from './side-menu-item'

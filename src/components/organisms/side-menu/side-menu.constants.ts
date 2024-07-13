@@ -1,5 +1,4 @@
 import {
-  Home,
   ContactPageOutlined,
   Domain,
   FolderCopyOutlined,
@@ -12,15 +11,6 @@ import { Divider } from '@mui/material'
 import { routes } from 'constants/routes'
 
 export const LIST_ITEMS = [
-  {
-    IconComponent: Home,
-    name: 'home',
-    to: routes.root
-  },
-  {
-    DividerComponent: Divider,
-    name: 'primary-entities'
-  },
   {
     IconComponent: Group,
     name: 'users',

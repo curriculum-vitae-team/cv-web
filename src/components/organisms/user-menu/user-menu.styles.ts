@@ -19,6 +19,9 @@ export const Menu = styled(MuiMenu)(({ theme }) => ({
     minWidth: 200,
     overflow: 'visible',
     marginTop: 8,
+    backgroundImage: 'none',
+    backgroundColor: theme.palette.background.default,
+
     '&:before': {
       content: '""',
       display: 'block',
@@ -27,7 +30,7 @@ export const Menu = styled(MuiMenu)(({ theme }) => ({
       right: 14,
       width: 10,
       height: 10,
-      backgroundColor: theme.palette.mode === 'light' ? '#ffffff' : '#2f2f2f',
+      backgroundColor: theme.palette.background.default,
       transform: 'translateY(-50%) rotate(45deg)',
       zIndex: 0
     }

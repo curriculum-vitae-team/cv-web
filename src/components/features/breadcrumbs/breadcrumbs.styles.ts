@@ -1,14 +1,16 @@
 import { styled, Breadcrumbs as MuiBreadcrumbs } from '@mui/material'
 
 export const Breadcrumbs = styled(MuiBreadcrumbs)(({ theme }) => ({
-  position: 'fixed',
+  position: 'sticky',
   top: 64,
   height: 44,
   zIndex: 3,
+  paddingLeft: 20,
   paddingTop: 20,
   backgroundColor: theme.palette.background.default,
   width: '100%',
   maxWidth: theme.breakpoints.values.xl,
+
   '.MuiBreadcrumbs-ol': {
     flexWrap: 'nowrap'
   },

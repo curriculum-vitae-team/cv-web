@@ -52,6 +52,7 @@ const Login = () => {
       <TextField
         {...register('email', { validate: requiredValidation })}
         label={t('Email')}
+        placeholder="example@mail.com"
         autoFocus
         error={!!errors.email}
         helperText={t(errors.email?.message || '')}
@@ -59,15 +60,18 @@ const Login = () => {
       <PasswordInput
         {...register('password', { validate: requiredValidation })}
         label={t('Password')}
+        placeholder={t('Enter your password') || ''}
         error={!!errors.password}
         helperText={t(errors.password?.message || '')}
       />
-      <Button variant="contained" type="submit" disabled={loading}>
-        {t('Sign in')}
-      </Button>
-      <Button type="button" sx={{ mt: 2 }} onClick={() => navigate(routes.auth.signup)}>
-        {t("I don't have an account")}
-      </Button>
+      <Styled.Actions>
+        <Button variant="contained" type="submit" disabled={loading}>
+          {t('Sign in')}
+        </Button>
+        <Button type="button" onClick={() => navigate(routes.auth.signup)}>
+          {t("I don't have an account")}
+        </Button>
+      </Styled.Actions>
     </Styled.Form>
   )
 }

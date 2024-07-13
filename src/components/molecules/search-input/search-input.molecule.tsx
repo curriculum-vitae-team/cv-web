@@ -1,7 +1,7 @@
 import { ChangeEvent, memo, useCallback, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { TextFieldProps } from '@mui/material'
-import { Search } from '@mui/icons-material'
+import { IconButton, TextFieldProps } from '@mui/material'
+import { Search, Close } from '@mui/icons-material'
 import { TableSearchContext } from '@templates/table/table.context'
 import * as Styled from './search-input.styles'
 
@@ -16,9 +16,16 @@ const SearchInput = (props: TextFieldProps) => {
   return (
     <Styled.Input
       placeholder={t('Search') || 'Search'}
-      InputProps={{ startAdornment: <Search color="action" /> }}
-      autoFocus
+      InputProps={{
+        startAdornment: <Search color="action" />,
+        endAdornment: search && (
+          <IconButton sx={{ mr: -1 }} onClick={() => setSearch('')}>
+            <Close />
+          </IconButton>
+        )
+      }}
       {...props}
+      autoComplete="name"
       value={search}
       onChange={handleSearch}
     />

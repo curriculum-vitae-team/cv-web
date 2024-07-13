@@ -3,8 +3,14 @@ import { TextField, styled } from '@mui/material'
 export const Input = styled(TextField)(({ theme }) => ({
   width: '50%',
   maxWidth: 320,
+
+  '& .MuiOutlinedInput-root': {
+    borderRadius: 40,
+    height: 40
+  },
   '& input': {
-    padding: '6.7px 14px'
+    textOverflow: 'ellipsis',
+    paddingLeft: 10
   },
   [theme.breakpoints.down('md')]: {
     width: '100%'

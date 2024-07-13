@@ -13,6 +13,5 @@ export const Content = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
-  minHeight: '90%',
   padding: '32px 0'
 })

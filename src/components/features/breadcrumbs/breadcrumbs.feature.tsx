@@ -1,9 +1,8 @@
 import { useContext } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { HomeOutlined, NavigateNext } from '@mui/icons-material'
+import { NavigateNext } from '@mui/icons-material'
 import { Link } from '@atoms/link'
-import { routes } from 'constants/routes'
 import { BreadcrumbsContext } from '../breadcrumbs-context'
 import * as Styled from './breadcrumbs.styles'
 
@@ -19,9 +18,6 @@ export const Breadcrumbs = () => {
 
   return (
     <Styled.Breadcrumbs separator={<NavigateNext fontSize="small" color="disabled" />}>
-      <Link to={routes.root} Icon={HomeOutlined}>
-        {t('Home')}
-      </Link>
       {links.map(({ name, to }) => {
         const replacement = config[to]
 

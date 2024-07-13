@@ -1,15 +1,12 @@
-import { FabProps, useMediaQuery, useTheme, Fab } from '@mui/material'
+import { ButtonProps } from '@mui/material'
 import { Add } from '@mui/icons-material'
 import * as Styled from './add-button.styles'
 
-export const AddButton = ({ children, ...props }: FabProps) => {
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
-
+export const AddButton = ({ children, ...props }: ButtonProps) => {
   return (
-    <Fab size="medium" color="primary" variant={isMobile ? 'circular' : 'extended'} {...props}>
+    <Styled.Button {...props} variant="text">
       <Add />
       <Styled.Label>{children}</Styled.Label>
-    </Fab>
+    </Styled.Button>
   )
 }

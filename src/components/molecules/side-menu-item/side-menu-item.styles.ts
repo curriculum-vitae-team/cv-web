@@ -1,14 +1,39 @@
-import { ListItem, styled } from '@mui/material'
+import { styled } from '@mui/material'
+import { NavLink } from 'react-router-dom'
 
-type ItemProps = {
-  isActive?: boolean
-}
+export const Item = styled(NavLink)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  height: 58,
+  gap: 16,
+  padding: '9px 16px',
+  color: theme.palette.text.secondary,
+  textDecoration: 'none',
+  width: '100%',
+  overflowX: 'hidden',
+  transition: 'background 200ms, color 200ms',
+  borderTopRightRadius: 200,
+  borderBottomRightRadius: 200,
 
-const shouldForwardProp = (prop: string) => prop !== 'isActive'
+  '&.active': {
+    color: theme.palette.text.primary,
+    background: theme.palette.action.hover
+  },
 
-export const Item = styled(ListItem, { shouldForwardProp })<ItemProps>(({ theme, isActive }) => ({
-  color: isActive ? theme.palette.primary.main : undefined,
-  '& .MuiListItemIcon-root': {
-    color: isActive ? theme.palette.primary.light : undefined
+  '&:hover': {
+    background: theme.palette.action.hover
+  },
+
+  [theme.breakpoints.down('md')]: {
+    justifyContent: 'center',
+    height: 40,
+    borderRadius: 200,
+    padding: '4px 8px'
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    span: {
+      display: 'none'
+    }
   }
 }))

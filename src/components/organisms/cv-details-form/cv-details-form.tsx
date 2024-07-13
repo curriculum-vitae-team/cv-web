@@ -53,7 +53,9 @@ const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
       <Controller
         name="description"
         control={control}
-        render={({ field }) => <TextField {...field} label={t('Description')} multiline rows={7} />}
+        render={({ field }) => (
+          <Styled.Description {...field} label={t('Description')} multiline rows={7} />
+        )}
       />
       {(isAdmin || userId === cv.user?.id) && (
         <Button type="submit" variant="contained" disabled={!isDirty || loading}>
