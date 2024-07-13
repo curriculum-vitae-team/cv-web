@@ -6,7 +6,7 @@ export const Layout = styled('div')(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'max-content 1fr',
   gridTemplateRows: '64px 1fr',
-  overflow: 'auto',
+  overflowY: 'scroll',
 
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: '1fr',
