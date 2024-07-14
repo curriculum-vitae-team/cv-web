@@ -17,7 +17,11 @@ export const Breadcrumbs = () => {
   const { config } = useContext(BreadcrumbsContext)
 
   return (
-    <Styled.Breadcrumbs separator={<NavigateNext fontSize="small" color="disabled" />}>
+    <Styled.Breadcrumbs
+      // @ts-expect-error
+      component="header"
+      separator={<NavigateNext fontSize="small" color="disabled" />}
+    >
       {links.map(({ name, to }) => {
         const replacement = config[to]
 

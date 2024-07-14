@@ -20,4 +20,5 @@ export type TableProps<T> = {
   searchBy: Path<T>[]
   defaultSortBy: Path<T>
   defaultOrder?: SortOrder
+  stickyTop?: number
 }

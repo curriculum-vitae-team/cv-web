@@ -1,38 +1,42 @@
-import { Typography, Menu as MuiMenu, styled } from '@mui/material'
+import { Button as MuiButton, Typography, Menu as MuiMenu, styled } from '@mui/material'
+
+export const Button = styled(MuiButton)(({ theme }) => ({
+  padding: '0 8px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-start',
+  borderRadius: '0 200px 200px 0',
+  height: 56,
+  minHeight: 56,
+  minWidth: 56,
+  width: '100%',
+  maxWidth: '100%',
+  overflowX: 'hidden',
+  textTransform: 'none',
+
+  [theme.breakpoints.down('md')]: {
+    borderRadius: 200,
+    height: 40,
+    minHeight: 40,
+    alignSelf: 'center',
+    paddingLeft: 0
+  }
+}))
 
 export const Name = styled(Typography)(({ theme }) => ({
-  marginRight: 16,
-  maxWidth: 250,
+  marginLeft: 8,
+  width: '100%',
   overflowX: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
-  [theme.breakpoints.down('md')]: {
-    maxWidth: 150
-  },
-  [theme.breakpoints.down('sm')]: {
-    maxWidth: 100
-  }
+  color: theme.palette.text.primary
 }))
 
 export const Menu = styled(MuiMenu)(({ theme }) => ({
   '& .MuiPaper-root': {
     minWidth: 200,
     overflow: 'visible',
-    marginTop: 8,
     backgroundImage: 'none',
-    backgroundColor: theme.palette.background.default,
-
-    '&:before': {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      top: 0,
-      right: 14,
-      width: 10,
-      height: 10,
-      backgroundColor: theme.palette.background.default,
-      transform: 'translateY(-50%) rotate(45deg)',
-      zIndex: 0
-    }
+    backgroundColor: theme.palette.background.default
   }
 }))

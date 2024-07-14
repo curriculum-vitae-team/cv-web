@@ -1,6 +1,5 @@
 import { CvProject } from 'cv-graphql'
 import { useParams } from 'react-router-dom'
-import { Container } from '@mui/material'
 import { createTable } from '@templates/table'
 import { useCvProjects } from 'hooks/use-cvs'
 import { CvProjectsTableTool } from '@organisms/projects-table-tool'
@@ -15,18 +14,17 @@ const CvProjects = () => {
   const { projects, loading } = useCvProjects(cvId)
 
   return (
-    <Container maxWidth="xl">
-      <Table
-        items={projects}
-        loading={loading}
-        TableToolComponent={CvProjectsTableTool}
-        TableHeadComponent={ProjectsTableHead}
-        TableRowComponent={CvProjectsTableRow}
-        searchBy={['name']}
-        defaultSortBy="end_date"
-        defaultOrder={SortOrder.Desc}
-      />
-    </Container>
+    <Table
+      items={projects}
+      loading={loading}
+      TableToolComponent={CvProjectsTableTool}
+      TableHeadComponent={ProjectsTableHead}
+      TableRowComponent={CvProjectsTableRow}
+      searchBy={['name']}
+      defaultSortBy="end_date"
+      defaultOrder={SortOrder.Desc}
+      stickyTop={44 + 56 + 32}
+    />
   )
 }
 

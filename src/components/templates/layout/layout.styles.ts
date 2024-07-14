@@ -5,11 +5,16 @@ export const Layout = styled('div')(({ theme }) => ({
   width: '100%',
   display: 'grid',
   gridTemplateColumns: 'max-content 1fr',
-  gridTemplateRows: '64px 1fr',
-  overflowY: 'scroll',
+  gridTemplateRows: '1fr',
+  gridTemplateAreas: "'navigation page'",
+
+  '& .MuiContainer-root': {
+    overflowY: 'scroll'
+  },
 
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: '1fr',
-    gridTemplateRows: '64px 1fr max-content'
+    gridTemplateRows: '1fr max-content',
+    gridTemplateAreas: "'page' 'navigation'"
   }
 }))

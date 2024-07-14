@@ -11,6 +11,10 @@ export const Column = styled(DialogContent)(({ theme }) => ({
 }))
 
 export const Description = styled(TextField)(({ theme }) => ({
+  '& .MuiOutlinedInput-root': {
+    height: 'auto'
+  },
+
   [theme.breakpoints.up('sm')]: {
     gridColumn: 'span 2'
   }

@@ -15,9 +15,9 @@ const UserMenu = () => {
   const { user$, userId } = useAuth()
   const { profile } = useProfile(userId)
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
-  const open = Boolean(anchorEl)
+  const isOpen = Boolean(anchorEl)
 
-  const handleClick = useCallback((event: MouseEvent<HTMLElement>) => {
+  const handleOpen = useCallback((event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }, [])
 
@@ -35,21 +35,22 @@ const UserMenu = () => {
 
   return (
     <>
-      <Styled.Name color="white">{profile?.full_name || user$?.email}</Styled.Name>
-      <Avatar
-        src={profile?.avatar || ''}
-        sx={{ backgroundColor: '#c63031', cursor: 'pointer' }}
-        onClick={handleClick}
-      >
-        {profile?.full_name?.[0] || user$?.email[0]}
-      </Avatar>
+      <Styled.Button color="secondary" onClick={handleOpen}>
+        <Avatar
+          src={profile?.avatar || ''}
+          sx={{ backgroundColor: '#c63031', width: 40, height: 40 }}
+        >
+          {profile?.full_name?.[0] || user$?.email[0]}
+        </Avatar>
+        <Styled.Name>{profile?.full_name || user$?.email}</Styled.Name>
+      </Styled.Button>
       <Styled.Menu
         anchorEl={anchorEl}
-        open={open}
+        open={isOpen}
         disableScrollLock
         onClose={handleClose}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        transformOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+        anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
       >
         <MenuItem component={NavLink} to={generatePath(routes.users.profile, { userId })}>
           <ListItemIcon>

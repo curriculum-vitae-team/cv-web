@@ -41,19 +41,11 @@ export const getTheme = (mode: PaletteMode) => {
           }
         }
       },
-      MuiAppBar: {
-        styleOverrides: {
-          root: {
-            position: 'sticky',
-            backgroundColor: mode === 'light' ? '#2e2e2e' : '#121212',
-            height: 64
-          }
-        }
-      },
       MuiTabs: {
         styleOverrides: {
           root: {
-            marginTop: 'auto'
+            height: 56,
+            paddingTop: 6
           }
         }
       },
@@ -120,15 +112,12 @@ export const getTheme = (mode: PaletteMode) => {
       MuiTableHead: {
         styleOverrides: {
           root: {
-            '& .MuiTableRow-root': {
-              top: 108 + 64
-            },
             '& .MuiTableCell-root:last-child': {
               width: 20
             },
             '& > tr:last-child > .MuiTableCell-root': {
               background: `linear-gradient(180deg, ${palette[mode].background?.default} 50%, transparent 100%)`,
-              backdropFilter: 'blur(1px)'
+              backdropFilter: 'blur(0.5px)'
             }
           }
         }

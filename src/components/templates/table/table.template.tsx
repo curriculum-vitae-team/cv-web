@@ -1,5 +1,5 @@
 import { FC, memo, useDeferredValue, useMemo, useState } from 'react'
-import { Table as MuiTable, TableHead, TableBody, TableFooter, TableRow } from '@mui/material'
+import { Table as MuiTable, TableBody, TableFooter, TableRow } from '@mui/material'
 import { TableLoader } from '@atoms/table-loader'
 import { SortOrder } from 'constants/table-sort.constants'
 import { sortDates, sortItems } from 'helpers/table-sort.helper'
@@ -19,7 +19,8 @@ const Table = <T extends Item>({
   TableFooterComponent,
   searchBy,
   defaultSortBy,
-  defaultOrder = SortOrder.Asc
+  defaultOrder = SortOrder.Asc,
+  stickyTop
 }: TableProps<T>) => {
   const [search, setSearch] = useState('')
   const _search = useDeferredValue(search)
@@ -49,20 +50,18 @@ const Table = <T extends Item>({
 
   return (
     <MuiTable stickyHeader>
-      <TableHead>
+      <Styled.Thead stickyTop={stickyTop}>
         <TableSearchContext.Provider value={tableSearch}>
           <TableRow>
-            <Styled.ToolBar colSpan={10}>
-              <div>
-                <TableToolComponent />
-              </div>
-            </Styled.ToolBar>
+            <Styled.Actions colSpan={10}>
+              <TableToolComponent />
+            </Styled.Actions>
           </TableRow>
         </TableSearchContext.Provider>
         <TableSortContext.Provider value={tableSort}>
           <TableHeadComponent />
         </TableSortContext.Provider>
-      </TableHead>
+      </Styled.Thead>
       <TableBody>
         {loading && <TableLoader />}
         {sortedItems.map((item) => (

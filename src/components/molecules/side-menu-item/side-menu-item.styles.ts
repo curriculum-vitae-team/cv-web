@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 export const Item = styled(NavLink)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  height: 58,
+  height: 56,
   gap: 16,
   padding: '9px 16px',
   color: theme.palette.text.secondary,

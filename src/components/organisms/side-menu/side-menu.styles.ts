@@ -1,28 +1,23 @@
-import { styled, Drawer as MuiDrawer, IconButton } from '@mui/material'
+import { styled, IconButton } from '@mui/material'
 
-export const Drawer = styled(MuiDrawer)(({ theme, open }) => ({
+export const Aside = styled('aside')<{ isOpen: boolean }>(({ theme, isOpen }) => ({
+  gridArea: 'navigation',
+  width: isOpen ? 200 : 56,
+  transition: 'width 0.3s',
   display: 'flex',
-  gridColumn: 1,
-  gridRow: 2,
-  zIndex: 1000,
-
-  '& .MuiPaper-root': {
-    height: 'fit-content',
-    position: 'sticky',
-    top: 64,
-    zIndex: 2000,
-    width: open ? 200 : 56,
-    transition: 'width 0.3s',
-    overflowX: 'hidden',
-    background: 'none',
-    border: 'none'
-  },
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  paddingTop: 44,
+  paddingBottom: 16,
+  overflowX: 'hidden',
 
   [theme.breakpoints.down('md')]: {
-    gridRow: 3,
-    position: 'sticky',
-    bottom: 0,
-    zIndex: 2,
+    width: '100%',
+    height: 56,
+    display: 'grid',
+    gridTemplateColumns: '3fr 1fr',
+    padding: '0 16px',
+    gap: 14,
 
     '& .MuiPaper-root': {
       height: 56,
@@ -32,28 +27,13 @@ export const Drawer = styled(MuiDrawer)(({ theme, open }) => ({
   }
 }))
 
-export const Icon = styled(IconButton)(({ theme }) => ({
-  position: 'absolute',
-  left: 8,
-  bottom: 16,
-  zIndex: 1300,
-
-  '& > svg': {
-    transition: 'transform 200ms'
-  },
-
-  [theme.breakpoints.down('md')]: {
-    display: 'none'
-  }
-}))
-
-export const List = styled('nav')(({ theme }) => ({
+export const Nav = styled('nav')(({ theme }) => ({
   width: '100%',
   padding: 0,
   display: 'grid',
-  marginTop: 14,
   gap: 14,
   gridTemplateColumns: '1fr',
+  marginBottom: 'auto',
 
   '& .MuiDivider-root': {
     marginTop: 8,
@@ -65,7 +45,6 @@ export const List = styled('nav')(({ theme }) => ({
     height: '100%',
     gridTemplateColumns: 'repeat(3, 1fr)',
     alignItems: 'center',
-    padding: '0 16px',
 
     '.MuiDivider-root': {
       display: 'none'
@@ -74,5 +53,18 @@ export const List = styled('nav')(({ theme }) => ({
     'a:not(:nth-of-type(-n + 3))': {
       display: 'none'
     }
+  }
+}))
+
+export const Icon = styled(IconButton)(({ theme }) => ({
+  marginLeft: 8,
+  marginTop: 14,
+
+  '& > svg': {
+    transition: 'transform 200ms'
+  },
+
+  [theme.breakpoints.down('md')]: {
+    display: 'none'
   }
 }))

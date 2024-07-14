@@ -1,6 +1,5 @@
 import { memo, Suspense } from 'react'
 import { Container } from '@mui/material'
-import { Header } from '@organisms/header'
 import { PageLoader } from '@atoms/page-loader'
 import { Breadcrumbs } from '@features/breadcrumbs'
 import { AuthGuard } from '@features/auth-guard'
@@ -10,9 +9,8 @@ import * as Styled from './layout.styles'
 const Layout = () => {
   return (
     <Styled.Layout>
-      <Header />
       <SideMenu />
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" component="main">
         <Breadcrumbs />
         <Suspense fallback={<PageLoader />}>
           <AuthGuard />

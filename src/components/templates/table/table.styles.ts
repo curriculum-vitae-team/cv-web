@@ -1,15 +1,21 @@
-import { styled, TableCell } from '@mui/material'
+import { styled, TableCell, TableHead } from '@mui/material'
 
-export const ToolBar = styled(TableCell)(({ theme }) => ({
-  top: 108,
-  height: 64,
+export const Thead = styled(TableHead)<{ stickyTop?: number }>(({ stickyTop = 44 }) => ({
+  '& > tr:first-child': {
+    top: stickyTop
+  },
+  '& > tr:last-child': {
+    top: stickyTop + 56
+  }
+}))
+
+export const Actions = styled(TableCell)(({ theme }) => ({
+  height: 56,
   padding: '0 20px',
   backgroundColor: theme.palette.background.default,
   borderBottom: 'none',
 
-  '& > div': {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between'
+  '& .MuiButton-root': {
+    float: 'right'
   }
 }))
