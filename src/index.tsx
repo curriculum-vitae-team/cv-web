@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import './sentry'
 import './i18n'
 import { injectSpeedInsights } from '@vercel/speed-insights'
 import { App } from './components/app'
