@@ -1,13 +1,17 @@
 import { styled, TableCell, TableHead } from '@mui/material'
 
-export const Thead = styled(TableHead)<{ stickyTop?: number }>(({ stickyTop = 44 }) => ({
-  '& > tr:first-child': {
-    top: stickyTop
-  },
-  '& > tr:last-child': {
-    top: stickyTop + 56
-  }
-}))
+const shouldForwardProp = (prop: string) => prop !== 'stickyTop'
+
+export const Thead = styled(TableHead, { shouldForwardProp })<{ stickyTop?: number }>(
+  ({ stickyTop = 44 }) => ({
+    '& > tr:first-of-type': {
+      top: stickyTop
+    },
+    '& > tr:last-of-type': {
+      top: stickyTop + 56
+    }
+  })
+)
 
 export const Actions = styled(TableCell)(({ theme }) => ({
   height: 56,
