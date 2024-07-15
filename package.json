@@ -9,14 +9,13 @@
     "storybook:build": "storybook build -c storybook -o storybook/build"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.1",
+    "@apollo/client": "^3.8.10",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.14",
     "@mui/material": "^5.15.3",
     "@mui/x-date-pickers": "^6.5.0",
     "@sentry/react": "^8.17.0",
-    "@vercel/speed-insights": "^1.0.12",
     "date-fns": "^2.30.0",
     "graphql": "^16.6.0",
     "i18next": "^22.5.0",
