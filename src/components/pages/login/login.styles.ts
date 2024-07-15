@@ -6,7 +6,7 @@ export const Form = styled('form')({
   justifyContent: 'center',
   maxWidth: 560,
   width: '90%',
-  height: 'calc(100% - 64px)',
+  height: 'calc(100% - 56px)',
   margin: '0 auto'
 })
 

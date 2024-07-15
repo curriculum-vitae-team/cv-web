@@ -29,7 +29,8 @@ export const Name = styled(Typography)(({ theme }) => ({
   overflowX: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
-  color: theme.palette.text.primary
+  color: theme.palette.text.primary,
+  textAlign: 'left'
 }))
 
 export const Menu = styled(MuiMenu)(({ theme }) => ({
