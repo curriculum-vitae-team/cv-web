@@ -11,7 +11,7 @@ module.exports = {
     app: './src/index.tsx'
   },
   plugins: [
-    new EnvironmentPlugin(['GRAPHQL_API_URL']),
+    new EnvironmentPlugin(['GRAPHQL_API_URL', 'SENTRY_DNS_URL']),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),

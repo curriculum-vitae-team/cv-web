@@ -1,5 +1,5 @@
 import { makeVar } from '@apollo/client'
-import i18n from 'i18n'
+import i18next from 'config/i18next'
 import { StorageKeys } from 'constants/storage.constants'
 import { ILanguageService } from './languages.types'
 
@@ -13,7 +13,7 @@ class LanguageService implements ILanguageService {
   }
 
   changeLanguage(language: string) {
-    i18n.changeLanguage(language)
+    i18next.changeLanguage(language)
     this.language$(language)
     this.storageService.setItem(StorageKeys.Language, language)
   }

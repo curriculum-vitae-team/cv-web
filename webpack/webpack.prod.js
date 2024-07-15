@@ -28,7 +28,7 @@ module.exports = merge(config, {
     filename: '[name].[contenthash:8].js',
     chunkFilename: '[name].[contenthash:8].js',
     assetModuleFilename: 'assets/[hash][ext]',
-    path: resolve(__dirname, '../build'),
+    path: resolve(__dirname, '../dist'),
     publicPath: '/',
     clean: true
   }

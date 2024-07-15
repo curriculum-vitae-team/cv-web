@@ -1,0 +1,22 @@
+{
+  "name": "cv-storybook",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "storybook dev -p 3002 -c ./",
+    "build": "storybook build -c ./ -o ./dist"
+  },
+  "dependencies": {
+    "storybook": "^7.2.3"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.2.3",
+    "@storybook/addon-interactions": "^7.2.3",
+    "@storybook/addon-links": "^7.2.3",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.2.3",
+    "@storybook/react": "^7.2.3",
+    "@storybook/react-webpack5": "^7.2.3",
+    "@storybook/testing-library": "^0.2.0"
+  }
+}

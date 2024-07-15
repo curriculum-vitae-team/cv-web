@@ -9,8 +9,7 @@ import { init, reactRouterV6BrowserTracingIntegration, replayIntegration } from 
 
 if (process.env.NODE_ENV === 'production') {
   init({
-    dsn:
-      'https://c72e0ea144ed1a1a27e8e362f6e489f4@o4507603122257920.ingest.de.sentry.io/4507603125403728',
+    dsn: process.env.SENTRY_DNS_URL,
     integrations: [
       reactRouterV6BrowserTracingIntegration({
         useEffect,

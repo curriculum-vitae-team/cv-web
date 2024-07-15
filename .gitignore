@@ -1,5 +1,6 @@
+/dist
 /node_modules
-/build
-/storybook/build
+/storybook/dist
+/storybook/node_modules
 
 .env

@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-named-as-default
-import i18n, { use } from 'i18next'
+import i18next, { use } from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import HttpApi from 'i18next-http-backend'
 import { languageService } from 'graphql/languages/languages.service'
@@ -18,4 +17,4 @@ use(HttpApi).init({
   }
 })
 
-export default i18n
+export default i18next

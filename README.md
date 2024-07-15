@@ -7,6 +7,7 @@ The following .env example file is required for the correct work of the applicat
 ```
 PORT="3000"
 GRAPHQL_API_URL="https://cv-project-js.inno.ws/api/graphql"
+SENTRY_DNS_URL=""
 ```
 
 ### Installation
