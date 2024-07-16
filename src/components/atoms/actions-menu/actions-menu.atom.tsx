@@ -3,7 +3,7 @@ import { IconButton, Menu } from '@mui/material'
 import { MoreVert } from '@mui/icons-material'
 import { ActionsMenuProps } from './actions-menu.types'
 
-const ActionsMenu = ({ children }: ActionsMenuProps) => {
+const ActionsMenu = ({ children, disabled, icon }: ActionsMenuProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
 
@@ -15,11 +15,13 @@ const ActionsMenu = ({ children }: ActionsMenuProps) => {
     setAnchorEl(null)
   }, [])
 
+  if (disabled) {
+    return null
+  }
+
   return (
     <>
-      <IconButton onClick={handleOpen}>
-        <MoreVert />
-      </IconButton>
+      <IconButton onClick={handleOpen}>{icon || <MoreVert />}</IconButton>
       <Menu
         anchorEl={anchorEl}
         open={open}

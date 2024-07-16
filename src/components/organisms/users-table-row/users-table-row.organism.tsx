@@ -1,8 +1,9 @@
 import { memo } from 'react'
 import { generatePath, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { TableCell, Avatar, MenuItem, Typography } from '@mui/material'
+import { TableCell, Avatar, MenuItem, Typography, IconButton } from '@mui/material'
 import { User } from 'cv-graphql'
+import { KeyboardArrowRight } from '@mui/icons-material'
 import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { useUserDialog } from '@dialogs/user'
@@ -42,6 +43,8 @@ const UsersTableRow = ({ item }: TableRowProps<User>) => {
     })
   }
 
+  // const visitProfile = { sx: { cursor: 'pointer' }, onClick: handleProfile }
+
   return (
     <Styled.Row>
       <TableCell>
@@ -55,15 +58,19 @@ const UsersTableRow = ({ item }: TableRowProps<User>) => {
       <TableCell>{item.department?.name}</TableCell>
       <TableCell>{item.position?.name}</TableCell>
       <TableCell>
-        <ActionsMenu>
-          <MenuItem onClick={handleProfile}>{t('Profile')}</MenuItem>
-          <MenuItem disabled={!isAdmin && !isSelf} onClick={handleUpdate}>
-            {t('Update user')}
-          </MenuItem>
-          <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-            {t('Delete user')}
-          </MenuItem>
-        </ActionsMenu>
+        {!isAdmin && !isSelf ? (
+          <IconButton onClick={handleProfile}>
+            <KeyboardArrowRight color="secondary" />
+          </IconButton>
+        ) : (
+          <ActionsMenu>
+            <MenuItem onClick={handleProfile}>{t('Profile')}</MenuItem>
+            <MenuItem onClick={handleUpdate}>{t('Update user')}</MenuItem>
+            <MenuItem disabled={!isAdmin || isSelf} onClick={handleDelete}>
+              {t('Delete user')}
+            </MenuItem>
+          </ActionsMenu>
+        )}
       </TableCell>
     </Styled.Row>
   )
