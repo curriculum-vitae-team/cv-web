@@ -1,1 +1,1 @@
-export { CvsTableRow, UserCvsTableRow } from './cvs-table-row'
+export { CvsTableRow } from './cvs-table-row'

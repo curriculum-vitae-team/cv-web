@@ -10,7 +10,7 @@ import { useConfirmDialog } from '@dialogs/confirm'
 import { useAuth } from 'hooks/use-auth'
 import { DayMonthYear } from 'constants/format.constant'
 import { ActionsMenu } from '@atoms/actions-menu'
-import * as Styled from '../projects-table-row/projects-table-row.styles'
+import * as Styled from './cv-projects-table-row.styles'
 
 export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
   const { t } = useTranslation()

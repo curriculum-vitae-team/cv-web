@@ -1,11 +1,11 @@
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
-import { Cv } from 'cv-graphql'
+import type { Cv } from 'cv-graphql'
 import { useUserCvs } from 'hooks/use-users'
 import { createTable } from '@templates/table'
 import { UserCvsTableTool } from '@organisms/user-cvs-table-tool'
-import { UserCvsTableHead } from '@organisms/cvs-table-head'
-import { UserCvsTableRow } from '@organisms/cvs-table-row'
+import { UserCvsTableHead } from '@organisms/user-cvs-table-head'
+import { UserCvsTableRow } from '@organisms/user-cvs-table-row'
 
 const Table = createTable<Cv>()
 
