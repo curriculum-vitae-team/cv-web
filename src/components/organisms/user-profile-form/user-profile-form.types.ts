@@ -1,6 +1,6 @@
 import { User } from 'cv-graphql'
 
-export type EmployeeProfileFormProps = {
+export type UserProfileFormProps = {
   user: User
 }
 

@@ -1,1 +1,1 @@
-export { AvatarUpload } from './avatar-upload.molecule'
+export { AvatarUpload } from './avatar-upload'

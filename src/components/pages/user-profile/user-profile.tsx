@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Container, Tooltip, Typography } from '@mui/material'
 import { Verified } from '@mui/icons-material'
 import { AvatarUpload } from '@molecules/avatar-upload'
-import { EmployeeProfileForm } from '@organisms/employee-profile-form'
+import { UserProfileForm } from '@organisms/user-profile-form'
 import { useUser } from 'hooks/use-users'
 import { PageLoader } from '@atoms/page-loader'
 import * as Styled from './user-profile.styles'
@@ -35,7 +35,7 @@ const UserProfile = () => {
           {t('A member since')} {new Date(+user.created_at).toDateString()}
         </Typography>
       </Styled.Profile>
-      <EmployeeProfileForm user={user} />
+      <UserProfileForm user={user} />
     </Container>
   )
 }

@@ -6,13 +6,15 @@ import { PositionSelect } from '@molecules/position-select'
 import { useUserUpdate } from 'hooks/use-users'
 import { useProfileUpdate } from 'hooks/use-profile'
 import { useAuth } from 'hooks/use-auth'
-import { EmployeeProfileFormProps, UserProfileFormValues } from './employee-profile-form.types'
-import * as Styled from './employee-profile-form.styles'
+import type { UserProfileFormProps, UserProfileFormValues } from './user-profile-form.types'
+import * as Styled from './user-profile-form.styles'
 
-export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
+export const UserProfileForm = ({ user }: UserProfileFormProps) => {
   const [updateUser, { loading }] = useUserUpdate()
   const [updateProfile] = useProfileUpdate()
   const { isAdmin, userId } = useAuth()
+  const isOwnProfile = userId === user.id
+  const canUpdate = isAdmin || isOwnProfile
   const { t } = useTranslation()
 
   const methods = useForm<UserProfileFormValues>({
@@ -53,12 +55,16 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
 
   return (
     <FormProvider {...methods}>
-      <Styled.Form onSubmit={handleSubmit(onSubmit)}>
-        <TextField {...register('profile.first_name')} autoFocus label={t('First Name')} />
+      <Styled.Form disabled={!isAdmin && !isOwnProfile} onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+          {...register('profile.first_name')}
+          label={t('First Name')}
+          autoFocus={canUpdate}
+        />
         <TextField {...register('profile.last_name')} label={t('Last Name')} />
         <DepartmentSelect name="departmentId" />
         <PositionSelect name="positionId" />
-        {(isAdmin || userId === user.id) && (
+        {canUpdate && (
           <Styled.SubmitButton
             type="submit"
             variant="contained"
