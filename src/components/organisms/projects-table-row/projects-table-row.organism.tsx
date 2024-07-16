@@ -60,20 +60,16 @@ export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
       <TableCell>{item.name}</TableCell>
       <TableCell>{item.internal_name}</TableCell>
       <TableCell>{item.domain}</TableCell>
+      <TableCell>{item.team_size}</TableCell>
       <TableCell>{format(new Date(item.start_date || ''), DayMonthYear)}</TableCell>
       <TableCell>
         {item.end_date ? format(new Date(item.end_date), DayMonthYear) : t('Till now')}
       </TableCell>
-      <TableCell>{item.team_size}</TableCell>
       <TableCell>
-        <ActionsMenu>
+        <ActionsMenu disabled={!isAdmin}>
           <MenuItem disabled>{t('Project')}</MenuItem>
-          <MenuItem disabled={!isAdmin} onClick={handleUpdate}>
-            {t('Update project')}
-          </MenuItem>
-          <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-            {t('Delete project')}
-          </MenuItem>
+          <MenuItem onClick={handleUpdate}>{t('Update project')}</MenuItem>
+          <MenuItem onClick={handleDelete}>{t('Delete project')}</MenuItem>
         </ActionsMenu>
       </TableCell>
     </Styled.Row>
@@ -82,12 +78,12 @@ export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
 
 export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
   const { t } = useTranslation()
-  const { isAdmin } = useAuth()
   const { cvId = '' } = useParams()
   const [openCvProjectDialog] = useCvProjectDialog()
   const [removeProject] = useCvProjectRemove()
   const [openConfirmDialog] = useConfirmDialog()
   const [updateCvProject] = useCvProjectUpdate()
+  const { isAdmin } = useAuth()
 
   const handleUpdate = () => {
     openCvProjectDialog({

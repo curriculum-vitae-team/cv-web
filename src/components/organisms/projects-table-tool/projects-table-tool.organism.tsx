@@ -5,7 +5,7 @@ import { SearchInput } from '@molecules/search-input'
 import { useProjectDialog } from '@dialogs/project'
 import { useAuth } from 'hooks/use-auth'
 import { useProjectCreate, useProjects } from 'hooks/use-projects'
-import { useCvProjectAdd, useCvProjects } from 'hooks/use-cvs'
+import { useCv, useCvProjectAdd, useCvProjects } from 'hooks/use-cvs'
 import { useCvProjectDialog } from '@dialogs/cv-project'
 
 export const ProjectsTableTool = () => {
@@ -42,9 +42,12 @@ export const ProjectsTableTool = () => {
 }
 
 export const CvProjectsTableTool = () => {
-  const { isAdmin } = useAuth()
   const { cvId = '' } = useParams()
   const { t } = useTranslation()
+  const { cv } = useCv(cvId)
+  const { userId, isAdmin } = useAuth()
+  const isOwnCv = userId === cv?.user?.id
+
   const { projects } = useCvProjects(cvId)
   const projectIds = projects.map(({ project }) => project.id)
   const { projects: allProjects } = useProjects()
@@ -122,7 +125,7 @@ export const CvProjectsTableTool = () => {
   return (
     <>
       <SearchInput />
-      {isAdmin && <AddButton onClick={handleClick}>{t('Add project')}</AddButton>}
+      {(isAdmin || isOwnCv) && <AddButton onClick={handleClick}>{t('Add project')}</AddButton>}
     </>
   )
 }

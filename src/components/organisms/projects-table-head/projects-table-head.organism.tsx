@@ -12,9 +12,9 @@ export const ProjectsTableHead = () => {
       <TableCell>{createSortLabel<Project>('name', t('Name'))}</TableCell>
       <TableCell>{createSortLabel<Project>('internal_name', t('Internal Name'))}</TableCell>
       <TableCell>{createSortLabel<Project>('domain', t('Domain'))}</TableCell>
+      <TableCell>{createSortLabel<Project>('team_size', t('Team Size'))}</TableCell>
       <TableCell>{createSortLabel<Project>('start_date', t('Start Date'))}</TableCell>
       <TableCell>{createSortLabel<Project>('end_date', t('End Date'))}</TableCell>
-      <TableCell>{createSortLabel<Project>('team_size', t('Team Size'))}</TableCell>
       <TableCell />
     </Styled.Row>
   )
