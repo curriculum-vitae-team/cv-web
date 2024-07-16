@@ -36,13 +36,9 @@ export const SkillsTableRow = ({ item }: TableRowProps<Skill>) => {
       <TableCell>{item.name}</TableCell>
       <TableCell>{t(item.category || '')}</TableCell>
       <TableCell>
-        <ActionsMenu>
-          <MenuItem disabled={!isAdmin} onClick={handleUpdate}>
-            {t('Update skill')}
-          </MenuItem>
-          <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-            {t('Delete skill')}
-          </MenuItem>
+        <ActionsMenu disabled={!isAdmin}>
+          <MenuItem onClick={handleUpdate}>{t('Update skill')}</MenuItem>
+          <MenuItem onClick={handleDelete}>{t('Delete skill')}</MenuItem>
         </ActionsMenu>
       </TableCell>
     </TableRow>

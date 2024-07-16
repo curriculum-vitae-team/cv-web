@@ -37,13 +37,9 @@ export const LanguagesTableRow = ({ item }: TableRowProps<Language>) => {
       <TableCell>{item.native_name}</TableCell>
       <TableCell>{item.iso2}</TableCell>
       <TableCell>
-        <ActionsMenu>
-          <MenuItem disabled={!isAdmin} onClick={handleUpdate}>
-            {t('Update language')}
-          </MenuItem>
-          <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-            {t('Delete language')}
-          </MenuItem>
+        <ActionsMenu disabled={!isAdmin}>
+          <MenuItem onClick={handleUpdate}>{t('Update language')}</MenuItem>
+          <MenuItem onClick={handleDelete}>{t('Delete language')}</MenuItem>
         </ActionsMenu>
       </TableCell>
     </TableRow>

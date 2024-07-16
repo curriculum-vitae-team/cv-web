@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next'
 import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
-import { Position } from 'cv-graphql'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { TableRowProps } from '@templates/table/table.types'
 import { useConfirmDialog } from '@dialogs/confirm'
 import { usePositionDialog } from '@dialogs/position'
 import { useAuth } from 'hooks/use-auth'
 import { usePositionDelete, usePositionUpdate } from 'hooks/use-positions.hook'
+import type { PositionWithUsers } from '@pages/positions/position.types'
 
-export const PositionsTableRow = ({ item }: TableRowProps<Position>) => {
+export const PositionsTableRow = ({ item }: TableRowProps<PositionWithUsers>) => {
   const { isAdmin } = useAuth()
   const { t } = useTranslation()
   const [openPositionDialog] = usePositionDialog()
@@ -49,14 +49,11 @@ export const PositionsTableRow = ({ item }: TableRowProps<Position>) => {
   return (
     <TableRow>
       <TableCell>{item.name}</TableCell>
+      <TableCell>{item.users.length}</TableCell>
       <TableCell>
-        <ActionsMenu>
-          <MenuItem disabled={!isAdmin} onClick={handleUpdate}>
-            {t('Update position')}
-          </MenuItem>
-          <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-            {t('Delete position')}
-          </MenuItem>
+        <ActionsMenu disabled={!isAdmin}>
+          <MenuItem onClick={handleUpdate}>{t('Update position')}</MenuItem>
+          <MenuItem onClick={handleDelete}>{t('Delete position')}</MenuItem>
         </ActionsMenu>
       </TableCell>
     </TableRow>
