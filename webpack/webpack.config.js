@@ -10,7 +10,9 @@ module.exports = {
     app: './src/index.tsx'
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),
