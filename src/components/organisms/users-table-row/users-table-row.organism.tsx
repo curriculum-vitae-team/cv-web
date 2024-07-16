@@ -43,8 +43,6 @@ const UsersTableRow = ({ item }: TableRowProps<User>) => {
     })
   }
 
-  // const visitProfile = { sx: { cursor: 'pointer' }, onClick: handleProfile }
-
   return (
     <Styled.Row>
       <TableCell>
