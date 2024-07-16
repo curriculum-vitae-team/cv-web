@@ -1,7 +1,7 @@
 import { IconButton, TableCell, TableRow } from '@mui/material'
 import { Cv } from 'cv-graphql'
 import { KeyboardArrowRight } from '@mui/icons-material'
-import { generatePath, useNavigate } from 'react-router-dom'
+import { generatePath, useNavigate, useParams } from 'react-router-dom'
 import { TableRowProps } from '@templates/table/table.types'
 import { CvsTableMenu } from '@molecules/cvs-table-menu'
 import { useAuth } from 'hooks/use-auth'
@@ -35,13 +35,28 @@ export const CvsTableRow = ({ item }: TableRowProps<Cv>) => {
   )
 }
 
-export const ProfileCvsTableRow = ({ item }: TableRowProps<Cv>) => {
+export const UserCvsTableRow = ({ item }: TableRowProps<Cv>) => {
+  const { userId = '' } = useParams()
+  const navigate = useNavigate()
+  const { user$, isAdmin } = useAuth()
+  const isOwnCv = user$?.id === userId
+
+  const handleDetails = () => {
+    navigate(generatePath(routes.cvs.details, { cvId: item.id }))
+  }
+
   return (
     <TableRow>
       <Styled.Name>{item.name}</Styled.Name>
       <Styled.Description>{item.description}</Styled.Description>
       <TableCell>
-        <CvsTableMenu cv={item} />
+        {!isOwnCv && !isAdmin ? (
+          <IconButton onClick={handleDetails}>
+            <KeyboardArrowRight color="secondary" />
+          </IconButton>
+        ) : (
+          <CvsTableMenu cv={item} />
+        )}
       </TableCell>
     </TableRow>
   )

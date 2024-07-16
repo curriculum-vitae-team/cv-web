@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom'
 import { Cv } from 'cv-graphql'
 import { useUserCvs } from 'hooks/use-users'
 import { createTable } from '@templates/table'
-import { CvsTableTool } from '@organisms/cvs-table-tool'
-import { ProfileCvsTableHead } from '@organisms/cvs-table-head'
-import { ProfileCvsTableRow } from '@organisms/cvs-table-row'
+import { UserCvsTableTool } from '@organisms/user-cvs-table-tool'
+import { UserCvsTableHead } from '@organisms/cvs-table-head'
+import { UserCvsTableRow } from '@organisms/cvs-table-row'
 
 const Table = createTable<Cv>()
 
@@ -17,9 +17,9 @@ const UserCvs = () => {
     <Table
       items={cvs}
       loading={loading}
-      TableToolComponent={CvsTableTool}
-      TableHeadComponent={ProfileCvsTableHead}
-      TableRowComponent={ProfileCvsTableRow}
+      TableToolComponent={UserCvsTableTool}
+      TableHeadComponent={UserCvsTableHead}
+      TableRowComponent={UserCvsTableRow}
       searchBy={['name']}
       defaultSortBy="name"
       stickyTop={44 + 56 + 32}

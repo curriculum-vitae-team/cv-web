@@ -17,7 +17,7 @@ export const CvsTableHead = () => {
   )
 }
 
-export const ProfileCvsTableHead = () => {
+export const UserCvsTableHead = () => {
   const { t } = useTranslation()
 
   return (
