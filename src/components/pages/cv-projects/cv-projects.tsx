@@ -1,10 +1,10 @@
-import { CvProject } from 'cv-graphql'
+import type { CvProject } from 'cv-graphql'
 import { useParams } from 'react-router-dom'
 import { createTable } from '@templates/table'
 import { useCvProjects } from 'hooks/use-cvs'
-import { CvProjectsTableTool } from '@organisms/projects-table-tool'
+import { CvProjectsTableTool } from '@organisms/cv-projects-table-tool'
 import { ProjectsTableHead } from '@organisms/projects-table-head'
-import { CvProjectsTableRow } from '@organisms/projects-table-row'
+import { CvProjectsTableRow } from '@organisms/cv-projects-table-row'
 import { SortOrder } from 'constants/table-sort.constants'
 
 const Table = createTable<CvProject>()

@@ -1,1 +1,1 @@
-export { ProjectsTableTool, CvProjectsTableTool } from './projects-table-tool.organism'
+export { ProjectsTableTool } from './projects-table-tool.organism'
