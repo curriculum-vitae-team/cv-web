@@ -21,7 +21,6 @@ if (process.env.NODE_ENV === 'production') {
       replayIntegration()
     ],
     tracesSampleRate: 1.0,
-    tracePropagationTargets: [],
     replaysSessionSampleRate: 0.1,
     replaysOnErrorSampleRate: 1.0
   })

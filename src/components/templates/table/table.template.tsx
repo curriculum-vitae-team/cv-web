@@ -39,14 +39,14 @@ const Table = <T extends Item>({
 
   const filteredItems = useMemo(() => {
     return items.filter(searchItems(searchBy, _search))
-  }, [items, _search])
+  }, [items, searchBy, _search])
 
   const sortedItems = useMemo(() => {
     if (dateFields.includes(sortBy)) {
       return filteredItems.sort(sortDates(_sortBy, _order))
     }
     return filteredItems.sort(sortItems(_sortBy, _order))
-  }, [filteredItems, _sortBy, _order])
+  }, [sortBy, filteredItems, _sortBy, _order])
 
   return (
     <MuiTable stickyHeader>
@@ -79,4 +79,4 @@ const Table = <T extends Item>({
 
 const TableComponent = memo(Table)
 
-export const createTable = <T extends Item>() => (TableComponent as unknown) as FC<TableProps<T>>
+export const createTable = <T extends Item>() => TableComponent as unknown as FC<TableProps<T>>

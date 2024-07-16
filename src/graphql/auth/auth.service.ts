@@ -7,13 +7,13 @@ class AuthService implements IAuthService {
   user$ = makeVar<User | null>(null)
   access_token$ = makeVar('')
 
-  constructor(private readonly storageService: Storage) {
+  constructor() {
     this.getUser()
   }
 
   private getUser() {
-    const user = this.storageService.getItem(StorageKeys.User)
-    const access_token = this.storageService.getItem(StorageKeys.AccessToken)
+    const user = sessionStorage.getItem(StorageKeys.User)
+    const access_token = sessionStorage.getItem(StorageKeys.AccessToken)
 
     if (user && access_token) {
       this.user$(JSON.parse(user))
@@ -24,16 +24,16 @@ class AuthService implements IAuthService {
   login(user: User, access_token: string) {
     this.user$(user)
     this.access_token$(access_token)
-    this.storageService.setItem(StorageKeys.User, JSON.stringify(user))
-    this.storageService.setItem(StorageKeys.AccessToken, access_token)
+    sessionStorage.setItem(StorageKeys.User, JSON.stringify(user))
+    sessionStorage.setItem(StorageKeys.AccessToken, access_token)
   }
 
   logout() {
     this.user$(null)
     this.access_token$('')
-    this.storageService.removeItem(StorageKeys.User)
-    this.storageService.removeItem(StorageKeys.AccessToken)
+    sessionStorage.removeItem(StorageKeys.User)
+    sessionStorage.removeItem(StorageKeys.AccessToken)
   }
 }
 
-export const authService = new AuthService(sessionStorage)
+export const authService = new AuthService()

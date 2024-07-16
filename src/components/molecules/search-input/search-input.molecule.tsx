@@ -9,9 +9,12 @@ const SearchInput = (props: TextFieldProps) => {
   const { search, setSearch } = useContext(TableSearchContext)
   const { t } = useTranslation()
 
-  const handleSearch = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value)
-  }, [])
+  const handleSearch = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setSearch(event.target.value)
+    },
+    [setSearch]
+  )
 
   return (
     <Styled.Input

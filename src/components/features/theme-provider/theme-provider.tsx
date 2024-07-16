@@ -13,7 +13,7 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
     mediaQuery.onchange = (event) => {
       setIsDark(event.matches)
     }
-  }, [])
+  }, [mediaQuery])
 
   const theme = useMemo(() => {
     if (theme$ === 'device' && isDark) {

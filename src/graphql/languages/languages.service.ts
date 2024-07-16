@@ -6,17 +6,15 @@ import { ILanguageService } from './languages.types'
 class LanguageService implements ILanguageService {
   language$ = makeVar(this.getLanguage())
 
-  constructor(private readonly storageService: Storage) {}
-
   getLanguage() {
-    return this.storageService.getItem(StorageKeys.Language) || 'en'
+    return localStorage.getItem(StorageKeys.Language) || 'en'
   }
 
   changeLanguage(language: string) {
     i18next.changeLanguage(language)
     this.language$(language)
-    this.storageService.setItem(StorageKeys.Language, language)
+    localStorage.setItem(StorageKeys.Language, language)
   }
 }
 
-export const languageService = new LanguageService(localStorage)
+export const languageService = new LanguageService()

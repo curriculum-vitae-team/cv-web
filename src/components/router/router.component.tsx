@@ -35,7 +35,6 @@ export const Router = () => {
             <Route path={routes.auth.signup} element={<Signup />} />
           </Route>
           <Route element={<Layout />}>
-            {/* <Route path={routes.root} element={<Home />} /> */}
             <Route path={routes.users.root}>
               <Route index element={<Users />} />
               <Route path={routes.users.profile} element={<User />}>

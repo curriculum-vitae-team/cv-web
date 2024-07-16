@@ -1,7 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
-import { User, UserRole } from 'cv-graphql'
+import { type User, UserRole } from 'cv-graphql'
 import { DepartmentSelect } from '@molecules/department-select'
 import { PositionSelect } from '@molecules/position-select'
 import { RoleSelect } from '@molecules/role-select'

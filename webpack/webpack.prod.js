@@ -1,7 +1,7 @@
 const { resolve } = require('path')
 const { merge } = require('webpack-merge')
+const { DefinePlugin } = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin')
-const CompressionPlugin = require('compression-webpack-plugin')
 const { EsbuildPlugin } = require('esbuild-loader')
 const config = require('./webpack.config')
 
@@ -9,18 +9,22 @@ module.exports = merge(config, {
   mode: 'production',
   devtool: 'source-map',
   plugins: [
-    new CopyPlugin({
-      patterns: [{ from: 'public/translations', to: 'translations' }]
+    new DefinePlugin({
+      'globalThis.__DEV__': false
     }),
-    new CompressionPlugin({
-      algorithm: 'gzip'
+    new CopyPlugin({
+      patterns: [
+        { from: 'public/translations', to: 'translations' },
+        { from: 'public/robots.txt', to: 'robots.txt' }
+      ]
     })
   ],
   optimization: {
     minimize: true,
     minimizer: [
       new EsbuildPlugin({
-        target: 'es2015'
+        target: 'es2015',
+        legalComments: 'external'
       })
     ]
   },

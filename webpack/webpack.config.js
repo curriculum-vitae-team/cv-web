@@ -1,6 +1,5 @@
 const { resolve } = require('path')
-require('dotenv').config()
-const { EnvironmentPlugin } = require('webpack')
+const Dotenv = require('dotenv-webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
@@ -11,7 +10,7 @@ module.exports = {
     app: './src/index.tsx'
   },
   plugins: [
-    new EnvironmentPlugin(['GRAPHQL_API_URL', 'SENTRY_DNS_URL']),
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: './public/index.html'
     }),

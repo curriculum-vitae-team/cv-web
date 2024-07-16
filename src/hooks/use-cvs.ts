@@ -56,9 +56,13 @@ export const useCv = (cvId: string) => {
 
 export const useCvSkills = (cvId: string) => {
   const query = useQuery<CvResult>(CV_SKILLS, { variables: { cvId } })
-  const skills = query.data?.cv.skills || []
+  const skills = query.data?.cv.skills
 
   const groups = useMemo(() => {
+    if (!skills) {
+      return {}
+    }
+
     return skills.reduce<Record<string, SkillMastery[]>>((acc, cur) => {
       const category = cur.category || 'Other'
       if (!acc[category]) {
@@ -69,7 +73,7 @@ export const useCvSkills = (cvId: string) => {
     }, {})
   }, [skills])
 
-  return { skills, groups, ...query }
+  return { skills: skills || [], groups, ...query }
 }
 
 export const useCvCreate = () => {

@@ -12,12 +12,15 @@ export const createDialogHook = <T>(Component: (props: T) => FC, dialogProps: Di
       }
     }, [])
 
-    const openDialog = useCallback((props?: Omit<T, 'closeDialog'>) => {
-      idRef.current = dialogsService.addDialog(
-        memo(Component({ ...props, closeDialog } as T)),
-        dialogProps
-      )
-    }, [])
+    const openDialog = useCallback(
+      (props?: Omit<T, 'closeDialog'>) => {
+        idRef.current = dialogsService.addDialog(
+          memo(Component({ ...props, closeDialog } as T)),
+          dialogProps
+        )
+      },
+      [closeDialog]
+    )
 
     return [openDialog, closeDialog]
   }
