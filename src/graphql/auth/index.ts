@@ -15,6 +15,7 @@ export const LOGIN = gql`
         is_verified
       }
       access_token
+      refresh_token
     }
   }
 `
@@ -34,6 +35,16 @@ export const SIGNUP = gql`
         is_verified
       }
       access_token
+      refresh_token
+    }
+  }
+`
+
+export const UPDATE_TOKEN = gql`
+  mutation UpdateToken {
+    updateToken {
+      access_token
+      refresh_token
     }
   }
 `

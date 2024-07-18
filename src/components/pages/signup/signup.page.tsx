@@ -36,8 +36,7 @@ const Signup = () => {
       }
     })
     if (data) {
-      const { user, access_token } = data.signup
-      authService.login(user, access_token)
+      authService.login(data.signup)
       navigate(routes.root)
     }
   }
