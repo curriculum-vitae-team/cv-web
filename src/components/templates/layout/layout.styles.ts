@@ -8,13 +8,15 @@ export const Layout = styled('div')(({ theme }) => ({
   gridTemplateRows: '1fr',
   gridTemplateAreas: "'navigation page'",
 
-  '& .MuiContainer-root': {
-    overflowY: 'scroll'
-  },
-
   [theme.breakpoints.down('md')]: {
     gridTemplateColumns: '1fr',
     gridTemplateRows: '1fr max-content',
     gridTemplateAreas: "'page' 'navigation'"
   }
 }))
+
+export const Scroll = styled('main')({
+  width: '100%',
+  gridArea: 'page',
+  overflowY: 'scroll'
+})

@@ -10,12 +10,14 @@ const Layout = () => {
   return (
     <Styled.Layout>
       <SideMenu />
-      <Container maxWidth="xl" component="main">
-        <Breadcrumbs />
-        <Suspense fallback={<PageLoader />}>
-          <AuthGuard />
-        </Suspense>
-      </Container>
+      <Styled.Scroll>
+        <Container maxWidth="xl">
+          <Breadcrumbs />
+          <Suspense fallback={<PageLoader />}>
+            <AuthGuard />
+          </Suspense>
+        </Container>
+      </Styled.Scroll>
     </Styled.Layout>
   )
 }
