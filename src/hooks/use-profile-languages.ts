@@ -19,9 +19,10 @@ import {
 
 export const useProfileLanguages = (userId: string) => {
   const query = useQuery<ProfileResult>(PROFILE_LANGUAGES, { variables: { userId } })
-  const languages = query.data?.profile.languages || []
+  const profile = query.data?.profile
+  const languages = profile?.languages || []
 
-  return { languages, ...query }
+  return { profile, languages, ...query }
 }
 
 export const useProfileLanguageAdd = () => {

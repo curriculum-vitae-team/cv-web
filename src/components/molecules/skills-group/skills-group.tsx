@@ -5,7 +5,7 @@ import { SkillCard } from '@molecules/skill-card'
 import { SkillsGroupProps } from './skills-group.types'
 import * as Styled from './skills-group.styles'
 
-const SkillsGroup = ({ category, skills, onUpdate }: SkillsGroupProps) => {
+const SkillsGroup = ({ category, skills, disabled, onUpdate }: SkillsGroupProps) => {
   const { t } = useTranslation()
 
   return (
@@ -13,7 +13,7 @@ const SkillsGroup = ({ category, skills, onUpdate }: SkillsGroupProps) => {
       <Typography>{t(category)}</Typography>
       <Styled.Skills>
         {skills.map((skill) => (
-          <SkillCard key={skill.name} skill={skill} onUpdate={onUpdate} />
+          <SkillCard key={skill.name} skill={skill} disabled={disabled} onUpdate={onUpdate} />
         ))}
       </Styled.Skills>
     </Styled.Group>

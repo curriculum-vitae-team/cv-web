@@ -16,12 +16,14 @@ import { BulkDeletion, bulkDeletionService } from '@features/bulk-deletion'
 import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
 import { Actions } from '@templates/actions'
 import { useBulkDeletion } from 'hooks/use_bulk_deletion'
+import { usePermission } from 'hooks/use_permission'
 import * as Styled from './user-skills.styles'
 
 const UserSkills = () => {
   const { t } = useTranslation()
   const { userId = '' } = useParams()
-  const { groups, skills, loading } = useProfileSkills(userId)
+  const { canUpdateProfile } = usePermission()
+  const { profile, groups, skills, loading } = useProfileSkills(userId)
   const [openSkillMasteryDialog] = useSkillMasteryDialog()
   const ownSkills = skills.map((skills) => skills.name)
   const [addProfileSkill] = useProfileSkillAdd()
@@ -87,16 +89,22 @@ const UserSkills = () => {
   return (
     <Styled.Skills maxWidth="md">
       <BulkDeletion onDelete={handleDelete}>
-        {!skills.length && (
+        {!skills.length && canUpdateProfile(profile) && (
           <Button color="secondary" onClick={handleAdd}>
             <Add /> {t('Add skill')}
           </Button>
         )}
         {Object.entries(groups).map(([category, skills]) => (
-          <SkillsGroup key={category} category={category} skills={skills} onUpdate={handleUpdate} />
+          <SkillsGroup
+            key={category}
+            category={category}
+            skills={skills}
+            disabled={!canUpdateProfile(profile)}
+            onUpdate={handleUpdate}
+          />
         ))}
       </BulkDeletion>
-      {!isActive$ && !!skills.length && (
+      {!isActive$ && !!skills.length && canUpdateProfile(profile) && (
         <Actions>
           <Button color="secondary" onClick={handleAdd}>
             <Add /> {t('Add skill')}

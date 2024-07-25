@@ -15,12 +15,14 @@ import { useLanguageProficiencyDialog } from '@dialogs/language-proficiency'
 import { BulkDeletion, bulkDeletionService } from '@features/bulk-deletion'
 import { Actions } from '@templates/actions'
 import { useBulkDeletion } from 'hooks/use_bulk_deletion'
+import { usePermission } from 'hooks/use_permission'
 import * as Styled from './user-languages.styles'
 
 const UserLanguages = () => {
   const { userId = '' } = useParams()
   const { t } = useTranslation()
-  const { languages, loading } = useProfileLanguages(userId)
+  const { canUpdateProfile } = usePermission()
+  const { profile, languages, loading } = useProfileLanguages(userId)
   const [openLanguageProficiencyDialog] = useLanguageProficiencyDialog()
   const ownLanguages = languages.map((language) => language.name)
   const [addProfileLanguage] = useProfileLanguageAdd()
@@ -83,7 +85,7 @@ const UserLanguages = () => {
 
   return (
     <Styled.Languages maxWidth="md">
-      {!languages.length && (
+      {!languages.length && canUpdateProfile(profile) && (
         <Button color="secondary" onClick={handleAdd}>
           <Add /> {t('Add language')}
         </Button>
@@ -91,11 +93,16 @@ const UserLanguages = () => {
       <BulkDeletion onDelete={handleDelete}>
         <Styled.Grid>
           {languages.map((language) => (
-            <LanguageCard key={language.name} language={language} onClick={handleUpdate} />
+            <LanguageCard
+              key={language.name}
+              language={language}
+              disabled={!canUpdateProfile(profile)}
+              onClick={handleUpdate}
+            />
           ))}
         </Styled.Grid>
       </BulkDeletion>
-      {!isActive$ && !!languages.length && (
+      {!isActive$ && !!languages.length && canUpdateProfile(profile) && (
         <Actions>
           <Button color="secondary" onClick={handleAdd}>
             <Add /> {t('Add language')}

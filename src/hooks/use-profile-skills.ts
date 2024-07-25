@@ -21,7 +21,8 @@ import {
 
 export const useProfileSkills = (userId: string) => {
   const query = useQuery<ProfileResult>(PROFILE_SKILLS, { variables: { userId } })
-  const skills = query.data?.profile.skills
+  const profile = query.data?.profile
+  const skills = profile?.skills
 
   const groups = useMemo(() => {
     if (!skills) {
@@ -38,7 +39,7 @@ export const useProfileSkills = (userId: string) => {
     }, {})
   }, [skills])
 
-  return { skills: skills || [], groups, ...query }
+  return { profile, skills: skills || [], groups, ...query }
 }
 
 export const useProfileSkillAdd = () => {

@@ -6,7 +6,7 @@ import { useBulkDeletion } from 'hooks/use_bulk_deletion'
 import * as Styled from './language-card.styles'
 import { LanguageCardProps } from './language-card.types'
 
-export const LanguageCard = ({ language, onClick }: LanguageCardProps) => {
+export const LanguageCard = ({ language, disabled, onClick }: LanguageCardProps) => {
   const { isActive$, selectedIds$ } = useBulkDeletion()
   const isSelected = selectedIds$.includes(language.name)
   const color = getProficiencyColor(language.proficiency)
@@ -30,6 +30,7 @@ export const LanguageCard = ({ language, onClick }: LanguageCardProps) => {
     <Styled.Card
       color="secondary"
       isSelected={isSelected}
+      disabled={disabled}
       onClick={handleClick}
       onContextMenu={handleContextMenu}
     >

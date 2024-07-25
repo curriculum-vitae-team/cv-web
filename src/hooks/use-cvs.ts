@@ -56,7 +56,8 @@ export const useCv = (cvId: string) => {
 
 export const useCvSkills = (cvId: string) => {
   const query = useQuery<CvResult>(CV_SKILLS, { variables: { cvId } })
-  const skills = query.data?.cv.skills
+  const cv = query.data?.cv
+  const skills = cv?.skills
 
   const groups = useMemo(() => {
     if (!skills) {
@@ -73,7 +74,7 @@ export const useCvSkills = (cvId: string) => {
     }, {})
   }, [skills])
 
-  return { skills: skills || [], groups, ...query }
+  return { cv, skills: skills || [], groups, ...query }
 }
 
 export const useCvCreate = () => {

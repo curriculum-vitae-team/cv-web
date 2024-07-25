@@ -10,12 +10,14 @@ import { BulkDeletion, bulkDeletionService } from '@features/bulk-deletion'
 import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
 import { Actions } from '@templates/actions'
 import { useBulkDeletion } from 'hooks/use_bulk_deletion'
+import { usePermission } from 'hooks/use_permission'
 import * as Styled from './cv-skills.styles'
 
 const CvSkills = () => {
   const { cvId = '' } = useParams()
   const { t } = useTranslation()
-  const { groups, skills, loading } = useCvSkills(cvId)
+  const { canUpdateCv } = usePermission()
+  const { cv, groups, skills, loading } = useCvSkills(cvId)
   const [openSkillMasteryDialog] = useSkillMasteryDialog()
   const ownSkills = skills.map((skills) => skills.name)
   const [addCvSkill] = useCvSkillAdd()
@@ -80,7 +82,7 @@ const CvSkills = () => {
 
   return (
     <Styled.Skills maxWidth="md">
-      {!skills.length && (
+      {!skills.length && canUpdateCv(cv) && (
         <Button color="secondary" onClick={handleAdd}>
           <Add />
           {t('Add skill')}
@@ -88,10 +90,16 @@ const CvSkills = () => {
       )}
       <BulkDeletion onDelete={handleDelete}>
         {Object.entries(groups).map(([category, skills]) => (
-          <SkillsGroup key={category} category={category} skills={skills} onUpdate={handleUpdate} />
+          <SkillsGroup
+            key={category}
+            category={category}
+            skills={skills}
+            disabled={!canUpdateCv(cv)}
+            onUpdate={handleUpdate}
+          />
         ))}
       </BulkDeletion>
-      {!isActive$ && !!skills.length && (
+      {!isActive$ && !!skills.length && canUpdateCv(cv) && (
         <Actions>
           <Button color="secondary" onClick={handleAdd}>
             <Add />

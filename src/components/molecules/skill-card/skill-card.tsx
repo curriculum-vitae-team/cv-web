@@ -7,7 +7,7 @@ import { useBulkDeletion } from 'hooks/use_bulk_deletion'
 import { SkillCardProps } from './skill-card.types'
 import * as Styled from './skill-card.styles'
 
-const SkillCard = ({ skill, onUpdate }: SkillCardProps) => {
+const SkillCard = ({ skill, disabled, onUpdate }: SkillCardProps) => {
   const index = Object.keys(Mastery).indexOf(skill.mastery)
   const value = (index + 1) * 20
   const color = getMasteryColor(skill.mastery)
@@ -24,7 +24,12 @@ const SkillCard = ({ skill, onUpdate }: SkillCardProps) => {
   }
 
   return (
-    <Styled.Card color="secondary" isSelected={isSelected} onClick={handleClick}>
+    <Styled.Card
+      color="secondary"
+      isSelected={isSelected}
+      disabled={disabled}
+      onClick={handleClick}
+    >
       <LinearProgress
         variant="determinate"
         color={isSelected ? 'secondary' : color}
