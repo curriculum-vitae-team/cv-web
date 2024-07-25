@@ -4,14 +4,13 @@ import { KeyboardArrowRight } from '@mui/icons-material'
 import { generatePath, useNavigate } from 'react-router-dom'
 import type { TableRowProps } from '@templates/table/table.types'
 import { CvsTableMenu } from '@molecules/cvs-table-menu'
-import { useAuth } from 'hooks/use-auth'
 import { routes } from 'constants/routes'
+import { usePermission } from 'hooks/use_permission'
 import * as Styled from './cvs-table-row.styles'
 
 export const CvsTableRow = ({ item }: TableRowProps<Cv>) => {
   const navigate = useNavigate()
-  const { user$, isAdmin } = useAuth()
-  const isOwnCv = user$?.id === item.user?.id
+  const { canUpdateCv } = usePermission()
 
   const handleDetails = () => {
     navigate(generatePath(routes.cvs.details, { cvId: item.id }))
@@ -23,12 +22,12 @@ export const CvsTableRow = ({ item }: TableRowProps<Cv>) => {
       <Styled.Description>{item.description}</Styled.Description>
       <Styled.User>{item.user?.email}</Styled.User>
       <TableCell>
-        {!isOwnCv && !isAdmin ? (
+        {canUpdateCv(item) ? (
+          <CvsTableMenu cv={item} />
+        ) : (
           <IconButton onClick={handleDetails}>
             <KeyboardArrowRight color="secondary" />
           </IconButton>
-        ) : (
-          <CvsTableMenu cv={item} />
         )}
       </TableCell>
     </TableRow>

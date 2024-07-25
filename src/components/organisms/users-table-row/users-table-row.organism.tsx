@@ -8,16 +8,15 @@ import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { useUserDialog } from '@dialogs/user'
 import { useConfirmDialog } from '@dialogs/confirm'
-import { useAuth } from 'hooks/use-auth'
 import { useUserDelete } from 'hooks/use-users'
 
 import { routes } from 'constants/routes'
+import { usePermission } from 'hooks/use_permission'
 import * as Styled from './users-table-row.styles'
 
 const UsersTableRow = ({ item }: TableRowProps<User>) => {
   const navigate = useNavigate()
-  const { isAdmin, userId } = useAuth()
-  const isSelf = item.id === userId
+  const { canUpdateUser, canDeleteUser } = usePermission()
   const { t } = useTranslation()
   const [openUserDialog] = useUserDialog()
   const [deleteUser] = useUserDelete(item.id)
@@ -56,18 +55,18 @@ const UsersTableRow = ({ item }: TableRowProps<User>) => {
       <TableCell>{item.department?.name}</TableCell>
       <TableCell>{item.position?.name}</TableCell>
       <TableCell>
-        {!isAdmin && !isSelf ? (
-          <IconButton onClick={handleProfile}>
-            <KeyboardArrowRight color="secondary" />
-          </IconButton>
-        ) : (
+        {canUpdateUser(item) ? (
           <ActionsMenu>
             <MenuItem onClick={handleProfile}>{t('Profile')}</MenuItem>
             <MenuItem onClick={handleUpdate}>{t('Update user')}</MenuItem>
-            <MenuItem disabled={!isAdmin || isSelf} onClick={handleDelete}>
+            <MenuItem disabled={!canDeleteUser(item)} onClick={handleDelete}>
               {t('Delete user')}
             </MenuItem>
           </ActionsMenu>
+        ) : (
+          <IconButton onClick={handleProfile}>
+            <KeyboardArrowRight color="secondary" />
+          </IconButton>
         )}
       </TableCell>
     </Styled.Row>

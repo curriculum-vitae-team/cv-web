@@ -5,23 +5,22 @@ import { DepartmentSelect } from '@molecules/department-select'
 import { PositionSelect } from '@molecules/position-select'
 import { useUserUpdate } from 'hooks/use-users'
 import { useProfileUpdate } from 'hooks/use-profile'
-import { useAuth } from 'hooks/use-auth'
+import { usePermission } from 'hooks/use_permission'
 import type { UserProfileFormProps, UserProfileFormValues } from './user-profile-form.types'
 import * as Styled from './user-profile-form.styles'
 
 export const UserProfileForm = ({ user }: UserProfileFormProps) => {
+  const { profile } = user
   const [updateUser, { loading }] = useUserUpdate()
   const [updateProfile] = useProfileUpdate()
-  const { isAdmin, userId } = useAuth()
-  const isOwnProfile = userId === user.id
-  const canUpdate = isAdmin || isOwnProfile
+  const { canUpdateProfile } = usePermission()
   const { t } = useTranslation()
 
   const methods = useForm<UserProfileFormValues>({
     defaultValues: {
       profile: {
-        first_name: user.profile.first_name || '',
-        last_name: user.profile.last_name || ''
+        first_name: profile.first_name || '',
+        last_name: profile.last_name || ''
       },
       departmentId: user.department?.id || '',
       positionId: user.position?.id || ''
@@ -55,16 +54,16 @@ export const UserProfileForm = ({ user }: UserProfileFormProps) => {
 
   return (
     <FormProvider {...methods}>
-      <Styled.Form disabled={!isAdmin && !isOwnProfile} onSubmit={handleSubmit(onSubmit)}>
+      <Styled.Form disabled={!canUpdateProfile(profile)} onSubmit={handleSubmit(onSubmit)}>
         <TextField
           {...register('profile.first_name')}
           label={t('First Name')}
-          autoFocus={canUpdate}
+          autoFocus={canUpdateProfile(profile)}
         />
         <TextField {...register('profile.last_name')} label={t('Last Name')} />
         <DepartmentSelect name="departmentId" />
         <PositionSelect name="positionId" />
-        {canUpdate && (
+        {canUpdateProfile(profile) && (
           <Styled.SubmitButton
             type="submit"
             variant="contained"

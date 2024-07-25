@@ -3,14 +3,14 @@ import { Button, TextField } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { memo } from 'react'
 import { useCvUpdate } from 'hooks/use-cvs'
-import { useAuth } from 'hooks/use-auth'
 import { requiredValidation } from 'helpers/validation.helper'
+import { usePermission } from 'hooks/use_permission'
 import * as Styled from './cv-details-form.styles'
 import { CvDetailsFormProps, CvFormValues } from './cv-details-form.types'
 
 const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
   const { t } = useTranslation()
-  const { isAdmin, userId } = useAuth()
+  const { canUpdateCv } = usePermission()
   const {
     formState: { errors, isDirty },
     control,
@@ -57,7 +57,7 @@ const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
           <Styled.Description {...field} label={t('Description')} multiline rows={7} />
         )}
       />
-      {(isAdmin || userId === cv.user?.id) && (
+      {canUpdateCv(cv) && (
         <Button
           sx={{ gridColumn: 2 }}
           type="submit"

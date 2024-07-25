@@ -3,16 +3,15 @@ import { useParams } from 'react-router-dom'
 import { AddButton } from '@atoms/add-button'
 import { useCvProjectDialog } from '@dialogs/cv-project'
 import { SearchInput } from '@molecules/search-input'
-import { useAuth } from 'hooks/use-auth'
 import { useCv, useCvProjectAdd, useCvProjects } from 'hooks/use-cvs'
 import { useProjectCreate, useProjects } from 'hooks/use-projects'
+import { usePermission } from 'hooks/use_permission'
 
 export const CvProjectsTableTool = () => {
   const { cvId = '' } = useParams()
   const { t } = useTranslation()
   const { cv } = useCv(cvId)
-  const { userId, isAdmin } = useAuth()
-  const isOwnCv = userId === cv?.user?.id
+  const { canUpdateCv } = usePermission()
 
   const { projects } = useCvProjects(cvId)
   const projectIds = projects.map(({ project }) => project.id)
@@ -91,7 +90,7 @@ export const CvProjectsTableTool = () => {
   return (
     <>
       <SearchInput />
-      {(isAdmin || isOwnCv) && <AddButton onClick={handleClick}>{t('Add project')}</AddButton>}
+      {canUpdateCv(cv) && <AddButton onClick={handleClick}>{t('Add project')}</AddButton>}
     </>
   )
 }

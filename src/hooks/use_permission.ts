@@ -1,8 +1,20 @@
-import { Cv, Profile } from 'cv-graphql'
+import { Cv, Profile, User } from 'cv-graphql'
 import { useAuth } from './use-auth'
 
 export const usePermission = () => {
   const { userId, isAdmin } = useAuth()
+
+  const canCreateUser = () => {
+    return isAdmin
+  }
+
+  const canUpdateUser = (user?: User) => {
+    return isAdmin || user?.id === userId
+  }
+
+  const canDeleteUser = (user?: User) => {
+    return isAdmin && user?.id !== userId
+  }
 
   const canUpdateProfile = (profile?: Profile) => {
     return isAdmin || profile?.id === userId
@@ -12,5 +24,5 @@ export const usePermission = () => {
     return isAdmin || cv?.user?.id === userId
   }
 
-  return { canUpdateProfile, canUpdateCv }
+  return { canCreateUser, canUpdateUser, canDeleteUser, canUpdateProfile, canUpdateCv }
 }

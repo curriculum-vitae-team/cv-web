@@ -4,18 +4,17 @@ import { Badge, IconButton, Typography } from '@mui/material'
 import { Close, FileUploadOutlined } from '@mui/icons-material'
 import { useAvatarUpload, useAvatarDelete } from 'hooks/use-avatar'
 import { fileToBase64 } from 'helpers/file-to-base64.helper'
-import { useAuth } from 'hooks/use-auth'
+import { usePermission } from 'hooks/use_permission'
 import type { AvatarUploadProps } from './avatar-upload.types'
 import * as Styled from './avatar-upload.styles'
 
 export const AvatarUpload = ({ user }: AvatarUploadProps) => {
   const { t } = useTranslation()
+  const { profile } = user
   const [uploadAvatar, { loading: uploading }] = useAvatarUpload()
   const [deleteAvatar, { loading: deleting }] = useAvatarDelete()
   const loading = uploading || deleting
-  const { userId, isAdmin } = useAuth()
-  const isOwnProfile = user.id === userId
-  const canUpload = isAdmin || isOwnProfile
+  const { canUpdateProfile } = usePermission()
 
   const handleUpload = (files: FileList | null) => {
     const file = files?.[0]
@@ -50,21 +49,21 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
     <Styled.AvatarUpload>
       <Badge
         badgeContent={
-          user.profile.avatar &&
-          canUpload && (
+          profile.avatar &&
+          canUpdateProfile(profile) && (
             <IconButton disabled={loading} onClick={handleDelete}>
               <Close />
             </IconButton>
           )
         }
       >
-        <Styled.Avatar src={user.profile.avatar || ''}>
-          {user.profile.full_name
-            ? user.profile.first_name?.[0] || '' + user.profile.last_name?.[0] || ''
+        <Styled.Avatar src={profile.avatar || ''}>
+          {profile.full_name
+            ? profile.first_name?.[0] || '' + profile.last_name?.[0] || ''
             : user.email[0]}
         </Styled.Avatar>
       </Badge>
-      {canUpload && (
+      {canUpdateProfile(profile) && (
         <Styled.Label onDragOver={handleDragOver} onDrop={handleDrop}>
           <Typography variant="h6">
             <FileUploadOutlined fontSize="large" sx={{ mr: 2 }} />

@@ -7,9 +7,9 @@ import type { TableRowProps } from '@templates/table/table.types'
 import { useCvProjectDialog } from '@dialogs/cv-project'
 import { useCv, useCvProjectRemove, useCvProjectUpdate } from 'hooks/use-cvs'
 import { useConfirmDialog } from '@dialogs/confirm'
-import { useAuth } from 'hooks/use-auth'
 import { DayMonthYear } from 'constants/format.constant'
 import { ActionsMenu } from '@atoms/actions-menu'
+import { usePermission } from 'hooks/use_permission'
 import * as Styled from './cv-projects-table-row.styles'
 
 export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
@@ -20,8 +20,7 @@ export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
   const [removeProject] = useCvProjectRemove()
   const [openConfirmDialog] = useConfirmDialog()
   const [updateCvProject] = useCvProjectUpdate()
-  const { userId, isAdmin } = useAuth()
-  const isOwnCv = cv?.user?.id === userId
+  const { canUpdateCv } = usePermission()
 
   const handleUpdate = () => {
     openCvProjectDialog({
@@ -76,7 +75,7 @@ export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
         {item.end_date ? format(new Date(item.end_date), DayMonthYear) : t('Till now')}
       </TableCell>
       <TableCell>
-        <ActionsMenu disabled={!isOwnCv && !isAdmin}>
+        <ActionsMenu disabled={!canUpdateCv(cv)}>
           <MenuItem disabled>{t('Project')}</MenuItem>
           <MenuItem onClick={handleUpdate}>{t('Update project')}</MenuItem>
           <MenuItem onClick={handleDelete}>{t('Remove project')}</MenuItem>
