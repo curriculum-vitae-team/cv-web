@@ -13,9 +13,11 @@ export const Card = styled(Button, { shouldForwardProp })<CardProps>(({ theme, i
   alignItems: 'center',
   gap: 16,
   textTransform: 'none',
+
   '& > .MuiLinearProgress-root': {
     opacity: 0.9
   },
+
   '& > .MuiTypography-root': {
     textAlign: 'left',
     color: isSelected ? theme.palette.text.primary : undefined

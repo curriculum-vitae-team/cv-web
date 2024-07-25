@@ -58,7 +58,12 @@ const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
         )}
       />
       {(isAdmin || userId === cv.user?.id) && (
-        <Button type="submit" variant="contained" disabled={!isDirty || loading}>
+        <Button
+          sx={{ gridColumn: 2 }}
+          type="submit"
+          variant="contained"
+          disabled={!isDirty || loading}
+        >
           {t('Update')}
         </Button>
       )}

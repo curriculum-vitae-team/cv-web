@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom'
-import { Container } from '@mui/material'
 import { useCv } from 'hooks/use-cvs'
 import { CvDetailsForm } from '@organisms/cv-details-form'
 import { PageLoader } from '@atoms/page-loader'
+import * as Styled from './cv_details.styles'
 
 const CvDetails = () => {
   const { cvId = '' } = useParams()
@@ -13,9 +13,9 @@ const CvDetails = () => {
   }
 
   return (
-    <Container maxWidth="md">
+    <Styled.Details maxWidth="md">
       <CvDetailsForm cv={cv} />
-    </Container>
+    </Styled.Details>
   )
 }
 

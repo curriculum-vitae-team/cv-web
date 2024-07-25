@@ -1,22 +1,27 @@
 import { makeVar } from '@apollo/client'
-import { IBulkDeletion } from './bulk-deletion.types'
 
-class BulkDeletionService implements IBulkDeletion {
-  entityIds$ = makeVar<string[]>([])
+class BulkDeletionService {
+  selectedIds$ = makeVar<string[]>([])
+  isActive$ = makeVar(false)
+
+  startSelection() {
+    this.isActive$(true)
+  }
+
+  cancelSelection() {
+    this.selectedIds$([])
+    this.isActive$(false)
+  }
 
   setEntityId(entityId: string) {
-    const entityIds = this.entityIds$()
+    const entityIds = this.selectedIds$()
 
     if (entityIds.includes(entityId)) {
-      this.entityIds$(entityIds.filter((id) => id !== entityId))
+      this.selectedIds$(entityIds.filter((id) => id !== entityId))
       return
     }
 
-    this.entityIds$([...entityIds, entityId])
-  }
-
-  reset() {
-    this.entityIds$([])
+    this.selectedIds$([...entityIds, entityId])
   }
 }
 

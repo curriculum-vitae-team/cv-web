@@ -1,9 +1,9 @@
 import { Button as MuiButton, styled } from '@mui/material'
 
 export const Button = styled(MuiButton)(({ theme }) => ({
-  minWidth: 0,
   height: 40,
   [theme.breakpoints.down('md')]: {
+    minWidth: 0,
     aspectRatio: '1/1'
   }
 }))

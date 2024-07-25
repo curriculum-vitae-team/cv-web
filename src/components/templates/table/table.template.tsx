@@ -1,5 +1,5 @@
 import { FC, memo, useDeferredValue, useMemo, useState } from 'react'
-import { Table as MuiTable, TableBody, TableFooter, TableRow } from '@mui/material'
+import { TableBody, TableFooter, TableRow } from '@mui/material'
 import { TableLoader } from '@atoms/table-loader'
 import { SortOrder } from 'constants/table-sort.constants'
 import { sortDates, sortItems } from 'helpers/table-sort.helper'
@@ -49,7 +49,7 @@ const Table = <T extends Item>({
   }, [sortBy, filteredItems, _sortBy, _order])
 
   return (
-    <MuiTable stickyHeader>
+    <Styled.Table stickyHeader>
       <Styled.Thead stickyTop={stickyTop}>
         <TableSearchContext.Provider value={tableSearch}>
           <TableRow>
@@ -73,7 +73,7 @@ const Table = <T extends Item>({
           <TableFooterComponent />
         </TableFooter>
       )}
-    </MuiTable>
+    </Styled.Table>
   )
 }
 

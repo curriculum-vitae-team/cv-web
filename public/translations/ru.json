@@ -15,8 +15,6 @@
   "Sign up": "Создать аккаунт",
   "I have an account": "У меня есть аккаунт",
 
-  "Home": "Главная",
-  "home": "Главная",
   "Users": "Сотрудники",
   "users": "Сотрудники",
   "Projects": "Проекты",
@@ -39,6 +37,8 @@
   "Confirm": "Подтвердить",
   "Create": "Создать",
   "Update": "Обновить",
+  "Delete": "Удалить",
+  "Add": "Добавить",
 
   "First Name": "Имя",
   "Last Name": "Фамилия",
@@ -66,8 +66,10 @@
   "Competent": "Компетентный",
   "Proficient": "Опытный",
   "Expert": "Эксперт",
+  "Remove skills": "Удалить навыки",
 
   "Add language": "Добавить язык",
+  "Remove languages": "Удалить языки",
 
   "Appearance": "Внешний вид",
   "Light": "Светлый",
@@ -96,6 +98,10 @@
   "Education": "Образование",
   "Create CV": "Создать резюме",
   "Delete CV": "Удалить резюме",
+
+  "Add project": "Добавить проект",
+  "Remove project": "Удалить проект",
+  "Are you sure you want to remove project": "Вы уверены, что хотите удалить проект",
 
   "Preview": "Просмотр",
   "preview": "Просмотр",

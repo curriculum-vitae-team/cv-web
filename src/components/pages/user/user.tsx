@@ -43,11 +43,9 @@ const User = () => {
         <Tab value={languagesPath} label={t('Languages')} component={NavLink} to={languagesPath} />
         <Tab value={cvsPath} label={t('cvs')} component={NavLink} to={cvsPath} />
       </Styled.Tabs>
-      <Styled.Content>
-        <Suspense fallback={<PageLoader />}>
-          <Outlet />
-        </Suspense>
-      </Styled.Content>
+      <Suspense fallback={<PageLoader />}>
+        <Outlet />
+      </Suspense>
     </>
   )
 }

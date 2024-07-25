@@ -1,4 +1,8 @@
-import { styled, TableCell, TableHead } from '@mui/material'
+import { styled, Table as MuiTable, TableCell, TableHead } from '@mui/material'
+
+export const Table = styled(MuiTable)({
+  paddingBottom: 16
+})
 
 const shouldForwardProp = (prop: string) => prop !== 'stickyTop'
 

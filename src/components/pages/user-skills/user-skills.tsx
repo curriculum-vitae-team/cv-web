@@ -1,7 +1,9 @@
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { SkillMastery } from 'cv-graphql'
-import { NewSkillCard } from '@molecules/new-skill-card'
+import { Add, DeleteForever } from '@mui/icons-material'
+import { useTranslation } from 'react-i18next'
+import { Button } from '@mui/material'
 import {
   useProfileSkillAdd,
   useProfileSkillDelete,
@@ -10,11 +12,14 @@ import {
 } from 'hooks/use-profile-skills'
 import { SkillsGroup } from '@molecules/skills-group'
 import { PageLoader } from '@atoms/page-loader'
-import { BulkDeletion } from '@features/bulk-deletion'
+import { BulkDeletion, bulkDeletionService } from '@features/bulk-deletion'
 import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
+import { Actions } from '@templates/actions'
+import { useBulkDeletion } from 'hooks/use_bulk_deletion'
 import * as Styled from './user-skills.styles'
 
 const UserSkills = () => {
+  const { t } = useTranslation()
   const { userId = '' } = useParams()
   const { groups, skills, loading } = useProfileSkills(userId)
   const [openSkillMasteryDialog] = useSkillMasteryDialog()
@@ -22,6 +27,7 @@ const UserSkills = () => {
   const [addProfileSkill] = useProfileSkillAdd()
   const [updateProfileSkill] = useProfileSkillUpdate()
   const [deleteProfileSkill] = useProfileSkillDelete()
+  const { isActive$ } = useBulkDeletion()
 
   const handleAdd = () => {
     openSkillMasteryDialog({
@@ -79,14 +85,28 @@ const UserSkills = () => {
   }
 
   return (
-    <Styled.Page maxWidth="md">
+    <Styled.Skills maxWidth="md">
       <BulkDeletion onDelete={handleDelete}>
-        <NewSkillCard onClick={handleAdd} />
+        {!skills.length && (
+          <Button color="secondary" onClick={handleAdd}>
+            <Add /> {t('Add skill')}
+          </Button>
+        )}
         {Object.entries(groups).map(([category, skills]) => (
           <SkillsGroup key={category} category={category} skills={skills} onUpdate={handleUpdate} />
         ))}
       </BulkDeletion>
-    </Styled.Page>
+      {!isActive$ && !!skills.length && (
+        <Actions>
+          <Button color="secondary" onClick={handleAdd}>
+            <Add /> {t('Add skill')}
+          </Button>
+          <Button onClick={() => bulkDeletionService.startSelection()}>
+            <DeleteForever /> {t('Remove skills')}
+          </Button>
+        </Actions>
+      )}
+    </Styled.Skills>
   )
 }
 

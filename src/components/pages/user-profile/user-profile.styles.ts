@@ -1,10 +1,15 @@
-import { Typography, styled } from '@mui/material'
+import { Container, Typography, styled } from '@mui/material'
 
-export const Profile = styled('div')({
+export const Profile = styled(Container)({
+  height: 'auto !important',
+  paddingBottom: 32
+})
+
+export const Details = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  marginBottom: 60
+  marginBottom: 64
 })
 
 export const Email = styled(Typography)(({ theme }) => ({

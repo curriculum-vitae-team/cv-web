@@ -39,11 +39,9 @@ const Cv = () => {
         <Tab value={projectsPath} label={t('Projects')} component={NavLink} to={projectsPath} />
         <Tab value={previewPath} label={t('Preview')} component={NavLink} to={previewPath} />
       </Styled.Tabs>
-      <Styled.Content>
-        <Suspense fallback={<PageLoader />}>
-          <Outlet />
-        </Suspense>
-      </Styled.Content>
+      <Suspense fallback={<PageLoader />}>
+        <Outlet />
+      </Suspense>
     </>
   )
 }

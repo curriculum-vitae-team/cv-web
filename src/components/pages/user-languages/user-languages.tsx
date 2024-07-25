@@ -1,5 +1,8 @@
 import { useParams } from 'react-router-dom'
 import { LanguageProficiency } from 'cv-graphql'
+import { Button } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+import { Add, DeleteForever } from '@mui/icons-material'
 import {
   useProfileLanguages,
   useProfileLanguageAdd,
@@ -7,20 +10,23 @@ import {
   useProfileLanguageDelete
 } from 'hooks/use-profile-languages'
 import { PageLoader } from '@atoms/page-loader'
-import { NewLanguageCard } from '@molecules/new-language-card'
 import { LanguageCard } from '@molecules/language-card'
 import { useLanguageProficiencyDialog } from '@dialogs/language-proficiency'
-import { BulkDeletion } from '@features/bulk-deletion'
+import { BulkDeletion, bulkDeletionService } from '@features/bulk-deletion'
+import { Actions } from '@templates/actions'
+import { useBulkDeletion } from 'hooks/use_bulk_deletion'
 import * as Styled from './user-languages.styles'
 
 const UserLanguages = () => {
   const { userId = '' } = useParams()
+  const { t } = useTranslation()
   const { languages, loading } = useProfileLanguages(userId)
   const [openLanguageProficiencyDialog] = useLanguageProficiencyDialog()
   const ownLanguages = languages.map((language) => language.name)
   const [addProfileLanguage] = useProfileLanguageAdd()
   const [updateProfileLanguage] = useProfileLanguageUpdate()
   const [deleteProfileLanguage] = useProfileLanguageDelete()
+  const { isActive$ } = useBulkDeletion()
 
   const handleAdd = () => {
     openLanguageProficiencyDialog({
@@ -76,16 +82,30 @@ const UserLanguages = () => {
   }
 
   return (
-    <Styled.Page maxWidth="md">
+    <Styled.Languages maxWidth="md">
+      {!languages.length && (
+        <Button color="secondary" onClick={handleAdd}>
+          <Add /> {t('Add language')}
+        </Button>
+      )}
       <BulkDeletion onDelete={handleDelete}>
-        <NewLanguageCard onClick={handleAdd} />
-        <Styled.Languages>
+        <Styled.Grid>
           {languages.map((language) => (
             <LanguageCard key={language.name} language={language} onClick={handleUpdate} />
           ))}
-        </Styled.Languages>
+        </Styled.Grid>
       </BulkDeletion>
-    </Styled.Page>
+      {!isActive$ && !!languages.length && (
+        <Actions>
+          <Button color="secondary" onClick={handleAdd}>
+            <Add /> {t('Add language')}
+          </Button>
+          <Button onClick={() => bulkDeletionService.startSelection()}>
+            <DeleteForever /> {t('Remove languages')}
+          </Button>
+        </Actions>
+      )}
+    </Styled.Languages>
   )
 }
 

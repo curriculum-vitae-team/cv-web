@@ -4,13 +4,5 @@ export const Tabs = styled(MuiTabs)(({ theme }) => ({
   position: 'sticky',
   zIndex: 1,
   top: 44,
-  background: `linear-gradient(180deg, ${theme.palette.background.default} 50%, transparent 100%)`,
-  backdropFilter: 'blur(0.5px)'
+  background: theme.palette.background.default
 }))
-
-export const Content = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  width: '100%',
-  padding: '32px 0'
-})

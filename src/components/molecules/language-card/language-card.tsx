@@ -1,22 +1,23 @@
 import { Typography, useTheme } from '@mui/material'
-import { useReactiveVar } from '@apollo/client'
 import { MouseEvent } from 'react'
 import { bulkDeletionService } from '@features/bulk-deletion'
 import { getProficiencyColor } from 'helpers/get-proficiency-color'
+import { useBulkDeletion } from 'hooks/use_bulk_deletion'
 import * as Styled from './language-card.styles'
 import { LanguageCardProps } from './language-card.types'
 
 export const LanguageCard = ({ language, onClick }: LanguageCardProps) => {
-  const entityIds$ = useReactiveVar(bulkDeletionService.entityIds$)
-  const isSelected = entityIds$.includes(language.name)
+  const { isActive$, selectedIds$ } = useBulkDeletion()
+  const isSelected = selectedIds$.includes(language.name)
   const color = getProficiencyColor(language.proficiency)
   const theme = useTheme()
 
   const handleClick = () => {
-    if (entityIds$.length) {
+    if (isActive$) {
       bulkDeletionService.setEntityId(language.name)
       return
     }
+
     onClick(language)
   }
 

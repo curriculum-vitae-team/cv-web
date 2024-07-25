@@ -3,6 +3,9 @@ import { palette } from '@features/theme-provider/mui-palette'
 
 export const Document = styled(Container)(({ theme }) => ({
   color: palette[theme.palette.mode === 'dark' ? 'light' : 'dark'].background?.default,
+  height: 'auto !important',
+  paddingTop: 32,
+  paddingBottom: 32,
   '@media print': {
     margin: 0,
     padding: 0,

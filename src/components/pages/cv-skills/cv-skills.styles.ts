@@ -1,7 +1,9 @@
 import { Container, styled } from '@mui/material'
 
-export const Page = styled(Container)({
+export const Skills = styled(Container)({
   display: 'flex',
   flexDirection: 'column',
-  gap: 32
+  gap: 32,
+  position: 'relative',
+  paddingTop: 32
 })

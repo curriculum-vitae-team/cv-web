@@ -6,6 +6,7 @@ import { createTable } from '@templates/table'
 import { UserCvsTableTool } from '@organisms/user-cvs-table-tool'
 import { UserCvsTableHead } from '@organisms/user-cvs-table-head'
 import { UserCvsTableRow } from '@organisms/user-cvs-table-row'
+import * as Styled from './user-cvs.styles'
 
 const Table = createTable<Cv>()
 
@@ -14,16 +15,18 @@ const UserCvs = () => {
   const { cvs, loading } = useUserCvs(userId)
 
   return (
-    <Table
-      items={cvs}
-      loading={loading}
-      TableToolComponent={UserCvsTableTool}
-      TableHeadComponent={UserCvsTableHead}
-      TableRowComponent={UserCvsTableRow}
-      searchBy={['name']}
-      defaultSortBy="name"
-      stickyTop={44 + 56 + 32}
-    />
+    <Styled.Cvs>
+      <Table
+        items={cvs}
+        loading={loading}
+        TableToolComponent={UserCvsTableTool}
+        TableHeadComponent={UserCvsTableHead}
+        TableRowComponent={UserCvsTableRow}
+        searchBy={['name']}
+        defaultSortBy="name"
+        stickyTop={44 + 56 + 16}
+      />
+    </Styled.Cvs>
   )
 }
 

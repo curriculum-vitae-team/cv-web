@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Container, Tooltip, Typography } from '@mui/material'
+import { Tooltip, Typography } from '@mui/material'
 import { Verified } from '@mui/icons-material'
 import { AvatarUpload } from '@molecules/avatar-upload'
 import { UserProfileForm } from '@organisms/user-profile-form'
@@ -19,9 +19,9 @@ const UserProfile = () => {
   }
 
   return (
-    <Container maxWidth="md">
+    <Styled.Profile maxWidth="md">
       <AvatarUpload user={user} />
-      <Styled.Profile>
+      <Styled.Details>
         <Typography variant="h5">{user.profile.full_name}</Typography>
         <Styled.Email>
           {user.email}
@@ -34,9 +34,9 @@ const UserProfile = () => {
         <Typography>
           {t('A member since')} {new Date(+user.created_at).toDateString()}
         </Typography>
-      </Styled.Profile>
+      </Styled.Details>
       <UserProfileForm user={user} />
-    </Container>
+    </Styled.Profile>
   )
 }
 
