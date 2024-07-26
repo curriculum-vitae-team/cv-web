@@ -6,6 +6,7 @@ import { PositionSelect } from '@molecules/position-select'
 import { useUserUpdate } from 'hooks/use-users'
 import { useProfileUpdate } from 'hooks/use-profile'
 import { usePermission } from 'hooks/use_permission'
+import { addNotification } from 'graphql/notifications'
 import type { UserProfileFormProps, UserProfileFormValues } from './user-profile-form.types'
 import * as Styled from './user-profile-form.styles'
 
@@ -29,27 +30,30 @@ export const UserProfileForm = ({ user }: UserProfileFormProps) => {
   const { formState, register, handleSubmit, reset } = methods
 
   const onSubmit = ({ profile, departmentId, positionId }: UserProfileFormValues) => {
-    Promise.all([
-      updateProfile({
-        variables: {
-          profile: {
-            userId: user.id,
-            first_name: profile.first_name,
-            last_name: profile.last_name
-          }
+    updateProfile({
+      variables: {
+        profile: {
+          userId: user.id,
+          first_name: profile.first_name,
+          last_name: profile.last_name
         }
-      }),
-      updateUser({
-        variables: {
-          user: {
-            userId: user.id,
-            departmentId,
-            positionId,
-            role: user.role
+      }
+    })
+      .then(() =>
+        updateUser({
+          variables: {
+            user: {
+              userId: user.id,
+              departmentId,
+              positionId,
+              role: user.role
+            }
           }
-        }
-      })
-    ]).then(() => reset({ profile, departmentId, positionId }))
+        })
+      )
+      .then(() => reset({ profile, departmentId, positionId }))
+      .then(() => addNotification('Profile was updated'))
+      .catch((error) => addNotification(error.message, 'error'))
   }
 
   return (

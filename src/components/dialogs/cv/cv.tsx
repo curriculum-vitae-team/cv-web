@@ -4,6 +4,7 @@ import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { useCvCreate } from 'hooks/use-cvs'
 import { requiredValidation } from 'helpers/validation.helper'
+import { addNotification } from 'graphql/notifications'
 import { CvFormValues, CvProps } from './cv.types'
 import * as Styled from './cv.styles'
 
@@ -32,7 +33,10 @@ const Cv = ({ userId, closeDialog }: CvProps) => {
           userId
         }
       }
-    }).then(closeDialog)
+    })
+      .then(closeDialog)
+      .then(() => addNotification('CV was created'))
+      .catch((error) => addNotification(error.message, 'error'))
   }
 
   return (

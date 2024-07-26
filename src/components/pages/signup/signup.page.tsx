@@ -7,6 +7,7 @@ import { PasswordInput } from '@molecules/password-input'
 import { requiredValidation, passwordValidation } from 'helpers/validation.helper'
 import { routes } from 'constants/routes'
 import { useSignup } from 'hooks/use-auth'
+import { addNotification } from 'graphql/notifications'
 import { SignupFormValues } from './signup.types'
 import * as Styled from '../login/login.styles'
 
@@ -26,8 +27,8 @@ const Signup = () => {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
-  const onSubmit = async ({ email, password }: SignupFormValues) => {
-    const { data } = await signup({
+  const onSubmit = ({ email, password }: SignupFormValues) => {
+    signup({
       variables: {
         auth: {
           email,
@@ -35,10 +36,9 @@ const Signup = () => {
         }
       }
     })
-    if (data) {
-      authService.login(data.signup)
-      navigate(routes.root)
-    }
+      .then(({ data }) => data && authService.login(data.signup))
+      .then(() => navigate(routes.root))
+      .catch((error) => addNotification(error.message, 'error'))
   }
 
   return (

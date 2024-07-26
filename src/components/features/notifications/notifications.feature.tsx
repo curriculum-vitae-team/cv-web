@@ -1,24 +1,22 @@
-import { memo, useCallback } from 'react'
+import { memo } from 'react'
 import { useReactiveVar } from '@apollo/client'
-import { Alert } from '@mui/material'
-import { notificationsService } from 'graphql/notifications/notifications.service'
+import { useTranslation } from 'react-i18next'
+import { notification$, closeNotification } from 'graphql/notifications'
 import * as Styled from './notifications.styles'
 
 const Notifications = () => {
-  const notifications$ = useReactiveVar(notificationsService.notifications$)
-
-  const handleClose = useCallback((id: number) => {
-    return () => notificationsService.closeNotification(id)
-  }, [])
+  const { t } = useTranslation()
+  const notification = useReactiveVar(notification$)
 
   return (
-    <Styled.Notifications>
-      {notifications$.map(({ id, type, message }) => (
-        <Alert key={id} severity={type} onClose={handleClose(id)}>
-          {message}
-        </Alert>
-      ))}
-    </Styled.Notifications>
+    <Styled.Message
+      open={!!notification}
+      anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+      autoHideDuration={5000}
+      className={notification?.type}
+      message={t(notification?.message || '')}
+      onClose={closeNotification}
+    />
   )
 }
 

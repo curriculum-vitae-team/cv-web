@@ -1,12 +1,8 @@
-import { styled } from '@mui/material'
+import { Snackbar, styled } from '@mui/material'
 
-export const Notifications = styled('div')({
-  position: 'fixed',
-  zIndex: 2000,
-  top: 32,
-  left: 32,
-  width: 520,
-  '& > .MuiAlert-root': {
-    marginBottom: 8
+export const Message = styled(Snackbar)(({ theme }) => ({
+  '&.error > .MuiSnackbarContent-root': {
+    background: theme.palette.error.main,
+    color: theme.palette.text.primary
   }
-})
+}))

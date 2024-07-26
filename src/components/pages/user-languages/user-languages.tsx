@@ -16,6 +16,7 @@ import { BulkDeletion, bulkDeletionService } from '@features/bulk-deletion'
 import { Actions } from '@templates/actions'
 import { useBulkDeletion } from 'hooks/use_bulk_deletion'
 import { usePermission } from 'hooks/use_permission'
+import { addNotification } from 'graphql/notifications'
 import * as Styled from './user-languages.styles'
 
 const UserLanguages = () => {
@@ -44,6 +45,8 @@ const UserLanguages = () => {
             }
           }
         })
+          .then(() => addNotification('Language was added'))
+          .catch((error) => addNotification(error.message, 'error'))
       }
     })
   }
@@ -64,19 +67,25 @@ const UserLanguages = () => {
             }
           }
         })
+          .then(() => addNotification('Language was updated'))
+          .catch((error) => addNotification(error.message, 'error'))
       }
     })
   }
 
-  const handleDelete = (entityIds: string[]) => {
+  const handleDelete = (selectedIds: string[]) => {
+    const multiple = selectedIds.length > 1
+
     return deleteProfileLanguage({
       variables: {
         language: {
           userId,
-          name: entityIds
+          name: selectedIds
         }
       }
     })
+      .then(() => addNotification(multiple ? 'Languages were removed' : 'Language was removed'))
+      .catch((error) => addNotification(error.message, 'error'))
   }
 
   if (loading) {

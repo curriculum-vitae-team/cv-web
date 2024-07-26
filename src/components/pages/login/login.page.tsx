@@ -2,13 +2,15 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Typography, Button, TextField } from '@mui/material'
+import { useState } from 'react'
 import { authService } from 'graphql/auth/auth.service'
 import { PasswordInput } from '@molecules/password-input'
 import { requiredValidation } from 'helpers/validation.helper'
 import { routes } from 'constants/routes'
-import { useLogin } from 'hooks/use-auth'
-import { LoginFormValues } from './login.types'
+import { addNotification } from 'graphql/notifications'
+import { login } from 'hooks/use-auth'
 import * as Styled from './login.styles'
+import { LoginFormValues } from './login.types'
 
 const Login = () => {
   const {
@@ -21,23 +23,17 @@ const Login = () => {
       password: ''
     }
   })
-  const [login, { loading }] = useLogin()
   const navigate = useNavigate()
   const { t } = useTranslation()
+  const [loading, setLoading] = useState(false)
 
-  const onSubmit = async ({ email, password }: LoginFormValues) => {
-    const { data } = await login({
-      variables: {
-        auth: {
-          email,
-          password
-        }
-      }
-    })
-    if (data) {
-      authService.login(data.login)
-      navigate(routes.root)
-    }
+  const onSubmit = ({ email, password }: LoginFormValues) => {
+    setLoading(true)
+    login({ variables: { auth: { email, password } } })
+      .then(({ data }) => authService.login(data.login))
+      .then(() => navigate(routes.root))
+      .catch((error) => addNotification(error.message, 'error'))
+      .finally(() => setLoading(false))
   }
 
   return (

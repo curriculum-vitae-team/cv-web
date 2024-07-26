@@ -10,6 +10,7 @@ import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { passwordValidation, requiredValidation } from 'helpers/validation.helper'
 import { useProfileUpdate } from 'hooks/use-profile'
 import { useAuth } from 'hooks/use-auth'
+import { addNotification } from 'graphql/notifications'
 import { UserFormValues, UserProps } from './user.types'
 import * as Styled from './user.styles'
 
@@ -42,27 +43,31 @@ const User = ({ title = 'Create user', saveText = 'Create', item, closeDialog }:
 
   const onSubmit = ({ auth, profile, departmentId, positionId, role }: UserFormValues) => {
     if (item) {
-      Promise.all([
-        updateProfile({
-          variables: {
-            profile: {
-              userId: item.id,
-              first_name: profile.first_name,
-              last_name: profile.last_name
-            }
+      updateProfile({
+        variables: {
+          profile: {
+            userId: item.id,
+            first_name: profile.first_name,
+            last_name: profile.last_name
           }
-        }),
-        updateUser({
-          variables: {
-            user: {
-              userId: item.id,
-              departmentId,
-              positionId,
-              role
+        }
+      })
+        .then(() =>
+          updateUser({
+            variables: {
+              user: {
+                userId: item.id,
+                departmentId,
+                positionId,
+                role
+              }
             }
-          }
-        })
-      ]).then(closeDialog)
+          })
+        )
+        .then(closeDialog)
+        .then(() => addNotification('User was updated'))
+        .catch((error) => addNotification(error.message, 'error'))
+
       return
     }
     createUser({

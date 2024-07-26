@@ -5,7 +5,7 @@ import { UpdateProfileResult, ProfileResult } from 'graphql/profile/profile.type
 import { USER, USER_FULL_NAME } from 'graphql/users'
 
 export const useProfile = (userId: string) => {
-  const query = useQuery<ProfileResult>(PROFILE, { variables: { userId } })
+  const query = useQuery<ProfileResult>(PROFILE, { variables: { userId }, skip: !userId })
   return { profile: query.data?.profile, ...query }
 }
 
