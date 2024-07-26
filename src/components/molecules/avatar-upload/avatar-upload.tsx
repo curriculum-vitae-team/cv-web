@@ -5,6 +5,7 @@ import { Close, FileUploadOutlined } from '@mui/icons-material'
 import { useAvatarUpload, useAvatarDelete } from 'hooks/use-avatar'
 import { fileToBase64 } from 'helpers/file-to-base64.helper'
 import { usePermission } from 'hooks/use_permission'
+import { addNotification } from 'graphql/notifications'
 import type { AvatarUploadProps } from './avatar-upload.types'
 import * as Styled from './avatar-upload.styles'
 
@@ -25,11 +26,15 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
 
     fileToBase64(file).then((avatar) =>
       uploadAvatar({ variables: { avatar: { userId: user.id, ...avatar } } })
+        .then(() => addNotification('Image was uploaded'))
+        .catch((error) => addNotification(error.message, 'error'))
     )
   }
 
   const handleDelete = () => {
     deleteAvatar({ variables: { avatar: { userId: user.id } } })
+      .then(() => addNotification('Image was removed'))
+      .catch((error) => addNotification(error.message, 'error'))
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

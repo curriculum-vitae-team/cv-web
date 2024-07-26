@@ -7,7 +7,7 @@ import { PasswordInput } from '@molecules/password-input'
 import { requiredValidation, passwordValidation } from 'helpers/validation.helper'
 import { routes } from 'constants/routes'
 import { useSignup } from 'hooks/use-auth'
-import { notificationsService } from 'graphql/notifications'
+import { addNotification } from 'graphql/notifications'
 import { SignupFormValues } from './signup.types'
 import * as Styled from '../login/login.styles'
 
@@ -38,7 +38,7 @@ const Signup = () => {
     })
       .then(({ data }) => data && authService.login(data.signup))
       .then(() => navigate(routes.root))
-      .catch((error) => notificationsService.addNotification(error.message, 'error'))
+      .catch((error) => addNotification(error.message, 'error'))
   }
 
   return (

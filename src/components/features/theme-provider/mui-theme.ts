@@ -158,6 +158,14 @@ export const getTheme = (mode: PaletteMode) => {
             paddingTop: '16px !important'
           }
         }
+      },
+      MuiSnackbarContent: {
+        styleOverrides: {
+          message: {
+            width: '100%',
+            textAlign: 'center'
+          }
+        }
       }
     }
   })

@@ -5,6 +5,7 @@ import { ActionsMenu } from '@atoms/actions-menu'
 import { useConfirmDialog } from '@dialogs/confirm'
 import { useCvDelete } from 'hooks/use-cvs'
 import { routes } from 'constants/routes'
+import { addNotification } from 'graphql/notifications'
 import { CvsTableMenuProps } from './cvs-table-menu.types'
 
 export const CvsTableMenu = ({ cv }: CvsTableMenuProps) => {
@@ -25,7 +26,11 @@ export const CvsTableMenu = ({ cv }: CvsTableMenuProps) => {
           {t('Are you sure you want to delete CV')} <b>{cv.name}</b>?
         </Typography>
       ),
-      confirmCallback: () => deleteCv()
+      confirmCallback() {
+        return deleteCv()
+          .then(() => addNotification('CV was deleted'))
+          .catch((error) => addNotification(error.message, 'error'))
+      }
     })
   }
 

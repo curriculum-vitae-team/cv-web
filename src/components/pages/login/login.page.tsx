@@ -7,7 +7,7 @@ import { authService } from 'graphql/auth/auth.service'
 import { PasswordInput } from '@molecules/password-input'
 import { requiredValidation } from 'helpers/validation.helper'
 import { routes } from 'constants/routes'
-import { notificationsService } from 'graphql/notifications'
+import { addNotification } from 'graphql/notifications'
 import { login } from 'hooks/use-auth'
 import * as Styled from './login.styles'
 import { LoginFormValues } from './login.types'
@@ -32,7 +32,7 @@ const Login = () => {
     login({ variables: { auth: { email, password } } })
       .then(({ data }) => authService.login(data.login))
       .then(() => navigate(routes.root))
-      .catch((error) => notificationsService.addNotification(error.message, 'error'))
+      .catch((error) => addNotification(error.message, 'error'))
       .finally(() => setLoading(false))
   }
 

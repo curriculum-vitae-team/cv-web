@@ -17,6 +17,7 @@ import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
 import { Actions } from '@templates/actions'
 import { useBulkDeletion } from 'hooks/use_bulk_deletion'
 import { usePermission } from 'hooks/use_permission'
+import { addNotification } from 'graphql/notifications'
 import * as Styled from './user-skills.styles'
 
 const UserSkills = () => {
@@ -46,6 +47,8 @@ const UserSkills = () => {
             }
           }
         })
+          .then(() => addNotification('Skill was added'))
+          .catch((error) => addNotification(error.message, 'error'))
       }
     })
   }
@@ -67,11 +70,15 @@ const UserSkills = () => {
             }
           }
         })
+          .then(() => addNotification('Skill was updated'))
+          .catch((error) => addNotification(error.message, 'error'))
       }
     })
   }
 
   const handleDelete = (entityIds: string[]) => {
+    const multiple = entityIds.length > 1
+
     return deleteProfileSkill({
       variables: {
         skill: {
@@ -80,6 +87,8 @@ const UserSkills = () => {
         }
       }
     })
+      .then(() => addNotification(multiple ? 'Skills were removed' : 'Skill was removed'))
+      .catch((error) => addNotification(error.message, 'error'))
   }
 
   if (loading) {

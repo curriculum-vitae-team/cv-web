@@ -1,5 +1,5 @@
 import { onError } from '@apollo/client/link/error'
-import { notificationsService } from './notifications'
+import { addNotification } from './notifications'
 import { authService } from './auth/auth.service'
 
 export const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -9,10 +9,10 @@ export const errorLink = onError(({ graphQLErrors, networkError }) => {
 
   if (tokenError) {
     authService.logout()
-    notificationsService.addNotification('Session expired', 'error')
+    addNotification('Session expired', 'error')
   }
 
   if (networkError) {
-    notificationsService.addNotification(networkError.message, 'error')
+    addNotification(networkError.message, 'error')
   }
 })
