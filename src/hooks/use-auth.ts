@@ -1,12 +1,16 @@
-import { useLazyQuery, useMutation, useReactiveVar } from '@apollo/client'
+import { useMutation, useReactiveVar } from '@apollo/client'
 import { AuthInput, UserRole } from 'cv-graphql'
+
 import { LOGIN, SIGNUP } from 'graphql/auth'
 import { authService } from 'graphql/auth/auth.service'
 import { LoginResult, SignupResult } from 'graphql/auth/auth.types'
 import { USERS } from 'graphql/users'
+import { client } from 'graphql/client'
 
-export const useLogin = () => {
-  return useLazyQuery<LoginResult, { auth: AuthInput }>(LOGIN)
+type LoginArgs = { variables: { auth: AuthInput } }
+
+export const login = ({ variables }: LoginArgs) => {
+  return client.query<LoginResult>({ query: LOGIN, variables })
 }
 
 export const useSignup = () => {

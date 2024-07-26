@@ -1,11 +1,16 @@
 import { makeVar } from '@apollo/client'
-import { INotificationsService, INotification } from './notifications.types'
 
-class NotificationsService implements INotificationsService {
-  notifications$ = makeVar<INotification[]>([])
+type Notification = {
+  id: number
+  type: 'error' | 'info' | 'success'
+  message: string
+}
+
+class NotificationsService {
+  notifications$ = makeVar<Notification[]>([])
   private id = 0
 
-  addNotification(message: string, type: INotification['type'] = 'info') {
+  addNotification(message: string, type: Notification['type'] = 'info') {
     const notifications = this.notifications$()
     const id = (this.id += 1)
     this.notifications$([...notifications, { id, type, message }])
