@@ -8,7 +8,7 @@ export const usePermission = () => {
     return isAdmin
   }
 
-  const canUpdateUser = (user?: User) => {
+  const canUpdateUser = (user?: Partial<User>) => {
     return isAdmin || user?.id === userId
   }
 

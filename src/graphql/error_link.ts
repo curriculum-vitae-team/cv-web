@@ -1,6 +1,6 @@
 import { onError } from '@apollo/client/link/error'
 import { addNotification } from './notifications'
-import { authService } from './auth/auth.service'
+import { logout } from './auth/session'
 
 export const errorLink = onError(({ graphQLErrors, networkError }) => {
   const tokenError = graphQLErrors?.some(({ message }) => {
@@ -8,7 +8,7 @@ export const errorLink = onError(({ graphQLErrors, networkError }) => {
   })
 
   if (tokenError) {
-    authService.logout()
+    logout()
     addNotification('Session expired', 'error')
   }
 

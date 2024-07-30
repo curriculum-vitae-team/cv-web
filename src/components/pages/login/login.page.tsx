@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Typography, Button, TextField } from '@mui/material'
 import { useState } from 'react'
-import { authService } from 'graphql/auth/auth.service'
+import { setSession } from 'graphql/auth/session'
 import { PasswordInput } from '@molecules/password-input'
 import { requiredValidation } from 'helpers/validation.helper'
 import { routes } from 'constants/routes'
@@ -30,7 +30,7 @@ const Login = () => {
   const onSubmit = ({ email, password }: LoginFormValues) => {
     setLoading(true)
     login({ variables: { auth: { email, password } } })
-      .then(({ data }) => authService.login(data.login))
+      .then(({ data }) => setSession(data.login))
       .then(() => navigate(routes.root))
       .catch((error) => addNotification(error.message, 'error'))
       .finally(() => setLoading(false))

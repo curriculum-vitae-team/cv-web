@@ -1,4 +1,13 @@
-export const parseJwt = (token: string): { exp: number } | null => {
+import { UserRole } from 'cv-graphql'
+
+export type JwtPayload = {
+  sub: number
+  email: string
+  exp: number
+  role: UserRole
+}
+
+export const parseJwt = (token: string): JwtPayload | null => {
   const base64Url = token.split('.')[1]
 
   if (!base64Url) {

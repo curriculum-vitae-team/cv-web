@@ -2,13 +2,12 @@ import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { AddButton } from '@atoms/add-button'
 import { SearchInput } from '@molecules/search-input'
-import { useAuth } from 'hooks/use-auth'
 import { useCvDialog } from '@dialogs/cv'
+import { usePermission } from 'hooks/use_permission'
 
 export const UserCvsTableTool = () => {
   const { userId = '' } = useParams()
-  const { user$, isAdmin } = useAuth()
-  const isOwnCv = userId === user$?.id
+  const { canUpdateUser } = usePermission()
   const { t } = useTranslation()
   const [openCvDialog] = useCvDialog()
 
@@ -21,7 +20,9 @@ export const UserCvsTableTool = () => {
   return (
     <>
       <SearchInput />
-      {(isOwnCv || isAdmin) && <AddButton onClick={handleCreate}>{t('Create CV')}</AddButton>}
+      {canUpdateUser({ id: userId }) && (
+        <AddButton onClick={handleCreate}>{t('Create CV')}</AddButton>
+      )}
     </>
   )
 }

@@ -1,8 +1,7 @@
 import { setContext } from '@apollo/client/link/context'
 import { ApolloClient, FetchResult, InMemoryCache, from } from '@apollo/client'
 import { UpdateTokenResult } from 'cv-graphql'
-import { parseJwt } from 'helpers/parse-jwt'
-import { authService } from './auth/auth.service'
+import { accessToken$, refreshToken$, session$, setSession } from './auth/session'
 import { errorLink } from './error_link'
 import { httpLink } from './http_link'
 import { UPDATE_TOKEN } from './auth'
@@ -21,7 +20,7 @@ const updateToken = async () => {
       mutation: UPDATE_TOKEN,
       context: {
         headers: {
-          authorization: `Bearer ${authService.refresh_token$()}`
+          authorization: `Bearer ${refreshToken$()}`
         }
       }
     })
@@ -30,16 +29,16 @@ const updateToken = async () => {
   const { data } = await promise
 
   if (data) {
-    authService.setToken(data.updateToken)
+    setSession(data.updateToken)
     promise = null
   }
 }
 
 const verifyToken = async () => {
-  const jwtParsed = parseJwt(authService.access_token$())
+  const session = session$()
   const requestTimestamp = Math.floor(Date.now() / 1000) + 5
 
-  if (jwtParsed && jwtParsed.exp < requestTimestamp) {
+  if (session && session.exp < requestTimestamp) {
     await updateToken()
   }
 }
@@ -50,7 +49,7 @@ export const authLink = setContext(async (_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: `Bearer ${authService.access_token$()}`
+      authorization: `Bearer ${accessToken$()}`
     }
   }
 })

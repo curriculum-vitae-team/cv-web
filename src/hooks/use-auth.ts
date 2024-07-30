@@ -2,7 +2,7 @@ import { useMutation, useReactiveVar } from '@apollo/client'
 import { AuthInput, UserRole } from 'cv-graphql'
 
 import { LOGIN, SIGNUP } from 'graphql/auth'
-import { authService } from 'graphql/auth/auth.service'
+import { session$ } from 'graphql/auth/session'
 import { LoginResult, SignupResult } from 'graphql/auth/auth.types'
 import { USERS } from 'graphql/users'
 import { client } from 'graphql/client'
@@ -18,9 +18,9 @@ export const useSignup = () => {
 }
 
 export const useAuth = () => {
-  const user$ = useReactiveVar(authService.user$)
-  const userId = user$?.id || ''
-  const isAdmin = user$?.role === UserRole.Admin
+  const session = useReactiveVar(session$)
+  const userId = session ? String(session.sub) : ''
+  const isAdmin = session?.role === UserRole.Admin
 
-  return { user$, userId, isAdmin }
+  return { session, userId, isAdmin }
 }

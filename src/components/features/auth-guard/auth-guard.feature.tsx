@@ -1,11 +1,11 @@
 import { useReactiveVar } from '@apollo/client'
 import { Navigate, Outlet } from 'react-router-dom'
-import { authService } from 'graphql/auth/auth.service'
+import { accessToken$ } from 'graphql/auth/session'
 
 export const AuthGuard = () => {
-  const access_token$ = useReactiveVar(authService.access_token$)
+  const accessToken = useReactiveVar(accessToken$)
 
-  if (access_token$) {
+  if (accessToken) {
     return <Outlet />
   }
 

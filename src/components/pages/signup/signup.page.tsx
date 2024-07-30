@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Button, TextField, Typography } from '@mui/material'
-import { authService } from 'graphql/auth/auth.service'
+import { setSession } from 'graphql/auth/session'
 import { PasswordInput } from '@molecules/password-input'
 import { requiredValidation, passwordValidation } from 'helpers/validation.helper'
 import { routes } from 'constants/routes'
@@ -36,7 +36,7 @@ const Signup = () => {
         }
       }
     })
-      .then(({ data }) => data && authService.login(data.signup))
+      .then(({ data }) => data && setSession(data.signup))
       .then(() => navigate(routes.root))
       .catch((error) => addNotification(error.message, 'error'))
   }

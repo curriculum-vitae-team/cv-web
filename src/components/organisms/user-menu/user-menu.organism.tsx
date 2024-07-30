@@ -3,7 +3,7 @@ import { generatePath, NavLink, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Avatar, Divider, ListItemIcon, MenuItem } from '@mui/material'
 import { AccountCircle, Settings, Logout } from '@mui/icons-material'
-import { authService } from 'graphql/auth/auth.service'
+import { logout } from 'graphql/auth/session'
 import { useAuth } from 'hooks/use-auth'
 import { useProfile } from 'hooks/use-profile'
 import { routes } from 'constants/routes'
@@ -12,7 +12,7 @@ import * as Styled from './user-menu.styles'
 const UserMenu = () => {
   const location = useLocation()
   const { t } = useTranslation()
-  const { user$, userId } = useAuth()
+  const { session, userId } = useAuth()
   const { profile } = useProfile(userId)
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const isOpen = Boolean(anchorEl)
@@ -29,10 +29,6 @@ const UserMenu = () => {
     handleClose()
   }, [location, handleClose])
 
-  const handleLogout = useCallback(() => {
-    authService.logout()
-  }, [])
-
   return (
     <>
       <Styled.Button color="secondary" onClick={handleOpen}>
@@ -40,9 +36,9 @@ const UserMenu = () => {
           src={profile?.avatar || ''}
           sx={{ backgroundColor: '#c63031', width: 40, height: 40 }}
         >
-          {profile?.full_name?.[0] || user$?.email[0]}
+          {profile?.full_name?.[0] || session?.email[0]}
         </Avatar>
-        <Styled.Name>{profile?.full_name || user$?.email}</Styled.Name>
+        <Styled.Name>{profile?.full_name || session?.email}</Styled.Name>
       </Styled.Button>
       <Styled.Menu
         anchorEl={anchorEl}
@@ -65,7 +61,7 @@ const UserMenu = () => {
           {t('Settings')}
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleLogout}>
+        <MenuItem onClick={logout}>
           <ListItemIcon>
             <Logout />
           </ListItemIcon>
