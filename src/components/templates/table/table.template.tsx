@@ -1,9 +1,10 @@
 import { FC, memo, useDeferredValue, useMemo, useState } from 'react'
-import { TableBody, TableFooter, TableRow } from '@mui/material'
+import { TableBody, TableCell, TableFooter, TableRow } from '@mui/material'
 import { TableLoader } from '@atoms/table-loader'
 import { SortOrder } from 'constants/table-sort.constants'
 import { sortDates, sortItems } from 'helpers/table-sort.helper'
 import { searchItems } from 'helpers/table-search.helper'
+import { NoResults } from '@molecules/no_results'
 import { Item, TableProps } from './table.types'
 import { TableSearchContext, TableSortContext } from './table.context'
 import * as Styled from './table.styles'
@@ -67,6 +68,13 @@ const Table = <T extends Item>({
         {sortedItems.map((item) => (
           <TableRowComponent key={item.id} item={item} />
         ))}
+        {!filteredItems.length && (
+          <TableRow>
+            <TableCell colSpan={10}>
+              <NoResults search={_search} onReset={() => setSearch('')} />
+            </TableCell>
+          </TableRow>
+        )}
       </TableBody>
       {TableFooterComponent && (
         <TableFooter>
