@@ -41,10 +41,10 @@ const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
   }
 
   return (
-    <Styled.Form onSubmit={handleSubmit(onSubmit)}>
+    <Styled.Form disabled={!canUpdateCv(cv)} onSubmit={handleSubmit(onSubmit)}>
       <TextField
         {...register('name', { validate: requiredValidation })}
-        autoFocus
+        autoFocus={canUpdateCv(cv)}
         label={t('Name')}
         error={!!errors.name}
         helperText={errors.name?.message || ''}
