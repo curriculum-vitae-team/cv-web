@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { routes } from 'constants/routes'
 import { requiredValidation } from 'helpers/validation.helper'
+import { useForgotPassword } from 'hooks/use-auth'
+import { addNotification } from 'graphql/notifications'
 import * as Styled from './forgot_password.styles'
 import { ForgotPasswordFormValues } from './forgot_password.types'
 
@@ -19,8 +21,13 @@ const ForgotPassword = () => {
       email: ''
     }
   })
+  const [forgotPassword, { loading }] = useForgotPassword()
 
-  const onSubmit = ({ email }: ForgotPasswordFormValues) => {}
+  const onSubmit = ({ email }: ForgotPasswordFormValues) => {
+    forgotPassword({ variables: { auth: { email } } })
+      .then(({ data }) => navigate(`${routes.resetPassword}?token=${data?.forgotPassword.token}`))
+      .catch((error: Error) => addNotification(error.message, 'error'))
+  }
 
   return (
     <>
@@ -41,7 +48,7 @@ const ForgotPassword = () => {
           helperText={t(errors.email?.message || '')}
         />
         <Styled.Actions>
-          <Button variant="contained" type="submit" disabled={!isDirty}>
+          <Button variant="contained" type="submit" disabled={loading || !isDirty}>
             {t('Reset password')}
           </Button>
           <Button color="secondary" onClick={() => navigate(routes.auth.login)}>

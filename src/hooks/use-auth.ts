@@ -1,9 +1,14 @@
 import { useMutation, useReactiveVar } from '@apollo/client'
-import { AuthInput, UserRole } from 'cv-graphql'
+import {
+  type AuthInput,
+  type ForgotPasswordInput,
+  type ForgotPasswordResult,
+  UserRole
+} from 'cv-graphql'
 
-import { LOGIN, SIGNUP } from 'graphql/auth'
+import { LOGIN, SIGNUP, FORGOT_PASSWORD } from 'graphql/auth'
 import { session$ } from 'graphql/auth/session'
-import { LoginResult, SignupResult } from 'graphql/auth/auth.types'
+import type { LoginResult, SignupResult } from 'graphql/auth/auth.types'
 import { USERS } from 'graphql/users'
 import { client } from 'graphql/client'
 
@@ -23,4 +28,10 @@ export const useAuth = () => {
   const isAdmin = session?.role === UserRole.Admin
 
   return { session, userId, isAdmin }
+}
+
+export const useForgotPassword = () => {
+  return useMutation<{ forgotPassword: ForgotPasswordResult }, { auth: ForgotPasswordInput }>(
+    FORGOT_PASSWORD
+  )
 }

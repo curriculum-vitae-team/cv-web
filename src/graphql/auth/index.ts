@@ -40,6 +40,14 @@ export const SIGNUP = gql`
   }
 `
 
+export const FORGOT_PASSWORD = gql`
+  mutation ForgotPassword($auth: ForgotPasswordInput!) {
+    forgotPassword(auth: $auth) {
+      token
+    }
+  }
+`
+
 export const UPDATE_TOKEN = gql`
   mutation UpdateToken {
     updateToken {
