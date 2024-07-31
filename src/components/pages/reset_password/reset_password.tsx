@@ -25,16 +25,20 @@ const ResetPassword = () => {
   })
   const [loading, setLoading] = useState(false)
 
+  const backToLogin = () => {
+    navigate(routes.auth.login, { replace: true })
+  }
+
   const onSubmit = ({ newPassword }: ResetPasswordFormValues) => {
     const token = searchParams.get('token')!
 
     setLoading(true)
     resetPassword({ variables: { auth: { newPassword } } }, token)
-      .then(() => navigate(routes.auth.login))
+      .then(backToLogin)
       .then(() => addNotification('Password has been reset'))
       .catch((error: Error) => {
         if (error.message === 'Action expired') {
-          navigate(routes.auth.login)
+          backToLogin()
         }
 
         addNotification(error.message, 'error')
@@ -50,13 +54,14 @@ const ResetPassword = () => {
           {t('Set a new password')}
         </Typography>
         <Typography variant="body1" textAlign="center">
-          {t('Now create a new password.')}
+          {t('Almost done! Now create a new password')}
         </Typography>
         <TextField
           {...register('newPassword', { validate: passwordValidation })}
           label={t('New password')}
           placeholder={t('Enter new password')}
           autoFocus
+          autoComplete="new-password"
           error={!!errors.newPassword}
           helperText={t(errors.newPassword?.message || '')}
         />
@@ -64,8 +69,8 @@ const ResetPassword = () => {
           <Button variant="contained" type="submit" disabled={loading || !isDirty}>
             {t('Submit')}
           </Button>
-          <Button color="secondary" onClick={() => navigate(routes.auth.login)}>
-            {t('Back to Login')}
+          <Button color="secondary" onClick={backToLogin}>
+            {t('Back to Log in')}
           </Button>
         </Styled.Actions>
       </Styled.Form>

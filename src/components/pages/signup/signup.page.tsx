@@ -44,10 +44,10 @@ const Signup = () => {
   return (
     <Styled.Form onSubmit={handleSubmit(onSubmit)}>
       <Typography variant="h4" textAlign="center">
-        {t('Register Now')}
+        {t('Register now')}
       </Typography>
       <Typography variant="body1" textAlign="center">
-        {t('Welcome! Sign up to continue.')}
+        {t('Welcome! Sign up to continue')}
       </Typography>
       <TextField
         {...register('email', { validate: requiredValidation })}
@@ -66,7 +66,7 @@ const Signup = () => {
       />
       <Styled.Actions>
         <Button variant="contained" type="submit" disabled={loading}>
-          {t('Sign up')}
+          {t('Create account')}
         </Button>
         <Button color="secondary" onClick={() => navigate(routes.auth.login)}>
           {t('I have an account')}

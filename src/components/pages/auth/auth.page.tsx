@@ -14,13 +14,13 @@ const Auth = () => {
       <Tabs value={location.pathname} centered component="header">
         <Tab
           value={routes.auth.login}
-          label={t('Login')}
+          label={t('Log in')}
           component={NavLink}
           to={routes.auth.login}
         />
         <Tab
           value={routes.auth.signup}
-          label={t('Signup')}
+          label={t('Sign up')}
           component={NavLink}
           to={routes.auth.signup}
         />

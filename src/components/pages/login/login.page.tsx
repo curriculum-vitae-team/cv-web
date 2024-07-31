@@ -39,10 +39,10 @@ const Login = () => {
   return (
     <Styled.Form onSubmit={handleSubmit(onSubmit)}>
       <Typography variant="h4" textAlign="center">
-        {t('Welcome Back')}
+        {t('Welcome back')}
       </Typography>
       <Typography variant="body1" textAlign="center">
-        {t('Hello again! Sign in to continue.')}
+        {t('Hello again! Log in to continue')}
       </Typography>
       <TextField
         {...register('email', { validate: requiredValidation })}
@@ -61,7 +61,7 @@ const Login = () => {
       />
       <Styled.Actions>
         <Button variant="contained" type="submit" disabled={loading}>
-          {t('Sign in')}
+          {t('Log in')}
         </Button>
         <Button color="secondary" onClick={() => navigate(routes.forgotPassword)}>
           {t('Forgot password')}

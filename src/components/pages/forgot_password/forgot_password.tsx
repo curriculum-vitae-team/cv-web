@@ -26,7 +26,7 @@ const ForgotPassword = () => {
   const onSubmit = ({ email }: ForgotPasswordFormValues) => {
     forgotPassword({ variables: { auth: { email } } })
       .then(() => navigate(routes.auth.login))
-      .then(() => addNotification('Check your email'))
+      .then(() => addNotification('Check your email inbox'))
       .catch((error: Error) => addNotification(error.message, 'error'))
   }
 
@@ -38,7 +38,7 @@ const ForgotPassword = () => {
           {t('Forgot password')}
         </Typography>
         <Typography variant="body1" textAlign="center">
-          {t('We will sent you an email with further instructions.')}
+          {t('We will sent you an email with further instructions')}
         </Typography>
         <TextField
           {...register('email', { validate: requiredValidation })}
