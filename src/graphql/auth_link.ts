@@ -1,22 +1,15 @@
 import { setContext } from '@apollo/client/link/context'
-import { ApolloClient, FetchResult, InMemoryCache, from } from '@apollo/client'
+import { FetchResult } from '@apollo/client'
 import { UpdateTokenResult } from 'cv-graphql'
 import { accessToken$, refreshToken$, session$, setSession } from './auth/session'
-import { errorLink } from './error_link'
-import { httpLink } from './http_link'
 import { UPDATE_TOKEN } from './auth'
-
-const client = new ApolloClient({
-  connectToDevTools: false,
-  link: from([errorLink, httpLink]),
-  cache: new InMemoryCache()
-})
+import { publicClient } from './client'
 
 let promise: Promise<FetchResult<{ updateToken: UpdateTokenResult }>> | null = null
 
 const updateToken = async () => {
   if (!promise) {
-    promise = client.mutate({
+    promise = publicClient.mutate({
       mutation: UPDATE_TOKEN,
       context: {
         headers: {

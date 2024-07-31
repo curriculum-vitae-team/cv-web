@@ -25,7 +25,8 @@ const ForgotPassword = () => {
 
   const onSubmit = ({ email }: ForgotPasswordFormValues) => {
     forgotPassword({ variables: { auth: { email } } })
-      .then(({ data }) => navigate(`${routes.resetPassword}?token=${data?.forgotPassword.token}`))
+      .then(() => navigate(routes.auth.login))
+      .then(() => addNotification('Check your email'))
       .catch((error: Error) => addNotification(error.message, 'error'))
   }
 

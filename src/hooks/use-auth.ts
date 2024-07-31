@@ -2,20 +2,20 @@ import { useMutation, useReactiveVar } from '@apollo/client'
 import {
   type AuthInput,
   type ForgotPasswordInput,
-  type ForgotPasswordResult,
+  type ResetPasswordInput,
   UserRole
 } from 'cv-graphql'
 
-import { LOGIN, SIGNUP, FORGOT_PASSWORD } from 'graphql/auth'
+import { LOGIN, SIGNUP, FORGOT_PASSWORD, RESET_PASSWORD } from 'graphql/auth'
 import { session$ } from 'graphql/auth/session'
 import type { LoginResult, SignupResult } from 'graphql/auth/auth.types'
 import { USERS } from 'graphql/users'
-import { client } from 'graphql/client'
+import { publicClient } from 'graphql/client'
 
 type LoginArgs = { variables: { auth: AuthInput } }
 
 export const login = ({ variables }: LoginArgs) => {
-  return client.query<LoginResult>({ query: LOGIN, variables })
+  return publicClient.query<LoginResult>({ query: LOGIN, variables })
 }
 
 export const useSignup = () => {
@@ -31,7 +31,21 @@ export const useAuth = () => {
 }
 
 export const useForgotPassword = () => {
-  return useMutation<{ forgotPassword: ForgotPasswordResult }, { auth: ForgotPasswordInput }>(
-    FORGOT_PASSWORD
-  )
+  return useMutation<void, { auth: ForgotPasswordInput }>(FORGOT_PASSWORD)
+}
+
+type ResetPasswordArgs = {
+  variables: { auth: ResetPasswordInput }
+}
+
+export const resetPassword = ({ variables }: ResetPasswordArgs, token: string) => {
+  return publicClient.mutate<void>({
+    mutation: RESET_PASSWORD,
+    variables,
+    context: {
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    }
+  })
 }
