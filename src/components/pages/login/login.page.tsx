@@ -38,10 +38,10 @@ const Login = () => {
 
   return (
     <Styled.Form onSubmit={handleSubmit(onSubmit)}>
-      <Typography variant="h4" textAlign="center" sx={{ mb: 3 }}>
+      <Typography variant="h4" textAlign="center">
         {t('Welcome Back')}
       </Typography>
-      <Typography variant="body1" textAlign="center" sx={{ mb: 5 }}>
+      <Typography variant="body1" textAlign="center">
         {t('Hello again! Sign in to continue.')}
       </Typography>
       <TextField
@@ -63,8 +63,8 @@ const Login = () => {
         <Button variant="contained" type="submit" disabled={loading}>
           {t('Sign in')}
         </Button>
-        <Button type="button" onClick={() => navigate(routes.auth.signup)}>
-          {t("I don't have an account")}
+        <Button color="secondary" onClick={() => navigate(routes.forgotPassword)}>
+          {t('Forgot password')}
         </Button>
       </Styled.Actions>
     </Styled.Form>

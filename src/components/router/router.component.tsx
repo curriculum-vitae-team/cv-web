@@ -5,6 +5,7 @@ import { routes } from 'constants/routes'
 import { Auth } from '@pages/auth'
 import { Login } from '@pages/login'
 import { Signup } from '@pages/signup'
+import { ForgotPassword } from '@pages/forgot_password'
 import { Layout } from '@templates/layout'
 import { Users } from '@pages/users'
 import { User } from '@pages/user'
@@ -34,6 +35,8 @@ export const Router = () => {
             <Route path={routes.auth.login} element={<Login />} />
             <Route path={routes.auth.signup} element={<Signup />} />
           </Route>
+          <Route path={routes.forgotPassword} element={<ForgotPassword />} />
+          <Route path={routes.resetPassword} element={null} />
           <Route element={<Layout />}>
             <Route path={routes.users.root}>
               <Route index element={<Users />} />

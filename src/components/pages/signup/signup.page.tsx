@@ -43,10 +43,10 @@ const Signup = () => {
 
   return (
     <Styled.Form onSubmit={handleSubmit(onSubmit)}>
-      <Typography variant="h4" textAlign="center" sx={{ mb: 3 }}>
+      <Typography variant="h4" textAlign="center">
         {t('Register Now')}
       </Typography>
-      <Typography variant="body1" textAlign="center" sx={{ mb: 5 }}>
+      <Typography variant="body1" textAlign="center">
         {t('Welcome! Sign up to continue.')}
       </Typography>
       <TextField
@@ -68,7 +68,7 @@ const Signup = () => {
         <Button variant="contained" type="submit" disabled={loading}>
           {t('Sign up')}
         </Button>
-        <Button type="button" onClick={() => navigate(routes.auth.login)}>
+        <Button color="secondary" onClick={() => navigate(routes.auth.login)}>
           {t('I have an account')}
         </Button>
       </Styled.Actions>

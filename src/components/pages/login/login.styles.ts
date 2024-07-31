@@ -7,7 +7,15 @@ export const Form = styled('form')({
   maxWidth: 560,
   width: '90%',
   height: 'calc(100% - 56px)',
-  margin: '0 auto'
+  margin: '0 auto',
+
+  '& > .MuiTypography-h4': {
+    marginBottom: 24
+  },
+
+  '& > .MuiTypography-body1': {
+    marginBottom: 40
+  }
 })
 
 export const Actions = styled('div')({

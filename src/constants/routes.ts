@@ -28,6 +28,8 @@ const cvRoutes = {
 export const routes = {
   root: '/',
   auth: authRoutes,
+  forgotPassword: '/forgot-password',
+  resetPassword: '/reset-password',
   verify: '/verify',
   users: userRoutes,
   settings: '/settings',
