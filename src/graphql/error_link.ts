@@ -2,13 +2,7 @@ import { onError } from '@apollo/client/link/error'
 import { addNotification } from './notifications'
 import { logout } from './auth/session'
 
-export const networkErrorLink = onError(({ networkError }) => {
-  if (networkError) {
-    addNotification(networkError.message, 'error')
-  }
-})
-
-export const authErrorLink = onError(({ graphQLErrors }) => {
+export const errorLink = onError(({ graphQLErrors, networkError }) => {
   const tokenError = graphQLErrors?.some(({ message }) => {
     return message === 'Unauthorized'
   })
@@ -16,5 +10,9 @@ export const authErrorLink = onError(({ graphQLErrors }) => {
   if (tokenError) {
     logout()
     addNotification('Session expired', 'error')
+  }
+
+  if (networkError) {
+    addNotification(networkError.message, 'error')
   }
 })
