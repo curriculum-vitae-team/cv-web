@@ -55,7 +55,7 @@ const Cv = ({ userId, closeDialog }: CvProps) => {
           {...register('description')}
           label={t('Description')}
           multiline
-          rows={7}
+          minRows={7}
         />
       </Styled.Column>
       <DialogActions>

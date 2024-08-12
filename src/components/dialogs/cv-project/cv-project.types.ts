@@ -4,14 +4,12 @@ import { DialogProps } from 'graphql/dialogs/dialogs.types'
 export type CvProjectFormValues = {
   projectId: string
   name: string
-  internal_name: string
-  description: string
   domain: string
   start_date: Date | null
   end_date: Date | null
-  team_size: string
+  description: string
   roles: string[]
-  responsibilities: string[]
+  responsibilities: string
 }
 
 export type CvProjectDialogProps = DialogProps & {
@@ -20,5 +18,7 @@ export type CvProjectDialogProps = DialogProps & {
   item?: CvProject
   availableProjects?: Project[]
   createNewProject?: boolean
-  onConfirm(values: CvProjectFormValues): Promise<unknown>
+  onConfirm(
+    values: Omit<CvProjectFormValues, 'responsibilities'> & { responsibilities: string[] }
+  ): Promise<unknown>
 }

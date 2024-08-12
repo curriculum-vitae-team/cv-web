@@ -3,12 +3,10 @@ import { DialogProps } from 'graphql/dialogs/dialogs.types'
 
 export type ProjectFormValues = {
   name: string
-  internal_name: string
-  description: string
   domain: string
   start_date: Date | null
   end_date: Date | null
-  team_size: string
+  description: string
 }
 
 export type ProjectDialogProps = DialogProps & {

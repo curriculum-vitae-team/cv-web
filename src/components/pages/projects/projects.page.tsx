@@ -19,8 +19,8 @@ const Projects = () => {
         TableToolComponent={ProjectsTableTool}
         TableHeadComponent={ProjectsTableHead}
         TableRowComponent={ProjectsTableRow}
-        searchBy={['name', 'internal_name']}
-        defaultSortBy="internal_name"
+        searchBy={['name', 'domain']}
+        defaultSortBy="name"
       />
     </div>
   )

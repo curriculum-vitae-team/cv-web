@@ -2,13 +2,13 @@ import { useParams } from 'react-router-dom'
 import { Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { Fragment, useMemo, useRef } from 'react'
-import { format, parseISO } from 'date-fns'
 import { useCv, useCvProjects, useCvSkills, usePdfExport } from 'hooks/use-cvs'
 import { PageLoader } from '@atoms/page-loader'
 import { prepareHtml } from 'helpers/prepare-html'
 import { downloadPdf } from 'helpers/download-pdf'
 import { sortDates } from 'helpers/table-sort.helper'
 import { SortOrder } from 'constants/table-sort.constants'
+import { CvPreviewProject } from '@organisms/cv_preview_project'
 import * as Styled from './cv-preview.styles'
 
 const CvPreview = () => {
@@ -87,28 +87,9 @@ const CvPreview = () => {
       <Styled.Head>
         <Typography variant="h4">{t('Projects')}</Typography>
       </Styled.Head>
-      {sortedProjects.map(
-        ({ id, name, description, start_date, end_date, roles, responsibilities }) => (
-          <Styled.Project key={id}>
-            <Styled.Left>
-              <Styled.ProjectName>{name}</Styled.ProjectName>
-              <Typography>{description}</Typography>
-            </Styled.Left>
-            <Styled.Main>
-              <Styled.Title>{t('Project roles')}</Styled.Title>
-              <Typography>{roles.join(', ') || cv.user?.position_name}</Typography>
-              <Styled.Title>{t('Responsibilities & achievements')}</Styled.Title>
-              <Typography>{responsibilities.join(', ')}</Typography>
-              <Styled.Title>{t('Period')}</Styled.Title>
-              <Typography>
-                {format(parseISO(start_date), 'M.yyyy')} –{' '}
-                {end_date ? format(parseISO(end_date), 'M.yyyy') : t('Till now')}
-              </Typography>
-              {/* <Styled.Title>{t('Environment')}</Styled.Title> */}
-            </Styled.Main>
-          </Styled.Project>
-        )
-      )}
+      {sortedProjects.map((project) => (
+        <CvPreviewProject key={project.id} cv={cv} project={project} />
+      ))}
     </Styled.Document>
   )
 }

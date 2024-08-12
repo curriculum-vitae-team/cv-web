@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { MenuItem, TableCell, Typography } from '@mui/material'
 import { Project } from 'cv-graphql'
-import { format } from 'date-fns'
+import { format } from 'date-fns/esm'
 import { TableRowProps } from '@templates/table/table.types'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { useConfirmDialog } from '@dialogs/confirm'
@@ -9,11 +9,13 @@ import { useProjectDialog } from '@dialogs/project'
 import { useProjectDelete, useProjectUpdate } from 'hooks/use-projects'
 import { useAuth } from 'hooks/use-auth'
 import { DayMonthYear } from 'constants/format.constant'
+import { TableRowDropdown } from '@molecules/table_row_dropdown'
 import * as Styled from './projects-table-row.styles'
 
 export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
   const { t } = useTranslation()
   const { isAdmin } = useAuth()
+  const additionalRow = !!item.description
   const [openProjectDialog] = useProjectDialog()
   const [deleteProject] = useProjectDelete(item.id)
   const [openConfirmDialog] = useConfirmDialog()
@@ -31,8 +33,7 @@ export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
               projectId: item.id,
               ...values,
               start_date: values.start_date?.toISOString() || '',
-              end_date: values.end_date?.toISOString(),
-              team_size: Number(values.team_size)
+              end_date: values.end_date?.toISOString()
             }
           }
         })
@@ -53,22 +54,30 @@ export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
   }
 
   return (
-    <Styled.Row>
-      <TableCell>{item.name}</TableCell>
-      <TableCell>{item.internal_name}</TableCell>
-      <TableCell>{item.domain}</TableCell>
-      <TableCell>{item.team_size}</TableCell>
-      <TableCell>{format(new Date(item.start_date || ''), DayMonthYear)}</TableCell>
-      <TableCell>
-        {item.end_date ? format(new Date(item.end_date), DayMonthYear) : t('Till now')}
-      </TableCell>
-      <TableCell>
-        <ActionsMenu disabled={!isAdmin}>
-          <MenuItem disabled>{t('Project')}</MenuItem>
-          <MenuItem onClick={handleUpdate}>{t('Update project')}</MenuItem>
-          <MenuItem onClick={handleDelete}>{t('Delete project')}</MenuItem>
-        </ActionsMenu>
-      </TableCell>
-    </Styled.Row>
+    <TableRowDropdown
+      content={
+        additionalRow && (
+          <Typography variant="inherit" color="GrayText">
+            {item.description}
+          </Typography>
+        )
+      }
+    >
+      <Styled.Row>
+        <TableCell>{item.name}</TableCell>
+        <TableCell>{item.domain}</TableCell>
+        <TableCell>{format(new Date(item.start_date || ''), DayMonthYear)}</TableCell>
+        <TableCell>
+          {item.end_date ? format(new Date(item.end_date), DayMonthYear) : t('Till now')}
+        </TableCell>
+        <TableCell>
+          <ActionsMenu disabled={!isAdmin}>
+            <MenuItem disabled>{t('Project')}</MenuItem>
+            <MenuItem onClick={handleUpdate}>{t('Update project')}</MenuItem>
+            <MenuItem onClick={handleDelete}>{t('Delete project')}</MenuItem>
+          </ActionsMenu>
+        </TableCell>
+      </Styled.Row>
+    </TableRowDropdown>
   )
 }

@@ -31,12 +31,10 @@ export const CvProjectsTableTool = () => {
       onConfirm({
         projectId,
         name,
-        internal_name,
         domain,
         description,
         start_date,
         end_date,
-        team_size,
         roles,
         responsibilities
       }) {
@@ -45,12 +43,10 @@ export const CvProjectsTableTool = () => {
             variables: {
               project: {
                 name,
-                internal_name,
                 domain,
                 description,
                 start_date: start_date?.toISOString() || '',
-                end_date: end_date?.toISOString(),
-                team_size: Number(team_size)
+                end_date: end_date?.toISOString()
               }
             }
           }).then(

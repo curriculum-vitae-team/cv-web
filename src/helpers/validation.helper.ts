@@ -14,12 +14,6 @@ export const passwordValidation = (value: string) => {
   }
 }
 
-export const teamSizeValidation = (value: string) => {
-  if (Number(value) < 1) {
-    return 'Must be positive'
-  }
-}
-
 export const otpValidation = (value: string) => {
   if (!value) {
     return 'Required field'

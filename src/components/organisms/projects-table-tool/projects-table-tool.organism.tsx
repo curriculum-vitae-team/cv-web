@@ -21,8 +21,7 @@ export const ProjectsTableTool = () => {
             project: {
               ...values,
               start_date: values.start_date?.toISOString() || '',
-              end_date: values.end_date?.toISOString(),
-              team_size: Number(values.team_size)
+              end_date: values.end_date?.toISOString()
             }
           }
         })

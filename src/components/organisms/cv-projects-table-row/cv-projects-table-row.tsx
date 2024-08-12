@@ -1,8 +1,8 @@
 import type { CvProject } from 'cv-graphql'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
-import { MenuItem, TableCell, Typography } from '@mui/material'
-import { format } from 'date-fns'
+import { Chip, MenuItem, TableCell, Typography } from '@mui/material'
+import { format } from 'date-fns/esm'
 import type { TableRowProps } from '@templates/table/table.types'
 import { useCvProjectDialog } from '@dialogs/cv-project'
 import { useCv, useCvProjectRemove, useCvProjectUpdate } from 'hooks/use-cvs'
@@ -10,6 +10,7 @@ import { useConfirmDialog } from '@dialogs/confirm'
 import { DayMonthYear } from 'constants/format.constant'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { usePermission } from 'hooks/use_permission'
+import { TableRowDropdown } from '@molecules/table_row_dropdown'
 import * as Styled from './cv-projects-table-row.styles'
 
 export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
@@ -21,6 +22,7 @@ export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
   const [openConfirmDialog] = useConfirmDialog()
   const [updateCvProject] = useCvProjectUpdate()
   const { canUpdateCv } = usePermission()
+  const additionalRow = !!item.responsibilities.length
 
   const handleUpdate = () => {
     openCvProjectDialog({
@@ -65,22 +67,33 @@ export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
   }
 
   return (
-    <Styled.Row>
-      <TableCell>{item.name}</TableCell>
-      <TableCell>{item.internal_name}</TableCell>
-      <TableCell>{item.domain}</TableCell>
-      <TableCell>{item.team_size}</TableCell>
-      <TableCell>{format(new Date(item.start_date || ''), DayMonthYear)}</TableCell>
-      <TableCell>
-        {item.end_date ? format(new Date(item.end_date), DayMonthYear) : t('Till now')}
-      </TableCell>
-      <TableCell>
-        <ActionsMenu disabled={!canUpdateCv(cv)}>
-          <MenuItem disabled>{t('Project')}</MenuItem>
-          <MenuItem onClick={handleUpdate}>{t('Update project')}</MenuItem>
-          <MenuItem onClick={handleDelete}>{t('Remove project')}</MenuItem>
-        </ActionsMenu>
-      </TableCell>
-    </Styled.Row>
+    <TableRowDropdown
+      content={
+        additionalRow && (
+          <>
+            <Styled.Responsibilities>
+              {item.responsibilities.map((responsibility) => (
+                <Chip key={responsibility} label={responsibility} size="small" />
+              ))}
+            </Styled.Responsibilities>
+          </>
+        )
+      }
+    >
+      <Styled.Row>
+        <TableCell>{item.name}</TableCell>
+        <TableCell>{item.domain}</TableCell>
+        <TableCell>{format(new Date(item.start_date || ''), DayMonthYear)}</TableCell>
+        <TableCell>
+          {item.end_date ? format(new Date(item.end_date), DayMonthYear) : t('Till now')}
+        </TableCell>
+        <TableCell>
+          <ActionsMenu disabled={!canUpdateCv(cv)}>
+            <MenuItem onClick={handleUpdate}>{t('Update project')}</MenuItem>
+            <MenuItem onClick={handleDelete}>{t('Remove project')}</MenuItem>
+          </ActionsMenu>
+        </TableCell>
+      </Styled.Row>
+    </TableRowDropdown>
   )
 }

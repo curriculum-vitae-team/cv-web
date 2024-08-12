@@ -135,12 +135,10 @@ const CvProject = `
     id
   }
   name
-  internal_name
   domain
-  description
   start_date
   end_date
-  team_size
+  description
   roles
   responsibilities
 `

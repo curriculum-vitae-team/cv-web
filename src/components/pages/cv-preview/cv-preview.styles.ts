@@ -60,17 +60,3 @@ export const Title = styled(Typography)({
   marginTop: 16,
   marginBottom: 8
 })
-
-export const Project = styled('div')({
-  display: 'grid',
-  gridTemplateColumns: '300px 1fr',
-  marginBottom: 32
-})
-
-export const ProjectName = styled(Typography)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  fontWeight: 'bold',
-  textTransform: 'uppercase',
-  marginTop: 16,
-  marginBottom: 8
-}))

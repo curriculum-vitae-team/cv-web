@@ -54,7 +54,7 @@ const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
         name="description"
         control={control}
         render={({ field }) => (
-          <Styled.Description {...field} label={t('Description')} multiline rows={7} />
+          <Styled.Description {...field} label={t('Description')} multiline minRows={7} />
         )}
       />
       {canUpdateCv(cv) && (

@@ -5,12 +5,10 @@ export const PROJECTS = gql`
     projects {
       id
       name
-      internal_name
       domain
-      description
       start_date
       end_date
-      team_size
+      description
     }
   }
 `
@@ -20,12 +18,10 @@ export const CREATE_PROJECT = gql`
     createProject(project: $project) {
       id
       name
-      internal_name
-      description
       domain
       start_date
       end_date
-      team_size
+      description
     }
   }
 `
@@ -35,12 +31,10 @@ export const UPDATE_PROJECT = gql`
     updateProject(project: $project) {
       id
       name
-      internal_name
-      description
       domain
       start_date
       end_date
-      team_size
+      description
     }
   }
 `

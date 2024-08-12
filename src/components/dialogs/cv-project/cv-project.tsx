@@ -1,11 +1,11 @@
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { parseISO } from 'date-fns'
+import { parseISO } from 'date-fns/esm'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
 import { useState } from 'react'
 import { DatePicker } from '@molecules/date-picker'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
-import { requiredValidation, teamSizeValidation } from 'helpers/validation.helper'
+import { requiredValidation } from 'helpers/validation.helper'
 import { DayMonthYear } from 'constants/format.constant'
 import { ProjectSelect } from '@molecules/project-select'
 import * as Styled from './cv-project.styles'
@@ -24,14 +24,12 @@ const CvProject = ({
     defaultValues: {
       projectId: item?.project.id || '',
       name: item?.name || '',
-      internal_name: item?.internal_name || '',
-      description: item?.description || '',
       domain: item?.domain || '',
       start_date: item?.start_date ? parseISO(item.start_date) : null,
       end_date: item?.end_date ? parseISO(item.end_date) : null,
-      team_size: String(item?.team_size || 1),
+      description: item?.description || '',
       roles: item?.roles || [],
-      responsibilities: item?.responsibilities || []
+      responsibilities: item?.responsibilities.join('\n') || ''
     }
   })
   const {
@@ -46,7 +44,13 @@ const CvProject = ({
 
   const onSubmit = (values: CvProjectFormValues) => {
     setIsLoading(true)
-    onConfirm(values)
+    onConfirm({
+      ...values,
+      responsibilities: values.responsibilities
+        .split('\n')
+        .map((responsibility) => responsibility.trim())
+        .filter((responsibility) => responsibility)
+    })
       .then(closeDialog)
       .catch(() => setIsLoading(false))
   }
@@ -69,23 +73,8 @@ const CvProject = ({
           )}
           <Controller
             control={control}
-            name="internal_name"
-            render={({ field }) => (
-              <TextField {...field} disabled={disabled} label={t('Internal Name')} />
-            )}
-          />
-          <Controller
-            control={control}
             name="domain"
             render={({ field }) => <TextField {...field} disabled={disabled} label={t('Domain')} />}
-          />
-          <TextField
-            {...register('team_size', { validate: teamSizeValidation })}
-            disabled={disabled}
-            label={t('Team Size')}
-            type="number"
-            error={!!errors.team_size}
-            helperText={errors.team_size?.message}
           />
           <DatePicker
             name="start_date"
@@ -102,23 +91,16 @@ const CvProject = ({
             helperText={errors.end_date?.message}
             format={DayMonthYear}
           />
-          {/* <Controller
+          <Controller
             control={control}
             name="responsibilities"
             render={({ field }) => (
-              <Styled.Description {...field} label={t('Responsibilities')} multiline rows={3} />
-            )}
-          /> */}
-          <Controller
-            control={control}
-            name="description"
-            render={({ field }) => (
               <Styled.Description
                 {...field}
-                disabled={disabled}
-                label={t('Description')}
+                label={t('Responsibilities & achievements')}
+                placeholder="List responsibilities and and achievements"
                 multiline
-                rows={5}
+                minRows={3}
               />
             )}
           />
