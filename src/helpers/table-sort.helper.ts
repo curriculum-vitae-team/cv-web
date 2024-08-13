@@ -1,10 +1,9 @@
 import { get } from 'react-hook-form'
 import { isBefore, parseISO } from 'date-fns/esm'
-import { Item } from '@templates/table/table.types'
 import { SortOrder } from 'constants/table-sort.constants'
 
 export const sortItems =
-  <T extends Item>(sortBy: string, order: SortOrder) =>
+  <T>(sortBy: string, order: SortOrder) =>
   (a: T, b: T) => {
     const fieldA = get(a, sortBy)
     const fieldB = get(b, sortBy)
@@ -23,7 +22,7 @@ export const sortItems =
   }
 
 export const sortDates =
-  <T extends Item>(sortBy: string, order: SortOrder) =>
+  <T>(sortBy: string, order: SortOrder) =>
   (a: T, b: T) => {
     const fieldA = get(a, sortBy)
     const fieldB = get(b, sortBy)

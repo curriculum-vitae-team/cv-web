@@ -9,6 +9,7 @@ import { downloadPdf } from 'helpers/download-pdf'
 import { sortDates } from 'helpers/table-sort.helper'
 import { SortOrder } from 'constants/table-sort.constants'
 import { CvPreviewProject } from '@organisms/cv_preview_project'
+import { CvPreviewSkills } from '@organisms/cv_preview_skills'
 import * as Styled from './cv-preview.styles'
 
 const CvPreview = () => {
@@ -90,6 +91,11 @@ const CvPreview = () => {
       {sortedProjects.map((project) => (
         <CvPreviewProject key={project.id} cv={cv} project={project} />
       ))}
+      <Styled.PageBreak />
+      <Styled.Head>
+        <Typography variant="h4">{t('Professional skills')}</Typography>
+      </Styled.Head>
+      <CvPreviewSkills projects={projects} groups={groups} />
     </Styled.Document>
   )
 }
