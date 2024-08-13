@@ -7,6 +7,7 @@ export type ProjectFormValues = {
   start_date: Date | null
   end_date: Date | null
   description: string
+  environment: string[]
 }
 
 export type ProjectDialogProps = DialogProps & {

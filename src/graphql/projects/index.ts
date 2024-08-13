@@ -9,6 +9,7 @@ export const PROJECTS = gql`
       start_date
       end_date
       description
+      environment
     }
   }
 `
@@ -22,6 +23,7 @@ export const CREATE_PROJECT = gql`
       start_date
       end_date
       description
+      environment
     }
   }
 `
@@ -35,6 +37,7 @@ export const UPDATE_PROJECT = gql`
       start_date
       end_date
       description
+      environment
     }
   }
 `

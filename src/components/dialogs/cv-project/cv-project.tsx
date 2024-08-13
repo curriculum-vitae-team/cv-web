@@ -93,6 +93,19 @@ const CvProject = ({
           />
           <Controller
             control={control}
+            name="description"
+            render={({ field }) => (
+              <Styled.Description
+                {...field}
+                label={t('Description')}
+                disabled={disabled}
+                multiline
+                minRows={5}
+              />
+            )}
+          />
+          <Controller
+            control={control}
             name="responsibilities"
             render={({ field }) => (
               <Styled.Description
@@ -100,7 +113,7 @@ const CvProject = ({
                 label={t('Responsibilities & achievements')}
                 placeholder="List responsibilities and and achievements"
                 multiline
-                minRows={3}
+                minRows={1}
               />
             )}
           />

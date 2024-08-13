@@ -139,6 +139,7 @@ const CvProject = `
   start_date
   end_date
   description
+  environment
   roles
   responsibilities
 `

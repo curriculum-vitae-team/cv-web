@@ -22,7 +22,7 @@ export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
   const [openConfirmDialog] = useConfirmDialog()
   const [updateCvProject] = useCvProjectUpdate()
   const { canUpdateCv } = usePermission()
-  const additionalRow = !!item.responsibilities.length
+  const additionalRow = !!item.description || !!item.responsibilities.length
 
   const handleUpdate = () => {
     openCvProjectDialog({
@@ -71,6 +71,9 @@ export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
       content={
         additionalRow && (
           <>
+            {item.description && (
+              <Styled.Description variant="inherit">{item.description}</Styled.Description>
+            )}
             <Styled.Responsibilities>
               {item.responsibilities.map((responsibility) => (
                 <Chip key={responsibility} label={responsibility} size="small" />

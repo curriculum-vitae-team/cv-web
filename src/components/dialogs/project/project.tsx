@@ -7,17 +7,20 @@ import { DatePicker } from '@molecules/date-picker'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { requiredValidation } from 'helpers/validation.helper'
 import { DayMonthYear } from 'constants/format.constant'
+import { ProjectSkillsSelect } from '@molecules/project_skills_select'
 import * as Styled from './project.styles'
 import { ProjectFormValues, ProjectDialogProps } from './project.types'
 
 const Project = ({ title, confirmText, item, onConfirm, closeDialog }: ProjectDialogProps) => {
+  const { t } = useTranslation()
   const methods = useForm<ProjectFormValues>({
     defaultValues: {
       name: item?.name || '',
       domain: item?.domain || '',
       start_date: item?.start_date ? parseISO(item.start_date) : null,
       end_date: item?.end_date ? parseISO(item.end_date) : null,
-      description: item?.description || ''
+      description: item?.description || '',
+      environment: item?.environment || []
     }
   })
   const {
@@ -25,7 +28,6 @@ const Project = ({ title, confirmText, item, onConfirm, closeDialog }: ProjectDi
     register,
     handleSubmit
   } = methods
-  const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
 
   const onSubmit = (values: ProjectFormValues) => {
@@ -69,6 +71,7 @@ const Project = ({ title, confirmText, item, onConfirm, closeDialog }: ProjectDi
             multiline
             minRows={5}
           />
+          <ProjectSkillsSelect />
         </Styled.Column>
         <DialogActions>
           <Button variant="outlined" color="secondary" onClick={closeDialog}>

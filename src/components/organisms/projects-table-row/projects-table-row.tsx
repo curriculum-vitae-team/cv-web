@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { MenuItem, TableCell, Typography } from '@mui/material'
+import { Chip, MenuItem, TableCell, Typography } from '@mui/material'
 import { Project } from 'cv-graphql'
 import { format } from 'date-fns/esm'
 import { TableRowProps } from '@templates/table/table.types'
@@ -15,7 +15,7 @@ import * as Styled from './projects-table-row.styles'
 export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
   const { t } = useTranslation()
   const { isAdmin } = useAuth()
-  const additionalRow = !!item.description
+  const additionalRow = !!item.description || !!item.environment.length
   const [openProjectDialog] = useProjectDialog()
   const [deleteProject] = useProjectDelete(item.id)
   const [openConfirmDialog] = useConfirmDialog()
@@ -57,9 +57,16 @@ export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
     <TableRowDropdown
       content={
         additionalRow && (
-          <Typography variant="inherit" color="GrayText">
-            {item.description}
-          </Typography>
+          <>
+            {item.description && (
+              <Styled.Description variant="inherit">{item.description}</Styled.Description>
+            )}
+            <Styled.Environment>
+              {item.environment.map((skill) => (
+                <Chip key={skill} label={skill} size="small" variant="outlined" />
+              ))}
+            </Styled.Environment>
+          </>
         )
       }
     >

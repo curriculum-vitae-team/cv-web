@@ -6,7 +6,7 @@ import { CvPreviewProjectProps } from './cv_preview_project.types'
 
 export const CvPreviewProject = ({ cv, project }: CvPreviewProjectProps) => {
   const { t } = useTranslation()
-  const { name, description, roles, responsibilities, start_date, end_date } = project
+  const { name, description, roles, responsibilities, start_date, end_date, environment } = project
 
   return (
     <Styled.Project>
@@ -28,7 +28,8 @@ export const CvPreviewProject = ({ cv, project }: CvPreviewProjectProps) => {
           {format(parseISO(start_date), 'M.yyyy')} –{' '}
           {end_date ? format(parseISO(end_date), 'M.yyyy') : t('Till now')}
         </Typography>
-        {/* <Styled.Title>{t('Environment')}</Styled.Title> */}
+        <Styled.Title>{t('Environment')}</Styled.Title>
+        <Typography>{environment.join(', ')}</Typography>
       </Styled.Main>
     </Styled.Project>
   )

@@ -1,6 +1,6 @@
 import { styled } from '@mui/material'
 
-export { Row } from '../projects-table-head/projects-table-head.styles'
+export { Row, Description, Environment } from '../projects-table-row/projects-table-row.styles'
 
 export const Responsibilities = styled('div')({
   display: 'flex',

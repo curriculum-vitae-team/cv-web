@@ -20,7 +20,7 @@
     "@mui/material": "^5.16.1",
     "@mui/x-date-pickers": "^6.20.1",
     "@sentry/react": "^8.17.0",
-    "cv-graphql": "^2.9.2",
+    "cv-graphql": "^2.10.0",
     "date-fns": "^2.30.0",
     "graphql": "^16.6.0",
     "i18next": "^23.12.1",
