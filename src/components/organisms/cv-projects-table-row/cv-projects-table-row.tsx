@@ -11,6 +11,7 @@ import { DayMonthYear } from 'constants/format.constant'
 import { ActionsMenu } from '@atoms/actions-menu'
 import { usePermission } from 'hooks/use_permission'
 import { TableRowDropdown } from '@molecules/table_row_dropdown'
+import { TableRowDescription } from '@atoms/table_row_description'
 import * as Styled from './cv-projects-table-row.styles'
 
 export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
@@ -72,7 +73,7 @@ export const CvProjectsTableRow = ({ item }: TableRowProps<CvProject>) => {
         additionalRow && (
           <>
             {item.description && (
-              <Styled.Description variant="inherit">{item.description}</Styled.Description>
+              <TableRowDescription variant="inherit">{item.description}</TableRowDescription>
             )}
             <Styled.Responsibilities>
               {item.responsibilities.map((responsibility) => (

@@ -1,1 +1,1 @@
-export { Description } from '../cvs-table-head/cvs-table-head.styles'
+export { Education } from '../cvs-table-head/cvs-table-head.styles'

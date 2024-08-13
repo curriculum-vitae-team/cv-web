@@ -6,6 +6,8 @@ import { routes } from 'constants/routes'
 import { CvsTableMenu } from '@molecules/cvs-table-menu'
 import type { TableRowProps } from '@templates/table/table.types'
 import { usePermission } from 'hooks/use_permission'
+import { TableRowDropdown } from '@molecules/table_row_dropdown'
+import { TableRowDescription } from '@atoms/table_row_description'
 import * as Styled from './user-cvs-table-row.styles'
 
 export const UserCvsTableRow = ({ item }: TableRowProps<Cv>) => {
@@ -18,18 +20,20 @@ export const UserCvsTableRow = ({ item }: TableRowProps<Cv>) => {
   }
 
   return (
-    <TableRow>
-      <Styled.Name>{item.name}</Styled.Name>
-      <Styled.Description>{item.description}</Styled.Description>
-      <TableCell>
-        {canUpdateUser({ id: userId }) ? (
-          <CvsTableMenu cv={item} />
-        ) : (
-          <IconButton onClick={handleDetails}>
-            <KeyboardArrowRight color="secondary" />
-          </IconButton>
-        )}
-      </TableCell>
-    </TableRow>
+    <TableRowDropdown content={<TableRowDescription>{item.description}</TableRowDescription>}>
+      <TableRow>
+        <Styled.Name>{item.name}</Styled.Name>
+        <Styled.Education>{item.education}</Styled.Education>
+        <TableCell>
+          {canUpdateUser({ id: userId }) ? (
+            <CvsTableMenu cv={item} />
+          ) : (
+            <IconButton onClick={handleDetails}>
+              <KeyboardArrowRight color="secondary" />
+            </IconButton>
+          )}
+        </TableCell>
+      </TableRow>
+    </TableRowDropdown>
   )
 }

@@ -10,6 +10,7 @@ import { useProjectDelete, useProjectUpdate } from 'hooks/use-projects'
 import { useAuth } from 'hooks/use-auth'
 import { DayMonthYear } from 'constants/format.constant'
 import { TableRowDropdown } from '@molecules/table_row_dropdown'
+import { TableRowDescription } from '@atoms/table_row_description'
 import * as Styled from './projects-table-row.styles'
 
 export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
@@ -59,7 +60,7 @@ export const ProjectsTableRow = ({ item }: TableRowProps<Project>) => {
         additionalRow && (
           <>
             {item.description && (
-              <Styled.Description variant="inherit">{item.description}</Styled.Description>
+              <TableRowDescription variant="inherit">{item.description}</TableRowDescription>
             )}
             <Styled.Environment>
               {item.environment.map((skill) => (

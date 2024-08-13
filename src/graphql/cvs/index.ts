@@ -5,6 +5,7 @@ export const CVS = gql`
     cvs {
       id
       name
+      education
       description
       user {
         id

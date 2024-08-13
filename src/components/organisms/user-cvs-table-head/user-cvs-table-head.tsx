@@ -10,7 +10,7 @@ export const UserCvsTableHead = () => {
   return (
     <TableRow>
       <TableCell>{createSortLabel<Cv>('name', t('Name'))}</TableCell>
-      <Styled.Description>{t('Description')}</Styled.Description>
+      <Styled.Education>{createSortLabel<Cv>('education', t('Education'))}</Styled.Education>
       <TableCell />
     </TableRow>
   )

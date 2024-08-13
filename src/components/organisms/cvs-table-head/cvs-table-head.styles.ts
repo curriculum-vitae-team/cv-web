@@ -1,10 +1,6 @@
 import { TableCell, styled } from '@mui/material'
 
-export const Description = styled(TableCell)(({ theme }) => ({
-  maxWidth: 200,
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
+export const Education = styled(TableCell)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     display: 'none'
   }
