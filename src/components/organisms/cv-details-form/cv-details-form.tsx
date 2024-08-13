@@ -5,6 +5,7 @@ import { memo } from 'react'
 import { useCvUpdate } from 'hooks/use-cvs'
 import { requiredValidation } from 'helpers/validation.helper'
 import { usePermission } from 'hooks/use_permission'
+import { addNotification } from 'graphql/notifications'
 import * as Styled from './cv-details-form.styles'
 import { CvDetailsFormProps, CvFormValues } from './cv-details-form.types'
 
@@ -37,7 +38,10 @@ const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
           description
         }
       }
-    }).then(() => reset({ name, education, description }))
+    })
+      .then(() => reset({ name, education, description }))
+      .then(() => addNotification('CV was updated'))
+      .catch((error: Error) => addNotification(error.message, 'error'))
   }
 
   return (
@@ -47,14 +51,22 @@ const CvDetailsForm = ({ cv }: CvDetailsFormProps) => {
         autoFocus={canUpdateCv(cv)}
         label={t('Name')}
         error={!!errors.name}
-        helperText={errors.name?.message || ''}
+        helperText={t(errors.name?.message || '')}
       />
       <TextField {...register('education')} label={t('Education')} />
       <Controller
         name="description"
         control={control}
+        rules={{ validate: requiredValidation }}
         render={({ field }) => (
-          <Styled.Description {...field} label={t('Description')} multiline minRows={7} />
+          <Styled.Description
+            {...field}
+            label={t('Description')}
+            multiline
+            minRows={7}
+            error={!!errors.description}
+            helperText={t(errors.description?.message || '')}
+          />
         )}
       />
       {canUpdateCv(cv) && (

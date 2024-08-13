@@ -48,14 +48,16 @@ const Cv = ({ userId, closeDialog }: CvProps) => {
           autoFocus
           label={t('Name')}
           error={!!errors.name}
-          helperText={errors.name?.message || ''}
+          helperText={t(errors.name?.message || '')}
         />
         <TextField {...register('education')} label={t('Education')} />
         <Styled.Description
-          {...register('description')}
+          {...register('description', { validate: requiredValidation })}
           label={t('Description')}
           multiline
           minRows={7}
+          error={!!errors.description}
+          helperText={t(errors.description?.message || '')}
         />
       </Styled.Column>
       <DialogActions>
