@@ -110,8 +110,8 @@ const CvProject = ({
             render={({ field }) => (
               <Styled.Description
                 {...field}
-                label={t('Responsibilities & achievements')}
-                placeholder="List responsibilities and and achievements"
+                label={t('Responsibilities')}
+                placeholder="List responsibilities"
                 multiline
                 minRows={1}
               />

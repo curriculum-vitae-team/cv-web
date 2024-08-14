@@ -5,5 +5,9 @@ export { Row, Environment } from '../projects-table-row/projects-table-row.style
 export const Responsibilities = styled('div')({
   display: 'flex',
   flexWrap: 'wrap',
-  gap: 8
+  gap: 8,
+
+  '& .MuiChip-root': {
+    maxWidth: 300
+  }
 })

@@ -17,19 +17,22 @@ export const CvPreviewProject = ({ cv, project }: CvPreviewProjectProps) => {
       <Styled.Main>
         <Styled.Title>{t('Project roles')}</Styled.Title>
         <Typography>{roles.join(', ') || cv.user?.position_name}</Typography>
-        <Styled.Title>{t('Responsibilities & achievements')}</Styled.Title>
-        <Styled.Responsibilities>
-          {responsibilities.map((responsibility) => (
-            <li key={responsibility}>{responsibility}</li>
-          ))}
-        </Styled.Responsibilities>
         <Styled.Title>{t('Period')}</Styled.Title>
         <Typography>
-          {format(parseISO(start_date), 'M.yyyy')} –{' '}
-          {end_date ? format(parseISO(end_date), 'M.yyyy') : t('Till now')}
+          {format(parseISO(start_date), 'MM.yyyy')} –{' '}
+          {end_date ? format(parseISO(end_date), 'MM.yyyy') : t('Till now')}
         </Typography>
+        <Styled.Title>{t('Responsibilities')}</Styled.Title>
+        <Styled.Responsibilities>
+          {responsibilities.map((responsibility, index) => (
+            <li key={responsibility}>
+              {responsibility}
+              {index === responsibilities.length - 1 ? '.' : ';'}
+            </li>
+          ))}
+        </Styled.Responsibilities>
         <Styled.Title>{t('Environment')}</Styled.Title>
-        <Typography>{environment.join(', ')}</Typography>
+        <Typography>{environment.join(', ')}.</Typography>
       </Styled.Main>
     </Styled.Project>
   )

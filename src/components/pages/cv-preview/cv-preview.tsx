@@ -71,7 +71,12 @@ const CvPreview = () => {
             </Typography>
           ))}
           <Styled.Title>{t('Domains')}</Styled.Title>
-          <Typography>{sortedProjects.map(({ domain }) => domain).join(', ')}</Typography>
+          <Typography>
+            {sortedProjects
+              .filter(({ domain }) => domain)
+              .map(({ domain }) => domain)
+              .join(', ')}
+          </Typography>
         </Styled.Left>
         <Styled.Main>
           <Styled.Title>{cv.name}</Styled.Title>
