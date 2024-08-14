@@ -66,7 +66,7 @@ const User = ({ title = 'Create user', saveText = 'Create', item, closeDialog }:
         )
         .then(closeDialog)
         .then(() => addNotification('User was updated'))
-        .catch((error) => addNotification(error.message, 'error'))
+        .catch((error: Error) => addNotification(error.message, 'error'))
 
       return
     }
@@ -81,7 +81,10 @@ const User = ({ title = 'Create user', saveText = 'Create', item, closeDialog }:
           role
         }
       }
-    }).then(closeDialog)
+    })
+      .then(closeDialog)
+      .then(() => addNotification('User was created'))
+      .catch((error: Error) => addNotification(error.message, 'error'))
   }
 
   return (
