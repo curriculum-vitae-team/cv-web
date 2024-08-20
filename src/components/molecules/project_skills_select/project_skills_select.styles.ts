@@ -8,5 +8,9 @@ export const Skills = styled(Autocomplete<string, true>)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
     height: 'auto',
     minHeight: 48
+  },
+
+  '& .MuiAutocomplete-inputRoot  .MuiAutocomplete-input': {
+    minWidth: 150
   }
 }))
