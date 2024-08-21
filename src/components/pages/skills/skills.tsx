@@ -11,17 +11,15 @@ const Skills = () => {
   const { skills, loading } = useSkills()
 
   return (
-    <div>
-      <Table
-        items={skills}
-        loading={loading}
-        TableToolComponent={SkillsTableTool}
-        TableHeadComponent={SkillsTableHead}
-        TableRowComponent={SkillsTableRow}
-        searchBy={['name', 'category']}
-        defaultSortBy="category"
-      />
-    </div>
+    <Table
+      items={skills}
+      loading={loading}
+      TableToolComponent={SkillsTableTool}
+      TableHeadComponent={SkillsTableHead}
+      TableRowComponent={SkillsTableRow}
+      searchBy={['name', 'category_parent_name', 'category_name']}
+      defaultSortBy="category_parent_name"
+    />
   )
 }
 

@@ -17,7 +17,7 @@ export const Document = styled(Container)(({ theme }) => ({
 
 export const Summary = styled('div')({
   display: 'grid',
-  gridTemplateColumns: '200px 1fr',
+  gridTemplateColumns: '260px 1fr',
   marginBottom: 32
 })
 
@@ -46,11 +46,11 @@ export const Export = styled(Button)({
 })
 
 export const Left = styled('section')({
-  paddingRight: 32
+  paddingRight: 24
 })
 
 export const Main = styled('section')({
-  paddingLeft: 32,
+  paddingLeft: 24,
   paddingBottom: 16,
   borderLeft: '1px #c63030 solid'
 })

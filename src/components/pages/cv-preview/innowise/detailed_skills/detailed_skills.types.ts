@@ -1,8 +1,8 @@
 import { CvProject, SkillMastery } from 'cv-graphql'
 
-export type CvPreviewSkillsProps = {
+export type DetailedSkillsProps = {
   projects: CvProject[]
-  groups: Record<string, SkillMastery[]>
+  skillCategories: Record<string, SkillMastery[]>
 }
 
 type SkillUsage = { firstUsed: number; lastUsed: number }

@@ -3,7 +3,7 @@ import { DialogProps } from 'graphql/dialogs/dialogs.types'
 
 export type SkillMasteryFormValues = {
   name: string
-  category: string
+  categoryId: string
   mastery: Mastery
 }
 

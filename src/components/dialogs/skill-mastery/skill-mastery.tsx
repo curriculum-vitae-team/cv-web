@@ -6,7 +6,6 @@ import { Mastery } from 'cv-graphql'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { SkillSelect } from '@molecules/skill-select'
 import { SkillMasterySelect } from '@molecules/skill-mastery-select'
-import { SkillCategorySelect } from '@molecules/skill-category-select'
 import { SkillMasteryFormValues, SkillMasteryProps } from './skill-mastery.types'
 
 const SkillMastery = ({
@@ -22,7 +21,7 @@ const SkillMastery = ({
   const methods = useForm<SkillMasteryFormValues>({
     defaultValues: {
       name: skill?.name || '',
-      category: skill?.category || '',
+      categoryId: skill?.categoryId || '',
       mastery: skill?.mastery || Mastery.Novice
     }
   })
@@ -41,7 +40,6 @@ const SkillMastery = ({
         <DialogTitle>{t(title)}</DialogTitle>
         <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           <SkillSelect ownSkills={ownSkills} disabled={disableSkillSelect} />
-          <SkillCategorySelect disabled />
           <SkillMasterySelect />
         </DialogContent>
         <DialogActions>

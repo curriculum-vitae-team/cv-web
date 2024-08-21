@@ -8,16 +8,19 @@ import { prepareHtml } from 'helpers/prepare-html'
 import { downloadPdf } from 'helpers/download-pdf'
 import { sortDates } from 'helpers/table-sort.helper'
 import { SortOrder } from 'constants/table-sort.constants'
-import { CvPreviewProject } from '@organisms/cv_preview_project'
-import { CvPreviewSkills } from '@organisms/cv_preview_skills'
+import { useSkillsWithCategories } from 'hooks/use-skills'
+import { DetailedSkills } from './innowise/detailed_skills'
+import { Project } from './innowise/project'
 import * as Styled from './cv-preview.styles'
+import { SummarySkills } from './innowise/summary_skills'
 
 const CvPreview = () => {
   const ref = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
   const { cvId = '' } = useParams()
   const { cv, loading } = useCv(cvId)
-  const { groups, loading: loadingSkills } = useCvSkills(cvId)
+  const { skills, loading: loadingSkills } = useCvSkills(cvId)
+  const { skillCategories, skillCategoriesDetails } = useSkillsWithCategories(skills)
   const { projects } = useCvProjects(cvId)
   const [exportPdf, { loading: loadingPdf }] = usePdfExport()
 
@@ -71,22 +74,16 @@ const CvPreview = () => {
             </Typography>
           ))}
           <Styled.Title>{t('Domains')}</Styled.Title>
-          <Typography>
-            {sortedProjects
-              .filter(({ domain }) => domain)
-              .map(({ domain }) => domain)
-              .join(', ')}
+          <Typography sx={{ whiteSpace: 'pre-line' }}>
+            {[...new Set(sortedProjects.map(({ domain }) => domain))]
+              .filter((domain) => domain)
+              .join(',\n')}
           </Typography>
         </Styled.Left>
         <Styled.Main>
           <Styled.Title>{cv.name}</Styled.Title>
           <Typography>{cv.description}</Typography>
-          {Object.entries(groups).map(([category, skills]) => (
-            <Fragment key={category}>
-              <Styled.Title>{t(category)}</Styled.Title>
-              <Typography>{skills.map((skill) => skill.name).join(', ')}</Typography>
-            </Fragment>
-          ))}
+          <SummarySkills skillCategories={skillCategories} />
         </Styled.Main>
       </Styled.Summary>
       <Styled.PageBreak />
@@ -94,13 +91,16 @@ const CvPreview = () => {
         <Typography variant="h4">{t('Projects')}</Typography>
       </Styled.Head>
       {sortedProjects.map((project) => (
-        <CvPreviewProject key={project.id} cv={cv} project={project} />
+        <Fragment key={project.id}>
+          <Project cv={cv} project={project} />
+          <Styled.PageBreak />
+        </Fragment>
       ))}
-      <Styled.PageBreak />
+      {!sortedProjects.length && <Styled.PageBreak />}
       <Styled.Head>
         <Typography variant="h4">{t('Professional skills')}</Typography>
       </Styled.Head>
-      <CvPreviewSkills projects={projects} groups={groups} />
+      <DetailedSkills projects={projects} skillCategories={skillCategoriesDetails} />
     </Styled.Document>
   )
 }

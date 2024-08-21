@@ -34,7 +34,8 @@ export const SkillsTableRow = ({ item }: TableRowProps<Skill>) => {
   return (
     <TableRow>
       <TableCell>{item.name}</TableCell>
-      <TableCell>{t(item.category || '')}</TableCell>
+      <TableCell>{t(item.category_parent_name || '')}</TableCell>
+      <TableCell>{t(item.category_name || '')}</TableCell>
       <TableCell>
         <ActionsMenu disabled={!isAdmin}>
           <MenuItem onClick={handleUpdate}>{t('Update skill')}</MenuItem>

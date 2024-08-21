@@ -4,6 +4,7 @@ import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
 import { useSkillCreate, useSkillUpdate } from 'hooks/use-skills'
 import { createDialogHook } from 'helpers/create-dialog-hook.helper'
 import { SkillCategorySelect } from '@molecules/skill-category-select'
+import { requiredValidation } from 'helpers/validation.helper'
 import { SkillFormValues, SkillProps } from './skill.types'
 import * as Styled from './skill.styles'
 
@@ -11,7 +12,7 @@ const Skill = ({ item, closeDialog }: SkillProps) => {
   const methods = useForm<SkillFormValues>({
     defaultValues: {
       name: item?.name || '',
-      category: item?.category || ''
+      categoryId: item?.category?.id || ''
     }
   })
   const {
@@ -23,24 +24,25 @@ const Skill = ({ item, closeDialog }: SkillProps) => {
   const [createSkill, { loading }] = useSkillCreate()
   const [updateSkill, { loading: updating }] = useSkillUpdate()
 
-  const onSubmit = ({ name, category }: SkillFormValues) => {
+  const onSubmit = ({ name, categoryId }: SkillFormValues) => {
     if (item) {
       updateSkill({
         variables: {
           skill: {
             skillId: item.id,
             name,
-            category
+            categoryId
           }
         }
       }).then(() => closeDialog())
       return
     }
+
     createSkill({
       variables: {
         skill: {
           name,
-          category
+          categoryId
         }
       }
     }).then(() => closeDialog())
@@ -52,10 +54,11 @@ const Skill = ({ item, closeDialog }: SkillProps) => {
         <DialogTitle>{item ? t('Update skill') : t('Create skill')}</DialogTitle>
         <Styled.Column>
           <TextField
-            {...register('name', { required: true })}
+            {...register('name', { validate: requiredValidation })}
             autoFocus
             label={t('Name')}
             error={!!errors.name}
+            helperText={errors.name?.message}
           />
           <SkillCategorySelect />
         </Styled.Column>

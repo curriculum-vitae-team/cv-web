@@ -1,9 +1,9 @@
 import { styled, Typography } from '@mui/material'
-export { Left, Main, Title } from '@pages/cv-preview/cv-preview.styles'
+export { Left, Main, Title } from '../../cv-preview.styles'
 
 export const Project = styled('div')({
   display: 'grid',
-  gridTemplateColumns: '300px 1fr',
+  gridTemplateColumns: '260px 1fr',
   marginBottom: 32
 })
 

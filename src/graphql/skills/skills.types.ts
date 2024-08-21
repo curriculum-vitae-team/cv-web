@@ -1,11 +1,15 @@
-import { Skill } from 'cv-graphql'
+import { Skill, SkillCategory } from 'cv-graphql'
 
 export type SkillsResult = {
   skills: Skill[]
 }
 
+export type SkillTypesResult = {
+  skillTypes: string[]
+}
+
 export type SkillCategoriesResult = {
-  skillCategories: string[]
+  skillCategories: SkillCategory[]
 }
 
 export type CreateSkillResult = {

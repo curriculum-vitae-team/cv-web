@@ -9,7 +9,8 @@ export const SkillsTableHead = () => {
   return (
     <TableRow>
       <TableCell>{createSortLabel<Skill>('name', t('Name'))}</TableCell>
-      <TableCell>{createSortLabel<Skill>('category', t('Category'))}</TableCell>
+      <TableCell>{createSortLabel<Skill>('category_parent_name', t('Type'))}</TableCell>
+      <TableCell>{createSortLabel<Skill>('category_name', t('Category'))}</TableCell>
       <TableCell />
     </TableRow>
   )

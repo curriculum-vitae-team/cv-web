@@ -1,5 +1,11 @@
 import { useMutation, useQuery } from '@apollo/client'
-import { CreateSkillInput, DeleteResult, DeleteSkillInput, UpdateSkillInput } from 'cv-graphql'
+import type {
+  CreateSkillInput,
+  DeleteResult,
+  DeleteSkillInput,
+  SkillMastery,
+  UpdateSkillInput
+} from 'cv-graphql'
 import { CREATE_SKILL, DELETE_SKILL, SKILLS, SKILL_CATEGORIES, UPDATE_SKILL } from 'graphql/skills'
 import {
   CreateSkillResult,
@@ -7,15 +13,26 @@ import {
   SkillsResult,
   UpdateSkillResult
 } from 'graphql/skills/skills.types'
+import { mapSkillsIntoCategories } from 'helpers/group_skill_categories'
 
 export const useSkills = () => {
   const query = useQuery<SkillsResult>(SKILLS)
-  return { skills: query.data?.skills || [], ...query }
+  const skills = query.data?.skills || []
+
+  return { skills, ...query }
 }
 
 export const useSkillCategories = () => {
   const query = useQuery<SkillCategoriesResult>(SKILL_CATEGORIES)
+
   return { categories: query.data?.skillCategories || [], ...query }
+}
+
+export const useSkillsWithCategories = (skills: SkillMastery[]) => {
+  const { categories } = useSkillCategories()
+  const { skillCategories, skillCategoriesDetails } = mapSkillsIntoCategories(skills, categories)
+
+  return { skillCategories, skillCategoriesDetails }
 }
 
 export const useSkillCreate = () => {

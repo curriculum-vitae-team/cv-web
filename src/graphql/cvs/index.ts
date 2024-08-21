@@ -84,7 +84,7 @@ export const CV_SKILLS = gql`
       }
       skills {
         name
-        category
+        categoryId
         mastery
       }
     }
@@ -97,7 +97,7 @@ export const ADD_CV_SKILL = gql`
       id
       skills {
         name
-        category
+        categoryId
         mastery
       }
     }
@@ -110,7 +110,7 @@ export const UPDATE_CV_SKILL = gql`
       id
       skills {
         name
-        category
+        categoryId
         mastery
       }
     }
@@ -123,7 +123,7 @@ export const DELETE_CV_SKILL = gql`
       id
       skills {
         name
-        category
+        categoryId
         mastery
       }
     }

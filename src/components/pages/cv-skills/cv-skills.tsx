@@ -11,13 +11,15 @@ import { useSkillMasteryDialog } from '@dialogs/skill-mastery'
 import { Actions } from '@templates/actions'
 import { useBulkDeletion } from 'hooks/use_bulk_deletion'
 import { usePermission } from 'hooks/use_permission'
+import { useSkillsWithCategories } from 'hooks/use-skills'
 import * as Styled from './cv-skills.styles'
 
 const CvSkills = () => {
   const { cvId = '' } = useParams()
   const { t } = useTranslation()
   const { canUpdateCv } = usePermission()
-  const { cv, groups, skills, loading } = useCvSkills(cvId)
+  const { cv, skills, loading } = useCvSkills(cvId)
+  const { skillCategories } = useSkillsWithCategories(skills)
   const [openSkillMasteryDialog] = useSkillMasteryDialog()
   const ownSkills = skills.map((skills) => skills.name)
   const [addCvSkill] = useCvSkillAdd()
@@ -29,13 +31,13 @@ const CvSkills = () => {
     openSkillMasteryDialog({
       title: 'Add skill',
       ownSkills,
-      onConfirm({ name, category, mastery }) {
+      onConfirm({ name, categoryId, mastery }) {
         return addCvSkill({
           variables: {
             skill: {
               cvId,
               name,
-              category,
+              categoryId,
               mastery
             }
           }
@@ -50,13 +52,13 @@ const CvSkills = () => {
       ownSkills,
       skill,
       disableSkillSelect: true,
-      onConfirm({ name, category, mastery }) {
+      onConfirm({ name, categoryId, mastery }) {
         return updateCvSkill({
           variables: {
             skill: {
               cvId,
               name,
-              category,
+              categoryId,
               mastery
             }
           }
@@ -89,7 +91,7 @@ const CvSkills = () => {
         </Button>
       )}
       <BulkDeletion onDelete={handleDelete}>
-        {Object.entries(groups).map(([category, skills]) => (
+        {Object.entries(skillCategories).map(([category, skills]) => (
           <SkillsGroup
             key={category}
             category={category}

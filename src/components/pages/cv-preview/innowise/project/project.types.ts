@@ -1,6 +1,6 @@
 import { Cv, CvProject } from 'cv-graphql'
 
-export type CvPreviewProjectProps = {
+export type ProjectProps = {
   cv: Cv
   project: CvProject
 }

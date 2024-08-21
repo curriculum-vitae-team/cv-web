@@ -8,6 +8,10 @@ import * as Styled from './skills-group.styles'
 const SkillsGroup = ({ category, skills, disabled, onUpdate }: SkillsGroupProps) => {
   const { t } = useTranslation()
 
+  if (!skills.length) {
+    return null
+  }
+
   return (
     <Styled.Group>
       <Typography>{t(category)}</Typography>

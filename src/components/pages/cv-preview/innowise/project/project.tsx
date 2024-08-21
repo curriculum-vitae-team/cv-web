@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns/esm'
-import * as Styled from './cv_preview_project.styles'
-import { CvPreviewProjectProps } from './cv_preview_project.types'
+import * as Styled from './project.styles'
+import { ProjectProps } from './project.types'
 
-export const CvPreviewProject = ({ cv, project }: CvPreviewProjectProps) => {
+export const Project = ({ cv, project }: ProjectProps) => {
   const { t } = useTranslation()
   const { name, description, roles, responsibilities, start_date, end_date, environment } = project
 

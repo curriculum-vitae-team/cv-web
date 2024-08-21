@@ -5,14 +5,26 @@ export const SKILLS = gql`
     skills {
       id
       name
-      category
+      category {
+        id
+        order
+      }
+      category_name
+      category_parent_name
     }
   }
 `
 
 export const SKILL_CATEGORIES = gql`
   query SkillCategories {
-    skillCategories
+    skillCategories {
+      id
+      name
+      parent {
+        id
+        name
+      }
+    }
   }
 `
 
@@ -21,7 +33,7 @@ export const CREATE_SKILL = gql`
     createSkill(skill: $skill) {
       id
       name
-      category
+      category_name
     }
   }
 `
@@ -31,7 +43,7 @@ export const UPDATE_SKILL = gql`
     updateSkill(skill: $skill) {
       id
       name
-      category
+      category_name
     }
   }
 `

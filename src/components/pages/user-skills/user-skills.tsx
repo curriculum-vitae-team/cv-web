@@ -18,13 +18,15 @@ import { Actions } from '@templates/actions'
 import { useBulkDeletion } from 'hooks/use_bulk_deletion'
 import { usePermission } from 'hooks/use_permission'
 import { addNotification } from 'graphql/notifications'
+import { useSkillsWithCategories } from 'hooks/use-skills'
 import * as Styled from './user-skills.styles'
 
 const UserSkills = () => {
   const { t } = useTranslation()
   const { userId = '' } = useParams()
   const { canUpdateProfile } = usePermission()
-  const { profile, groups, skills, loading } = useProfileSkills(userId)
+  const { profile, skills, loading } = useProfileSkills(userId)
+  const { skillCategories } = useSkillsWithCategories(skills)
   const [openSkillMasteryDialog] = useSkillMasteryDialog()
   const ownSkills = skills.map((skills) => skills.name)
   const [addProfileSkill] = useProfileSkillAdd()
@@ -36,13 +38,13 @@ const UserSkills = () => {
     openSkillMasteryDialog({
       title: 'Add skill',
       ownSkills,
-      onConfirm({ name, category, mastery }) {
+      onConfirm({ name, categoryId, mastery }) {
         return addProfileSkill({
           variables: {
             skill: {
               userId,
               name,
-              category,
+              categoryId,
               mastery
             }
           }
@@ -59,13 +61,13 @@ const UserSkills = () => {
       ownSkills,
       skill,
       disableSkillSelect: true,
-      onConfirm({ name, category, mastery }) {
+      onConfirm({ name, categoryId, mastery }) {
         return updateProfileSkill({
           variables: {
             skill: {
               userId,
               name,
-              category,
+              categoryId,
               mastery
             }
           }
@@ -103,7 +105,7 @@ const UserSkills = () => {
             <Add /> {t('Add skill')}
           </Button>
         )}
-        {Object.entries(groups).map(([category, skills]) => (
+        {Object.entries(skillCategories).map(([category, skills]) => (
           <SkillsGroup
             key={category}
             category={category}

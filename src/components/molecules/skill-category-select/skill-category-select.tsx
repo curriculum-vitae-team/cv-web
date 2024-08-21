@@ -8,21 +8,23 @@ import { SkillCategorySelectProps } from './skill-category-select.types'
 
 const SkillCategorySelect = ({ disabled }: SkillCategorySelectProps) => {
   const { t } = useTranslation()
-  const { field } = useController<SkillMasteryFormValues>({ name: 'category' })
+  const { field } = useController<SkillMasteryFormValues>({ name: 'categoryId' })
   const { categories, loading } = useSkillCategories()
+  const selected = categories.find((category) => category.id === field.value)
 
   return (
     <TextField
       {...field}
+      value={selected?.id || ''}
       disabled={disabled || loading}
       sx={{ width: '100%' }}
       select
       label={t('Category')}
     >
       <MenuItem value="">{t('No category')}</MenuItem>
-      {categories.map((category) => (
-        <MenuItem key={category} value={category}>
-          {t(category)}
+      {categories.map(({ id, name }) => (
+        <MenuItem key={name} value={id}>
+          {t(name)}
         </MenuItem>
       ))}
     </TextField>

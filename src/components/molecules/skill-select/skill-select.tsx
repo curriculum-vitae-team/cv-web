@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useController, useFormContext } from 'react-hook-form'
-import { MenuItem, TextField } from '@mui/material'
+import { Autocomplete, TextField } from '@mui/material'
 import { useSkills } from 'hooks/use-skills'
 import { SkillMasteryFormValues } from '@dialogs/skill-mastery/skill-mastery.types'
 import { SkillSelectProps } from './skill-select.types'
@@ -12,22 +12,35 @@ const SkillSelect = ({ ownSkills, disabled }: SkillSelectProps) => {
   const { setValue } = useFormContext<SkillMasteryFormValues>()
   const { field } = useController<SkillMasteryFormValues>({ name: 'name' })
 
+  const options = skills
+    .filter(({ name }) => disabled || !ownSkills.includes(name))
+    .sort((a, b) => {
+      if (!a.category?.order || !b.category?.order) {
+        return 0
+      }
+
+      if (a.category.order > b.category.order) {
+        return 1
+      }
+
+      return -1
+    })
+
   return (
-    <TextField
-      {...field}
-      sx={{ width: '100%' }}
-      select
+    <Autocomplete
+      autoHighlight
       disabled={disabled || loading}
-      label={t('Skill')}
-    >
-      {skills
-        .filter(({ name }) => disabled || !ownSkills.includes(name))
-        .map(({ id, name, category }) => (
-          <MenuItem key={id} value={name} onClick={() => setValue('category', category || '')}>
-            {name}
-          </MenuItem>
-        ))}
-    </TextField>
+      {...field}
+      value={options.find((option) => option.name === field.value) || null}
+      onChange={(_, option) => {
+        setValue('name', option?.name || '', { shouldDirty: true })
+        setValue('categoryId', option?.category?.id || '')
+      }}
+      options={options}
+      groupBy={(option) => option.category_parent_name || option.category_name || 'Other'}
+      getOptionLabel={(option) => option.name}
+      renderInput={(params) => <TextField {...params} label={t('Skill')} />}
+    />
   )
 }
 

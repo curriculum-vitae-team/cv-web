@@ -3,7 +3,6 @@ import {
   CreateCvInput,
   UpdateCvInput,
   ExportPdfInput,
-  SkillMastery,
   AddCvSkillInput,
   UpdateCvSkillInput,
   DeleteCvInput,
@@ -12,7 +11,6 @@ import {
   RemoveCvProjectInput,
   UpdateCvProjectInput
 } from 'cv-graphql'
-import { useMemo } from 'react'
 import {
   ADD_CV_PROJECT,
   ADD_CV_SKILL,
@@ -57,24 +55,8 @@ export const useCv = (cvId: string) => {
 export const useCvSkills = (cvId: string) => {
   const query = useQuery<CvResult>(CV_SKILLS, { variables: { cvId } })
   const cv = query.data?.cv
-  const skills = cv?.skills
 
-  const groups = useMemo(() => {
-    if (!skills) {
-      return {}
-    }
-
-    return skills.reduce<Record<string, SkillMastery[]>>((acc, cur) => {
-      const category = cur.category || 'Other'
-      if (!acc[category]) {
-        acc[category] = []
-      }
-      acc[category].push(cur)
-      return acc
-    }, {})
-  }, [skills])
-
-  return { cv, skills: skills || [], groups, ...query }
+  return { cv, skills: cv?.skills || [], ...query }
 }
 
 export const useCvCreate = () => {
