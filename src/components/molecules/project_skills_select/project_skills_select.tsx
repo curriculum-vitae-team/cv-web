@@ -3,6 +3,7 @@ import { Chip, TextField } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useSkills } from 'hooks/use-skills'
 import { ProjectFormValues } from '@dialogs/project/project.types'
+import { DropdownPaper } from '@atoms/dropdown_paper'
 import * as Styled from './project_skills_select.styles'
 
 export const ProjectSkillsSelect = () => {
@@ -22,6 +23,7 @@ export const ProjectSkillsSelect = () => {
           <Chip {...getTagProps({ index })} key={option} label={option} size="small" />
         ))
       }
+      PaperComponent={DropdownPaper}
       renderInput={(params) => (
         <TextField {...params} label={t('Environment')} placeholder={t('Add skill')} />
       )}

@@ -1,4 +1,4 @@
-import { PaletteMode, createTheme } from '@mui/material'
+import { PaletteMode, SimplePaletteColorOptions, createTheme } from '@mui/material'
 import { palette } from './mui-palette'
 
 export const getTheme = (mode: PaletteMode) => {
@@ -99,6 +99,20 @@ export const getTheme = (mode: PaletteMode) => {
           },
           shrink: {
             transform: 'translate(12px, -9px) scale(0.75)'
+          }
+        }
+      },
+      MuiAutocomplete: {
+        styleOverrides: {
+          paper: {
+            backgroundImage:
+              'linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12))',
+            boxShadow:
+              '0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12)'
+          },
+          groupLabel: {
+            color: (palette[mode].primary as SimplePaletteColorOptions).main,
+            background: palette[mode]?.background?.default
           }
         }
       },

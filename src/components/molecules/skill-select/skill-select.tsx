@@ -4,6 +4,7 @@ import { useController, useFormContext } from 'react-hook-form'
 import { Autocomplete, TextField } from '@mui/material'
 import { useSkills } from 'hooks/use-skills'
 import { SkillMasteryFormValues } from '@dialogs/skill-mastery/skill-mastery.types'
+import { DropdownPaper } from '@atoms/dropdown_paper'
 import { SkillSelectProps } from './skill-select.types'
 
 const SkillSelect = ({ ownSkills, disabled }: SkillSelectProps) => {
@@ -39,6 +40,7 @@ const SkillSelect = ({ ownSkills, disabled }: SkillSelectProps) => {
       options={options}
       groupBy={(option) => option.category_parent_name || option.category_name || 'Other'}
       getOptionLabel={(option) => option.name}
+      PaperComponent={DropdownPaper}
       renderInput={(params) => <TextField {...params} label={t('Skill')} />}
     />
   )
