@@ -10,7 +10,7 @@ import {
 import { Divider } from '@mui/material'
 import { routes } from 'constants/routes'
 
-export const LIST_ITEMS = [
+export const adminLinks = [
   {
     IconComponent: Group,
     name: 'users',
@@ -49,5 +49,18 @@ export const LIST_ITEMS = [
     IconComponent: Translate,
     name: 'languages',
     to: routes.languages
+  }
+]
+
+export const userLinks = [
+  {
+    IconComponent: Group,
+    name: 'users',
+    to: routes.users.root
+  },
+  {
+    IconComponent: ContactPageOutlined,
+    name: 'cvs',
+    to: routes.cvs.root
   }
 ]

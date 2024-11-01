@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { generatePath, useNavigate } from 'react-router-dom'
 import { Typography, Button, TextField } from '@mui/material'
 import { useState } from 'react'
 import { setSession } from 'graphql/auth/session'
@@ -30,8 +30,10 @@ const Login = () => {
   const onSubmit = ({ email, password }: LoginFormValues) => {
     setLoading(true)
     login({ variables: { auth: { email, password } } })
-      .then(({ data }) => setSession(data.login))
-      .then(() => navigate(routes.root))
+      .then(({ data }) => {
+        setSession(data.login)
+        navigate(generatePath(routes.users.profile, { userId: data.login.user.id }))
+      })
       .catch((error) => addNotification(error.message, 'error'))
       .finally(() => setLoading(false))
   }

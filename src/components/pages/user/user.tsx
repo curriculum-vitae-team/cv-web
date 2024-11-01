@@ -7,12 +7,14 @@ import { PageLoader } from '@atoms/page-loader'
 import { useBreadcrumbs } from 'hooks/use-breadcrumbs'
 import { routes } from 'constants/routes'
 import { useUser } from 'hooks/use-users'
+import { useAuth } from 'hooks/use-auth'
 import * as Styled from './user.styles'
 
 const User = () => {
   const location = useLocation()
   const { userId = '' } = useParams()
   const { t } = useTranslation()
+  const { isAdmin } = useAuth()
   const { user } = useUser(userId)
   const profilePath = generatePath(routes.users.profile, { userId })
   const skillsPath = generatePath(routes.users.skills, { userId })
@@ -39,7 +41,7 @@ const User = () => {
         <Tab value={profilePath} label={t('Profile')} component={NavLink} to={profilePath} />
         <Tab value={skillsPath} label={t('Skills')} component={NavLink} to={skillsPath} />
         <Tab value={languagesPath} label={t('Languages')} component={NavLink} to={languagesPath} />
-        <Tab value={cvsPath} label={t('cvs')} component={NavLink} to={cvsPath} />
+        {isAdmin && <Tab value={cvsPath} label={t('cvs')} component={NavLink} to={cvsPath} />}
       </Styled.Tabs>
       <Suspense fallback={<PageLoader />}>
         <Outlet />
