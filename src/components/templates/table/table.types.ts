@@ -19,6 +19,7 @@ export type TableProps<T> = {
   TableFooterComponent?: FC
   searchBy: Path<T>[]
   defaultSortBy: Path<T>
+  preventSortForItemId?: string
   defaultOrder?: SortOrder
   stickyTop?: number
 }

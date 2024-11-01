@@ -20,6 +20,7 @@ const Table = <T extends Item>({
   TableFooterComponent,
   searchBy,
   defaultSortBy,
+  preventSortForItemId,
   defaultOrder = SortOrder.Asc,
   stickyTop
 }: TableProps<T>) => {
@@ -43,11 +44,24 @@ const Table = <T extends Item>({
   }, [items, searchBy, _search])
 
   const sortedItems = useMemo(() => {
+    if (!filteredItems.length) {
+      return filteredItems
+    }
+
     if (dateFields.includes(sortBy)) {
       return filteredItems.sort(sortDates(_sortBy, _order))
     }
+
+    if (preventSortForItemId) {
+      const topItem = filteredItems.find((item) => item.id === preventSortForItemId)
+      const bottomItems = filteredItems.filter((item) => item.id !== preventSortForItemId)
+      const sortedItems = bottomItems.sort(sortItems(_sortBy, _order))
+
+      return topItem ? [topItem, ...sortedItems] : sortedItems
+    }
+
     return filteredItems.sort(sortItems(_sortBy, _order))
-  }, [sortBy, filteredItems, _sortBy, _order])
+  }, [sortBy, filteredItems, _sortBy, _order, preventSortForItemId])
 
   return (
     <Styled.Table stickyHeader>
